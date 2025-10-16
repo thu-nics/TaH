@@ -1,0 +1,24 @@
+# File types
+*.egg-info/
+*.pyc
+*.png
+*.log
+
+# Folders
+reference/
+.vscode/
+.cursor/
+local/
+output/
+wandb/
+build/
+
+test/
+data/
+!script/data/
+
+# For local dev
+*.sh
+*.yaml
+yyc_dir/
+model/

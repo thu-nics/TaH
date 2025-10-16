@@ -1,0 +1,63 @@
+[build-system]
+requires = [ "setuptools>=61.0", "wheel",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tah"
+version = "0.1.0"
+description = "Think-at-Hard: Selective Latent Iterations to Improve Reasoning Language Models"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [ "Development Status :: 3 - Alpha", "Intended Audience :: Developers", "License :: OSI Approved :: MIT License", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12",]
+dependencies = [ "transformers==4.52.4", "torch==2.6.0", "matplotlib", "torchvision==0.21.0", "accelerate", "datasets", "peft==0.15.2",]
+
+[project.license]
+text = "MIT"
+
+[project.optional-dependencies]
+dev = [ "pytest>=6.0", "pytest-cov", "pylatexenc",]
+training = [ "wandb", "deepspeed==0.17.1", "liger_kernel==0.6.0", "flash-attn==2.7.3",]
+evaluation = [ "latex2sympy2==1.9.1", "latex2sympy2_extended==1.10.2", "pylatexenc==2.10", "sympy==1.13.1", "sglang>=0.4.6",]
+
+[tool.black]
+line-length = 88
+target-version = [ "py310",]
+include = "\\.pyi?$"
+extend-exclude = "/(\n  # directories\n  \\.eggs\n  | \\.git\n  | \\.hg\n  | \\.mypy_cache\n  | \\.tox\n  | \\.venv\n  | build\n  | dist\n)/\n"
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.setuptools.package-data]
+tah = [ "*.py",]
+
+[tool.pytest.ini_options]
+testpaths = [ "test",]
+python_files = [ "test_*.py", "*_test.py",]
+python_classes = [ "Test*",]
+python_functions = [ "test_*",]
+addopts = "-v --tb=short"
+
+[tool.setuptools.packages.find]
+include = [ "tah*",]

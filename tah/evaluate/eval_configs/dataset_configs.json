@@ -1,0 +1,58 @@
+{
+    "aime25": {
+        "name": "AIME Mathematical Problems",
+        "path": "yentinglin/aime_2025",
+        "split_name": "train",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "problem",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "American Invitational Mathematics Examination problems with numerical answers"
+    },
+    "math500": {
+        "name": "Math500",
+        "path": "HuggingFaceH4/MATH-500",
+        "split_name": "test",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "problem",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "Math500 dataset"
+    },
+    "amc23":{
+        "name": "AMC 2023",
+        "path": "math-ai/amc23",
+        "split_name": "test",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "question",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "AMC 2023 dataset"
+    },
+    "gsm8k":{
+        "name": "GSM8K",
+        "path": "pss0204/gsm8k_test",
+        "subset": "gsm8k_test",
+        "split_name": "test",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "problem",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "test set of GSM8K dataset"
+    },
+    "olympiadbench":{
+        "name": "OlympiadBench",
+        "path": "realtreetune/olympiadbench",
+        "split_name": "test",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "problem",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "test set of OlympiadBench dataset"
+    }
+}
