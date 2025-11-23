@@ -74,12 +74,20 @@ def configure_lora_for_iteration(wrapper, iter_depth: int) -> None:
     Mirrors previous `_configure_lora_for_iteration` behavior.
     """
     if wrapper.adapter == "lora":
-        if iter_depth == 0:
-            # Disable all LoRA parameters for the first iteration
+        if not hasattr(wrapper, "_lora_enabled_state"):
             wrapper.simple_base_model.base_model.disable_adapter_layers()
+            wrapper._lora_enabled_state = False
+
+        if iter_depth == 0:
+            # Disable LoRA parameters only when transitioning from enabled -> disabled
+            if wrapper._lora_enabled_state is not False:
+                wrapper.simple_base_model.base_model.disable_adapter_layers()
+                wrapper._lora_enabled_state = False
         elif iter_depth > 0:
-            # For single LoRA, enable adapter layers for subsequent iterations
-            wrapper.simple_base_model.base_model.enable_adapter_layers()
+            # Enable LoRA parameters only when transitioning from disabled -> enabled
+            if wrapper._lora_enabled_state is not True:
+                wrapper.simple_base_model.base_model.enable_adapter_layers()
+                wrapper._lora_enabled_state = True
     
 
 

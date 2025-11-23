@@ -284,6 +284,7 @@ def TaHForCasualLM_generate(
             cache,
             is_prefill=True,
             verbose=verbose,
+            new_sequence=True,
             **kwargs,
         )
         cache = outputs.past_key_values
@@ -330,7 +331,7 @@ def TaHForCasualLM_generate(
                 current_attention_mask = torch.cat(
                     [current_attention_mask, new_token_mask], dim=1
                 )
-                next_model_inputs["attention_mask"] = new_token_mask
+                next_model_inputs["attention_mask"] = current_attention_mask
 
             # Forward pass for next token
             outputs = _forward_and_display(
@@ -341,6 +342,7 @@ def TaHForCasualLM_generate(
                 cache=cache,
                 is_prefill=False,
                 verbose=verbose,
+                new_sequence=False,
                 **kwargs,
             )
             cache = outputs.past_key_values
@@ -415,6 +417,7 @@ def _forward_and_display(
     iter_count: Optional[torch.Tensor],
     cache: Optional[object],
     is_prefill: bool = False,
+    new_sequence: bool = False,
     verbose: bool = True,
     **kwargs,
 ) -> object:
@@ -428,6 +431,7 @@ def _forward_and_display(
         iter_count: iteration counts for tokens
         cache: past key values cache
         is_prefill: whether this is the prefill phase or decoding phase
+        new_sequence: whether this is a new sequence
         verbose: whether to display token colors and debug output
 
     Returns:
@@ -442,6 +446,7 @@ def _forward_and_display(
         "iter_count": iter_count,
         "past_key_values": cache,
         "use_cache": True,
+        "new_sequence": new_sequence,
         **kwargs,
     }
 
@@ -466,7 +471,7 @@ def _forward_and_display(
         attention_mask = model_inputs.get("attention_mask", None)
         if attention_mask is not None:
             # Only print tokens where attention mask is 1 (non-padding)
-            valid_positions = attention_mask[0] == 1
+            valid_positions = attention_mask[0, -outputs.iter_count[0].shape[0]:] == 1
             tokens = [token for i, token in enumerate(tokens) if valid_positions[i]]
 
         if hasattr(outputs, "iter_count") and outputs.iter_count is not None:

@@ -3,6 +3,13 @@ from tah.evaluate.eval_unified import allocate_gpus_and_run_jobs
 
 def main(args):
     """Main coordinator function"""
+    from transformers.utils import logging as hf_logging
+
+    level = getattr(hf_logging, args.logger_level.upper(), hf_logging.WARNING)
+    hf_logging.set_verbosity(level)
+    hf_logging.enable_default_handler()
+    hf_logging.enable_propagation()
+
     allocate_gpus_and_run_jobs(args)
 
 if __name__ == "__main__":
@@ -28,7 +35,10 @@ if __name__ == "__main__":
                       help='Comma-separated indices to evaluate, e.g., "0,5,6,15". If provided, overrides --data_range')
     parser.add_argument('--del_job_dir', type=bool, default=True,
                       help='Delete job directory after evaluation')
-    
+    parser.add_argument('--logger_level', type=str, default='WARNING',
+                        help='Logging level (e.g., DEBUG, INFO, WARNING, ERROR, CRITICAL)')
+    parser.add_argument('--random_seed', type=int, default=42,
+                        help='Random seed for evaluation')
     args = parser.parse_args()
     
     main(args)

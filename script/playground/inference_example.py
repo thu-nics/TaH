@@ -14,7 +14,7 @@ def main():
     Initializations
     """
 
-    save_model_name = "/path/to/TaH-1.7B"
+    save_model_name = "nics-efc/TaH-plus-1.7B"
     device_map = "cuda:0"
 
     tokenizer = AutoTokenizer.from_pretrained(save_model_name)
@@ -48,7 +48,6 @@ def main():
     # prepare the model input
     prompts = [
         "Six points $A, B, C, D, E$ and $F$ lie in a straight line in that order. Suppose that $G$ is a point not on the line and that $AC = 26$, $BD = 22$, $CE = 31$, $DF = 33$, $AF = 73$, $CG = 40$, and $DG = 30$. Find the area of $\\triangle BGE$."
-        # "On $\\triangle ABC$ points $A,D,E$, and $B$ lie that order on side $\\overline{AB}$ with $AD=4, DE=16$, and $EB=8$. Points $A,F,G$, and $C$ lie in that order on side $\\overline{AC}$ with $AF=13, FG=52$, and $GC=26$. Let $M$ be the reflection of $D$ through $F$, and let $N$ be the reflection of $G$ through $E$. Quadrilateral $DEGF$ has area 288. Find the area of heptagon $AFNBCEM$."
     ]
 
     # Process each prompt through chat template

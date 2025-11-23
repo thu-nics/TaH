@@ -20,8 +20,8 @@ model:
 
 ### data ###
 data:
-  train_data_path: data/processed_data/openr1/1_7/train_0.05
-  eval_data_path: data/processed_data/openr1/1_7/eval_0.1
+  train_data_path: data/processed_data/openr1/1_7/train
+  eval_data_path: data/processed_data/openr1/1_7/eval
   output_dir: "output/openr1/"
   max_length: 10000
 
@@ -52,4 +52,4 @@ training:
   report_to: "wandb"  # Options: "none", "wandb"
   wandb_project: "TaH"
   wandb_name: "openr1_1.7base_standard_1015"
-  wandb_entity: "youyc22-tsinghua"
+  # wandb_entity: ""

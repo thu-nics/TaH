@@ -540,7 +540,7 @@ class OracleDynamicIterDecider(IterDecider):
                         tokenizer_path=model_path,
                         trust_remote_code=True,
                         dtype=_to_sgl_dtype(dtype),
-                        tp_size=1,
+                        tp_size=2,
                         dp_size=1,
                         enable_dp_attention=False,
                         host='127.0.0.1',
@@ -633,8 +633,7 @@ class OracleDynamicIterDecider(IterDecider):
         logits: torch.Tensor,
         iter_depth: int,
         active_valid_mask: torch.Tensor,
-        prediction_logits: torch.Tensor,
-        *,
+        prediction_logits: Optional[torch.Tensor] = None,
         input_ids: Optional[torch.Tensor] = None,
         attention_mask: Optional[torch.Tensor] = None,
         ref_model: Optional[nn.Module] = None,
@@ -662,10 +661,10 @@ class OracleDynamicIterDecider(IterDecider):
             print("[OracleDynamicIterDecider] Warning: iter_depth not increasing, make sure it restarts from 1 per sequence.")
         self._last_step_depth = iter_depth
 
-    # Note: For per-position decisions we prefer using the provided per-token logits (logits arg)
-    # which corresponds to active positions flattened by active_valid_mask. We'll reconstruct
-    # a (B, T) view later. prediction_logits (B, V) may reflect only the last position and is
-    # insufficient for full prefill decisions.
+        # Note: For per-position decisions we prefer using the provided per-token logits (logits arg)
+        # which corresponds to active positions flattened by active_valid_mask. We'll reconstruct
+        # a (B, T) view later. prediction_logits (B, V) may reflect only the last position and is
+        # insufficient for full prefill decisions.
 
         if iter_depth == 1:
             ref = self._ensure_ref(ref_model)

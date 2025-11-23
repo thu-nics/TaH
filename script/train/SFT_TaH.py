@@ -14,12 +14,15 @@ from typing import Dict
 
 from tah.model.recurrent_transformer import TaHForCausalLM
 from tah.model.tah_config import TaHConfig
-from tah.model.iter_decider import load_iter_decider, NoisyWrapperIterDecider
+from tah.model.iter_decider import load_iter_decider
 from tah.model.input_updater import load_input_updater
 from tah.train import CustomTaHTrainer, CustomTaHDataCollator, LoggerCallback
 from tah.utils.data_prepare import preprocess_dataset
 
-from liger_kernel.transformers import AutoLigerKernelForCausalLM
+try:
+    from liger_kernel.transformers import AutoLigerKernelForCausalLM
+except ImportError:
+    AutoLigerKernelForCausalLM = None
 
 from tah.model.utils import set_all_seeds, freeze_components, compute_trainable_param_size_gb
 from dataclasses import fields
@@ -107,6 +110,8 @@ def load_model_and_tokenizer(training_config: Dict, model_config: Dict, accelera
         
         # load base model
         if training_config.get('enable_liger_kernel', False):
+            if AutoLigerKernelForCausalLM is None:
+                raise ImportError("liger_kernel is not installed. Please install it using `pip install liger_kernel`.")
             base_model = AutoLigerKernelForCausalLM.from_pretrained(
                 model_config['name'],
                 torch_dtype=torch_dtype,
@@ -319,31 +324,26 @@ def main(config):
     accelerator.print(f"Trainable parameter size: {trainable_gb:.3f} GB")
     
     # Preprocess Dataset
-    processed_train_dataset, processed_eval_dataset, avg_important_ratio = preprocess_dataset(training_config, data_config, model_config, accelerator)
+    processed_train_dataset, processed_eval_dataset, avg_hard_ratio = preprocess_dataset(training_config, data_config, model_config, accelerator)
     
-    # Calculate and set balanced weights if we have important token ratio
-    if avg_important_ratio is not None: 
-        p = avg_important_ratio  # ratio of important tokens
-        r = training_config.get('important_token_relative_weight', 1.0)
-        
+    # Calculate and set balanced weights if hard_token_relative_weight is not 1.0
+    hard_token_relative_weight = training_config.get('hard_token_relative_weight', 1.0)
+    if hard_token_relative_weight != 1.0: 
         # Calculate weights such that:
-        # 1. p * weight_important + (1 - p) * weight_normal = 1.0
-        # 2. weight_important / weight_normal = r
-        weight_normal = 1.0 / (p * r + (1 - p))
-        weight_important = r * weight_normal
-        
-        model.important_token_relative_weight = r
-        model.weight_important = weight_important
-        model.weight_normal = weight_normal
-        
+        # 1. p * weight_hard + (1 - p) * weight_easy = 1.0
+        # 2. weight_hard / weight_easy = r
+        weight_easy = 1.0 / (avg_hard_ratio * hard_token_relative_weight + (1 - avg_hard_ratio))
+        weight_hard = hard_token_relative_weight * weight_easy
+        model.weight_hard = weight_hard
+        model.weight_easy = weight_easy
+        model.hard_token_relative_weight = hard_token_relative_weight
         accelerator.print(f"Calculated balanced weights:")
-        accelerator.print(f"  - Important token ratio: {p:.4f}")
-        accelerator.print(f"  - Weight important: {weight_important:.4f}")
-        accelerator.print(f"  - Weight normal: {weight_normal:.4f}")
-        accelerator.print(f"  - Weight ratio: {weight_important/weight_normal:.4f}")
+        accelerator.print(f"  - Hard token ratio: {avg_hard_ratio:.4f}")
+        accelerator.print(f"  - Weight for hard tokens: {weight_hard:.4f}")
+        accelerator.print(f"  - Weight for easy tokens: {weight_easy:.4f}")
     else:
-        accelerator.print(f"Skipping balanced weights calculation because important_relative_weight is 1.0")
-    
+        accelerator.print(f"Skipping balanced weights calculation because hard_token_relative_weight is 1.0")
+
     # Create Training Arguments
     training_args = create_training_args(training_config, data_config, output_dir, accelerator, timestamp)
     

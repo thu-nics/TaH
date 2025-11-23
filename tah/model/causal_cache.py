@@ -21,18 +21,11 @@ class TaHCache(DynamicCache):
     def __init__(self):
         super().__init__()
         # Structure: {layer_idx: {iter_depth: Tensor_data}}
-        self.key_cache: Dict[int, Dict[int, torch.Tensor]] = (
-            {}
-        )  # Tensor of shape (batch_size, num_heads, seq_len, head_dim)
-        self.value_cache: Dict[int, Dict[int, torch.Tensor]] = (
-            {}
-        )  # Tensor of shape (batch_size, num_heads, seq_len, head_dim)
-        self.position_id_cache: Dict[int, Dict[int, torch.Tensor]] = (
-            {}
-        )  # Tensor of shape (batch_size, seq_len)
-        self.valid_mask_cache: Dict[int, Dict[int, torch.Tensor]] = (
-            {}
-        )  # Tensor of shape (batch_size, seq_len)
+        # Use internal names to avoid clashing with transformers.Cache properties
+        self._tah_key_cache: Dict[int, Dict[int, torch.Tensor]] = {}
+        self._tah_value_cache: Dict[int, Dict[int, torch.Tensor]] = {}
+        self._tah_position_id_cache: Dict[int, Dict[int, torch.Tensor]] = {}
+        self._tah_valid_mask_cache: Dict[int, Dict[int, torch.Tensor]] = {}
 
         self.current_iter_depth = 0
         self.batch_size: Optional[int] = None  # Track current batch size
@@ -76,34 +69,34 @@ class TaHCache(DynamicCache):
         new_valid_mask = self.valid_mask_to_cache
 
         # Initialize layer cache if needed
-        if layer_idx not in self.key_cache:
-            self.key_cache[layer_idx] = {}
-            self.value_cache[layer_idx] = {}
-            self.position_id_cache[layer_idx] = {}
-            self.valid_mask_cache[layer_idx] = {}
+        if layer_idx not in self._tah_key_cache:
+            self._tah_key_cache[layer_idx] = {}
+            self._tah_value_cache[layer_idx] = {}
+            self._tah_position_id_cache[layer_idx] = {}
+            self._tah_valid_mask_cache[layer_idx] = {}
 
         # Update cache for this iteration depth
-        if iter_depth in self.key_cache[layer_idx]:
+        if iter_depth in self._tah_key_cache[layer_idx]:
             # Concatenate with existing cache for this iteration depth
-            self.key_cache[layer_idx][iter_depth] = torch.cat(
-                [self.key_cache[layer_idx][iter_depth], key_states], dim=-2
+            self._tah_key_cache[layer_idx][iter_depth] = torch.cat(
+                [self._tah_key_cache[layer_idx][iter_depth], key_states], dim=-2
             )
-            self.value_cache[layer_idx][iter_depth] = torch.cat(
-                [self.value_cache[layer_idx][iter_depth], value_states], dim=-2
+            self._tah_value_cache[layer_idx][iter_depth] = torch.cat(
+                [self._tah_value_cache[layer_idx][iter_depth], value_states], dim=-2
             )
-            self.position_id_cache[layer_idx][iter_depth] = torch.cat(
-                [self.position_id_cache[layer_idx][iter_depth], new_position_ids],
+            self._tah_position_id_cache[layer_idx][iter_depth] = torch.cat(
+                [self._tah_position_id_cache[layer_idx][iter_depth], new_position_ids],
                 dim=-1,
             )
-            self.valid_mask_cache[layer_idx][iter_depth] = torch.cat(
-                [self.valid_mask_cache[layer_idx][iter_depth], new_valid_mask], dim=-1
+            self._tah_valid_mask_cache[layer_idx][iter_depth] = torch.cat(
+                [self._tah_valid_mask_cache[layer_idx][iter_depth], new_valid_mask], dim=-1
             )
         else:
             # First entry for this iteration depth
-            self.key_cache[layer_idx][iter_depth] = key_states
-            self.value_cache[layer_idx][iter_depth] = value_states
-            self.position_id_cache[layer_idx][iter_depth] = new_position_ids
-            self.valid_mask_cache[layer_idx][iter_depth] = new_valid_mask
+            self._tah_key_cache[layer_idx][iter_depth] = key_states
+            self._tah_value_cache[layer_idx][iter_depth] = value_states
+            self._tah_position_id_cache[layer_idx][iter_depth] = new_position_ids
+            self._tah_valid_mask_cache[layer_idx][iter_depth] = new_valid_mask
 
         # Return concatenated cache from all accessible iterations (0 to iter_depth)
         return self.get_cache_upto_iter(layer_idx, iter_depth)
@@ -168,14 +161,14 @@ class TaHCache(DynamicCache):
             """
             Get the position id for a given layer and iteration depth.
             """
-            if (layer_idx not in self.position_id_cache) or (
-                iter_idx not in self.position_id_cache[layer_idx]
+            if (layer_idx not in self._tah_position_id_cache) or (
+                iter_idx not in self._tah_position_id_cache[layer_idx]
             ):
                 return torch.empty(
                     size=(batch_size, 0), device=self.device, dtype=torch.long
                 )
             else:
-                return self.position_id_cache[layer_idx][iter_idx]
+                return self._tah_position_id_cache[layer_idx][iter_idx]
 
         all_position_ids = []
         batch_size = init_batch_size
@@ -202,14 +195,14 @@ class TaHCache(DynamicCache):
             """
             Get the token mask for a given layer and iteration depth.
             """
-            if (layer_idx not in self.valid_mask_cache) or (
-                iter_idx not in self.valid_mask_cache[layer_idx]
+            if (layer_idx not in self._tah_valid_mask_cache) or (
+                iter_idx not in self._tah_valid_mask_cache[layer_idx]
             ):
                 return torch.empty(
                     size=(batch_size, 0), device=self.device, dtype=torch.long
                 )
             else:
-                return self.valid_mask_cache[layer_idx][iter_idx]
+                return self._tah_valid_mask_cache[layer_idx][iter_idx]
 
         all_valid_masks = []
         batch_size = init_batch_size
@@ -240,8 +233,8 @@ class TaHCache(DynamicCache):
             """
             Get the iter id for a given layer and iteration depth.
             """
-            if (layer_idx not in self.position_id_cache) or (
-                iter_idx not in self.position_id_cache[layer_idx]
+            if (layer_idx not in self._tah_position_id_cache) or (
+                iter_idx not in self._tah_position_id_cache[layer_idx]
             ):
                 return torch.empty(size=(0,), device=self.device, dtype=torch.long)
             else:
@@ -276,7 +269,7 @@ class TaHCache(DynamicCache):
         Returns:
             Concatenated key and value states with consistent batch dimensions
         """
-        if layer_idx not in self.key_cache:
+        if layer_idx not in self._tah_key_cache:
             return None, None
 
         all_keys = []
@@ -284,9 +277,9 @@ class TaHCache(DynamicCache):
 
         # Collect cache from all iterations up to current depth
         for iter_depth in range(upto_iter_idx + 1):
-            if iter_depth in self.key_cache[layer_idx]:
-                all_keys.append(self.key_cache[layer_idx][iter_depth])
-                all_values.append(self.value_cache[layer_idx][iter_depth])
+            if iter_depth in self._tah_key_cache[layer_idx]:
+                all_keys.append(self._tah_key_cache[layer_idx][iter_depth])
+                all_values.append(self._tah_value_cache[layer_idx][iter_depth])
 
         if not all_keys:
             return None, None
@@ -307,18 +300,18 @@ class TaHCache(DynamicCache):
         Returns:
             Cache length
         """
-        if layer_idx not in self.key_cache or not self.key_cache[layer_idx]:
+        if layer_idx not in self._tah_key_cache or not self._tah_key_cache[layer_idx]:
             return 0
 
         total_length = 0
         if iter_idx is None:
             # Return total cache length across ALL stored iterations
-            for iter_depth in self.key_cache[layer_idx]:
-                key_states = self.key_cache[layer_idx][iter_depth]
+            for iter_depth in self._tah_key_cache[layer_idx]:
+                key_states = self._tah_key_cache[layer_idx][iter_depth]
                 total_length += key_states.shape[-2]
         else:
             # Return cache length for a given iteration
-            key_states = self.key_cache[layer_idx][iter_idx]
+            key_states = self._tah_key_cache[layer_idx][iter_idx]
             total_length = key_states.shape[-2]
 
         return total_length
@@ -327,13 +320,13 @@ class TaHCache(DynamicCache):
         self, layer_idx: Optional[int] = 0, iter_depth: int = 0
     ) -> int:
         """Returns cache length from iterations 0 to before_iter_depth-1."""
-        if layer_idx not in self.key_cache or not self.key_cache[layer_idx]:
+        if layer_idx not in self._tah_key_cache or not self._tah_key_cache[layer_idx]:
             return 0
 
         total_length = 0
         for iter_depth in range(iter_depth + 1):
-            if iter_depth in self.key_cache[layer_idx]:
-                key_states = self.key_cache[layer_idx][iter_depth]
+            if iter_depth in self._tah_key_cache[layer_idx]:
+                key_states = self._tah_key_cache[layer_idx][iter_depth]
                 total_length += key_states.shape[-2]
 
         return total_length
@@ -342,12 +335,12 @@ class TaHCache(DynamicCache):
         self, layer_idx: Optional[int] = 0, iter_idx: Optional[int] = 0
     ) -> int:
         """Returns the current sequence length (max position + 1) for a given layer."""
-        if layer_idx not in self.position_id_cache:
+        if layer_idx not in self._tah_position_id_cache:
             return 0
 
         # Find maximum position across all iterations (sequence grows during generation)
         # max_position = torch.max(self.position_id_cache[layer_idx][iter_idx]).item() # make more sense, but not exactly the same as huggingface
-        max_position = self.key_cache[layer_idx][iter_idx].shape[-2]
+        max_position = self._tah_key_cache[layer_idx][iter_idx].shape[-2]
         return max_position
 
     # Not used
@@ -367,15 +360,15 @@ class TaHCache(DynamicCache):
 
     def reorder_cache(self, beam_idx: torch.LongTensor):
         """Reorder the cache according to beam_idx for beam search."""
-        for layer_idx in self.key_cache:
-            for iter_depth in self.key_cache[layer_idx]:
-                device = self.key_cache[layer_idx][iter_depth].device
+        for layer_idx in self._tah_key_cache:
+            for iter_depth in self._tah_key_cache[layer_idx]:
+                device = self._tah_key_cache[layer_idx][iter_depth].device
                 # Reorder key cache
-                self.key_cache[layer_idx][iter_depth] = self.key_cache[layer_idx][
+                self._tah_key_cache[layer_idx][iter_depth] = self._tah_key_cache[layer_idx][
                     iter_depth
                 ].index_select(0, beam_idx.to(device))
                 # Reorder value cache
-                self.value_cache[layer_idx][iter_depth] = self.value_cache[layer_idx][
+                self._tah_value_cache[layer_idx][iter_depth] = self._tah_value_cache[layer_idx][
                     iter_depth
                 ].index_select(0, beam_idx.to(device))
 
@@ -396,10 +389,10 @@ class TaHCache(DynamicCache):
         """Returns the device of the cached tensors."""
         # use the device of the first cached tensor
         key_device = None
-        for layer_idx in self.key_cache:
-            for iter_depth in self.key_cache[layer_idx]:
-                if self.key_cache[layer_idx][iter_depth] is not None:
-                    return self.key_cache[layer_idx][iter_depth].device
+        for layer_idx in self._tah_key_cache:
+            for iter_depth in self._tah_key_cache[layer_idx]:
+                if self._tah_key_cache[layer_idx][iter_depth] is not None:
+                    return self._tah_key_cache[layer_idx][iter_depth].device
 
         # Else, use cpu as default
         return torch.device("cpu")
@@ -408,10 +401,10 @@ class TaHCache(DynamicCache):
     def dtype(self) -> torch.dtype:
         """Returns the dtype of the cached tensors."""
         # use the dtype of the first cached tensor
-        for layer_idx in self.key_cache:
-            for iter_depth in self.key_cache[layer_idx]:
-                if self.key_cache[layer_idx][iter_depth] is not None:
-                    return self.key_cache[layer_idx][iter_depth].dtype
+        for layer_idx in self._tah_key_cache:
+            for iter_depth in self._tah_key_cache[layer_idx]:
+                if self._tah_key_cache[layer_idx][iter_depth] is not None:
+                    return self._tah_key_cache[layer_idx][iter_depth].dtype
         
         # Else, use bfloat16 as default
         return torch.bfloat16
@@ -441,7 +434,7 @@ class TaHCache(DynamicCache):
                 dtype = arg
 
         # Convert key and value caches (both device and dtype)
-        kv_cache_dicts = [self.key_cache, self.value_cache]
+        kv_cache_dicts = [self._tah_key_cache, self._tah_value_cache]
         for cache_dict in kv_cache_dicts:
             for layer_idx in cache_dict:
                 for iter_depth in cache_dict[layer_idx]:
@@ -452,7 +445,7 @@ class TaHCache(DynamicCache):
                         )
         
         # Convert position_id and valid_mask caches (device only, preserve dtype)
-        metadata_cache_dicts = [self.position_id_cache, self.valid_mask_cache]
+        metadata_cache_dicts = [self._tah_position_id_cache, self._tah_valid_mask_cache]
         for cache_dict in metadata_cache_dicts:
             for layer_idx in cache_dict:
                 for iter_depth in cache_dict[layer_idx]:

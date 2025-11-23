@@ -47,6 +47,7 @@ For training and evaluation, install additional dependencies:
 pip install -e ".[training,evaluation]"
 ```
 
+For code generation evaluation, install [evalplus](https://github.com/evalplus/evalplus)
 
 ## Run an example for TaH
 
@@ -63,7 +64,7 @@ This script demonstrates TaH's selective latent iteration mechanism, with color-
 ```bash
 python script/evaluation/eval.py \
     --eval_config ./script/recipes/qwen3_1.7/eval_tah.yaml \
-    --model_path /path/to/TaH-1.7B \
+    --model_path nics-efc/TaH-plus-1.7B \
     --dataset_name gsm8k \
     --backend tah \
     --job_nums 8 \
@@ -82,7 +83,7 @@ Key parameters:
 ```bash
 python script/evaluation/eval.py \
     --eval_config ./script/recipes/qwen3_1.7/eval_base.yaml \
-    --model_path /path/to/standard-1.7B \
+    --model_path nics-efc/Standard-1.7B \
     --dataset_name gsm8k \
     --backend hf \
     --job_nums 8 \

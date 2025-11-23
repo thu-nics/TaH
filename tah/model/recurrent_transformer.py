@@ -194,14 +194,12 @@ class TaHForCausalLM(PreTrainedModel):
         # Setup adapter if enabled
         self._setup_adapter(config)
 
-        # Tokens that require multiple iterations (iter_count > 1) are considered "important".
+        # Tokens that require multiple iterations (iter_count > 1) are considered "hard".
         # Their loss will be multiplied by this factor during training. 1.0 means no reweighting.
-        self.important_token_relative_weight = 1.0
-        self.avg_important_token_ratio = None
-
-        # Weight attributes for balanced loss calculation
-        self.weight_important = None
-        self.weight_normal = None
+        self.hard_token_relative_weight = 1.0
+        self.avg_hard_token_ratio = None
+        self.weight_hard = None
+        self.weight_easy = None
 
         # TODO: Ensure input_updater is on the same device and dtype as the base model
         device_map = kwargs.pop("device_map", None)
@@ -306,6 +304,7 @@ class TaHForCausalLM(PreTrainedModel):
         use_cache: Optional[bool] = False,
         output_attentions: Optional[bool] = None,
         output_hidden_states: Optional[bool] = False, # noqa
+        new_sequence: Optional[bool] = False,         # used by oracle iter decider
         # cache_position: Optional[torch.LongTensor] = None,
         # logits_to_keep: Union[int, torch.Tensor] = 0,
         **kwargs,
@@ -409,7 +408,12 @@ class TaHForCausalLM(PreTrainedModel):
 
         # Initialize loss func for the forward pass
         loss_func = self.train_loss if self.training else self.eval_loss
-        loss_func.prepare_loss(batch_size, query_len, device, dtype)
+        loss_func.prepare_loss(
+            batch_size, query_len, device, dtype,
+            weight_hard=self.weight_hard,
+            weight_easy=self.weight_easy,
+            hard_token_relative_weight=self.hard_token_relative_weight
+        )
 
         # Decide whether to use iter label generator this forward
         use_iter_labeling = (self.iter_label_generator is not None) and (labels_shifted is not None)
@@ -531,11 +535,12 @@ class TaHForCausalLM(PreTrainedModel):
                 iter_count_labels=(active_iter_count_labels[active_valid_mask == 1] if active_iter_count_labels is not None else None),
             )
             
+            
             # Ensure at least one labeled position continues when all labeled decisions are False
             if (
-                (active_valid_continue_decision is not None)
+                (active_labels_shifted is not None)
+                and (active_valid_continue_decision is not None)
                 and (active_valid_continue_decision.numel() > 0)
-                and (active_labels_shifted is not None)
                 and iter_depth < self.max_iter
             ):
                 label_mask_flat = (active_labels_shifted != -100)[active_valid_mask == 1]
@@ -544,7 +549,6 @@ class TaHForCausalLM(PreTrainedModel):
                     chosen_idx = candidate_indices[torch.randint(low=0, high=candidate_indices.numel(), size=(1,), device=device)]
                     active_valid_continue_decision[chosen_idx] = True
             
-            # print(f"{iter_depth}: {active_valid_continue_decision.sum()}")
             # Move tensors to correct device
             if active_valid_continue_logits is not None:
                 active_valid_continue_logits = active_valid_continue_logits.to(device=device)
@@ -574,6 +578,8 @@ class TaHForCausalLM(PreTrainedModel):
                 # Use unified active_iter_count_labels for BCE targets if present
                 if active_iter_count_labels is not None:
                     intra_loss_kwargs['active_iter_count_labels'] = active_iter_count_labels
+                if all_hidden is not None:
+                    intra_loss_kwargs['all_hidden_states'] = all_hidden
                 
                 # Compute loss for all currently active tokens
                 loss_func.intra_iter_loss_func(
@@ -959,7 +965,7 @@ class TaHForCausalLM(PreTrainedModel):
         device = active_position_ids.device
 
         # Get filtered cache positions (only iterations <= iter_depth)
-        if (cache is not None) and (0 in cache.position_id_cache):
+        if (cache is not None) and (0 in cache._tah_position_id_cache):
             iter_index_cache = cache.get_cache_iter_index_upto_iter(
                 layer_idx=0, upto_iter_idx=iter_depth
             )

@@ -52,7 +52,8 @@ def create_registry(registry_name: str, case_insensitive: bool = False) -> Tuple
     
     def get_class(name: str) -> Type[T]:
         """Get class by name from registry."""
-        if name not in registry:
+        key = name if name in registry else (name.lower() if case_insensitive else name)
+        if key not in registry:
             available = list(registry.keys())
             raise ValueError(f"Unknown {registry_name} class: {name}. Available: {available}")
         return registry[name]

@@ -15,7 +15,7 @@ class LossFunc:
     def __init__(self, **kwargs):
         self.config = kwargs
 
-    def prepare_loss(self, batch_size, query_len, device, dtype):
+    def prepare_loss(self, batch_size, query_len, device, dtype, **kwargs):
         pass
 
     def intra_iter_loss_func(self, *args, **kwargs):
@@ -32,11 +32,21 @@ class LossFunc:
 class NextTokenPredLoss(LossFunc):
     _is_intra_iter_loss: bool = False
 
-    def __init__(self, important_token_relative_weight: float = 1.0, weight_important: float = None, weight_normal: float = None, **kwargs):
+    def __init__(self, hard_token_relative_weight: float = 1.0, weight_hard: float = None, weight_easy: float = None, **kwargs):
         super().__init__()
-        self.important_token_relative_weight = important_token_relative_weight
-        self.weight_important = weight_important
-        self.weight_normal = weight_normal
+        self.hard_token_relative_weight = hard_token_relative_weight
+        self.weight_hard = weight_hard
+        self.weight_easy = weight_easy
+
+    def prepare_loss(self, batch_size, query_len, device, dtype, **kwargs):
+        # Update weights if provided in kwargs (allows dynamic weight setting)
+        super().prepare_loss(batch_size, query_len, device, dtype, **kwargs)
+        if 'weight_hard' in kwargs and kwargs['weight_hard'] is not None:
+            self.weight_hard = kwargs['weight_hard']
+        if 'weight_easy' in kwargs and kwargs['weight_easy'] is not None:
+            self.weight_easy = kwargs['weight_easy']
+        if 'hard_token_relative_weight' in kwargs and kwargs['hard_token_relative_weight'] is not None:
+            self.hard_token_relative_weight = kwargs['hard_token_relative_weight']
 
     def final_loss_func(
         self,
@@ -60,10 +70,10 @@ class NextTokenPredLoss(LossFunc):
         shift_labels = shift_labels.to(shift_logits.device)
         ignore_index = -100
         has_custom_weights = (
-            self.weight_important is not None and self.weight_normal is not None
+            self.weight_hard is not None and self.weight_easy is not None
         )
 
-        if self.important_token_relative_weight == 1.0 or not training:
+        if self.hard_token_relative_weight == 1.0 or not training:
             return fixed_cross_entropy(
                 shift_logits,
                 shift_labels,
@@ -71,18 +81,18 @@ class NextTokenPredLoss(LossFunc):
                 ignore_index=ignore_index,
             )
         else:
-            weight_important = (
-                self.weight_important
+            weight_hard = (
+                self.weight_hard
                 if has_custom_weights
-                else self.important_token_relative_weight
+                else self.hard_token_relative_weight
             )
-            weight_normal = self.weight_normal if has_custom_weights else 1.0
+            weight_easy = self.weight_easy if has_custom_weights else 1.0
 
             token_weights = torch.full_like(
-                shift_labels, weight_normal, dtype=shift_logits.dtype
+                shift_labels, weight_easy, dtype=shift_logits.dtype
             )
             if shift_iter is not None:
-                token_weights[shift_iter > 1] = weight_important
+                token_weights[shift_iter > 1] = weight_hard
 
             return weighted_cross_entropy(
                 shift_logits,
@@ -103,7 +113,7 @@ class ConsistencyLoss(LossFunc):
         self.assign_active = TaHForCausalLM.assign_active
         super().__init__(**kwargs)
         
-    def prepare_loss(self, batch_size, query_len, device, dtype):
+    def prepare_loss(self, batch_size, query_len, device, dtype, **kwargs):
         self.consistency_loss_per_token = torch.zeros(
             batch_size, query_len, device=device, dtype=torch.float32
         ) # noqa: always use float32 for loss
@@ -221,7 +231,7 @@ class IterDeciderLoss(LossFunc):
         else:
             self.criterion = torch.nn.BCEWithLogitsLoss()
     
-    def prepare_loss(self, batch_size, query_len, device, dtype):
+    def prepare_loss(self, batch_size, query_len, device, dtype, **kwargs):
         self.iter_decider_loss_per_token = torch.zeros(
             batch_size, query_len, device=device, dtype=torch.float32
         ) # always use float32 for loss

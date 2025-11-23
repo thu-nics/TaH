@@ -34,7 +34,7 @@ model:
 ### data ###
 data:
   train_data_path: data/processed_data/openr1_math/1_7/train
-  eval_data_path: data/processed_data/openr1_math/1_7/eval_0.1
+  eval_data_path: data/processed_data/openr1_math/1_7/eval
   output_dir: "output/openr1_math/"
   max_length: 10000
   iter_count_strategy: "mismatch"

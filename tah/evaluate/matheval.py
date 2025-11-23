@@ -323,6 +323,8 @@ evaluator_map = {
     "minerva": AMCEvaluator(),
     "mmlu_stem": GPQAEvaluator(),
     "mmlu_redux": GPQAEvaluator(),
+    "arc_e": GPQAEvaluator(),
+    "arc_c": GPQAEvaluator(),
 }
 
 API_BASE = None

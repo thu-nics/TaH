@@ -10,6 +10,16 @@
         "prompt_template": "{question}",
         "description": "American Invitational Mathematics Examination problems with numerical answers"
     },
+    "aime24": {
+        "name": "AIME Mathematical Problems",
+        "path": "Maxwell-Jia/AIME_2024",
+        "answer_type": "boxed",
+        "id_field": "ID",
+        "question_field": "Problem",
+        "answer_field": "Answer",
+        "prompt_template": "{question}",
+        "description": "American Invitational Mathematics Examination problems with numerical answers"
+    },
     "math500": {
         "name": "Math500",
         "path": "HuggingFaceH4/MATH-500",
@@ -54,5 +64,110 @@
         "answer_field": "answer",
         "prompt_template": "{question}",
         "description": "test set of OlympiadBench dataset"
+    },
+    "livecodebench": {
+        "name": "LiveCodeBench",
+        "path": "livecodebench/code_generation_lite",
+        "version_tag": "v5",
+        "answer_type": "livecodebench",
+        "id_field": "question_id",
+        "question_field": "question_content",
+        "answer_field": "public_test_cases",
+        "prompt_template": "{question}",
+        "description": "LiveCodeBench dataset"
+    },
+    "mbpp": {
+        "name": "mbpp",
+        "path": "data/initial_data/eval/mbpp.jsonl",
+        "answer_type": "mbpp",
+        "id_field": "task_id",
+        "question_field": "prompt",
+        "answer_field": "answer",
+        "contract": "contract",
+        "entry_point": "entry_point",
+        "canonical_solution": "canonical_solution",
+        "test": "test",
+        "base_input": "base_input",
+        "atol": "atol",
+        "plus_input": "plus_input",
+        "prompt_template": "{question}",
+        "description": "MBPP dataset"
+    },
+    "humaneval":{
+        "name": "HumanEval",
+        "path": "data/initial_data/eval/humaneval.jsonl",
+        "answer_type": "humaneval",
+        "id_field": "task_id",
+        "question_field": "prompt",
+        "answer_field": "answer",
+        "contract": "contract",
+        "entry_point": "entry_point",
+        "canonical_solution": "canonical_solution",
+        "test": "test",
+        "base_input": "base_input",
+        "atol": "atol",
+        "plus_input": "plus_input",
+        "prompt_template": "{question}",
+        "description": "HumanEval dataset"
+    },
+    "gpqa":{
+        "name": "GPQA",
+        "path": "data/initial_data/eval/gpqa_diamond.jsonl",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "question",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "test set of GPQA dataset"
+    },
+    "arc_e":{
+        "name": "ARC-Easy",
+        "path": "data/initial_data/eval/arc_e.jsonl",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "question",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "test set of ARC-Easy dataset"
+    },
+    "arc_c":{
+        "name": "ARC-Challenge",
+        "path": "data/initial_data/eval/arc_c.jsonl",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "question",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "test set of ARC-Challenge dataset"
+    },
+    "minerva":{
+        "name": "Minerva",
+        "path": "data/initial_data/eval/minerva.jsonl",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "question",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "test set of Minerva dataset"
+    },
+    "mmlu_stem":{
+        "name": "MMLU-STEM",
+        "path": "data/initial_data/eval/mmlu_stem.jsonl",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "question",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "test set of MMLU-STEM dataset"
+    },
+    "mmlu_redux":{
+        "name": "MMLU-Redux",
+        "path": "data/initial_data/eval/mmlu_redux.jsonl",
+        "answer_type": "boxed",
+        "id_field": "id",
+        "question_field": "question",
+        "answer_field": "answer",
+        "prompt_template": "{question}",
+        "description": "test set of MMLU-Redux dataset"
     }
 }

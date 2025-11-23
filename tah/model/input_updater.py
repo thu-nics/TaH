@@ -59,8 +59,9 @@ class TrivialUpdater(InputUpdater):
     all leading dimensions while computing weighted embeddings.
     """
 
-    def __init__(self, topk: Optional[int] = None):
+    def __init__(self, use_hidden_states: bool = False, topk: Optional[int] = None):
         super().__init__()
+        self.use_hidden_states = use_hidden_states
         self.topk = topk
 
     def forward(
@@ -71,12 +72,15 @@ class TrivialUpdater(InputUpdater):
         hidden_states: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
         # Direct matrix multiplication preserves all leading dimensions: (..., vocab_size) @ (vocab_size, embed_dim) -> (..., embed_dim)
-        if self.topk is not None:
-            topk_values, topk_indices = torch.topk(logits, k=min(self.topk, logits.size(-1)), dim=-1)
-            topk_probs = torch.softmax(topk_values, dim=-1)
-            topk_embeddings = embedding_weight[topk_indices]
-            return torch.sum(topk_probs.unsqueeze(-1) * topk_embeddings, dim=-2)
+        if self.use_hidden_states:
+            return hidden_states[...,-1,:] # shape: seq_len, num_layer, embed_dim
         else:
-            return torch.softmax(logits, dim=-1) @ embedding_weight
+            if self.topk is not None:
+                topk_values, topk_indices = torch.topk(logits, k=min(self.topk, logits.size(-1)), dim=-1)
+                topk_probs = torch.softmax(topk_values, dim=-1)
+                topk_embeddings = embedding_weight[topk_indices]
+                return torch.sum(topk_probs.unsqueeze(-1) * topk_embeddings, dim=-2)
+            else:
+                return torch.softmax(logits, dim=-1) @ embedding_weight
 
 

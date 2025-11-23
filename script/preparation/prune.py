@@ -12,6 +12,11 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from datasets import load_dataset, load_from_disk
 
 
+def _finite_or_inf(x: float) -> float:
+    """Return x if finite, else +inf to avoid NaN/Inf in comparisons."""
+    return x if math.isfinite(x) else float("inf")
+
+
 def _get_device(device_arg: str) -> torch.device:
     """Resolve device from arg."""
     if device_arg:
@@ -185,10 +190,10 @@ def _prune_layers_inplace(model: nn.Module, remove_indices: List[int]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="prune Qwen/Qwen3 model by layer (approximate selection minimizing error)")
-    parser.add_argument("--model", default="Qwen/Qwen3-0.6B-Base", help="model name or local path")
-    parser.add_argument("--dataset", default="data/processed_data/openr1-math/0_6/eval", help="Hugging Face dataset ID or local dataset directory (preferred)")
+    parser.add_argument("--model", default="Qwen3/Qwen3-4B-Base", help="model name or local path")
+    parser.add_argument("--dataset", default="data/processed_data/openr1_math/4/eval", help="Hugging Face dataset ID or local dataset directory (preferred)")
     parser.add_argument("--text_field", default="real_text", help="text field name, default real_text")
-    parser.add_argument("--output", default="model/qwen3_0.6_pruned", help="directory to save pruned model")
+    parser.add_argument("--output", default="model/qwen3_4_base_pruned", help="directory to save pruned model")
     parser.add_argument("--num_prune", type=int, default=1, help="number of layers to prune")
     parser.add_argument("--batch_size", type=int, default=4, help="calibration batch size")
     parser.add_argument("--max_samples", type=int, default=16, help="number of samples for importance estimation")
@@ -238,14 +243,19 @@ def main() -> int:
         cand_loss = _compute_loss_with_temp_removed_layer(
             model, tokenizer, texts, device, args.batch_size, args.max_length, li
         )
-        cand_ppl = float(math.exp(cand_loss))
+        cand_ppl_raw = float(math.exp(cand_loss))
+        cand_ppl = _finite_or_inf(cand_ppl_raw)
         per_layer_loss.append(cand_loss)
         per_layer_ppl.append(cand_ppl)
-        print(f"layer {li} -> PPL: {cand_ppl:.4f}, ΔPPL: {cand_ppl - ref_ppl:.4f}")
+        delta = _finite_or_inf(cand_ppl - ref_ppl)
+        print(f"layer {li} -> PPL: {cand_ppl:.4f}, ΔPPL: {delta:.4f}")
 
     # Choose layers with minimal impact (smallest increase in loss)
     k = min(args.num_prune, num_layers - 1)
-    order = sorted(range(num_layers), key=lambda i: (per_layer_ppl[i] - ref_ppl, per_layer_ppl[i]))
+    order = sorted(
+        range(num_layers),
+        key=lambda i: (_finite_or_inf(per_layer_ppl[i] - ref_ppl), _finite_or_inf(per_layer_ppl[i])),
+    )
     remove_indices = sorted(order[:k])
     print(f"planned to prune layer indices (by smallest ΔPPL): {remove_indices}")
 

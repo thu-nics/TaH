@@ -9,7 +9,10 @@ from tqdm import tqdm
 import math
 import multiprocessing as mp
 from multiprocessing import Process, Queue
+mp.set_start_method("spawn", force=True)
 import pandas as pd
+from transformers.utils import logging as hf_logging
+import logging as pylog
 
 # some constants
 SYSTEM_PROMPT = """
@@ -74,15 +77,26 @@ def load_datasets_with_config(dataset_names) -> Tuple[object, Dict]:
         
         # Load dataset
         dataset_path = dataset_config['path']
-        subset = dataset_config.get('subset')
+        # Support both 'subset' and 'dataset_config' as HF config name
+        subset = dataset_config.get('subset', None)
+        version_tag = dataset_config.get('version_tag', None)
         
         # Load dataset from JSON/JSONL local file
         if dataset_path.endswith('.json') or dataset_path.endswith('.jsonl'):
-            dataset_obj = load_dataset('json', data_files=dataset_path)
+            if dataset_name in ["mbpp", "humaneval"]:
+                with open(dataset_path, "r", encoding="utf-8") as f:
+                    records = [json.loads(line) for line in f if line.strip()]
+                # Mimic the structure of `load_dataset` for local files,
+                # which usually returns a dict like {"train": Dataset(...)}.
+                dataset_obj = {"train": records}
+            else:
+                dataset_obj = load_dataset('json', data_files=dataset_path)
         else:
             # For HuggingFace datasets, use dataset_config or subset as configuration name
             if subset:
                 dataset_obj = load_dataset(dataset_path, subset)
+            elif version_tag:
+                dataset_obj = load_dataset(dataset_path, version_tag = version_tag)
             else:
                 dataset_obj = load_dataset(dataset_path)
         
@@ -117,6 +131,8 @@ def load_datasets_with_config(dataset_names) -> Tuple[object, Dict]:
             'answer_type': dataset_config['answer_type'],
             'prompt_template': dataset_config.get('prompt_template', '{question}')
         }
+        # Optional extra fields from config (e.g., entry_point for code datasets)
+        entry_point_field = dataset_config.get('entry_point', None)
         
         # print(f"Original field mapping for {dataset_name}: {original_field_mapping}")
         
@@ -133,10 +149,14 @@ def load_datasets_with_config(dataset_names) -> Tuple[object, Dict]:
             id_field = original_field_mapping['id_field']
             if id_field in item and item[id_field] is not None:
                 original_id = str(item[id_field])
+                # Keep both standardized id (for this pipeline) and original_id (for downstream tools)
                 standardized_item['id'] = f"{dataset_name}_{original_id}"
+                standardized_item['_original_id'] = original_id
             else:
                 # Generate ID if not present
-                standardized_item['id'] = f"{dataset_name}_{idx}"
+                generated_id = f"{dataset_name}_{idx}"
+                standardized_item['id'] = generated_id
+                standardized_item['_original_id'] = generated_id
             
             # Convert question field to standard format
             question_field = original_field_mapping['question_field']
@@ -152,6 +172,10 @@ def load_datasets_with_config(dataset_names) -> Tuple[object, Dict]:
             # Convert answer field to standard format
             answer_field = original_field_mapping['answer_field']
             standardized_item['answer'] = str(item.get(answer_field, '')).strip()
+
+            # Optionally keep entry_point in standardized format if specified in config
+            if entry_point_field:
+                standardized_item['entry_point'] = item.get(entry_point_field)
             
             # Add source dataset information
             standardized_item['_source_dataset'] = dataset_name
@@ -231,10 +255,7 @@ def combine_job_results(output_dir: Path, job_nums: int, del_job_dir: bool = Fal
                     row['processing_time'] = float(row['processing_time'])
                     all_results.append(row)
                     # Record output length for this sample for later tracker truncation
-                    try:
-                        sample_output_tokens_map[(row['problem_id'], row['sample_idx'])] = row['output_tokens']
-                    except Exception:
-                        pass
+                    sample_output_tokens_map[(row['problem_id'], row['sample_idx'])] = row['output_tokens']
         
         # Read problem statistics
         stats_file = job_dir / "evaluation_stats.csv"
@@ -268,22 +289,19 @@ def combine_job_results(output_dir: Path, job_nums: int, del_job_dir: bool = Fal
                     # Aggregate sample_*.json into combined samples.jsonl with added fields
                     sample_json_files = sorted(problem_dir.glob('sample_*.json'))
                     for sample_json_file in sample_json_files:
+                        with open(sample_json_file, 'r', encoding='utf-8') as f_json:
+                            sample_obj = json.load(f_json)
+                        problem_id = problem_dir.name
                         try:
-                            with open(sample_json_file, 'r', encoding='utf-8') as f_json:
-                                sample_obj = json.load(f_json)
-                            problem_id = problem_dir.name
-                            try:
-                                sample_idx = int(sample_json_file.stem.split('_')[-1])
-                            except Exception:
-                                sample_idx = -1
-                            # Add required fields
-                            sample_obj['id'] = problem_id
-                            sample_obj['sample'] = sample_idx
-                            # Append to JSONL
-                            with open(samples_jsonl_path, 'a', encoding='utf-8') as out_f:
-                                out_f.write(json.dumps(sample_obj, ensure_ascii=False) + "\n")
-                        except Exception as e:
-                            print(f"Warning: Could not process sample json {sample_json_file}: {e}")
+                            sample_idx = int(sample_json_file.stem.split('_')[-1])
+                        except Exception:
+                            sample_idx = -1
+                        # Add required fields
+                        sample_obj['id'] = problem_id
+                        sample_obj['sample'] = sample_idx
+                        # Append to JSONL
+                        with open(samples_jsonl_path, 'a', encoding='utf-8') as out_f:
+                            out_f.write(json.dumps(sample_obj, ensure_ascii=False) + "\n")
                     
                     # Look for tracker CSV files
                     for tracker_file in problem_dir.glob('*_tracker.csv'):
@@ -292,22 +310,16 @@ def combine_job_results(output_dir: Path, job_nums: int, del_job_dir: bool = Fal
                         if 'iter_depth' in df.columns:
                             # Parse sample index from filename like sample_{idx}_tracker.csv
                             sample_idx = -1
-                            try:
-                                stem_parts = tracker_file.stem.split('_')
-                                if len(stem_parts) >= 3 and stem_parts[0] == 'sample' and stem_parts[-1] == 'tracker':
-                                    sample_idx = int(stem_parts[1])
-                            except Exception:
-                                sample_idx = -1
+                            stem_parts = tracker_file.stem.split('_')
+                            if len(stem_parts) >= 3 and stem_parts[0] == 'sample' and stem_parts[-1] == 'tracker':
+                                sample_idx = int(stem_parts[1])
 
                             output_len = sample_output_tokens_map.get((problem_dir.name, sample_idx))
                             if isinstance(output_len, int) and output_len >= 0:
-                                try:
-                                    depth0_cum = (df['iter_depth'] == 0).cumsum()
-                                    df = df[depth0_cum <= output_len]
-                                    # Persist truncated tracker back to file so later combination uses it
-                                    df.to_csv(tracker_file, index=False)
-                                except Exception:
-                                    pass
+                                depth0_cum = (df['iter_depth'] == 0).cumsum()
+                                df = df[depth0_cum <= output_len]
+                                # Persist truncated tracker back to file so later combination uses it
+                                df.to_csv(tracker_file, index=False)
 
                             # Use (possibly truncated) df to accumulate iter count distribution
                             iter_depth_counts = df['iter_depth'].value_counts().to_dict()
@@ -405,41 +417,35 @@ def combine_job_results(output_dir: Path, job_nums: int, del_job_dir: bool = Fal
     # Concatenate all tracker CSV files into a single CSV if any exist
     if all_tracker_files:
         combined_tracker_path = combined_dir / 'all_trackers.csv'
-        try:
-            # Write header from the first file, then append rows from all files
-            with open(combined_tracker_path, 'w', newline='', encoding='utf-8') as out_f:
-                writer = None
-                header_written = False
-                for idx, tf in enumerate(all_tracker_files):
-                    with open(tf, 'r', encoding='utf-8') as in_f:
-                        reader = csv.reader(in_f)
-                        rows = list(reader)
-                        if not rows:
-                            continue
-                        # Augment header with data_id on first write
-                        if not header_written:
-                            writer = csv.writer(out_f)
-                            header = rows[0] + ['data_id']
-                            writer.writerow(header)
-                            header_written = True
-                        data_id = tf.parent.name
-                        for row in rows[1:]:
-                            writer.writerow(row + [data_id])
-            print(f"Combined tracker CSV saved to: {combined_tracker_path}")
-        except Exception as e:
-            print(f"Warning: Could not combine tracker CSV files: {e}")
+        # Write header from the first file, then append rows from all files
+        with open(combined_tracker_path, 'w', newline='', encoding='utf-8') as out_f:
+            writer = None
+            header_written = False
+            for idx, tf in enumerate(all_tracker_files):
+                with open(tf, 'r', encoding='utf-8') as in_f:
+                    reader = csv.reader(in_f)
+                    rows = list(reader)
+                    if not rows:
+                        continue
+                    # Augment header with data_id on first write
+                    if not header_written:
+                        writer = csv.writer(out_f)
+                        header = rows[0] + ['data_id']
+                        writer.writerow(header)
+                        header_written = True
+                    data_id = tf.parent.name
+                    for row in rows[1:]:
+                        writer.writerow(row + [data_id])
+        print(f"Combined tracker CSV saved to: {combined_tracker_path}")
 
     # # After combining, remove per-job directories to reduce disk usage
     if del_job_dir:
-        try:
-            import shutil
-            for job_id in range(job_nums):
-                job_dir = output_dir / f'job_{job_id}'
-                if job_dir.exists():
-                    shutil.rmtree(job_dir, ignore_errors=True)
-            print("Removed per-job directories after combining results")
-        except Exception as e:
-            print(f"Warning: Failed to remove per-job directories: {e}")
+        import shutil
+        for job_id in range(job_nums):
+            job_dir = output_dir / f'job_{job_id}'
+            if job_dir.exists():
+                shutil.rmtree(job_dir, ignore_errors=True)
+        print("Removed per-job directories after combining results")
 
 
 def _time_inference(func, cuda_available=True):
@@ -492,13 +498,14 @@ def _cleanup_resources(model, backend):
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
 
-def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, timestamp: str, model_path: str, job_id: int, job_nums: int, start_idx: int, end_idx: int, tp_size: int, backend: str, data_range=None, problems_data=None, field_mapping=None):
+def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, timestamp: str, model_path: str, job_id: int, job_nums: int, start_idx: int, end_idx: int, tp_size: int, backend: str, data_range=None, problems_data=None, field_mapping=None, unified_code_solutions_file=None):
     """Run inference for a single job"""
     # Lazy import of torch and related libraries to ensure CUDA_VISIBLE_DEVICES is respected.
     import torch
     from transformers import AutoTokenizer, AutoModelForCausalLM
 
     import tah.evaluate.matheval as matheval
+    import tah.evaluate.codeeval as codeeval
     from tah.model.tah_config import TaHConfig
 
     if backend == 'sglang':
@@ -573,6 +580,7 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
                 mem_fraction_static=config.get('mem_fraction_static', 0.90),
                 host="127.0.0.1",
                 port=int(os.getenv("SGLANG_NCCL_PORT", 30000)),
+                attention_backend=config.get('attention_backend', 'triton'),
             )
             
             _warmup_model(model, tokenizer, backend, tp_size)
@@ -642,7 +650,7 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
                 batch = inputs[i:i + config['batch_size']]
                 
                 # Tokenize batch
-                batch_inputs = tokenizer(batch, return_tensors="pt", padding=True, truncation=True)
+                batch_inputs = tokenizer(batch, return_tensors="pt", padding=True, padding_side="left", truncation=True)
                 # Move inputs to the same device as the model
                 try:
                     model_device = next(model.parameters()).device
@@ -682,6 +690,7 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
         eval_iter_decider_kwargs = config.get('eval_iter_decider_kwargs', None)
         use_tracker = config.get('use_tracker', False)
         tracker_kwargs = config.get('tracker_kwargs', None)
+        prompt_iter_count = config.get('prompt_iter_count', None)
 
         override_config = TaHConfig(
             embedding_key=embedding_key,
@@ -728,7 +737,17 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
                 model_device = model.device
                 input_tokens = {k: v.to(model_device) for k, v in input_tokens.items()}
                 
-                iter_count = None
+                if prompt_iter_count is not None:
+                    input_ids = input_tokens["input_ids"]
+                    batch_size, seq_len = input_ids.shape
+                    iter_count = prompt_iter_count * torch.ones(
+                        batch_size,
+                        seq_len,
+                        dtype=torch.long,
+                        device=model_device,
+                    )
+                else:
+                    iter_count = None
                 
                 # Record the number of tracker records before generation if tracker is enabled
                 prev_record_len = len(tracker.records) if tracker else 0
@@ -794,6 +813,11 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
     
+    # For code datasets, use unified file or create job-specific file
+    answer_type = field_mapping.get('answer_type', 'boxed')
+    is_code_dataset = answer_type in ['livecodebench', 'humaneval', 'mbpp']
+    code_solutions_file = unified_code_solutions_file  # Use unified file if provided
+    
     # Prepare all problem data first
     problem_data = []
     for idx, item in enumerate(problems):
@@ -824,13 +848,21 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
         problem_dir = detail_dir / problem_id
         problem_dir.mkdir(parents=True, exist_ok=True)
         
-        problem_data.append({
+        # Prepare problem data dict
+        prob_dict = {
             'problem_id': problem_id,
+            # Preserve the original task id for downstream evaluators (e.g., evalplus)
+            'original_problem_id': item.get('_original_id', problem_id),
             'problem_text': problem_text,
             'correct_answer': correct_answer,
             'problem_dir': problem_dir,
-            'actual_idx': actual_idx
-        })
+            'actual_idx': actual_idx,
+        }
+        
+        if is_code_dataset:
+            prob_dict['entry_point'] = item['entry_point']
+        
+        problem_data.append(prob_dict)
     
     # Prepare all inputs upfront (each problem repeated repeat_size times)
     all_inputs = []
@@ -840,8 +872,11 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
         problem_text = prob_data['problem_text']
         # Create repeat_size copies of this problem
         for sample_idx in range(config['repeat_size']):
-            messages = [{"role": "user", "content": problem_text}]
-            input_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+            if is_code_dataset:
+                input_text = codeeval.make_raw_chat_prompt_for_code_evaluation(task_prompt=problem_text, reasoning=False, tokenizer=tokenizer)
+            else:
+                messages = [{"role": "user", "content": problem_text}]
+                input_text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
             all_inputs.append(input_text)
             input_to_problem_mapping.append((prob_idx, sample_idx))
     
@@ -865,6 +900,7 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
                 
                 prob_data = problem_data[prob_idx]
                 problem_id = prob_data['problem_id']
+                # original_problem_id = prob_data['original_problem_id']
                 problem_text = prob_data['problem_text']
                 correct_answer = prob_data['correct_answer']
                 problem_dir = prob_data['problem_dir']
@@ -876,15 +912,27 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
                     output_text, proc_time = inference_output
                     sample_tracker_records = None
                 
-                # Extract answer
-                result_eval = matheval.evaluator_map[combined_dataset_name].rule_judge(output_text, correct_answer)
-                if result_eval[1] == "No extracted answer":
-                    predicted_answer = ""
+                # Extract answer based on dataset type
+                # Check if this is a code evaluation dataset
+                answer_type = field_mapping.get('answer_type', 'boxed')
+                is_code_dataset = answer_type in ['livecodebench', 'humaneval', 'mbpp']
+                
+                if is_code_dataset:
+                    # For code datasets, skip evaluation during generation
+                    # Save to jsonl for later batch evaluation
+                    predicted_answer = "pending_code_eval"
                     has_answer = False
+                    is_correct = False
                 else:
-                    predicted_answer = result_eval[1]
-                    has_answer = True
-                is_correct = result_eval[0]
+                    # Math evaluation path (original logic)
+                    result_eval = matheval.evaluator_map[combined_dataset_name].rule_judge(output_text, correct_answer)
+                    if result_eval[1] == "No extracted answer":
+                        predicted_answer = ""
+                        has_answer = False
+                    else:
+                        predicted_answer = result_eval[1]
+                        has_answer = True
+                    is_correct = result_eval[0]
                 
                 # Calculate token counts
                 input_tokens = len(tokenizer.encode(problem_text))
@@ -907,14 +955,23 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
 
                 # Save detailed output in problem-specific directory
                 detail_file = problem_dir / f"sample_{sample_idx}.json"
+                detail_data = {
+                    "problem": problem_text,
+                    "output": output_text,
+                    "correct_answer": correct_answer,
+                    "predicted_answer": predicted_answer,
+                    "is_correct": is_correct,
+                }
+                
+                # For code datasets, also save extracted code
+                if is_code_dataset:
+                    entry_point = prob_data['entry_point']
+                    extracted_code = codeeval.sanitize(output_text, entry_point)
+                    detail_data["extracted_code"] = extracted_code
+                    detail_data["entry_point"] = entry_point
+                
                 with open(detail_file, 'w', encoding='utf-8') as f_detail:
-                    json.dump({
-                        "problem": problem_text,
-                        "output": output_text,
-                        "correct_answer": correct_answer,
-                        "predicted_answer": predicted_answer,
-                        "is_correct": is_correct,
-                    }, f_detail, ensure_ascii=False, indent=2)
+                    json.dump(detail_data, f_detail, ensure_ascii=False, indent=2)
 
                 # Save tracker records if available
                 if sample_tracker_records:
@@ -924,6 +981,23 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
                 # Write to detailed_results.csv
                 row_to_write = {k: v for k, v in result_dict.items() if k != 'full_output'}
                 writer.writerow(row_to_write)
+                
+                # For code datasets, save solution to JSONL for batch evaluation
+                if is_code_dataset and code_solutions_file:
+                    import fcntl
+                    # Use the original problem id so that it matches external evaluators' expectations
+                    original_problem_id = prob_data.get('original_problem_id', problem_id)
+                    solution_entry = {
+                        "task_id": original_problem_id,
+                        "solution": str(extracted_code)
+                    }
+                    # Use file lock to avoid conflicts when multiple jobs write simultaneously
+                    with open(code_solutions_file, 'a', encoding='utf-8') as f_code:
+                        fcntl.flock(f_code.fileno(), fcntl.LOCK_EX)  # Exclusive lock
+                        try:
+                            f_code.write(json.dumps(solution_entry, ensure_ascii=False) + '\n')
+                        finally:
+                            fcntl.flock(f_code.fileno(), fcntl.LOCK_UN)  # Unlock
 
     # Group results by problem_id to calculate statistics
     results_by_problem = {}
@@ -981,20 +1055,29 @@ def run_single_job(config: Dict, combined_dataset_name: str, output_dir: str, ti
 def _is_port_available(port: int) -> bool:
     """Check if a port is available for binding"""
     import socket
-    try:
-        # Create a socket and try to bind to the port
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            s.bind(('127.0.0.1', port))
-            return True
-    except OSError:
-        return False
+    # Create a socket and try to bind to the port
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        s.bind(('127.0.0.1', port))
+        return True
 
 def _run_job_process(job_args: Tuple, result_queue: Queue):
     """Run a single job in a separate process with isolated GPU environment"""
     (job_id, config, combined_dataset_name, output_dir, timestamp, model_path, 
-     job_nums, start_idx, end_idx, tp_size, backend, data_range, gpu_devices, problems_data, field_mapping) = job_args
+     job_nums, start_idx, end_idx, tp_size, backend, data_range, gpu_devices, problems_data, field_mapping, unified_code_solutions_file) = job_args
     
+    # initialize logger in generated process
+    lvl_name = (config.get("_logger_level") or "WARNING").upper()
+    hf_level = getattr(hf_logging, lvl_name, hf_logging.WARNING)
+    std_level = getattr(pylog, lvl_name, pylog.WARNING)
+    hf_logging.set_verbosity(hf_level)
+    hf_logging.enable_default_handler()
+    hf_logging.enable_propagation()
+    pylog.basicConfig(
+        level=std_level,
+        format="%(asctime)s %(levelname)s %(name)s: %(message)s"
+    )
+
     # Set GPU environment for this process - this is isolated per process
     gpu_str = ','.join(map(str, gpu_devices))
     
@@ -1025,7 +1108,8 @@ def _run_job_process(job_args: Tuple, result_queue: Queue):
     # Set random seed for this process
     import torch
     from tah.model.utils import set_all_seeds
-    set_all_seeds(42)
+    seed = config.get("_random_seed", 420)
+    set_all_seeds(seed)
     # Force CUDA to reinitialize in this process
     if torch.cuda.is_available():
         torch.cuda.init()
@@ -1051,7 +1135,8 @@ def _run_job_process(job_args: Tuple, result_queue: Queue):
             backend=backend,
             data_range=data_range,
             problems_data=problems_data,
-            field_mapping=field_mapping
+            field_mapping=field_mapping,
+            unified_code_solutions_file=unified_code_solutions_file
         )
         
         print(f"Job {job_id}: Completed successfully")
@@ -1123,7 +1208,10 @@ def allocate_gpus_and_run_jobs(args):
     
     # Load configuration once for all jobs
     eval_config = load_config(args.eval_config)
-    
+    eval_config["_logger_level"] = args.logger_level
+    # Pass random seed from CLI args into config so worker processes can read it
+    eval_config["_random_seed"] = getattr(args, "random_seed", 420)
+
     # Save the yaml configuration file to output directory
     # Create output directory structure first
     task_suffix = ""
@@ -1146,6 +1234,18 @@ def allocate_gpus_and_run_jobs(args):
     saved_config_path = combined_output_dir / config_filename
     shutil.copy2(args.eval_config, saved_config_path)
     print(f"Saved evaluation config to: {saved_config_path}")
+    
+    # For code datasets, prepare unified code_solutions.jsonl file
+    answer_type = field_mapping.get('answer_type', 'boxed')
+    is_code_dataset = answer_type in ['livecodebench', 'humaneval', 'mbpp']
+    unified_code_solutions_file = None
+    
+    if is_code_dataset:
+        unified_code_solutions_file = combined_output_dir / "code_solutions.jsonl"
+        # Create empty file
+        with open(unified_code_solutions_file, 'w', encoding='utf-8') as f:
+            pass
+        print(f"Created unified code solutions file: {unified_code_solutions_file}")
     
     # Prepare job arguments by splitting selected problems across jobs
     job_args_list = []
@@ -1180,7 +1280,7 @@ def allocate_gpus_and_run_jobs(args):
         job_args = (
             job_id, eval_config, combined_dataset_name, args.output_dir, timestamp, args.model_path,
             args.job_nums, start_idx, end_idx, gpus_per_job, args.backend, args.data_range,
-            job_gpus, job_problems_data, field_mapping
+            job_gpus, job_problems_data, field_mapping, unified_code_solutions_file
         )
         
         job_args_list.append(job_args)
@@ -1201,7 +1301,7 @@ def allocate_gpus_and_run_jobs(args):
         # Start new processes if we have capacity
         while job_idx < len(job_args_list):
             job_args = job_args_list[job_idx]
-            p = Process(target=_run_job_process, args=(job_args, result_queue))
+            p = Process(target=_run_job_process, args=(job_args, result_queue), name=f"sgl-{job_idx}")
             p.start()
             active_processes.append((p, job_args[0]))  # Store process with job_id
             print(f"Started job {job_args[0]}")
@@ -1221,24 +1321,6 @@ def allocate_gpus_and_run_jobs(args):
         
         # Process results from queue (non-blocking)
         while not result_queue.empty():
-            try:
-                job_id_result, success, message = result_queue.get_nowait()
-                if success:
-                    completed_jobs += 1
-                    print(f"\n✓ Job {job_id_result} finished successfully")
-                else:
-                    failed_jobs += 1
-                    print(f"\n✗ Job {job_id_result} failed: {message}")
-            except:
-                pass
-        
-        # Small sleep to prevent busy waiting
-        if active_processes:
-            time.sleep(0.1)
-    
-    # Final check for any remaining results
-    while not result_queue.empty():
-        try:
             job_id_result, success, message = result_queue.get_nowait()
             if success:
                 completed_jobs += 1
@@ -1246,8 +1328,20 @@ def allocate_gpus_and_run_jobs(args):
             else:
                 failed_jobs += 1
                 print(f"\n✗ Job {job_id_result} failed: {message}")
-        except:
-            pass
+        
+        # Small sleep to prevent busy waiting
+        if active_processes:
+            time.sleep(0.1)
+    
+    # Final check for any remaining results
+    while not result_queue.empty():
+        job_id_result, success, message = result_queue.get_nowait()
+        if success:
+            completed_jobs += 1
+            print(f"\n✓ Job {job_id_result} finished successfully")
+        else:
+            failed_jobs += 1
+            print(f"\n✗ Job {job_id_result} failed: {message}")
     
     print(f"\nAll jobs completed!")
     print(f"Successful jobs: {completed_jobs}")
@@ -1263,6 +1357,33 @@ def allocate_gpus_and_run_jobs(args):
         range_start, range_end = parse_data_range(args.data_range, total_problems)
         combined_output_dir = combined_output_dir / f"TASK_{range_start}_{range_end}"
     combine_job_results(combined_output_dir, len(job_args_list), args.del_job_dir)
+    
+    # For code datasets, run batch evaluation using the unified file
+    if is_code_dataset and unified_code_solutions_file and unified_code_solutions_file.exists():
+        print(f"\n{'='*60}")
+        print(f"Starting code evaluation for {combined_dataset_name}...")
+        print(f"Solutions file: {unified_code_solutions_file}")
+        print(f"Total lines: {sum(1 for _ in open(unified_code_solutions_file))}")
+        print(f"{'='*60}\n")
+
+        # Import codeeval
+        from tah.evaluate.codeeval import evaluate as code_evaluate
+        
+        # Determine dataset name for evalplus (humaneval or mbpp)
+        answer_type = field_mapping.get('answer_type', 'boxed')
+        evalplus_dataset = answer_type if answer_type in ['humaneval', 'mbpp'] else 'humaneval'
+        
+        # Call codeeval.evaluate
+        code_evaluate(
+            dataset=evalplus_dataset,
+            samples=str(unified_code_solutions_file),
+        )
+        
+        print(f"\n{'='*60}")
+        print(f"Code evaluation completed!")
+        print(f"Results saved to: {str(unified_code_solutions_file).replace('.jsonl', '.eval_results.json')}")
+        print(f"{'='*60}\n")
+
 
 def load_config(config_path: str) -> Dict:
     """Load YAML configuration file"""

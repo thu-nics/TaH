@@ -51,34 +51,37 @@ class CustomTaHDataCollator:
         if return_tensors is None:
             return_tensors = self.return_tensors
         
-        # Extract iter_count from features if present
-        iter_counts = []
-        has_iter_count = False
-        if features and 'iter_count' in features[0]:
-            has_iter_count = True
-            iter_counts = [feature.pop('iter_count') for feature in features]
+        # Extract iter_count_labels from features if present
+        iter_count_labels_list = []
+        has_iter_count_labels = False
+        if features and 'iter_count_labels' in features[0]:
+            has_iter_count_labels = True
+            iter_count_labels_list = [feature.pop('iter_count_labels') for feature in features]
         
         # Use base collator for standard fields (input_ids, attention_mask, labels)
         batch = self.base_collator(features, return_tensors=return_tensors)
         
-        # Handle iter_count field if present
-        if has_iter_count and iter_counts:
+        # Handle iter_count_labels field if present
+        if has_iter_count_labels and iter_count_labels_list:
             # Get padding configuration
             no_padding = self.padding is False or self.padding == PaddingStrategy.DO_NOT_PAD
             
             if no_padding:
                 # No padding case
-                if isinstance(iter_counts[0], list):
-                    batch["iter_count"] = list(iter_counts)
+                if isinstance(iter_count_labels_list[0], list):
+                    batch["iter_count_labels"] = list(iter_count_labels_list)
                 else:
-                    batch["iter_count"] = [np.concatenate([iter_count, []]) for iter_count in iter_counts]
+                    batch["iter_count_labels"] = [
+                        np.concatenate([iter_count_labels, []])
+                        for iter_count_labels in iter_count_labels_list
+                    ]
             else:
-                # Padding case - align with input_ids padding
-                max_padding = self.padding == PaddingStrategy.MAX_LENGTH and self.max_length is not None
-                if max_padding:
-                    max_iter_length = self.max_length
+                # Padding case - strictly align with input_ids padding length
+                if "input_ids" in batch:
+                    max_iter_length = batch["input_ids"].shape[1]
                 else:
-                    max_iter_length = max(len(iter_count) for iter_count in iter_counts)
+                    # Fallback: infer from current list
+                    max_iter_length = max(len(v) for v in iter_count_labels_list)
                 
                 # Apply pad_to_multiple_of if specified
                 if self.pad_to_multiple_of is not None:
@@ -90,34 +93,35 @@ class CustomTaHDataCollator:
                 
                 # Determine padding side
                 padding_side = self.tokenizer.padding_side
+                pad_value = self.label_pad_token_id
                 
-                # Pad iter_count sequences
-                if isinstance(iter_counts[0], list):
-                    batch["iter_count"] = [
-                        iter_count + [self.iter_count_pad_value] * (max_iter_length - len(iter_count))
+                # Pad iter_count_labels sequences
+                if isinstance(iter_count_labels_list[0], list):
+                    batch["iter_count_labels"] = [
+                        iter_count_labels + [pad_value] * (max_iter_length - len(iter_count_labels))
                         if padding_side == "right"
-                        else [self.iter_count_pad_value] * (max_iter_length - len(iter_count)) + iter_count
-                        for iter_count in iter_counts
+                        else [pad_value] * (max_iter_length - len(iter_count_labels)) + iter_count_labels
+                        for iter_count_labels in iter_count_labels_list
                     ]
                 else:
-                    batch["iter_count"] = [
+                    batch["iter_count_labels"] = [
                         np.concatenate([
-                            iter_count,
-                            np.array([self.iter_count_pad_value] * (max_iter_length - len(iter_count)), dtype=np.int64)
+                            iter_count_labels,
+                            np.array([pad_value] * (max_iter_length - len(iter_count_labels)), dtype=np.int64)
                         ]) if padding_side == "right"
                         else np.concatenate([
-                            np.array([self.iter_count_pad_value] * (max_iter_length - len(iter_count)), dtype=np.int64),
-                            iter_count
+                            np.array([pad_value] * (max_iter_length - len(iter_count_labels)), dtype=np.int64),
+                            iter_count_labels
                         ])
-                        for iter_count in iter_counts
+                        for iter_count_labels in iter_count_labels_list
                     ]
         
-        # Convert iter_count to tensors if needed
-        if has_iter_count and batch.get("iter_count", None) is not None:
+        # Convert iter_count_labels to tensors if needed
+        if has_iter_count_labels and batch.get("iter_count_labels", None) is not None:
             if return_tensors == "pt":
                 import torch
-                batch["iter_count"] = torch.tensor(batch["iter_count"], dtype=torch.long)
+                batch["iter_count_labels"] = torch.tensor(batch["iter_count_labels"], dtype=torch.long)
             else:
-                batch["iter_count"] = np.array(batch["iter_count"], dtype=np.int64)
+                batch["iter_count_labels"] = np.array(batch["iter_count_labels"], dtype=np.int64)
 
         return batch

@@ -1,0 +1,31 @@
+# model config
+dtype: bfloat16
+mem_fraction_static: 0.80
+
+# inference config
+temperature: 0.6
+top_p: 0.95
+top_k: 20
+min_p: 0.0
+max_new_tokens: 8192
+batch_size: 1       # total batch size
+repeat_size: 1       # number of samples per question
+
+# tracker config
+use_tracker: true
+tracker_kwargs:
+  top_k: 5
+
+# tah config
+max_iter: 2
+eval_iter_decider: "OracleDynamicIterDecider"
+eval_iter_decider_kwargs:
+  ref_model_path: "/path/to/DeepSeek-R1-Distill-Qwen-32B"
+  max_iter: 2
+  device: "cuda"
+  dtype: "float16"
+  backend: "sglang"     # hf  sglang
+  # false_negative_rate: 0
+  # false_positive_rate: 0
+eval_loss: "NextTokenPredLoss"
+eval_loss_kwargs: {}
