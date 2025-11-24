@@ -26,6 +26,11 @@ Feel free to star the repo or cite the paper if you find it interesting.
     year={2025},
 }
 ```
+## News
+
+* [2025/11] We released the general version of [TaH-plus-1.7B](https://huggingface.co/nics-efc/TaH-plus-1.7B)!
+
+* [2025/11] Our paper was featured as the #2 Paper of the Day on [Huggingface Daily Papers](https://huggingface.co/papers/date/2025-11-19)
 
 ## Environment Setup
 Create a new environment:
