@@ -110,6 +110,11 @@ Use a reference model to generate hard token labels for the training and validat
 
 ```bash
 ### step 0
+# download the default subset of OpenR1-Math-220k
+python script/preparation/download.py
+# filter and split
+python script/preparation/filter_split.py
+# label the hard tokens
 python script/preparation/label.py \
     --num_gpu 8 \
     --dataset_path ./data/initial_data/openr1-math/train.jsonl \
