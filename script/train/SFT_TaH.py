@@ -15,7 +15,6 @@ from typing import Dict
 from tah.model.recurrent_transformer import TaHForCausalLM
 from tah.model.tah_config import TaHConfig
 from tah.model.iter_decider import load_iter_decider
-from tah.model.input_updater import load_input_updater
 from tah.train import CustomTaHTrainer, CustomTaHDataCollator, LoggerCallback
 from tah.utils.data_prepare import preprocess_dataset
 
@@ -136,10 +135,6 @@ def load_model_and_tokenizer(training_config: Dict, model_config: Dict, accelera
                 iter_decider_path = tah_config.iter_decider_kwargs.pop("load_path")
                 model = TaHForCausalLM(base_model=base_model, config=tah_config, device_map=device_map)
                 model.iter_decider = load_iter_decider(iter_decider_path)
-            elif "load_path" in tah_config.input_updater_kwargs:
-                input_updater_path = tah_config.input_updater_kwargs.pop("load_path")
-                model = TaHForCausalLM(base_model=base_model, config=tah_config, device_map=device_map)
-                model.input_updater = load_input_updater(input_updater_path)
             else:
                 # regular init
                 model = TaHForCausalLM(base_model=base_model, config=tah_config, device_map=device_map)
