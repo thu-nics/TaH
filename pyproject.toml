@@ -17,7 +17,7 @@ text = "MIT"
 [project.optional-dependencies]
 dev = [ "pytest>=6.0", "pytest-cov", "pylatexenc",]
 training = [ "wandb", "deepspeed==0.17.1", "liger_kernel==0.6.0", "flash-attn==2.7.3",]
-evaluation = [ "latex2sympy2==1.9.1", "latex2sympy2_extended==1.10.2", "pylatexenc==2.10", "sympy==1.13.1", "sglang>=0.4.6",]
+evaluation = [ "latex2sympy2==1.9.1", "pylatexenc==2.10", "sympy==1.13.1", "sglang>=0.4.6",]
 
 [tool.black]
 line-length = 88

@@ -218,3 +218,47 @@ TaH/
 - [ ] Integrate TaH with online distillation or RL
 - [ ] Support training for larger models
 
+## Related Projects
+
+Explore more efficient LLM projects from us:
+
+<table style="border: none; border-collapse: collapse;" align="center">
+<tr>
+<td align="center" valign="top" width="25%" style="border: none; border-right: 1px solid rgba(128, 128, 128, 0.3); padding: 10px; min-width: 50px;">
+<div style="height: 5em; display: flex; align-items: center; justify-content: center;">
+<a href="https://github.com/thu-nics/R2R">
+<img src="https://raw.githubusercontent.com/thu-nics/R2R/main/resource/logo.png" style="max-height: 5em; max-width: 100%; height: auto; width: auto;" />
+</a>
+</div>
+<a href="https://github.com/thu-nics/R2R"><b>R2R</b></a>
+<br/><sub>Token-level routing for reasoning LLMs</sub>
+</td>
+<td align="center" valign="top" width="25%" style="border: none; border-right: 1px solid rgba(128, 128, 128, 0.3); padding: 10px; min-width: 50px;">
+<div style="height: 5em; display: flex; align-items: center; justify-content: center;">
+<a href="https://github.com/thu-nics/C2C">
+<img src="https://raw.githubusercontent.com/thu-nics/C2C/main/resource/logo.png" style="max-height: 5em; max-width: 100%; height: auto; width: auto;" />
+</a>
+</div>
+<a href="https://github.com/thu-nics/C2C"><b>C2C</b></a>
+<br/><sub>Communicate through KV-Cache between LLMs</sub>
+</td>
+<td align="center" valign="top" width="25%" style="border: none; border-right: 1px solid rgba(128, 128, 128, 0.3); padding: 10px; min-width: 50px;">
+<div style="height: 5em; display: flex; align-items: center; justify-content: center;">
+<a href="https://github.com/thu-nics/FrameFusion">
+<img src="https://raw.githubusercontent.com/thu-nics/FrameFusion/main/example/image/logo.png" style="max-height: 5em; max-width: 100%; height: auto; width: auto;" />
+</a>
+</div>
+<a href="https://github.com/thu-nics/FrameFusion"><b>FrF</b></a>
+<br/><sub>Efficient video token reduction for LVLMs</sub>
+</td>
+<td align="center" valign="top" width="25%" style="border: none; padding: 10px; min-width: 50px;">
+<div style="height: 5em; display: flex; align-items: center; justify-content: center;">
+<a href="https://github.com/thu-nics/MoA">
+<img src="https://raw.githubusercontent.com/thu-nics/MoA/master/resource/logo.png" style="max-height: 5em; max-width: 100%; height: auto; width: auto;" />
+</a>
+</div>
+<a href="https://github.com/thu-nics/MoA"><b>MoA</b></a>
+<br/><sub>Mixture of sparse attention for LLMs</sub>
+</td>
+</tr>
+</table>
