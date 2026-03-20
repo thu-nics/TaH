@@ -9,6 +9,7 @@
   <h3>Selective Latent Iterations to Improve Reasoning Language Models</h3>
 
   <p>
+    <a href="https://fuvty.github.io/TaH_project_page/">🌐 <b>Project Page</b></a> •
     <a href="https://arxiv.org/abs/2511.08577">📑 <b>Paper</b></a> •
     <a href="https://huggingface.co/collections/nics-efc/tah">🤗 <b>HuggingFace</b></a>
   </p>
