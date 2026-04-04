@@ -209,7 +209,7 @@ def replace_mobilellm_think(messages):
 def get_formatted_prompt_1(sample, tokenizer, model_name):
     """Format prompt from conversations structure"""
     question = sample.get("problem", "") or sample.get("question", "")
-    answer = sample.get("output", "") or sample.get("solution", "") or sample.get("generations", "") or sample.get("answer", "")
+    answer = sample.get("output", "") or sample.get("solution", "") or sample.get("generation", "") or sample.get("answer", "")
 
     messages = [
         {"role": "user", "content": question},
