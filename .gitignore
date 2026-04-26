@@ -3,6 +3,7 @@
 *.pyc
 *.png
 *.log
+.coverage
 
 # Folders
 reference/
@@ -12,6 +13,8 @@ local/
 output/
 wandb/
 build/
+.pytest_cache/
+__pycache__/
 
 test/
 data/

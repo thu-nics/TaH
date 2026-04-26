@@ -23,7 +23,7 @@ Feel free to star the repo or cite the paper if you find it interesting.
 @article{fu2025tah,
     title={Think-at-Hard: Selective Latent Iterations to Improve Reasoning Language Models}, 
     author={Tianyu Fu and Yichen You and Zekai Chen and Guohao Dai and Huazhong Yang and Yu Wang},
-    journal={arXiv preprint arXiv:2510.08577},
+    journal={arXiv preprint arXiv:2511.08577},
     year={2025},
 }
 ```
@@ -104,7 +104,6 @@ Training a TaH model consists of three stages:
 Use a reference model to generate hard token labels for the training and validation data:
 
 ```bash
-### step 0
 # download the default subset of OpenR1-Math-220k
 python script/preparation/download.py
 # filter and split
@@ -129,7 +128,6 @@ python script/preparation/label.py \
 For the TaH version, prune one layer from the base model to match the parameter count of the standard baseline (skip this step for TaH+ version):
 
 ```bash
-### step 0
 python script/preparation/prune.py \
     --model Qwen/Qwen3-1.7B-Base \
     --dataset ./data/processed_data/openr1-math/1_7/eval \
@@ -142,7 +140,6 @@ python script/preparation/prune.py \
 The first stage uses fixed iteration labels for training:
 
 ```bash
-### step 1
 python -m accelerate.commands.launch \
     --config_file ./script/recipes/accelerate_configs/zero2.yaml \
     --num_processes 8 \
@@ -158,10 +155,7 @@ Key configurations in Step1 (`sft_tah_step1.yaml`):
 - `adapter: "lora"` — only LoRA is supported in tah-release.
 - `train_loss: "NextTokenPredLoss"` — standard causal-LM cross-entropy.
 
-Note: the input updater (top-k softmax over logits → embedding mix), the
-output updater (residual additive accumulation), the iter-label generator
-(dense max-merge of dataset labels), and the adapter setup are all inlined
-into the wrapper, so there's no separate config field for them anymore.
+Single-implementation hooks (input/output updaters, iter labels, adapter) are inlined into the wrapper — only `iter_decider` and `train_loss` are config-selectable.
 
 ### Step2: Train Iteration Decider
 
@@ -169,7 +163,6 @@ The second stage trains the iteration decider:
 
 
 ```bash
-### step 2
 python -m accelerate.commands.launch \
     --config_file ./script/recipes/accelerate_configs/zero2.yaml \
     --num_processes 8 \
@@ -205,8 +198,7 @@ TaH/
 │   │   ├── backends.py            # sglang / hf / tah model + inference fn
 │   │   ├── jobs.py                # job-sharded runner + result aggregation
 │   │   ├── matheval.py            # math benchmark graders (math_verify)
-│   │   ├── codeeval.py            # humaneval / mbpp via evalplus
-│   │   └── eval_unified.py        # backwards-compat shim
+│   │   └── codeeval.py            # humaneval / mbpp via evalplus
 │   └── utils/                     # SFT preprocessing
 ├── script/
 │   ├── preparation/               # download.py, label.py, prune.py, filter_split.py
@@ -227,25 +219,7 @@ python tests/bench.py e2e         # forward + 32-token generate on TaH-plus-1.7B
 python tests/bench_compile.py     # one-off torch.compile vs eager experiment
 ```
 
-Component baselines (single B200, torch 2.11+cu128, bf16):
-
-| helper | ms |
-|---|---|
-| topk_softmax_input_update | 0.48 |
-| additive_logits_update | 0.03 |
-| gather_active | 0.19 |
-| scatter_back | 0.12 |
-| MLPIterDecider.forward | 0.86 |
-| NextTokenPredLoss.final | 0.23 |
-| IterDeciderLoss.intra | 0.55 |
-| **TaHForCausalLM.forward** (TaH-plus-1.7B, T=15) | **18.0** |
-| **TaHForCasualLM_generate(32)** | **691** (~21.6 ms / token) |
-
-## Future Work
-
-- [ ] Optimize iteration decision strategies
-- [ ] Integrate TaH with online distillation or RL
-- [ ] Support training for larger models
+See [`tests/README.md`](tests/README.md) for component-level baselines and CPU-mode (`TAH_TEST_DEVICE=cpu`) instructions.
 
 ## Related Projects
 

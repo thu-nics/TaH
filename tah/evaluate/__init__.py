@@ -8,7 +8,6 @@ the CLI uses); the module split is otherwise mainly internal:
 * ``jobs``      — per-job runner, process orchestration, result aggregation.
 * ``matheval``  — math benchmark graders (rule-based via ``math_verify``).
 * ``codeeval``  — humaneval/mbpp grading via ``evalplus``.
-* ``eval_unified``  — backwards-compat shim re-exporting the above entry points.
 """
 from tah.evaluate.datasets import load_combined_dataset
 from tah.evaluate.jobs import (

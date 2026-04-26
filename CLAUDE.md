@@ -67,10 +67,7 @@ TAH_TEST_DEVICE=cpu pytest tests/ # run on CPU (skip needs no flag)
 python tests/bench.py components  # per-helper microbench (B200 baseline in README)
 python tests/bench.py e2e         # forward + generate on TaH-plus-1.7B
 ```
-Snapshot baselines are captured by spawning a subprocess scoped to
-`/tmp/TaH-pub` (public TaH); cleaned outputs are diffed against the
-recorded snapshots in `tests/baselines/`. Snapshots are gitignored —
-they regenerate on first run.
+See `tests/README.md` for the snapshot/baseline harness details.
 
 ### Training (3-stage)
 ```bash
@@ -118,8 +115,7 @@ tah/
 │   ├── backends.py            # sglang / hf / tah model + inference fn
 │   ├── jobs.py                # job-sharded runner + result aggregation
 │   ├── matheval.py            # math benchmark graders (math_verify)
-│   ├── codeeval.py            # humaneval / mbpp via evalplus
-│   └── eval_unified.py        # backwards-compat shim re-exporting the above
+│   └── codeeval.py            # humaneval / mbpp via evalplus
 └── utils/data_prepare.py      # SFT preprocessing
 script/
 ├── preparation/               # download.py, label.py, prune.py, filter_split.py
@@ -128,7 +124,6 @@ script/
 ├── playground/inference_example.py
 └── recipes/                   # qwen3_{0.6,1.7}/sft_tah_step{1,2}.yaml + eval_tah.yaml
 tests/                         # _harness.py + per-component test_*.py + baselines/ (gitignored)
-bash/                          # sft_tah.sh, eval_tah.sh, pre_data.sh
 ```
 
 ## Conventions

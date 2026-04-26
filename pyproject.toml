@@ -20,7 +20,6 @@ classifiers = [
 dependencies = [
     "transformers==4.52.4",
     "torch==2.6.0",
-    "torchvision==0.21.0",
     "accelerate",
     "datasets",
     "peft==0.15.2",
