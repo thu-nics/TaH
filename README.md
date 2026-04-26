@@ -85,19 +85,13 @@ Key parameters:
 - `--job_nums`: Number of parallel jobs
 - `--tp_size_per_job`: Tensor parallel size per job
 
-### Evaluate standard baseline model
-```bash
-python script/evaluation/eval.py \
-    --eval_config ./script/recipes/qwen3_1.7/eval_base.yaml \
-    --model_path nics-efc/Standard-1.7B \
-    --dataset_name gsm8k \
-    --backend hf \
-    --job_nums 8 \
-    --tp_size_per_job 1
-```
+### Evaluate with a different backend
 
-Similar to TaH evaluation, but using:
-- `--backend hf` or `--backend sglang`
+The same `script/evaluation/eval.py` accepts `--backend hf` (vanilla
+`AutoModelForCausalLM.generate` — useful for non-TaH baselines) or
+`--backend sglang` (sgl Engine for high-throughput serving). All three
+backends share the same job-sharded driver under
+`tah/evaluate/jobs.py:allocate_gpus_and_run_jobs`.
 
 ## Train your own TaH model
 
@@ -157,12 +151,17 @@ python -m accelerate.commands.launch \
 ```
 
 Key configurations in Step1 (`sft_tah_step1.yaml`):
-- `max_iter: 2`: Maximum number of iterations
-- `iter_decider: "FixedLabelIterDecider"`: Use fixed labels to decide iterations
-- `iter_label_generator: "FixedIterLabelGenerator"`: Generate labels from mismatch field in data
-- `input_updater: "AdditiveUpdater"`: Use additive updater for input updates
-- `adapter: "lora"`: Use LoRA adapter for deeper iteration
-- `train_loss: "NextTokenPredLoss"`: Next token prediction loss
+- `max_iter: 2` — maximum number of iterations.
+- `iter_decider: "IterLabelDecider"` — continue iff the per-token oracle
+  ``iter_count_labels`` (derived from ``mismatch``) say so. Used to teach
+  the LoRA adapter on tokens marked "hard" by the labeller.
+- `adapter: "lora"` — only LoRA is supported in tah-release.
+- `train_loss: "NextTokenPredLoss"` — standard causal-LM cross-entropy.
+
+Note: the input updater (top-k softmax over logits → embedding mix), the
+output updater (residual additive accumulation), the iter-label generator
+(dense max-merge of dataset labels), and the adapter setup are all inlined
+into the wrapper, so there's no separate config field for them anymore.
 
 ### Step2: Train Iteration Decider
 
@@ -192,29 +191,58 @@ After two-stage training, the model can automatically decide when to perform lat
 
 ```
 TaH/
-├── tah/                           # Core package
-│   ├── model/                     # Core model components
-│   ├── train/                     # Training components
-│   ├── evaluate/                  # Evaluation utilities
-│   └── utils/                     # General utilities
-├── bash/                          # Bash scripts for training and evaluation
-├── script/                        # Execution scripts
-│   ├── analysis/                  # Analysis scripts
-│   ├── evaluation/                # Evaluation scripts
-│   ├── preparation/               # Preparation for training
-│   │   ├── label.py               # Data labeling (generate mismatch labels)
-│   │   └── prune.py               # Model pruning
-│   ├── playground/                # Some examples
-│   └── recipes/                   # Configuration files
-│       ├── qwen3_0.6/             # Qwen3-0.6B-Base configs
-│       ├── qwen3_1.7/             # Qwen3-1.7B-Base configs
-│       └── accelerate_configs/    # Distributed training configs
-└── pyproject.toml                 # Project configuration
+├── tah/
+│   ├── model/                     # core model
+│   │   ├── tah_model.py           # TaHForCausalLM wrapper + inlined slot helpers
+│   │   ├── iter_decider.py        # IterLabelDecider, MLPIterDecider, _BY_NAME
+│   │   ├── loss.py                # NextTokenPredLoss, IterDeciderLoss, _BY_NAME
+│   │   ├── causal_cache.py        # TaHCache: per-(layer, iter) KV
+│   │   ├── tah_config.py          # @dataclass TaHConfig
+│   │   └── utils.py               # generation helper, IterCountColors
+│   ├── train/                     # HF Trainer subclass + collator + iter-aware callback
+│   ├── evaluate/                  # multi-backend eval driver
+│   │   ├── datasets.py            # benchmark loading + standardisation
+│   │   ├── backends.py            # sglang / hf / tah model + inference fn
+│   │   ├── jobs.py                # job-sharded runner + result aggregation
+│   │   ├── matheval.py            # math benchmark graders (math_verify)
+│   │   ├── codeeval.py            # humaneval / mbpp via evalplus
+│   │   └── eval_unified.py        # backwards-compat shim
+│   └── utils/                     # SFT preprocessing
+├── script/
+│   ├── preparation/               # download.py, label.py, prune.py, filter_split.py
+│   ├── train/SFT_TaH.py           # SFT entrypoint
+│   ├── evaluation/eval.py         # eval CLI entrypoint
+│   ├── playground/                # inference demo
+│   └── recipes/qwen3_{0.6,1.7}/   # training + eval YAML recipes
+├── tests/                         # per-component acc/speed tests
+└── pyproject.toml
 ```
+
+## Tests + benchmarks
+
+```bash
+pytest tests/ -q                  # 21 acc + roundtrip tests in ~30s on a B200
+python tests/bench.py components  # microbenchmarks for the wrapper's hot helpers
+python tests/bench.py e2e         # forward + 32-token generate on TaH-plus-1.7B
+python tests/bench_compile.py     # one-off torch.compile vs eager experiment
+```
+
+Component baselines (single B200, torch 2.11+cu128, bf16):
+
+| helper | ms |
+|---|---|
+| topk_softmax_input_update | 0.48 |
+| additive_logits_update | 0.03 |
+| gather_active | 0.19 |
+| scatter_back | 0.12 |
+| MLPIterDecider.forward | 0.86 |
+| NextTokenPredLoss.final | 0.23 |
+| IterDeciderLoss.intra | 0.55 |
+| **TaHForCausalLM.forward** (TaH-plus-1.7B, T=15) | **18.0** |
+| **TaHForCasualLM_generate(32)** | **691** (~21.6 ms / token) |
 
 ## Future Work
 
-- [ ] Support more inference backends (e.g., SGLang)
 - [ ] Optimize iteration decision strategies
 - [ ] Integrate TaH with online distillation or RL
 - [ ] Support training for larger models

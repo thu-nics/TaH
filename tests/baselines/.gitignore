@@ -1,0 +1,4 @@
+# Component baseline snapshots (regenerable from public TaH).
+# Keep the directory in git but never commit individual .pt files.
+*.pt
+!.gitignore

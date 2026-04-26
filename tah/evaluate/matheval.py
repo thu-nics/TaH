@@ -1,357 +1,111 @@
-import re
-from openai import OpenAI
-from math_verify import parse, verify, LatexExtractionConfig, ExprExtractionConfig, StringExtractionConfig
+"""Per-dataset rule-based math graders.
+
+Every benchmark in ``eval_configs/dataset_configs.json`` whose ``answer_type``
+isn't a code answer maps here through :data:`evaluator_map`. The runner calls
+``evaluator_map[dataset].rule_judge(output_text, ground_truth)`` and gets back
+``(is_correct: bool, predicted: str)`` (or ``(False, "No extracted answer")``
+when nothing matches).
+
+Three grading shapes cover all configured datasets — they only differ in how
+ground truth and the model output are extracted before being compared via
+``math_verify.verify``:
+
+* ``expr``    — AIME / GSM8K. Ground truth is a bare expression; output is
+  matched as latex-or-expr.
+* ``latex``   — MATH500 / AMC / OlympiadBench. Ground truth is wrapped in
+  ``$...$`` if not already, then parsed as latex; output as latex-or-expr.
+* ``string``  — GPQA / MMLU / ARC. Both sides are matched as strings.
+
+Public TaH also shipped LLM-judge plumbing (``llm_judge`` / ``set_client``
+/ a per-evaluator ``get_llm_judge_prompt``); the eval driver only ever
+calls ``rule_judge``, so the LLM-judge surface is removed.
+"""
+from __future__ import annotations
+
+from typing import Tuple
+
 from latex2sympy2_extended import NormalizationConfig
-import os
+from math_verify import (
+    ExprExtractionConfig,
+    LatexExtractionConfig,
+    StringExtractionConfig,
+    parse,
+    verify,
+)
+
+
+# Latex+Expr config used by both expr-mode and latex-mode for the model output.
+_OUTPUT_EXTRACTION = [
+    LatexExtractionConfig(
+        normalization_config=NormalizationConfig(
+            nits=False,
+            malformed_operators=False,
+            basic_latex=True,
+            boxed="all",
+            units=True,
+        ),
+        boxed_match_priority=0,
+        try_extract_without_anchor=False,
+    ),
+    ExprExtractionConfig(),
+]
+
 
 class MathEvaluator:
-    
-    def rule_judge(self, solution_str: str, ground_truth: str, finish_generation: bool = True) -> bool:
-        raise NotImplementedError
+    """Grader for one of three answer shapes (``expr``/``latex``/``string``).
 
-    def extract_after_think(self, text: str, truncate_length: int = 1000, finish_generation: bool = True) -> str:
-        pattern = r"</think>(.*)"
-        match = re.search(pattern, text, re.DOTALL)
-        return match.group(1).strip() if (match and finish_generation) else text[-truncate_length:]
-    
-    def get_llm_judge_prompt(self, solution_str: str, ground_truth: str, extracted_answer: str = "", finish_generation: bool = True) -> str:
-        raise NotImplementedError
+    Construct with the ground-truth shape; :meth:`rule_judge` does the
+    parse+verify dance with that shape.
+    """
 
-    def get_llm_judge_prompt_not_finished(self, solution_str: str, ground_truth: str, extracted_answer: str = "", finish_generation: bool = True) -> str:
-        return f"""Please determine whether the final answer in the model-generated response was already correctly derived early in the reasoning process, and that the subsequent content consists mainly of unnecessary verification, overthinking, or repetitive reasoning. If correct is derived early, return "YES"; if they are not, return "NO". Only return "YES" or "NO", and do not generate any other content.
-Reference answer: {ground_truth}
-Model-generated response: {solution_str}
-""".strip()
+    def __init__(self, mode: str):
+        if mode not in {"expr", "latex", "string"}:
+            raise ValueError(f"unsupported grader mode {mode!r}")
+        self.mode = mode
 
-    def llm_judge(self, solution_str: str, ground_truth: str, extracted_answer: str = "", finish_generation: bool = True) -> bool:
-        global OPENAI_CLIENT, MODEL_NAME
-        def get_inputs(scene_description):
-            body = [
-                {"role": "user", "content": scene_description},
-            ]
-            return body
+    def rule_judge(self, solution: str, ground_truth: str, finish_generation: bool = True) -> Tuple[bool, str]:
+        del finish_generation  # accepted for caller-protocol uniformity
+        if self.mode == "expr":
+            gold_cfg = [ExprExtractionConfig()]
+            answer_cfg = _OUTPUT_EXTRACTION
+        elif self.mode == "latex":
+            if not ground_truth.startswith("$"):
+                ground_truth = f"${ground_truth}$"
+            gold_cfg = [LatexExtractionConfig()]
+            answer_cfg = _OUTPUT_EXTRACTION
+        else:  # string
+            gold_cfg = [StringExtractionConfig()]
+            answer_cfg = [StringExtractionConfig()]
 
-        def run_api(inputs):
-            completion = OPENAI_CLIENT.chat.completions.create(
-                model=MODEL_NAME,
-                messages=inputs
-            )
-            return completion.choices[0].message.content.strip()
-        if finish_generation:
-            scene_description = self.get_llm_judge_prompt(solution_str, ground_truth, extracted_answer, finish_generation)
-        else:
-            scene_description = self.get_llm_judge_prompt_not_finished(solution_str, ground_truth, extracted_answer, finish_generation)
-        inputs = get_inputs(scene_description)
-        response = run_api(inputs)
-
-        return "YES" in response
-
-
-class AIMEEvaluator(MathEvaluator):
-    def rule_judge(self, solution_str: str, ground_truth: str, finish_generation: bool = True) -> bool:
-        # if not ground_truth.startswith("$"):
-        #     ground_truth = f"${ground_truth}$"
-        gold = parse(
-            ground_truth,
-            extraction_config=[ExprExtractionConfig()],
-        )
-        answer = parse(
-            solution_str,
-            extraction_config=[
-                LatexExtractionConfig(
-                    normalization_config=NormalizationConfig(
-                        nits=False,
-                        malformed_operators=False,
-                        basic_latex=True,
-                        boxed="all",
-                        units=True,
-                    ),
-                    boxed_match_priority=0,
-                    try_extract_without_anchor=False,
-                ),
-                ExprExtractionConfig(),
-            ],
-            extraction_mode="first_match",
-        )
-        if len(answer) == 0:
+        gold = parse(ground_truth, extraction_config=gold_cfg)
+        answer = parse(solution, extraction_config=answer_cfg, extraction_mode="first_match")
+        if not answer:
             return False, "No extracted answer"
-        else:
-            return verify(gold, answer), str(answer)
-
-    def get_llm_judge_prompt(self, solution_str: str, ground_truth: str, extract_answer: str = "", finish_generation: bool = True) -> str:
-        solution_str = self.extract_after_think(solution_str, finish_generation=finish_generation)
-        return f"""Please determine whether the final answer provided in the model-generated response is equivalent to the reference answer from a math question. The final answer may either be enclosed in \\boxed{{}} or appear after "Answer:". If they are equivalent, return "YES"; if they are not, return "NO". Only return "YES" or "NO", and do not generate any other content.
-Model-generated answer: {solution_str}
-Reference answer: {ground_truth}""".strip()
+        return bool(verify(gold, answer)), str(answer)
 
 
-class GSM8KEvaluator(MathEvaluator):
-    def rule_judge(self, solution_str: str, ground_truth: str, finish_generation: bool = True) -> bool:
-        # if not ground_truth.startswith("$"):
-        #     ground_truth = f"${ground_truth}$"
-        gold = parse(
-            ground_truth,
-            extraction_config=[ExprExtractionConfig()],
-        )
-        answer = parse(
-            solution_str,
-            extraction_config=[
-                LatexExtractionConfig(
-                    normalization_config=NormalizationConfig(
-                        nits=False,
-                        malformed_operators=False,
-                        basic_latex=True,
-                        boxed="all",
-                        units=True,
-                    ),
-                    boxed_match_priority=0,
-                    try_extract_without_anchor=False,
-                ),
-                ExprExtractionConfig(),
-            ],
-            extraction_mode="first_match",
-        )
-        if len(answer) == 0:
-            return False, "No extracted answer"
-        else:
-            return verify(gold, answer), str(answer)
-
-    def get_llm_judge_prompt(self, solution_str: str, ground_truth: str, extract_answer: str = "", finish_generation: bool = True) -> str:
-        solution_str = self.extract_after_think(solution_str, finish_generation=finish_generation)
-        return f"""Please determine whether the final answer provided in the model-generated response with rule-based extracted answer is equivalent to the reference answer from a math question. The final answer may either be enclosed in the \\boxed{{}} or appear after the "Answer:". If they are equivalent, return "YES"; if they are not, return "NO". Only return "YES" or "NO", and do not generate any other content.
-
-1. The reference answer does not include percentage signs, units or time formats (e.g., am, pm), but the Model-generated answer may include them.
-For example, 1 is equivalent to 1 %, 1 kg, 1 am, 1 pm, 1:00 am, 1:00 pm, etc.
-Model-generated answer: 1%
-Reference answer: 1
-Your output: YES
-
-Model-generated answer: 1 kg
-Reference answer: 1
-Your output: YES
-
-Model-generated answer: 1:00 pm
-Reference answer: 1
-Your output: YES
-
-2. The reference answer only includes one single number, but the Model-generated answer may include multiple numbers.
-For example, 10 is equivalent to \\boxed{{(4, 6)}}, etc.
-Model-generated answer: 5, 5
-Reference answer: 10
-Your output: YES
-
-Model-generated answer: 4, 6
-Reference answer: 10
-Your output: YES
-
-Model-generated answer: 86, 42
-Reference answer: 128
-Your output: YES
-
-Now let's try a real example.
-Model-generated answer: {solution_str}
-Reference answer: {ground_truth}
-""".strip()
-
-
-class MATH500Evaluator(MathEvaluator):
-    def rule_judge(self, solution_str: str, ground_truth: str, finish_generation: bool = True) -> bool:
-        if not ground_truth.startswith("$"):
-            ground_truth = f"${ground_truth}$"
-        gold = parse(
-            ground_truth,
-            extraction_config=[LatexExtractionConfig()],
-        )
-        answer = parse(
-            solution_str,
-            extraction_config=[
-                LatexExtractionConfig(
-                    normalization_config=NormalizationConfig(
-                        nits=False,
-                        malformed_operators=False,
-                        basic_latex=True,
-                        boxed="all",
-                        units=True,
-                    ),
-                    boxed_match_priority=0,
-                    try_extract_without_anchor=False,
-                ),
-                ExprExtractionConfig(),
-            ],
-            extraction_mode="first_match",
-        )
-        if len(answer) == 0:
-            return False, "No extracted answer"
-        else:
-            return verify(gold, answer), str(answer)
-    def get_llm_judge_prompt(self, solution_str: str, ground_truth: str, extract_answer: str = "", finish_generation: bool = True) -> str:
-        solution_str = self.extract_after_think(solution_str, finish_generation=finish_generation)
-        return f"""Please determine whether the final answer provided in the model-generated response is equivalent to the reference answer from a math question. The final answer may either be enclosed in \\boxed{{}} or appear after "Answer:". If they are equivalent, return "YES"; if they are not, return "NO". Only return "YES" or "NO", and do not generate any other content.
-Model-generated answer: {solution_str}
-Reference answer: {ground_truth}""".strip()
-    
-class AMCEvaluator(MathEvaluator):
-    def rule_judge(self, solution_str: str, ground_truth: str, finish_generation: bool = True) -> bool:
-        if not ground_truth.startswith("$"):
-            ground_truth = f"${ground_truth}$"
-        gold = parse(
-            ground_truth,
-            extraction_config=[LatexExtractionConfig()],
-        )
-        answer = parse(
-            solution_str,
-            extraction_config=[
-                LatexExtractionConfig(
-                    normalization_config=NormalizationConfig(
-                        nits=False,
-                        malformed_operators=False,
-                        basic_latex=True,
-                        boxed="all",
-                        units=True,
-                    ),
-                    boxed_match_priority=0,
-                    try_extract_without_anchor=False,
-                ),
-                ExprExtractionConfig(),
-            ],
-            extraction_mode="first_match",
-        )
-        if len(answer) == 0:
-            return False, "No extracted answer"
-        else:
-            return verify(gold, answer), str(answer)
-    def get_llm_judge_prompt(self, solution_str: str, ground_truth: str, extract_answer: str = "", finish_generation: bool = True) -> str:
-        solution_str = self.extract_after_think(solution_str, finish_generation=finish_generation)
-        return f"""Please determine whether the final answer provided in the model-generated response is equivalent to the reference answer from a math question. The final answer may either be enclosed in \\boxed{{}} or appear after "Answer:". If they are equivalent, return "YES"; if they are not, return "NO". Only return "YES" or "NO", and do not generate any other content.
-Model-generated answer: {solution_str}
-Reference answer: {ground_truth}""".strip()
-
-class OlympiadBenchEvaluator(MathEvaluator):
-    def rule_judge(self, solution_str: str, ground_truth: str, finish_generation: bool = True) -> bool:
-        if not ground_truth.startswith("$"):
-            ground_truth = f"${ground_truth}$"
-        gold = parse(
-            ground_truth,
-            extraction_config=[LatexExtractionConfig()],
-        )
-        answer = parse(
-            solution_str,
-            extraction_config=[
-                LatexExtractionConfig(
-                    normalization_config=NormalizationConfig(
-                        nits=False,
-                        malformed_operators=False,
-                        basic_latex=True,
-                        boxed="all",
-                        units=True,
-                    ),
-                    boxed_match_priority=0,
-                    try_extract_without_anchor=False,
-                ),
-                ExprExtractionConfig(),
-            ],
-            extraction_mode="first_match",
-        )
-        if len(answer) == 0:
-            return False, "No extracted answer"
-        else:
-            return verify(gold, answer), str(answer)
-    def get_llm_judge_prompt(self, solution_str: str, ground_truth: str, extract_answer: str = "", finish_generation: bool = True) -> str:
-        solution_str = self.extract_after_think(solution_str, finish_generation=finish_generation)
-        return f"""Please determine whether the final answer provided in the model-generated response is equivalent to the reference answer from a math question. The final answer may either be enclosed in \\boxed{{}} or appear after "Answer:". If they are equivalent, return "YES"; if they are not, return "NO". Only return "YES" or "NO", and do not generate any other content.
-Model-generated answer: {solution_str}
-Reference answer: {ground_truth}""".strip()
-
-class GPQAEvaluator(MathEvaluator):
-    def rule_judge(self, solution_str: str, ground_truth: str, finish_generation: bool = True) -> bool:
-        # if not ground_truth.startswith("$"):
-        #     ground_truth = f"${ground_truth}$"
-        gold = parse(
-            ground_truth,
-            extraction_config=[StringExtractionConfig()],
-        )
-        answer = parse(
-            solution_str,
-            extraction_config=[
-                StringExtractionConfig(),
-            ]
-        )
-        if len(answer) == 0:
-            return False, "No extracted answer"
-        else:
-            return verify(gold, answer), str(answer)
-        
-    def get_llm_judge_prompt(self, solution_str: str, ground_truth: str, extract_answer: str = "", finish_generation: bool = True) -> str:
-        solution_str = self.extract_after_think(solution_str, finish_generation=finish_generation)
-        return f"""Please determine whether the final answer provided in the model-generated response is equivalent to the reference answer from a multiple choice question. The final answer may either be enclosed in \\boxed{{}} or appear after "Answer:". If they are equivalent, return "YES"; if they are not, return "NO". Only return "YES" or "NO", and do not generate any other content.
-Model-generated answer: {solution_str}
-Reference answer: {ground_truth}""".strip()
-
-
-# class MBPPEvaluator(Evaluator):
-#     def rule_judge(self, solution_str: str, ground_truth: str, finish_generation: bool = True) -> bool:
-#         return True, "No extracted answer"
-        
-#     def get_llm_judge_prompt(self, solution_str: str, ground_truth: str, extract_answer: str = "", finish_generation: bool = True) -> str:
-#         solution_str = self.extract_after_think(solution_str, finish_generation=finish_generation)
-#         return f"""Please determine whether the final answer provided in the model-generated response is equivalent to the reference answer from a multiple choice question. The final answer may either be enclosed in \\boxed{{}} or appear after "Answer:". If they are equivalent, return "YES"; if they are not, return "NO". Only return "YES" or "NO", and do not generate any other content.
-# Model-generated answer: {solution_str}
-# Reference answer: {ground_truth}""".strip()
-
-
-# class HUMANEVALEvaluator(Evaluator):
-#     def rule_judge(self, solution_str: str, ground_truth: str, finish_generation: bool = True) -> bool:
-#         return True, "No extracted answer"
-        
-#     def get_llm_judge_prompt(self, solution_str: str, ground_truth: str, extract_answer: str = "", finish_generation: bool = True) -> str:
-#         solution_str = self.extract_after_think(solution_str, finish_generation=finish_generation)
-#         return f"""Please determine whether the final answer provided in the model-generated response is equivalent to the reference answer from a multiple choice question. The final answer may either be enclosed in \\boxed{{}} or appear after "Answer:". If they are equivalent, return "YES"; if they are not, return "NO". Only return "YES" or "NO", and do not generate any other content.
-# Model-generated answer: {solution_str}
-# Reference answer: {ground_truth}""".strip()
-
+# Dataset → grader mapping. Keys must match
+# ``eval_configs/dataset_configs.json`` benchmark names.
+_EXPR = MathEvaluator("expr")
+_LATEX = MathEvaluator("latex")
+_STRING = MathEvaluator("string")
 
 evaluator_map = {
-    "aime24": AIMEEvaluator(),
-    "aime25": AIMEEvaluator(),
-    "brumo25": AIMEEvaluator(),
-    "chmath": AMCEvaluator(),
-    "gsm8k": GSM8KEvaluator(),
-    "math500": MATH500Evaluator(),
-    "amc23": AMCEvaluator(),
-    "olympiadbench": OlympiadBenchEvaluator(),
-    "gpqa": GPQAEvaluator(),
-    "minerva": AMCEvaluator(),
-    "mmlu_stem": GPQAEvaluator(),
-    "mmlu_redux": GPQAEvaluator(),
-    "arc_e": GPQAEvaluator(),
-    "arc_c": GPQAEvaluator(),
+    # Bare-expression ground truth.
+    "aime24": _EXPR,
+    "aime25": _EXPR,
+    "brumo25": _EXPR,
+    "gsm8k": _EXPR,
+    # Latex-wrapped ground truth.
+    "math500": _LATEX,
+    "amc23": _LATEX,
+    "chmath": _LATEX,
+    "olympiadbench": _LATEX,
+    "minerva": _LATEX,
+    # String ground truth (multiple-choice).
+    "gpqa": _STRING,
+    "mmlu_stem": _STRING,
+    "mmlu_redux": _STRING,
+    "arc_e": _STRING,
+    "arc_c": _STRING,
 }
-
-API_BASE = None
-DEPLOYMENT_NAME = None
-API_VERSION = None
-CONSTRUCTED_URL = None
-API_KEY = None
-HEADERS = None
-OPENAI_CLIENT = None
-MODEL_NAME = None
-
-def set_client(api_base=None, deployment_name=None, api_version=None, api_key=None, model_name="gpt-4.1-2025-04-14"):
-    global API_BASE, DEPLOYMENT_NAME, API_VERSION, CONSTRUCTED_URL, API_KEY, HEADERS, MODEL_NAME, OPENAI_CLIENT
-
-    API_BASE = api_base
-    DEPLOYMENT_NAME = deployment_name
-    API_VERSION = api_version
-    CONSTRUCTED_URL = f"{api_base}/openai/deployments/{deployment_name}/chat/completions?api-version={api_version}"
-    API_KEY = api_key or os.getenv("OPENAI_API_KEY", "")
-    MODEL_NAME = model_name
-    HEADERS = {
-        "Content-Type": "application/json",
-        "api-key": api_key,
-    }
-    if API_KEY:
-        print(f"Using API key: {API_KEY}")
-        OPENAI_CLIENT = OpenAI(api_key=API_KEY)
-    else:
-        OPENAI_CLIENT = None
-    
