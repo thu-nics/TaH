@@ -69,7 +69,10 @@ def topk_softmax_input_update(
     topk_values, topk_indices = torch.topk(logits, k=k, dim=-1)
     topk_probs = torch.softmax(topk_values, dim=-1)
     topk_embeds = embedding_weight[topk_indices]  # (..., k, H)
-    return torch.sum(topk_probs.unsqueeze(-1) * topk_embeds, dim=-2)
+    out = torch.sum(topk_probs.unsqueeze(-1) * topk_embeds, dim=-2)
+    # Trainer eval runs under autocast which can promote softmax/sum to fp32;
+    # the caller scatters the result into a bf16 buffer so cast back.
+    return out.to(embedding_weight.dtype)
 
 
 def additive_logits_update(
@@ -377,13 +380,9 @@ class TaHForCausalLM(PreTrainedModel):
         self._set_lora_grad_flags(base_grad, adapter_grad)
 
     def _set_lora_grad_flags(self, base_grad: bool, adapter_grad: bool) -> None:
-        """Enable/disable gradients on lora-* params vs everything else.
-
-        No-op when both flags default to True (the common case at training
-        time, where HF Trainer manages requires_grad per parameter group).
-        """
-        if base_grad is True and adapter_grad is True:
-            return
+        """Always reapplied: PEFT freezes all non-LoRA params in
+        ``get_peft_model``, so even ``(True, True)`` needs us to re-enable the
+        base. An earlier no-op early-return silently broke step-1 SFT."""
         for name, p in self.simple_base_model.base_model.named_parameters():
             p.requires_grad = adapter_grad if "lora" in name.lower() else base_grad
 
@@ -673,6 +672,11 @@ class TaHForCausalLM(PreTrainedModel):
             next_iter_mask = (~finished_mask) & current_iter_mask & (valid_mask == 1)
             if next_iter_mask.any():
                 active_next = (~active_finished_mask) & valid_active
+                # Clone before the in-place index_put: when base embeddings are
+                # trainable (step-1 default), autograd has saved active_input_embeds
+                # for backward through the simple_base_model call above; mutating
+                # it in place would trip the saved-tensor version check.
+                active_input_embeds = active_input_embeds.clone()
                 active_input_embeds[active_next] = topk_softmax_input_update(
                     logits=updated_active_logits[active_next],
                     embedding_weight=self.embed_tokens.weight,
