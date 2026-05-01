@@ -2,8 +2,11 @@
 with per-token iter-count colouring.
 
 Run:
-    python script/playground/inference_example.py
+    python script/playground/inference_example.py                    # quick demo (512 tokens)
+    python script/playground/inference_example.py --max-new-tokens 16384  # full reasoning chain
 """
+import argparse
+
 import torch
 from transformers import AutoTokenizer
 
@@ -12,17 +15,22 @@ from tah.model.utils import IterCountColors, TaHForCasualLM_generate
 
 
 def main():
-    model_name = "nics-efc/TaH-plus-1.7B"
-    device_map = "cuda:0"
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--model", default="nics-efc/TaH-plus-1.7B", help="HF id or local path")
+    parser.add_argument("--device", default="cuda:0")
+    parser.add_argument("--max-new-tokens", type=int, default=512,
+                        help="Cap on generated tokens (default 512 ≈ 1 min on a B200; "
+                             "raise to 16384+ to see a full reasoning chain).")
+    args = parser.parse_args()
 
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(args.model)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
     tah_model = TaHForCausalLM.from_pretrained(
-        model_name,
+        args.model,
         torch_dtype=torch.bfloat16,
-        device_map=device_map,
+        device_map=args.device,
         attn_implementation="sdpa",
     )
     print(f"Device: {tah_model.device}, Dtype: {tah_model.dtype}")
@@ -54,7 +62,7 @@ def main():
         tah_model=tah_model,
         tokenizer=tokenizer,
         model_inputs=dict(model_inputs),
-        max_new_tokens=16384,
+        max_new_tokens=args.max_new_tokens,
         do_sample=True,
         temperature=0.6,
         top_p=0.95,

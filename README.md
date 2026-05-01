@@ -55,10 +55,17 @@ pip install -e ".[training,evaluation]"
 
 For code generation evaluation, install [evalplus](https://github.com/evalplus/evalplus)
 
+> **Note** if you ``git pull`` and the top-level package layout changes
+> (e.g. ``__init__.py`` is added or removed), re-run ``pip install -e .``
+> — the editable install caches the layout in
+> ``site-packages/__editable___tah_*_finder.py`` and stale state will
+> silently drop ``tah/__init__.py``'s re-exports.
+
 ## Run an example for TaH
 
 ```bash
-python script/playground/inference_example.py
+python script/playground/inference_example.py                       # quick demo (~1 min)
+python script/playground/inference_example.py --max-new-tokens 16384 # full reasoning chain
 ```
 
 This script demonstrates TaH's selective latent iteration mechanism, with color-coded output showing the iteration count for each token.
@@ -82,8 +89,29 @@ Key parameters:
 - `--model_path`: Path to the model
 - `--dataset_name`: Dataset name (supports gsm8k, math500, aime24, etc. Detailed configs can be found in `tah/evaluate/eval_configs/dataset_configs.json`)
 - `--backend`: Inference backend (`tah` for TaH)
-- `--job_nums`: Number of parallel jobs
+- `--job_nums`: Number of parallel jobs (one job pins `tp_size_per_job` GPUs)
 - `--tp_size_per_job`: Tensor parallel size per job
+- `--data_range N` / `--data_range start end`: subset slice — handy for smoke tests
+- `--data_ids gsm8k_0,gsm8k_5`: run only specific problem ids
+
+#### Single-GPU smoke
+The default recipe targets 8 GPUs (`--job_nums 8`). To sanity-check the pipeline on
+one GPU in a couple of minutes, slice the dataset and shrink `max_new_tokens`:
+```bash
+# clone the recipe and shrink generation length
+sed 's/max_new_tokens: 4096/max_new_tokens: 512/' \
+    script/recipes/qwen3_1.7/eval_tah.yaml > /tmp/eval_tah_smoke.yaml
+
+CUDA_VISIBLE_DEVICES=0 python script/evaluation/eval.py \
+    --eval_config /tmp/eval_tah_smoke.yaml \
+    --model_path nics-efc/TaH-plus-1.7B \
+    --dataset_name gsm8k --backend tah \
+    --job_nums 1 --tp_size_per_job 1 \
+    --data_range 5 \
+    --output_dir /tmp/tah_eval_smoke
+```
+The TaH backend is a token-by-token Python loop intended for research; for serving
+throughput, use `--backend sglang` or the dedicated `minisgl-tah` server.
 
 ### Evaluate with a different backend
 

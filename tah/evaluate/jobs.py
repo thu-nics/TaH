@@ -18,12 +18,14 @@ single set of files at the run-level directory.
 from __future__ import annotations
 
 import csv
+import ctypes
 import fcntl
 import json
 import logging as pylog
 import math
 import os
 import shutil
+import signal
 import socket
 import time
 import traceback
@@ -308,8 +310,21 @@ def _setup_logging(level_name: str) -> None:
     )
 
 
+_PR_SET_PDEATHSIG = 1  # no Python constant; <linux/prctl.h>
+
+
+def _install_pdeathsig() -> None:
+    """SIGTERM the worker if its parent dies (Linux). Without this, killing the
+    eval driver leaves orphan workers reparented to init still pinning the GPU."""
+    try:
+        ctypes.CDLL("libc.so.6", use_errno=True).prctl(_PR_SET_PDEATHSIG, signal.SIGTERM, 0, 0, 0)
+    except Exception:
+        pass
+
+
 def _run_job_process(job_args: Tuple, result_queue: Queue) -> None:
     """One job per Process; pins CUDA_VISIBLE_DEVICES + NCCL port for the worker."""
+    _install_pdeathsig()
     (job_id, config, combined_dataset_name, output_dir, timestamp, model_path,
      job_nums, start_idx, end_idx, tp_size, backend, data_range, gpu_devices,
      problems_data, field_mapping, unified_code_solutions_file) = job_args

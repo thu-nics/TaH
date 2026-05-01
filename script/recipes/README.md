@@ -14,11 +14,21 @@ script/recipes/
 │   ├── sft_tah_step1.yaml
 │   ├── sft_tah_step2.yaml
 │   └── eval_tah.yaml
-└── qwen3_1.7/                 # recipes for Qwen3-1.7B-based TaH (hidden_size=2048)
+├── qwen3_1.7/                 # recipes for Qwen3-1.7B-based TaH (hidden_size=2048)
+│   ├── sft_tah_step1.yaml
+│   ├── sft_tah_step2.yaml
+│   └── eval_tah.yaml
+└── qwen3_1.7_1gpu/            # 1-GPU variants of the qwen3_1.7 SFT recipes
     ├── sft_tah_step1.yaml
-    ├── sft_tah_step2.yaml
-    └── eval_tah.yaml
+    └── sft_tah_step2.yaml
 ```
+
+The `qwen3_1.7_1gpu/` recipes shrink `gradient_accumulation_steps` to 4 (vs
+16 in the 8-GPU originals), drop `max_length` to 4096, set `report_to: none`,
+and write checkpoints under `/tmp/tah_run/` so a 3-stage reproduction fits
+on a single B200. Use them with plain `python script/train/SFT_TaH.py` (no
+`accelerate launch` needed); the step-2 recipe expects you to fill in
+`tah_model_path` with the step-1 `final_model` path before launching.
 
 ## What each file does
 

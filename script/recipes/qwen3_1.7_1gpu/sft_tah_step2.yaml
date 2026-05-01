@@ -1,0 +1,83 @@
+# Inline parameter docs live in ../qwen3_1.7/sft_tah_step2.yaml — this file
+# diverges only in the training-budget knobs (output_dir, max_length,
+# num_train_epochs, gradient_accumulation_steps, save_total_limit, report_to).
+model:
+  name: Qwen/Qwen3-1.7B-Base
+  # HF hub id of the step-1 starting point. Use the released TaH-plus-1.7B
+  # checkpoint by default; substitute /tmp/tah_run/step1/.../final_model if
+  # you ran step 1 yourself.
+  tah_model_path: nics-efc/TaH-plus-1.7B
+  torch_dtype: bfloat16
+  device_map: auto
+  trust_remote_code: true
+  attn_implementation: sdpa
+  embedding_key: model.embed_tokens
+  max_iter: 2
+  iter_decider: MLPIterDecider
+  iter_decider_kwargs:
+    topk: 100
+    hidden_states_size: 2048
+    hidden_states_layer_nums:
+    - 2
+    - 10
+    - 18
+    - 26
+    hidden_dims:
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    - 512
+    expansion_factor: 4
+    dropout_rate: 0.1
+    normalize_input: false
+    threshold: 0.8
+  eval_iter_decider: iter_decider
+  eval_iter_decider_kwargs: {}
+  input_updater_kwargs:
+    topk: 100
+  adapter: lora
+  adapter_kwargs:
+    r: 32
+    lora_alpha: 64
+    lora_dropout: 0.1
+    target_modules: all-linear
+    base_grad: false
+    adapter_grad: false
+    bias: none
+  train_loss: IterDeciderLoss
+  train_loss_kwargs:
+    pos_weight: 5.4
+    skip_last_iter: true
+    max_iter: 2
+  eval_loss: NextTokenPredLoss
+  eval_loss_kwargs: {}
+data:
+  train_data_path: data/processed_data/openr1_math/1_7/train
+  eval_data_path: data/processed_data/openr1_math/1_7/eval
+  output_dir: /tmp/tah_run/step2/
+  max_length: 4096
+training:
+  freeze_component:
+  - model.simple_base_model
+  num_train_epochs: 2
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  gradient_checkpointing: false
+  learning_rate: 3.0e-05
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  max_grad_norm: 0.2
+  lr_scheduler_type: cosine_with_min_lr
+  lr_scheduler_kwargs:
+    min_lr_rate: 0.1
+  logging_steps: 5
+  save_strategy: epoch
+  save_only_model: true
+  save_total_limit: 2
+  bf16: true
+  eval_strategy: epoch
+  eval_on_start: true
+  per_device_eval_batch_size: 1
+  report_to: none
