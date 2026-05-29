@@ -17,7 +17,7 @@ def download_with_retry(repo_id, repo_type, local_dir, max_retries=5, split=None
                 repo_id=repo_id, 
                 repo_type=repo_type, 
                 local_dir=local_dir, 
-                allow_patterns=allow_patterns  # 启用文件过滤
+                allow_patterns=allow_patterns  # restrict to the requested file patterns
             )
             print("Download completed successfully!")
             return

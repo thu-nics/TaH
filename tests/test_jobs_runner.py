@@ -85,7 +85,7 @@ def test_run_single_job_writes_expected_files(tmp_path, tokenizer_stub):
 
     with patch.object(jobs, "setup_backend", _fake_backend_factory()), \
          patch.object(jobs, "_score_one", _fake_score_one), \
-         patch.object(jobs, "AutoTokenizer", create=True) if False else patch(
+         patch(
              "transformers.AutoTokenizer.from_pretrained", return_value=tokenizer_stub,
          ), \
          patch.object(jobs, "cleanup", lambda *a, **kw: None):

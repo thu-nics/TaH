@@ -117,7 +117,7 @@ def run(payload):
         iter_decider_threshold=0.5,
     )
     final = loss.final_loss_func(
-        logits=payload['continue_logits'].view(B, T)[:, :1] if False else payload['continue_logits'].new_zeros(B, T, 1),
+        logits=payload['continue_logits'].new_zeros(B, T, 1),
         labels_shifted=payload['iter_count_labels'],
         iter_count=torch.ones_like(payload['iter_count_labels']),
         iter_count_labels=payload['iter_count_labels'],

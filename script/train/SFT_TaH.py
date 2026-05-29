@@ -65,17 +65,16 @@ def _build_model_and_tokenizer(model_config: Dict, accelerator: Accelerator):
     )
     tokenizer.pad_token = tokenizer.eos_token
 
+    valid = {f.name for f in fields(TaHConfig)}
     if "tah_model_path" in model_config:
         accelerator.print(f"Resuming from TaH checkpoint: {model_config['tah_model_path']}")
         # Override only the fields explicitly set in the new YAML.
-        valid = {f.name for f in fields(TaHConfig)}
         override = TaHConfig(**{k: v for k, v in model_config.items() if k in valid})
         model = TaHForCausalLM.from_pretrained(
             model_config["tah_model_path"], tah_config=override,
         ).to(dtype=torch_dtype)
     else:
         # Construct fresh from a base model + recipe-specified components.
-        valid = {f.name for f in fields(TaHConfig)}
         cfg = TaHConfig(**{k: v for k, v in model_config.items() if k in valid})
         base = AutoModelForCausalLM.from_pretrained(
             model_config["name"], torch_dtype=torch_dtype, device_map=device_map,

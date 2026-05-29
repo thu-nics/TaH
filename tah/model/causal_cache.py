@@ -166,10 +166,18 @@ class TaHCache(DynamicCache):
             return t.shape[-2] if t is not None else 0
         return sum(t.shape[-2] for (l, _), t in self._k.items() if l == layer_idx)
 
-    def get_cache_length_upto_iter(self, layer_idx: Optional[int] = 0, iter_depth: int = 0) -> int:
+    def get_kv_length_upto_iter(self, layer_idx: int = 0, upto_iter_idx: int = 0) -> int:
+        """Total KV sequence length across iterations ``0..upto_iter_idx`` (inclusive).
+
+        This is the key/value length a query at iteration ``upto_iter_idx`` attends
+        to under the duo-mode mask; it equals ``get_cache_upto_iter(...)[0].shape[-2]``
+        without materialising the concatenation. Contrast :meth:`get_cache_length`,
+        which returns a *single* iteration's length (or *all* iterations when
+        ``iter_idx is None``).
+        """
         return sum(
             self._k[(layer_idx, i)].shape[-2]
-            for i in range(iter_depth + 1) if (layer_idx, i) in self._k
+            for i in range(upto_iter_idx + 1) if (layer_idx, i) in self._k
         )
 
     def get_seq_length(self, layer_idx: Optional[int] = 0, iter_idx: Optional[int] = 0) -> int:

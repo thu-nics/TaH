@@ -319,6 +319,14 @@ class TaHForCausalLM(PreTrainedModel):
         canonical recipes); other modes from public TaH have been removed.
     """
 
+    # transformers >=4.57 validates attn support against the *wrapper* class
+    # (not the inner base model) in ``PreTrainedModel.__init__``. Without this
+    # class-level flag, ``attn_implementation="sdpa"`` — used by the inference
+    # demo, the bench harness, and the ``tah`` eval backend — raises
+    # "TaHForCausalLM does not support ... sdpa". Declaring support here keeps
+    # those entry points working out of the box.
+    _supports_sdpa = True
+
     def __init__(self, base_model: PreTrainedModel, config: Optional[TaHConfig] = None):
         # SDPA is the only attention impl we exercise in the recurrent loop.
         base_model._supports_sdpa = True
@@ -480,7 +488,7 @@ class TaHForCausalLM(PreTrainedModel):
     def _forward_kwargs(kwargs: dict) -> dict:
         """Filter caller-supplied forward kwargs down to those the loss / callback
         plumbing actually reads."""
-        return {k: v for k, v in kwargs.items() if k in ("global_step", "num_items_in_batch")}
+        return {k: v for k, v in kwargs.items() if k in ("num_items_in_batch",)}
 
     # ── forward ───────────────────────────────────────────────────────────
 

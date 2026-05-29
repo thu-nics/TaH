@@ -55,13 +55,13 @@ see prior ones without disturbing iter-0.
 
 ### Install
 ```bash
-conda activate release
+conda activate tah
 uv pip install -e ".[dev,training,evaluation]"
 ```
 
 ### Tests + benchmarks
 ```bash
-pytest tests/                     # 21 component + wrapper + roundtrip tests
+pytest tests/                     # 11 component + wrapper + roundtrip tests
 pytest tests/test_<name>.py -v    # one file
 TAH_TEST_DEVICE=cpu pytest tests/ # run on CPU (skip needs no flag)
 python tests/bench.py components  # per-helper microbench (B200 baseline in README)

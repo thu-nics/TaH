@@ -62,9 +62,6 @@ def _build_problem(item: dict, idx: int, field_mapping: Dict, detail_dir: Path) 
     """Pull standard fields out of an item; also create the per-problem dir."""
     pid = str(item.get(field_mapping["id_field"]) or f"problem_{idx}")
     text = str(item.get(field_mapping["question_field"], "")).strip()
-    template = field_mapping.get("prompt_template")
-    if template and "{question}" in template:
-        text = template.replace("{question}", text)
     answer = str(item.get(field_mapping["answer_field"], "")).strip()
     problem_dir = detail_dir / pid
     problem_dir.mkdir(parents=True, exist_ok=True)

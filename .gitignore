@@ -4,6 +4,8 @@
 *.png
 *.log
 .coverage
+*.prof
+memory_snapshot.html
 
 # Folders
 reference/

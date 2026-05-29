@@ -80,15 +80,6 @@ def capture(name: str, code: str, payload: dict | None = None) -> dict:
     payload = payload or {}
     payload_pkl = pickle.dumps(payload)
     out_path = baseline_path(name)
-    runner = (
-        "import os, sys, pickle\n"
-        f"sys.path.insert(0, {str(PUBLIC_ROOT)!r})\n"
-        "import torch\n"
-        f"{code}\n"
-        "payload = pickle.loads(sys.stdin.buffer.read())\n"
-        "out = run(payload)\n"
-        "from tests._harness import _to_cpu  # noqa: E402  -- imported lazily\n"
-    )
     # We can't import tests._harness inside the subprocess because the public
     # TaH path is first on sys.path. Inline a CPU mover instead.
     runner = (
