@@ -1,127 +1,81 @@
-from typing import Optional, Any, Union
-from transformers import PreTrainedTokenizerBase
-from transformers.data.data_collator import PaddingStrategy, DataCollatorForSeq2Seq
+"""Data collator for TaH SFT.
+
+Wraps :class:`~transformers.DataCollatorForSeq2Seq` to handle the additional
+``iter_count_labels`` field that the labelling pipeline produces. The field is
+padded alongside ``input_ids`` (same length, same padding side) using the
+label ignore-index ``-100`` for padding positions, then converted to a
+``LongTensor``.
+
+Public TaH had separate code paths for "no padding" inputs and for ``list``
+vs ``ndarray`` element types; in practice every dataset feeds tokenised
+inputs as ``list[int]`` and asks for padding, so the cleaned collator only
+implements that one path. ``iter_count_pad_value`` is removed (the base
+collator's ``label_pad_token_id`` controls both labels and iter_count_labels).
+"""
+from __future__ import annotations
+
+from typing import Any, Optional, Union
+
 import numpy as np
+import torch
+from transformers import PreTrainedTokenizerBase
+from transformers.data.data_collator import DataCollatorForSeq2Seq, PaddingStrategy
+
 
 class CustomTaHDataCollator:
-    """
-    Custom data collator for TaH that handles iter_count field along with standard fields.
-    """
-    def __init__(self, tokenizer: PreTrainedTokenizerBase, 
-                 model: Optional[Any] = None,
-                 padding: Union[bool, str, PaddingStrategy] = True,
-                 max_length: Optional[int] = None,
-                 pad_to_multiple_of: Optional[int] = None,
-                 label_pad_token_id: int = -100,
-                 iter_count_pad_value: int = -1,
-                 return_tensors: str = "pt"):
-        """
-        Initialize custom data collator for TaH.
-        
-        Args:
-            tokenizer: Tokenizer instance
-            model: Optional model instance
-            padding: Padding strategy
-            max_length: Maximum length for padding
-            pad_to_multiple_of: Pad to multiple of this value
-            label_pad_token_id: Padding token ID for labels (default: -100)
-            iter_count_pad_value: Padding value for iter_count (default: -1)
-            return_tensors: Type of tensors to return (default: "pt")
-        """
+    """Pads ``input_ids`` / ``attention_mask`` / ``labels`` (via base collator)
+    plus the TaH-specific ``iter_count_labels`` field."""
+
+    def __init__(
+        self,
+        tokenizer: PreTrainedTokenizerBase,
+        padding: Union[bool, str, PaddingStrategy] = True,
+        max_length: Optional[int] = None,
+        pad_to_multiple_of: Optional[int] = None,
+        label_pad_token_id: int = -100,
+        return_tensors: str = "pt",
+    ):
         self.tokenizer = tokenizer
-        self.model = model
         self.padding = padding
         self.max_length = max_length
         self.pad_to_multiple_of = pad_to_multiple_of
         self.label_pad_token_id = label_pad_token_id
-        self.iter_count_pad_value = iter_count_pad_value
         self.return_tensors = return_tensors
-        
-        # Create base data collator for handling standard fields
         self.base_collator = DataCollatorForSeq2Seq(
-            tokenizer=tokenizer,
-            padding=padding,
-            max_length=max_length,
-            pad_to_multiple_of=pad_to_multiple_of,
-            label_pad_token_id=label_pad_token_id,
-            return_tensors=return_tensors
+            tokenizer=tokenizer, padding=padding, max_length=max_length,
+            pad_to_multiple_of=pad_to_multiple_of, label_pad_token_id=label_pad_token_id,
+            return_tensors=return_tensors,
         )
-    
-    def __call__(self, features, return_tensors=None):
-        if return_tensors is None:
-            return_tensors = self.return_tensors
-        
-        # Extract iter_count_labels from features if present
-        iter_count_labels_list = []
-        has_iter_count_labels = False
-        if features and 'iter_count_labels' in features[0]:
-            has_iter_count_labels = True
-            iter_count_labels_list = [feature.pop('iter_count_labels') for feature in features]
-        
-        # Use base collator for standard fields (input_ids, attention_mask, labels)
-        batch = self.base_collator(features, return_tensors=return_tensors)
-        
-        # Handle iter_count_labels field if present
-        if has_iter_count_labels and iter_count_labels_list:
-            # Get padding configuration
-            no_padding = self.padding is False or self.padding == PaddingStrategy.DO_NOT_PAD
-            
-            if no_padding:
-                # No padding case
-                if isinstance(iter_count_labels_list[0], list):
-                    batch["iter_count_labels"] = list(iter_count_labels_list)
-                else:
-                    batch["iter_count_labels"] = [
-                        np.concatenate([iter_count_labels, []])
-                        for iter_count_labels in iter_count_labels_list
-                    ]
-            else:
-                # Padding case - strictly align with input_ids padding length
-                if "input_ids" in batch:
-                    max_iter_length = batch["input_ids"].shape[1]
-                else:
-                    # Fallback: infer from current list
-                    max_iter_length = max(len(v) for v in iter_count_labels_list)
-                
-                # Apply pad_to_multiple_of if specified
-                if self.pad_to_multiple_of is not None:
-                    max_iter_length = (
-                        (max_iter_length + self.pad_to_multiple_of - 1)
-                        // self.pad_to_multiple_of
-                        * self.pad_to_multiple_of
-                    )
-                
-                # Determine padding side
-                padding_side = self.tokenizer.padding_side
-                pad_value = self.label_pad_token_id
-                
-                # Pad iter_count_labels sequences
-                if isinstance(iter_count_labels_list[0], list):
-                    batch["iter_count_labels"] = [
-                        iter_count_labels + [pad_value] * (max_iter_length - len(iter_count_labels))
-                        if padding_side == "right"
-                        else [pad_value] * (max_iter_length - len(iter_count_labels)) + iter_count_labels
-                        for iter_count_labels in iter_count_labels_list
-                    ]
-                else:
-                    batch["iter_count_labels"] = [
-                        np.concatenate([
-                            iter_count_labels,
-                            np.array([pad_value] * (max_iter_length - len(iter_count_labels)), dtype=np.int64)
-                        ]) if padding_side == "right"
-                        else np.concatenate([
-                            np.array([pad_value] * (max_iter_length - len(iter_count_labels)), dtype=np.int64),
-                            iter_count_labels
-                        ])
-                        for iter_count_labels in iter_count_labels_list
-                    ]
-        
-        # Convert iter_count_labels to tensors if needed
-        if has_iter_count_labels and batch.get("iter_count_labels", None) is not None:
-            if return_tensors == "pt":
-                import torch
-                batch["iter_count_labels"] = torch.tensor(batch["iter_count_labels"], dtype=torch.long)
-            else:
-                batch["iter_count_labels"] = np.array(batch["iter_count_labels"], dtype=np.int64)
 
+    def __call__(self, features, return_tensors=None):
+        return_tensors = return_tensors or self.return_tensors
+
+        iter_labels_list = []
+        if features and "iter_count_labels" in features[0]:
+            iter_labels_list = [f.pop("iter_count_labels") for f in features]
+
+        batch = self.base_collator(features, return_tensors=return_tensors)
+
+        if not iter_labels_list:
+            return batch
+
+        # Pad iter_count_labels to match input_ids length on the same side as
+        # the tokenizer's padding side; -100 marks ignored positions for the loss.
+        target_len = batch["input_ids"].shape[1] if "input_ids" in batch else max(len(v) for v in iter_labels_list)
+        if self.pad_to_multiple_of is not None:
+            target_len = (target_len + self.pad_to_multiple_of - 1) // self.pad_to_multiple_of * self.pad_to_multiple_of
+
+        right_pad = self.tokenizer.padding_side == "right"
+        pad_val = self.label_pad_token_id
+        padded = []
+        for v in iter_labels_list:
+            v = list(v) if not isinstance(v, list) else v
+            n_pad = target_len - len(v)
+            row = (v + [pad_val] * n_pad) if right_pad else ([pad_val] * n_pad + v)
+            padded.append(row)
+
+        if return_tensors == "pt":
+            batch["iter_count_labels"] = torch.tensor(padded, dtype=torch.long)
+        else:
+            batch["iter_count_labels"] = np.asarray(padded, dtype=np.int64)
         return batch

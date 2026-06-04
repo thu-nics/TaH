@@ -1,33 +1,34 @@
-# model config
 dtype: bfloat16
-mem_fraction_static: 0.80
-
-# inference config
+mem_fraction_static: 0.8
 temperature: 0.6
 top_p: 0.95
 top_k: 20
 min_p: 0.0
 max_new_tokens: 4096
-batch_size: 16       # total batch size
-repeat_size: 1       # number of samples per question
-
-# tracker config
-use_tracker: true
-tracker_kwargs:
-  top_k: 5
-
-# tah config
+batch_size: 16
+repeat_size: 1
 max_iter: 2
-iter_decider: "MLPIterDecider"
+iter_decider: MLPIterDecider
 iter_decider_kwargs:
   topk: 100
   hidden_states_size: 1024
-  hidden_states_layer_nums: [0,7,13,20,26]
-  hidden_dims: [256, 256, 256, 256, 256, 256]
+  hidden_states_layer_nums:
+  - 0
+  - 7
+  - 13
+  - 20
+  - 26
+  hidden_dims:
+  - 256
+  - 256
+  - 256
+  - 256
+  - 256
+  - 256
   expansion_factor: 4
   dropout_rate: 0.1
-  normalize_input: False
+  normalize_input: false
   threshold: 0.9
   max_iter: 2
-eval_iter_decider: "iter_decider"
+eval_iter_decider: iter_decider
 eval_iter_decider_kwargs: {}

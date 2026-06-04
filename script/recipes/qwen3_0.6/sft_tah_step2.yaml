@@ -1,26 +1,20 @@
 ### model ###
 model:
   name: Qwen/Qwen3-0.6B-Base                # For TaH+ version
-  # name: ./model/qwen3_0.6_base_pruned     # For TaH version
-  tah_model_path: /path/to/step1-model/epoch5
-  torch_dtype: "bfloat16" 
+  # name: ./model/qwen3_0.6_base_pruned     # For TaH version (drops one layer)
+  tah_model_path: /path/to/step1-model/epoch5    # ← required: step-1 checkpoint
+  torch_dtype: "bfloat16"
   device_map: "auto"
   trust_remote_code: true
   attn_implementation: "sdpa"
   embedding_key: "model.embed_tokens"
   max_iter: 2
-  use_iter_embedding: false
-  input_updater: "TrivialUpdater"
-  input_updater_kwargs:
-    topk: 100
-  iter_label_generator: "FixedIterLabelGenerator"
-  iter_label_generator_kwargs:
-    max_iter: 2
+
   iter_decider: "MLPIterDecider"
   iter_decider_kwargs:
     topk: 100
     hidden_states_size: 1024
-    hidden_states_layer_nums: [0,7,13,20,26]
+    hidden_states_layer_nums: [0, 7, 13, 20, 26]
     hidden_dims: [256, 256, 256, 256, 256, 256]
     expansion_factor: 4
     dropout_rate: 0.1
@@ -29,18 +23,19 @@ model:
   eval_iter_decider: "iter_decider"
   eval_iter_decider_kwargs: {}
 
-  output_updater: "AdditiveLogitsUpdater" # Options: "NoneUpdater", "AdditiveLogitsUpdater"
-  output_updater_kwargs: {}
+  input_updater_kwargs:
+    topk: 100
 
-  adapter: "lora" # Options: "lora", "cascade", "none", "multilora"
+  adapter: "lora"
   adapter_kwargs:
     r: 16
     lora_alpha: 32
     lora_dropout: 0.1
     target_modules: "all-linear"
     base_grad: false
-    adapter_grad: false
+    adapter_grad: false       # adapter is frozen; only the iter decider trains
     bias: "none"
+
   train_loss: "IterDeciderLoss"
   train_loss_kwargs:
     pos_weight: 4.8
@@ -55,7 +50,6 @@ data:
   eval_data_path: data/processed_data/openr1_math/0_6/eval
   output_dir: "output/openr1_math/0_6/"
   max_length: 8192
-  iter_count_strategy: "mismatch"
 
 ### training ###
 training:
@@ -77,13 +71,10 @@ training:
   save_only_model: true
   save_total_limit: 10
   bf16: true
-  # evaluation config
   eval_strategy: "steps"
   eval_steps: 40
   eval_on_start: true
   per_device_eval_batch_size: 1
-  # wandb config
-  report_to: "wandb"  # Options: "none", "wandb"
+  report_to: "wandb"          # "none" or "wandb"
   wandb_project: "TaH"
   wandb_name: "openr1_0.6base_step2"
-  # wandb_entity: ""

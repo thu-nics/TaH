@@ -23,7 +23,7 @@ Feel free to star the repo or cite the paper if you find it interesting.
 @article{fu2025tah,
     title={Think-at-Hard: Selective Latent Iterations to Improve Reasoning Language Models}, 
     author={Tianyu Fu and Yichen You and Zekai Chen and Guohao Dai and Huazhong Yang and Yu Wang},
-    journal={arXiv preprint arXiv:2510.08577},
+    journal={arXiv preprint arXiv:2511.08577},
     year={2025},
 }
 ```
@@ -55,10 +55,17 @@ pip install -e ".[training,evaluation]"
 
 For code generation evaluation, install [evalplus](https://github.com/evalplus/evalplus)
 
+> **Note** if you ``git pull`` and the top-level package layout changes
+> (e.g. ``__init__.py`` is added or removed), re-run ``pip install -e .``
+> — the editable install caches the layout in
+> ``site-packages/__editable___tah_*_finder.py`` and stale state will
+> silently drop ``tah/__init__.py``'s re-exports.
+
 ## Run an example for TaH
 
 ```bash
-python script/playground/inference_example.py
+python script/playground/inference_example.py                       # quick demo (~1 min)
+python script/playground/inference_example.py --max-new-tokens 16384 # full reasoning chain
 ```
 
 This script demonstrates TaH's selective latent iteration mechanism, with color-coded output showing the iteration count for each token.
@@ -82,22 +89,37 @@ Key parameters:
 - `--model_path`: Path to the model
 - `--dataset_name`: Dataset name (supports gsm8k, math500, aime24, etc. Detailed configs can be found in `tah/evaluate/eval_configs/dataset_configs.json`)
 - `--backend`: Inference backend (`tah` for TaH)
-- `--job_nums`: Number of parallel jobs
+- `--job_nums`: Number of parallel jobs (one job pins `tp_size_per_job` GPUs)
 - `--tp_size_per_job`: Tensor parallel size per job
+- `--data_range N` / `--data_range start end`: subset slice — handy for smoke tests
+- `--data_ids gsm8k_0,gsm8k_5`: run only specific problem ids
 
-### Evaluate standard baseline model
+#### Single-GPU smoke
+The default recipe targets 8 GPUs (`--job_nums 8`). To sanity-check the pipeline on
+one GPU in a couple of minutes, slice the dataset and shrink `max_new_tokens`:
 ```bash
-python script/evaluation/eval.py \
-    --eval_config ./script/recipes/qwen3_1.7/eval_base.yaml \
-    --model_path nics-efc/Standard-1.7B \
-    --dataset_name gsm8k \
-    --backend hf \
-    --job_nums 8 \
-    --tp_size_per_job 1
-```
+# clone the recipe and shrink generation length
+sed 's/max_new_tokens: 4096/max_new_tokens: 512/' \
+    script/recipes/qwen3_1.7/eval_tah.yaml > /tmp/eval_tah_smoke.yaml
 
-Similar to TaH evaluation, but using:
-- `--backend hf` or `--backend sglang`
+CUDA_VISIBLE_DEVICES=0 python script/evaluation/eval.py \
+    --eval_config /tmp/eval_tah_smoke.yaml \
+    --model_path nics-efc/TaH-plus-1.7B \
+    --dataset_name gsm8k --backend tah \
+    --job_nums 1 --tp_size_per_job 1 \
+    --data_range 5 \
+    --output_dir /tmp/tah_eval_smoke
+```
+The TaH backend is a token-by-token Python loop intended for research; for serving
+throughput, use `--backend sglang` or the dedicated `minisgl-tah` server.
+
+### Evaluate with a different backend
+
+The same `script/evaluation/eval.py` accepts `--backend hf` (vanilla
+`AutoModelForCausalLM.generate` — useful for non-TaH baselines) or
+`--backend sglang` (sgl Engine for high-throughput serving). All three
+backends share the same job-sharded driver under
+`tah/evaluate/jobs.py:allocate_gpus_and_run_jobs`.
 
 ## Train your own TaH model
 
@@ -110,7 +132,6 @@ Training a TaH model consists of three stages:
 Use a reference model to generate hard token labels for the training and validation data:
 
 ```bash
-### step 0
 # download the default subset of OpenR1-Math-220k
 python script/preparation/download.py
 # filter and split
@@ -135,7 +156,6 @@ python script/preparation/label.py \
 For the TaH version, prune one layer from the base model to match the parameter count of the standard baseline (skip this step for TaH+ version):
 
 ```bash
-### step 0
 python script/preparation/prune.py \
     --model Qwen/Qwen3-1.7B-Base \
     --dataset ./data/processed_data/openr1-math/1_7/eval \
@@ -148,7 +168,6 @@ python script/preparation/prune.py \
 The first stage uses fixed iteration labels for training:
 
 ```bash
-### step 1
 python -m accelerate.commands.launch \
     --config_file ./script/recipes/accelerate_configs/zero2.yaml \
     --num_processes 8 \
@@ -157,12 +176,14 @@ python -m accelerate.commands.launch \
 ```
 
 Key configurations in Step1 (`sft_tah_step1.yaml`):
-- `max_iter: 2`: Maximum number of iterations
-- `iter_decider: "FixedLabelIterDecider"`: Use fixed labels to decide iterations
-- `iter_label_generator: "FixedIterLabelGenerator"`: Generate labels from mismatch field in data
-- `input_updater: "AdditiveUpdater"`: Use additive updater for input updates
-- `adapter: "lora"`: Use LoRA adapter for deeper iteration
-- `train_loss: "NextTokenPredLoss"`: Next token prediction loss
+- `max_iter: 2` — maximum number of iterations.
+- `iter_decider: "IterLabelDecider"` — continue iff the per-token oracle
+  ``iter_count_labels`` (derived from ``mismatch``) say so. Used to teach
+  the LoRA adapter on tokens marked "hard" by the labeller.
+- `adapter: "lora"` — only LoRA is supported in tah-release.
+- `train_loss: "NextTokenPredLoss"` — standard causal-LM cross-entropy.
+
+Single-implementation hooks (input/output updaters, iter labels, adapter) are inlined into the wrapper — only `iter_decider` and `train_loss` are config-selectable.
 
 ### Step2: Train Iteration Decider
 
@@ -170,7 +191,6 @@ The second stage trains the iteration decider:
 
 
 ```bash
-### step 2
 python -m accelerate.commands.launch \
     --config_file ./script/recipes/accelerate_configs/zero2.yaml \
     --num_processes 8 \
@@ -192,32 +212,42 @@ After two-stage training, the model can automatically decide when to perform lat
 
 ```
 TaH/
-├── tah/                           # Core package
-│   ├── model/                     # Core model components
-│   ├── train/                     # Training components
-│   ├── evaluate/                  # Evaluation utilities
-│   └── utils/                     # General utilities
-├── bash/                          # Bash scripts for training and evaluation
-├── script/                        # Execution scripts
-│   ├── analysis/                  # Analysis scripts
-│   ├── evaluation/                # Evaluation scripts
-│   ├── preparation/               # Preparation for training
-│   │   ├── label.py               # Data labeling (generate mismatch labels)
-│   │   └── prune.py               # Model pruning
-│   ├── playground/                # Some examples
-│   └── recipes/                   # Configuration files
-│       ├── qwen3_0.6/             # Qwen3-0.6B-Base configs
-│       ├── qwen3_1.7/             # Qwen3-1.7B-Base configs
-│       └── accelerate_configs/    # Distributed training configs
-└── pyproject.toml                 # Project configuration
+├── tah/
+│   ├── model/                     # core model
+│   │   ├── tah_model.py           # TaHForCausalLM wrapper + inlined slot helpers
+│   │   ├── iter_decider.py        # IterLabelDecider, MLPIterDecider, _BY_NAME
+│   │   ├── loss.py                # NextTokenPredLoss, IterDeciderLoss, _BY_NAME
+│   │   ├── causal_cache.py        # TaHCache: per-(layer, iter) KV
+│   │   ├── tah_config.py          # @dataclass TaHConfig
+│   │   └── utils.py               # generation helper, IterCountColors
+│   ├── train/                     # HF Trainer subclass + collator + iter-aware callback
+│   ├── evaluate/                  # multi-backend eval driver
+│   │   ├── datasets.py            # benchmark loading + standardisation
+│   │   ├── backends.py            # sglang / hf / tah model + inference fn
+│   │   ├── jobs.py                # job-sharded runner + result aggregation
+│   │   ├── matheval.py            # math benchmark graders (math_verify)
+│   │   └── codeeval.py            # humaneval / mbpp via evalplus
+│   └── utils/                     # SFT preprocessing
+├── script/
+│   ├── preparation/               # download.py, label.py, prune.py, filter_split.py
+│   ├── train/SFT_TaH.py           # SFT entrypoint
+│   ├── evaluation/eval.py         # eval CLI entrypoint
+│   ├── playground/                # inference demo
+│   └── recipes/qwen3_{0.6,1.7}/   # training + eval YAML recipes
+├── tests/                         # per-component acc/speed tests
+└── pyproject.toml
 ```
 
-## Future Work
+## Tests + benchmarks
 
-- [ ] Support more inference backends (e.g., SGLang)
-- [ ] Optimize iteration decision strategies
-- [ ] Integrate TaH with online distillation or RL
-- [ ] Support training for larger models
+```bash
+pytest tests/ -q                  # 21 acc + roundtrip tests in ~30s on a B200
+python tests/bench.py components  # microbenchmarks for the wrapper's hot helpers
+python tests/bench.py e2e         # forward + 32-token generate on TaH-plus-1.7B
+python tests/bench_compile.py     # one-off torch.compile vs eager experiment
+```
+
+See [`tests/README.md`](tests/README.md) for component-level baselines and CPU-mode (`TAH_TEST_DEVICE=cpu`) instructions.
 
 ## Related Projects
 

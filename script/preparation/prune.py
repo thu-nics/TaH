@@ -1,44 +1,58 @@
+"""Prune one or more layers from a Qwen3-style decoder-only model.
+
+Usage:
+
+    python script/preparation/prune.py \\
+        --model Qwen/Qwen3-1.7B-Base \\
+        --dataset data/processed_data/openr1_math/1_7/eval \\
+        --output model/qwen3_1.7_base_pruned \\
+        --num_prune 1
+
+For each layer, temporarily remove it from the model and measure perplexity
+on a small calibration set; the layers with the smallest ΔPPL are dropped
+permanently and the resulting model is saved with ``model.save_pretrained``.
+"""
+from __future__ import annotations
+
 import argparse
-import os
-os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
-os.environ['CUDA_VISIBLE_DEVICES'] = '4,5,6,7'
-import sys
 import math
-from typing import List, Tuple, Optional
+import os
+import sys
+from typing import List, Optional, Tuple
 
 import torch
+from datasets import load_dataset, load_from_disk
 from torch import nn
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from datasets import load_dataset, load_from_disk
 
 
 def _finite_or_inf(x: float) -> float:
-    """Return x if finite, else +inf to avoid NaN/Inf in comparisons."""
+    """Return ``x`` if finite, else ``+inf`` so it sorts to the back of "best" lists."""
     return x if math.isfinite(x) else float("inf")
 
 
 def _get_device(device_arg: str) -> torch.device:
-    """Resolve device from arg."""
     if device_arg:
         return torch.device(device_arg)
     return torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-def _resolve_layers_module(model: nn.Module) -> Tuple[nn.Module, List[nn.Module]]:
-    """Find the decoder layers ModuleList for common HF causal LMs.
+def _resolve_layers_module(model: nn.Module) -> Tuple[nn.Module, str, List[nn.Module]]:
+    """Locate the decoder ``ModuleList`` on common HF causal-LM layouts.
 
-    Returns a tuple of (parent_module, layers_list).
+    Returns ``(parent_module, attr_name, layers_list)`` where
+    ``parent_module.<attr_name>`` is the writable ModuleList we'll
+    swap out when pruning.
     """
-    # Common path for modern decoder-only models
-    for parent_attr in ["model", "transformer"]:
+    for parent_attr in ("model", "transformer"):
         parent = getattr(model, parent_attr, None)
         if parent is None:
             continue
-        for layers_attr in ["layers", "h"]:
+        for layers_attr in ("layers", "h"):
             layers = getattr(parent, layers_attr, None)
             if isinstance(layers, nn.ModuleList) and len(layers) > 0:
-                return parent, list(layers)
-    raise RuntimeError("unable to locate model layers")
+                return parent, layers_attr, list(layers)
+    raise RuntimeError("unable to locate decoder layers on the model")
 
 
 def _prepare_tokenizer(model_name_or_path: str):
@@ -47,70 +61,25 @@ def _prepare_tokenizer(model_name_or_path: str):
         tokenizer.pad_token = tokenizer.eos_token
     return tokenizer
 
+
 def _read_calibration_from_hf(dataset_arg: str, text_field: str, max_samples: int) -> List[str]:
-    if load_dataset is None or load_from_disk is None:
-        raise RuntimeError("datasets not found")
-
-    texts: List[str] = []
-
-    # Try local disk first
-    ds = None
+    """Read up to ``max_samples`` non-empty strings from ``dataset_arg``'s
+    ``text_field`` column. Accepts either a local saved-to-disk dataset or an HF
+    dataset id."""
     if os.path.isdir(dataset_arg):
-        try:
-            ds = load_from_disk(dataset_arg)
-        except Exception as e:
-            # Fallback: directly read Arrow file to extract text when features schema is incompatible
-            try:
-                import pyarrow as pa  # type: ignore
-                import pyarrow.ipc as pa_ipc  # type: ignore
-                # locate data-*.arrow under the directory or its immediate subdirs
-                arrow_files = [f for f in os.listdir(dataset_arg) if f.startswith("data-") and f.endswith(".arrow")]
-                search_dir = dataset_arg
-                if not arrow_files:
-                    subdirs = [os.path.join(dataset_arg, d) for d in os.listdir(dataset_arg) if os.path.isdir(os.path.join(dataset_arg, d))]
-                    for sd in subdirs:
-                        cand = [f for f in os.listdir(sd) if f.startswith("data-") and f.endswith(".arrow")]
-                        if cand:
-                            search_dir = sd
-                            arrow_files = cand
-                            break
-                if not arrow_files:
-                    raise RuntimeError("unable to find data-*.arrow file for fallback reading")
-                file_path = os.path.join(search_dir, sorted(arrow_files)[0])
-                with pa.memory_map(file_path, "r") as source:
-                    reader = pa_ipc.RecordBatchFileReader(source)
-                    table = reader.read_all()
-                if text_field not in table.column_names:
-                    raise KeyError(f"column {text_field} not found in Arrow table: available columns {table.column_names}")
-                col_py = table[text_field].to_pylist()
-                for value in col_py:
-                    if isinstance(value, str) and value.strip():
-                        texts.append(value.strip())
-                        if len(texts) >= max_samples:
-                            break
-                if not texts:
-                    raise RuntimeError(f"dataset has no available text in column {text_field}")
-                return texts
-            except Exception as e2:
-                raise RuntimeError(f"local dataset loading failed, and Arrow fallback failed: {e2}") from e
+        ds = load_from_disk(dataset_arg)
     else:
-        # Remote or canonical HF dataset id
         ds = load_dataset(dataset_arg)
-
-    # Now ds should be a Dataset-like
-    if ds is None:
-        raise RuntimeError("unable to load dataset")
-
-    # Extract text_field
-    col = ds[text_field]
-    for value in col:
+    if hasattr(ds, "column_names") and text_field not in ds.column_names:
+        raise KeyError(f"column {text_field!r} not found; available: {ds.column_names}")
+    texts = []
+    for value in ds[text_field]:
         if isinstance(value, str) and value.strip():
             texts.append(value.strip())
             if len(texts) >= max_samples:
                 break
-
     if not texts:
-        raise RuntimeError(f"dataset has no available text in column {text_field}")
+        raise RuntimeError(f"no usable text found in column {text_field!r}")
     return texts
 
 
@@ -146,45 +115,28 @@ def _compute_loss_with_temp_removed_layer(
     max_length: int,
     remove_index: int,
 ) -> float:
-    """Temporarily remove one layer, evaluate average loss, and restore."""
-    parent, layers_list = _resolve_layers_module(model)
-    used_attr: Optional[str] = None
-    if hasattr(parent, "layers") and isinstance(getattr(parent, "layers"), nn.ModuleList):
-        used_attr = "layers"
-    elif hasattr(parent, "h") and isinstance(getattr(parent, "h"), nn.ModuleList):
-        used_attr = "h"
-    else:
-        raise RuntimeError("unable to locate layer container attribute for temporary removal")
-
-    original_modules = list(layers_list)
-    original_num_layers: Optional[int] = getattr(getattr(model, "config", object()), "num_hidden_layers", None)
-
+    """Temporarily remove one layer, evaluate avg loss, restore the layer."""
+    parent, attr, original = _resolve_layers_module(model)
+    original_num = getattr(getattr(model, "config", object()), "num_hidden_layers", None)
     try:
-        keep = [m for i, m in enumerate(original_modules) if i != remove_index]
-        setattr(parent, used_attr, nn.ModuleList(keep))
-        if original_num_layers is not None:
+        keep = [m for i, m in enumerate(original) if i != remove_index]
+        setattr(parent, attr, nn.ModuleList(keep))
+        if original_num is not None:
             model.config.num_hidden_layers = len(keep)
         return _compute_reference_loss(model, tokenizer, texts, device, batch_size, max_length)
     finally:
-        setattr(parent, used_attr, nn.ModuleList(original_modules))
-        if original_num_layers is not None:
-            model.config.num_hidden_layers = original_num_layers
+        setattr(parent, attr, nn.ModuleList(original))
+        if original_num is not None:
+            model.config.num_hidden_layers = original_num
 
 
 def _prune_layers_inplace(model: nn.Module, remove_indices: List[int]) -> None:
-    parent, layers_list = _resolve_layers_module(model)
-    keep = [m for i, m in enumerate(layers_list) if i not in set(remove_indices)]
-
-    # Assign back as ModuleList to the parent
-    if hasattr(parent, "layers") and isinstance(getattr(parent, "layers"), nn.ModuleList):
-        parent.layers = nn.ModuleList(keep)  # type: ignore[attr-defined]
-    elif hasattr(parent, "h") and isinstance(getattr(parent, "h"), nn.ModuleList):
-        parent.h = nn.ModuleList(keep)  # type: ignore[attr-defined]
-    else:
-        raise RuntimeError("unable to write back pruned layer list")
-
-    # Update config if present
-    if hasattr(model, "config") and hasattr(model.config, "num_hidden_layers"):
+    """Drop the listed layer indices and update ``num_hidden_layers``."""
+    parent, attr, layers = _resolve_layers_module(model)
+    drop = set(remove_indices)
+    keep = [m for i, m in enumerate(layers) if i not in drop]
+    setattr(parent, attr, nn.ModuleList(keep))
+    if hasattr(getattr(model, "config", None), "num_hidden_layers"):
         model.config.num_hidden_layers = len(keep)
 
 
@@ -235,7 +187,7 @@ def main() -> int:
     print(f"baseline PPL: {ref_ppl:.4f}")
 
     # Try removing each single layer and compute loss/PPL
-    parent, layers_list = _resolve_layers_module(model)
+    _, _, layers_list = _resolve_layers_module(model)
     num_layers = len(layers_list)
     per_layer_loss: List[float] = []
     per_layer_ppl: List[float] = []
