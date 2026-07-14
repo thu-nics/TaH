@@ -1,0 +1,51 @@
+# Inline parameter docs live in ../qwen3_1.7/sft_tah_step1.yaml — this file
+# diverges only in the training-budget knobs (output_dir, max_length,
+# num_train_epochs, gradient_accumulation_steps, save_total_limit, report_to).
+model:
+  name: Qwen/Qwen3-1.7B-Base
+  torch_dtype: bfloat16
+  device_map: auto
+  trust_remote_code: true
+  attn_implementation: sdpa
+  embedding_key: model.embed_tokens
+  max_iter: 2
+  iter_decider: IterLabelDecider
+  iter_decider_kwargs:
+    max_iter: 2
+  input_updater_kwargs:
+    topk: 100
+  adapter: lora
+  adapter_kwargs:
+    r: 32
+    lora_alpha: 64
+    lora_dropout: 0.1
+    target_modules: all-linear
+    bias: none
+  train_loss: NextTokenPredLoss
+  eval_loss: NextTokenPredLoss
+data:
+  train_data_path: data/processed_data/openr1_math/1_7/train
+  eval_data_path: data/processed_data/openr1_math/1_7/eval
+  output_dir: /tmp/tah_run/step1/
+  max_length: 4096
+training:
+  num_train_epochs: 2
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 4
+  gradient_checkpointing: false
+  learning_rate: 4.0e-05
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  max_grad_norm: 0.2
+  lr_scheduler_type: cosine_with_min_lr
+  lr_scheduler_kwargs:
+    min_lr_rate: 0.1
+  logging_steps: 5
+  save_strategy: epoch
+  save_only_model: true
+  save_total_limit: 2
+  bf16: true
+  eval_strategy: epoch
+  eval_on_start: true
+  per_device_eval_batch_size: 1
+  report_to: none

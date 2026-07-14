@@ -1,7 +1,12 @@
 import os
-os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
 import time
 from huggingface_hub import snapshot_download
+
+# Opt-in mirror for users in regions where huggingface.co is unreachable.
+# Set ``HF_MIRROR=1`` to route downloads through hf-mirror.com; otherwise the
+# default huggingface.co endpoint is used.
+if os.environ.get("HF_MIRROR") == "1":
+    os.environ.setdefault("HF_ENDPOINT", "https://hf-mirror.com")
 
 def download_with_retry(repo_id, repo_type, local_dir, max_retries=5, split=None, allow_patterns=None):
     """Download with retry mechanism"""
@@ -12,7 +17,7 @@ def download_with_retry(repo_id, repo_type, local_dir, max_retries=5, split=None
                 repo_id=repo_id, 
                 repo_type=repo_type, 
                 local_dir=local_dir, 
-                allow_patterns=allow_patterns  # 启用文件过滤
+                allow_patterns=allow_patterns  # restrict to the requested file patterns
             )
             print("Download completed successfully!")
             return

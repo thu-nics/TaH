@@ -1,16 +1,11 @@
-"""
-TaH Training Module
-
-This module contains training-related components for TaH models.
-"""
+"""TaH training: HF Trainer subclass, data collator, callback for iter-aware logging."""
 
 from .data_collator import CustomTaHDataCollator
-from .trainer import CustomTaHTrainer, LoggerCallback, weighted_cross_entropy, fixed_cross_entropy
+from .trainer import CustomTaHTrainer, LoggerCallback, fixed_cross_entropy
 
 __all__ = [
-    "CustomTaHDataCollator", 
+    "CustomTaHDataCollator",
     "CustomTaHTrainer",
     "LoggerCallback",
-    "weighted_cross_entropy", 
-    "fixed_cross_entropy"
-] 
+    "fixed_cross_entropy",
+]

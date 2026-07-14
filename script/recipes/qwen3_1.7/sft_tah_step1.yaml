@@ -1,33 +1,35 @@
 ### model ###
 model:
   name: Qwen/Qwen3-1.7B-Base                # For TaH+ version
-  # name: ./model/qwen3_1.7_base_pruned     # For TaH version
-  torch_dtype: "bfloat16" 
+  # name: ./model/qwen3_1.7_base_pruned     # For TaH version (drops one layer)
+  eos_token: "<|im_end|>"
+  pad_token: "<|endoftext|>"
+  torch_dtype: "bfloat16"
   device_map: "auto"
   trust_remote_code: true
   attn_implementation: "sdpa"
   embedding_key: "model.embed_tokens"
   max_iter: 2
-  iter_label_generator: "FixedIterLabelGenerator"
-  iter_label_generator_kwargs: {}
-  input_updater: "TrivialUpdater"          
-  input_updater_kwargs:
-    topk: 100
+
+  # Step 1: oracle-supervised iteration; the LoRA adapter learns to refine
+  # tokens that the labeller marked as "hard" (mismatch=1).
   iter_decider: "IterLabelDecider"
   iter_decider_kwargs:
     max_iter: 2
-  eval_iter_decider: "iter_decider"
-  eval_iter_decider_kwargs:
-    max_iter: 2
-  output_updater: "AdditiveLogitsUpdater"
-  output_updater_kwargs: {}
+
+  # Top-k softmax over previous logits feeds the next iteration's input
+  # embedding (only `topk` is read by the wrapper; rest is ignored).
+  input_updater_kwargs:
+    topk: 100
+
   adapter: "lora"
-  adapter_kwargs: 
+  adapter_kwargs:
     r: 32
     lora_alpha: 64
     lora_dropout: 0.1
     target_modules: "all-linear"
     bias: "none"
+
   train_loss: "NextTokenPredLoss"
   eval_loss: "NextTokenPredLoss"
 
@@ -37,11 +39,10 @@ data:
   eval_data_path: data/processed_data/openr1_math/1_7/eval
   output_dir: "output/openr1_math/"
   max_length: 10000
-  iter_count_strategy: "mismatch"
 
 ### training ###
 training:
-  num_train_epochs: 5                   
+  num_train_epochs: 5
   per_device_train_batch_size: 1
   gradient_accumulation_steps: 16
   gradient_checkpointing: false
@@ -57,13 +58,10 @@ training:
   save_only_model: true
   save_total_limit: 50
   bf16: true
-  # evaluation config
   eval_strategy: "epoch"
   eval_steps: 40
   eval_on_start: true
   per_device_eval_batch_size: 1
-  # wandb config
-  report_to: "none"  # Options: "none", "wandb"
+  report_to: "none"          # "none" or "wandb"
   wandb_project: "TaH"
   wandb_name: "openr1_1.7base_step1"
-  # wandb_entity: ""
