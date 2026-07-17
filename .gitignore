@@ -12,7 +12,7 @@ local/
 output/
 wandb/
 build/
+__pycache__/
 
-test/
 data/
 !script/data/

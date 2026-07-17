@@ -1,34 +1,31 @@
 ### model ###
 model:
   name: Qwen/Qwen3-0.6B-Base                # For TaH+ version
-  # name: ./model/qwen3_0.6_base_pruned     # For TaH version
-  torch_dtype: "bfloat16" 
+  # name: ./model/qwen3_0.6_base_pruned     # For TaH version (drops one layer)
+  torch_dtype: "bfloat16"
   device_map: "auto"
   trust_remote_code: true
   attn_implementation: "sdpa"
   embedding_key: "model.embed_tokens"
   max_iter: 2
-  iter_label_generator: "FixedIterLabelGenerator"
-  iter_label_generator_kwargs: {}
-  input_updater: "TrivialUpdater"          
+
+  # Step 1: oracle-supervised iteration; the LoRA adapter learns to refine
+  # tokens that the labeller marked as "hard" (mismatch=1).
+  iter_decider: "IterLabelDecider"
+  iter_decider_kwargs:
+    max_iter: 2
+
   input_updater_kwargs:
     topk: 100
-  iter_decider: "FixedLabelIterDecider"
-  iter_decider_kwargs:
-    label_type: "mismatch"
-    max_iter: 2
-  eval_iter_decider: "iter_decider"
-  eval_iter_decider_kwargs:
-    max_iter: 2
-  output_updater: "AdditiveLogitsUpdater"
-  output_updater_kwargs: {}
+
   adapter: "lora"
-  adapter_kwargs: 
+  adapter_kwargs:
     r: 16
     lora_alpha: 32
     lora_dropout: 0.1
     target_modules: "all-linear"
     bias: "none"
+
   train_loss: "NextTokenPredLoss"
   eval_loss: "NextTokenPredLoss"
 
@@ -38,11 +35,10 @@ data:
   eval_data_path: data/processed_data/openr1_math/0_6/eval
   output_dir: "output/openr1_math/0_6/"
   max_length: 8192
-  iter_count_strategy: "mismatch"
 
 ### training ###
 training:
-  num_train_epochs: 5                     
+  num_train_epochs: 5
   per_device_train_batch_size: 1
   gradient_accumulation_steps: 16
   gradient_checkpointing: false
@@ -58,13 +54,10 @@ training:
   save_only_model: true
   save_total_limit: 50
   bf16: true
-  # evaluation config
   eval_strategy: "steps"
   eval_steps: 40
   eval_on_start: true
   per_device_eval_batch_size: 1
-  # wandb config
-  report_to: "wandb"  # Options: "none", "wandb"
+  report_to: "none"          # "none" or "wandb"
   wandb_project: "TaH"
   wandb_name: "openr1_0.6base_step1"
-  # wandb_entity: ""
