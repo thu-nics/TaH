@@ -6,10 +6,10 @@
 
   <h1>Think-at-Hard</h1>
 
-  <h3>Selective Latent Iterations to Improve Reasoning Language Models</h3>
+  <h3>Adaptive Looped Large Language Models</h3>
 
   <p>
-    <a href="https://fuvty.github.io/TaH_project_page/">🌐 <b>Project Page</b></a> •
+    <a href="https://fuvty.github.io/thinking_yard_project_page/projects/tah2/">🌐 <b>Project Page</b></a> •
     <a href="https://arxiv.org/abs/2511.08577">📑 <b>Paper</b></a> •
     <a href="https://huggingface.co/collections/nics-efc/tah">🤗 <b>HuggingFace</b></a>
   </p>
@@ -28,6 +28,8 @@ Feel free to star the repo or cite the paper if you find it interesting.
 }
 ```
 ## News
+
+* [2026/09] We are releasing TaH2, [Improving test-time scaling with adaptive transformers](https://arxiv.org/pdf/2609.35748). Code will be updated shortly.
 
 * [2025/11] We released the [TaH-plus-1.7B](https://huggingface.co/nics-efc/TaH-plus-1.7B) checkpoint. The model is finetuned from [Qwen3-1.7B-Base](https://huggingface.co/Qwen/Qwen3-1.7B-Base) using 100K samples from the [OpenR1](https://huggingface.co/datasets/open-r1/Mixture-of-Thoughts) dataset, capable of QA, math, and coding. 
 
