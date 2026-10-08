@@ -1,23 +1,43 @@
 <div align="center">
 
-  <img src="resource/logo.png" alt="Project TaH Logo" width="100"/>
-
-  
+  <p>
+    <img src="resource/logos.svg" alt="TaH2 and TaH logos" width="230" height="100"/>
+  </p>
 
   <h1>Think-at-Hard</h1>
 
-  <h3>Adaptive Looped Large Language Models</h3>
-
-  <p>
-    <a href="https://fuvty.github.io/thinking_yard_project_page/projects/tah2/">🌐 <b>Project Page</b></a> •
-    <a href="https://arxiv.org/abs/2511.08577">📑 <b>Paper</b></a> •
-    <a href="https://huggingface.co/collections/nics-efc/tah">🤗 <b>HuggingFace</b></a>
-  </p>
+  <h4>Adaptive Looped Large Language Models</h4>
 
 </div>
-Think-at-Hard (TaH) improves LLM reasoning by running extra latent iterations only on hard tokens instead of all tokens. A lightweight decider and duo-causal attention enable targeted refinement while keeping full parallelism. TaH outperforms fixed two-iteration baselines by 8–11% while skipping 94% of second iterations, and also beats strong single-iteration Qwen3 models by 4–5%.
 
-Feel free to star the repo or cite the paper if you find it interesting.
+<h3 align="center">
+  TaH2 &nbsp;
+  <a href="https://fuvty.github.io/thinking_yard_project_page/projects/tah2/"><strong>🌐 Project</strong></a> ·
+  <a href="https://arxiv.org/abs/2609.35748"><strong>📑 Paper</strong></a> ·
+  <a href="https://github.com/thu-nics/TaH/tree/tah2"><strong>💻 Code</strong></a> ·
+  <a href="https://huggingface.co/collections/nics-efc/tah2"><strong>🤗 HuggingFace</strong></a>
+</h3>
+
+TaH2 improves test-time scaling by allocating extra latent iterations to tokens that benefit from deeper computation. It jointly trains the backbone and an iteration decider with lookahead depth supervision, using online labels that indicate whether another iteration improves prediction. On challenging AIME benchmarks, TaH2 improves the accuracy-compute slope by 53% over the non-looped baseline and raises peak accuracy by about 3.4 points at matched test-time compute.
+
+```bibtex
+@article{you2026tah2,
+    title={Improving Test-Time Scaling with Adaptive Looped Transformers},
+    author={You, Yichen and Fu, Tianyu and Feng, Aosong and Lv, Xingtai and Ning, Xuefei and Ding, Ning and Wang, Yu},
+    journal={arXiv preprint arXiv:2609.35748},
+    year={2026},
+}
+```
+
+<h3 align="center">
+  TaH &nbsp;
+  <a href="https://fuvty.github.io/thinking_yard_project_page/projects/tah/"><strong>🌐 Project</strong></a> ·
+  <a href="https://arxiv.org/abs/2511.08577"><strong>📑 Paper</strong></a> ·
+  <a href="https://github.com/thu-nics/TaH/tree/main"><strong>💻 Code</strong></a> ·
+  <a href="https://huggingface.co/collections/nics-efc/tah"><strong>🤗 HuggingFace</strong></a>
+</h3>
+
+Think-at-Hard (TaH) improves LLM reasoning by running extra latent iterations only on hard tokens instead of all tokens. A lightweight decider and duo-causal attention enable targeted refinement while keeping full parallelism. TaH outperforms fixed two-iteration baselines by 8–11% while skipping 94% of second iterations, and also beats strong single-iteration Qwen3 models by 4–5%.
 
 ```bibtex
 @article{fu2025tah,
@@ -27,15 +47,20 @@ Feel free to star the repo or cite the paper if you find it interesting.
     year={2025},
 }
 ```
+
 ## News
 
-* [2026/09] We are releasing TaH2, [Improving test-time scaling with adaptive transformers](https://arxiv.org/pdf/2609.35748). Code will be updated shortly.
+* [2026/10] We released the TaH2 [code](https://github.com/thu-nics/TaH/tree/tah2), [models](https://huggingface.co/collections/nics-efc/tah2), and [training data](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool).
+
+* [2026/09] We introduced TaH2 in [Improving Test-Time Scaling with Adaptive Looped Transformers](https://arxiv.org/abs/2609.35748).
 
 * [2025/11] We released the [TaH-plus-1.7B](https://huggingface.co/nics-efc/TaH-plus-1.7B) checkpoint. The model is finetuned from [Qwen3-1.7B-Base](https://huggingface.co/Qwen/Qwen3-1.7B-Base) using 100K samples from the [OpenR1](https://huggingface.co/datasets/open-r1/Mixture-of-Thoughts) dataset, capable of QA, math, and coding. 
 
 * [2025/11] Our paper was featured as the #2 Paper of the Day on [Huggingface Daily Papers](https://huggingface.co/papers/date/2025-11-19)
 
-## Environment Setup
+## Usage
+
+### Environment Setup
 Create a new environment:
 
 ```bash
@@ -63,7 +88,7 @@ For code generation evaluation, install [evalplus](https://github.com/evalplus/e
 > ``site-packages/__editable___tah_*_finder.py`` and stale state will
 > silently drop ``tah/__init__.py``'s re-exports.
 
-## Run an example for TaH
+### Run an example for TaH
 
 ```bash
 python script/playground/inference_example.py                       # quick demo (~1 min)
@@ -72,10 +97,10 @@ python script/playground/inference_example.py --max-new-tokens 16384 # full reas
 
 This script demonstrates TaH's selective latent iteration mechanism, with color-coded output showing the iteration count for each token.
 
-## Run evaluation
+### Run evaluation
 
 
-### Evaluate TaH model
+#### Evaluate TaH model
 ```bash
 python script/evaluation/eval.py \
     --eval_config ./script/recipes/qwen3_1.7/eval_tah.yaml \
@@ -96,7 +121,7 @@ Key parameters:
 - `--data_range N` / `--data_range start end`: subset slice — handy for smoke tests
 - `--data_ids gsm8k_0,gsm8k_5`: run only specific problem ids
 
-#### Single-GPU smoke
+##### Single-GPU smoke
 The default recipe targets 8 GPUs (`--job_nums 8`). To sanity-check the pipeline on
 one GPU in a couple of minutes, slice the dataset and shrink `max_new_tokens`:
 ```bash
@@ -115,7 +140,7 @@ CUDA_VISIBLE_DEVICES=0 python script/evaluation/eval.py \
 The TaH backend is a token-by-token Python loop intended for research; for serving
 throughput, use `--backend sglang` or the dedicated `minisgl-tah` server.
 
-### Evaluate with a different backend
+#### Evaluate with a different backend
 
 The same `script/evaluation/eval.py` accepts `--backend hf` (vanilla
 `AutoModelForCausalLM.generate` — useful for non-TaH baselines) or
@@ -123,11 +148,11 @@ The same `script/evaluation/eval.py` accepts `--backend hf` (vanilla
 backends share the same job-sharded driver under
 `tah/evaluate/jobs.py:allocate_gpus_and_run_jobs`.
 
-## Train your own TaH model
+### Train your own TaH model
 
 Training a TaH model consists of three stages:
 
-### Step0: Prepare model and data
+#### Step0: Prepare model and data
 
 **1. Prepare training data**
 
@@ -165,7 +190,7 @@ python script/preparation/prune.py \
     --num_prune 1
 ```
 
-### Step1: Train with Fixed Iteration Labels
+#### Step1: Train with Fixed Iteration Labels
 
 The first stage uses fixed iteration labels for training:
 
@@ -187,7 +212,7 @@ Key configurations in Step1 (`sft_tah_step1.yaml`):
 
 Single-implementation hooks (input/output updaters, iter labels, adapter) are inlined into the wrapper — only `iter_decider` and `train_loss` are config-selectable.
 
-### Step2: Train Iteration Decider
+#### Step2: Train Iteration Decider
 
 The second stage trains the iteration decider:
 
@@ -208,9 +233,9 @@ Key configurations in Step2 (`sft_tah_step2.yaml`):
 
 After two-stage training, the model can automatically decide when to perform latent reasoning iterations.
 
-## Understand the Code
+### Understand the Code
 
-### Code Structure
+#### Code Structure
 
 ```
 TaH/
