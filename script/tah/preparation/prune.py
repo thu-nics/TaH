@@ -2,7 +2,7 @@
 
 Usage:
 
-    python script/preparation/prune.py \\
+    python script/tah/preparation/prune.py \\
         --model Qwen/Qwen3-1.7B-Base \\
         --dataset data/processed_data/openr1_math/1_7/eval \\
         --output model/qwen3_1.7_base_pruned \\

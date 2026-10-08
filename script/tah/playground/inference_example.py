@@ -2,8 +2,8 @@
 with per-token iter-count colouring.
 
 Run:
-    python script/playground/inference_example.py                    # quick demo (512 tokens)
-    python script/playground/inference_example.py --max-new-tokens 16384  # full reasoning chain
+    python script/tah/playground/inference_example.py                    # quick demo (512 tokens)
+    python script/tah/playground/inference_example.py --max-new-tokens 16384  # full reasoning chain
 """
 import argparse
 

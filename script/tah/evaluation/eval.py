@@ -2,8 +2,8 @@
 
 Wraps :func:`tah.evaluate.allocate_gpus_and_run_jobs`. Run e.g.::
 
-    python script/evaluation/eval.py \\
-        --eval_config script/recipes/qwen3_1.7/eval_tah.yaml \\
+    python script/tah/evaluation/eval.py \\
+        --eval_config script/tah/recipes/qwen3_1.7/eval_tah.yaml \\
         --model_path nics-efc/TaH-plus-1.7B \\
         --dataset_name gsm8k --backend tah \\
         --job_nums 8 --tp_size_per_job 1

@@ -1,6 +1,6 @@
 """TaH SFT entrypoint.
 
-Loads a YAML recipe (see ``script/recipes/qwen3_1.7/sft_tah_step{1,2}.yaml``),
+Loads a YAML recipe (see ``script/tah/recipes/qwen3_1.7/sft_tah_step{1,2}.yaml``),
 constructs the wrapper, runs HuggingFace Trainer.
 
 Step 1 — train the LoRA adapter against oracle iteration labels
@@ -13,10 +13,10 @@ Step 2 — train the iter decider on top of the frozen base+adapter
 Run via ``accelerate launch`` so DeepSpeed / DDP wrappers are in place:
 
     python -m accelerate.commands.launch \
-        --config_file ./script/recipes/accelerate_configs/zero2.yaml \
+        --config_file ./script/tah/recipes/accelerate_configs/zero2.yaml \
         --num_processes 8 \
-        ./script/train/SFT_TaH.py \
-        --config ./script/recipes/qwen3_1.7/sft_tah_step1.yaml
+        ./script/tah/train/SFT_TaH.py \
+        --config ./script/tah/recipes/qwen3_1.7/sft_tah_step1.yaml
 """
 from __future__ import annotations
 

@@ -2,7 +2,7 @@
 """Launch one or more mini-sglang API servers for online evaluation.
 
 Usage:
-    python script2/eval/launch_minisgl_server.py \
+    python script/tah2/eval/launch_minisgl_server.py \
     --model_path output/checkpoint \
     --ports 30010 30011 30012 30013 30014 30015 30016 30017 \
     --base_gpu 0 \

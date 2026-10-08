@@ -5,7 +5,7 @@ cd "$REPO_ROOT"
 export PYTHONPATH="${REPO_ROOT}${PYTHONPATH:+:${PYTHONPATH}}"
 export PYTORCH_CUDA_ALLOC_CONF="${PYTORCH_CUDA_ALLOC_CONF:-expandable_segments:True}"
 
-CONFIG="${CONFIG:-script2/recipes/qwen3_1.7/sft_tah.yaml}"
+CONFIG="${CONFIG:-script/tah2/recipes/qwen3_1.7/sft_tah.yaml}"
 NPROC="${NPROC:-8}"
 NNODES="${NNODES:-1}"
 NODE_RANK="${NODE_RANK:-0}"
@@ -37,8 +37,8 @@ else
   LAUNCH=(--nnodes "$NNODES" --nproc_per_node "$NPROC" --node_rank "$NODE_RANK"
     --master_addr "$MASTER_ADDR" --master_port "${MASTER_PORT:-29500}")
 fi
-OUTPUT_DIR="${OUTPUT_DIR:-$(python script2/train/prepare_output_dir.py --config "$CONFIG" --run-ts "$RUN_TS")}"
+OUTPUT_DIR="${OUTPUT_DIR:-$(python script/tah2/train/prepare_output_dir.py --config "$CONFIG" --run-ts "$RUN_TS")}"
 mkdir -p "$OUTPUT_DIR"
-python -m torch.distributed.run "${LAUNCH[@]}" script2/train/SFT_TaH.py \
+python -m torch.distributed.run "${LAUNCH[@]}" script/tah2/train/SFT_TaH.py \
   --config "$CONFIG" --tp "$TP" --hsdp_replicate "$HSDP_REPLICATE" \
   --output_dir "$OUTPUT_DIR" "$@" 2>&1 | tee "$OUTPUT_DIR/train-node${NODE_RANK}.log"

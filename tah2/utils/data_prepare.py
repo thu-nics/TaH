@@ -4,7 +4,7 @@ Two input formats are supported, detected from the dataset columns:
 
 1. Raw conversations (e.g. open-thoughts/OpenThoughts3-1.2M with its
    ``conversations`` column), tokenized here with the model's chat template.
-2. Pre-tokenized data produced by ``script2/data/regenerate.py build``
+2. Pre-tokenized data produced by ``script/tah2/data/regenerate.py build``
    (``real_token`` + ``mask`` columns).
 
 Labels are generated online: only assistant/response tokens are supervised;
@@ -390,7 +390,7 @@ def preprocess_pretokenized_batch(
     max_length_action: str = "cutoff",
     fixed_iter_count: Dict | None = None,
 ) -> Dict:
-    """Preprocess data tokenized by ``script2/data/regenerate.py build``.
+    """Preprocess data tokenized by ``script/tah2/data/regenerate.py build``.
 
     Expects ``real_token`` (token ids) and ``mask`` (1 = supervised response
     token, 0 = prompt token) columns.

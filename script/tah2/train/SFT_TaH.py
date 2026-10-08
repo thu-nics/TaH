@@ -28,7 +28,7 @@ def main_tp(
     """Torch-native FSDP2(dp) × DTensor-TP(tp) training (torchrun launch).
 
     Usage:
-        torchrun --nproc_per_node <world> script2/train/SFT_TaH.py \
+        torchrun --nproc_per_node <world> script/tah2/train/SFT_TaH.py \
             --config <recipe.yaml> --tp <tp_size>
 
     World size = dp * tp. TP=1 uses the same native FSDP2 loop without TP

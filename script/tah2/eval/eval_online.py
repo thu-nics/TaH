@@ -8,7 +8,7 @@ parameters as plain CLI flags. Both evaluation launchers set their defaults
 directly in the bash scripts.
 
 Usage:
-    python script2/eval/eval_online.py \
+    python script/tah2/eval/eval_online.py \
     --model_path output/checkpoint \
     --base_urls http://127.0.0.1:30010 http://127.0.0.1:30011 http://127.0.0.1:30012 http://127.0.0.1:30013 http://127.0.0.1:30014 http://127.0.0.1:30015 http://127.0.0.1:30016 http://127.0.0.1:30017 \
     --datasets aime26 \

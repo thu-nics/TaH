@@ -48,7 +48,7 @@ Think-at-Hard (TaH) improves LLM reasoning by running extra latent iterations on
 
 ## News
 
-* [2026/10] We released the TaH2 [code](https://github.com/thu-nics/TaH/tree/main/tah2), [models](https://huggingface.co/collections/nics-efc/tah2), and [training data](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool).
+* [2026/10] We released the TaH2 [code](https://github.com/thu-nics/TaH/tree/main), [models](https://huggingface.co/collections/nics-efc/tah2), and [training data](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool).
 
 * [2026/09] We introduced TaH2 in [Improving Test-Time Scaling with Adaptive Looped Transformers](https://arxiv.org/abs/2609.35748).
 
@@ -64,7 +64,7 @@ This repository includes training recipes, evaluation tools, and an inference en
 
 ### Environment Setup
 
-Use Linux, Python 3.12, and CUDA GPUs. TaH2 uses `tah2/`, `script2/`, and `bash/`. From the repository root:
+Use Linux, Python 3.12, and CUDA GPUs. TaH2 uses `tah2/`, `script/tah2/`, and `bash/`. From the repository root:
 
 ```bash
 python3.12 -m venv .venv-tah2
@@ -150,21 +150,21 @@ Load with `datasets.load_from_disk("data/1.7b/train")`; `mask=1` marks assistant
 | [a-m-team/AM-Qwen3-Distilled](https://huggingface.co/datasets/a-m-team/AM-Qwen3-Distilled) | `math.jsonl`, `code.jsonl`, `science.jsonl` |
 | [nvidia/Nemotron-Agentic-v1](https://huggingface.co/datasets/nvidia/Nemotron-Agentic-v1) | `data/tool_calling.jsonl` |
 
-For 1.7B, **Qwen3-8B** regenerates assistant responses; tool results use reference replay or **Qwen3-32B** simulation. Key code: [generation and tokenization](script2/data/regenerate.py), [tool rollout](script2/data/tool_rollout.py). Input prompts are available at [`1.7b-prompts/`](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool/tree/main/1.7b-prompts).
+For 1.7B, **Qwen3-8B** regenerates assistant responses; tool results use reference replay or **Qwen3-32B** simulation. Key code: [generation and tokenization](script/tah2/data/regenerate.py), [tool rollout](script/tah2/data/tool_rollout.py). Input prompts are available at [`1.7b-prompts/`](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool/tree/main/1.7b-prompts).
 
 Serve Qwen3-8B at port 30080 and Qwen3-32B at port 30081, then run:
 
 ```bash
-python script2/data/regenerate.py generate --kind am \
+python script/tah2/data/regenerate.py generate --kind am \
   --prompts data/1.7b-prompts/am/train.jsonl \
   --urls http://127.0.0.1:30080 --output data/regenerated/am_train.jsonl
 
-python script2/data/regenerate.py generate --kind tool_calling \
+python script/tah2/data/regenerate.py generate --kind tool_calling \
   --prompts data/1.7b-prompts/tool_calling/train.jsonl \
   --urls http://127.0.0.1:30080 --sim-urls http://127.0.0.1:30081 \
   --output data/regenerated/tool_train.jsonl
 
-python script2/data/regenerate.py build \
+python script/tah2/data/regenerate.py build \
   --inputs data/regenerated/am_train.jsonl data/regenerated/tool_train.jsonl \
   --output data/regenerated/train
 ```
@@ -179,9 +179,9 @@ To regenerate both splits, build eval first, then pass `--exclude data/regenerat
 
 | Recipe directory | Standard | Fixed loop-2 | TaH2 |
 | --- | --- | --- | --- |
-| [`qwen3_1.7/`](script2/recipes/qwen3_1.7/) | `sft_base.yaml` | `sft_fixed.yaml` | `sft_tah.yaml`, `sft_tah_max4.yaml`, `sft_tah_max8.yaml` |
-| [`qwen3_4b/`](script2/recipes/qwen3_4b/) | `sft_base.yaml` | — | `sft_tah.yaml` |
-| [`qwen3_8b/`](script2/recipes/qwen3_8b/) | `sft_base.yaml` | — | `sft_tah.yaml` |
+| [`qwen3_1.7/`](script/tah2/recipes/qwen3_1.7/) | `sft_base.yaml` | `sft_fixed.yaml` | `sft_tah.yaml`, `sft_tah_max4.yaml`, `sft_tah_max8.yaml` |
+| [`qwen3_4b/`](script/tah2/recipes/qwen3_4b/) | `sft_base.yaml` | — | `sft_tah.yaml` |
+| [`qwen3_8b/`](script/tah2/recipes/qwen3_8b/) | `sft_base.yaml` | — | `sft_tah.yaml` |
 
 TaH2 jointly optimizes the backbone, input updater, and decider. Posterior labels are generated online from next-token cross-entropy improvements; separate offline token labeling is unnecessary. The main recipes use DUO attention, Triton kernels, and `stop_prob_mix`. The fixed loop-2 recipe uses `even_mix` without decider supervision.
 
@@ -190,7 +190,7 @@ The 1.7B TaH2 recipes use global batch size 128, three epochs, learning rate `4e
 For one node with eight GPUs, run:
 
 ```bash
-NPROC=8 TP=1 CONFIG=script2/recipes/qwen3_1.7/sft_tah.yaml bash bash/sft_tah.sh
+NPROC=8 TP=1 CONFIG=script/tah2/recipes/qwen3_1.7/sft_tah.yaml bash bash/sft_tah.sh
 ```
 
 Change `CONFIG` to select a recipe and adjust `TP` to fit the actual GPU memory usage. Update `data.dp` in the recipe accordingly (`data.dp = NPROC / TP` for one node).
@@ -213,7 +213,7 @@ Checkpoints include model weights, tokenizer, and the recurrent components when 
 ## TaH Usage
 
 ### Environment Setup
-Use Python 3.10 and activate a separate environment for `tah/` and `script/`:
+Use Python 3.10 and activate a separate environment for `tah/` and `script/tah/`:
 
 ```bash
 python3.10 -m venv .venv-tah
@@ -238,8 +238,8 @@ For code generation evaluation, install [evalplus](https://github.com/evalplus/e
 ### Run an example for TaH
 
 ```bash
-python script/playground/inference_example.py                       # quick demo (~1 min)
-python script/playground/inference_example.py --max-new-tokens 16384 # full reasoning chain
+python script/tah/playground/inference_example.py                       # quick demo (~1 min)
+python script/tah/playground/inference_example.py --max-new-tokens 16384 # full reasoning chain
 ```
 
 This script demonstrates TaH's selective latent iteration mechanism, with color-coded output showing the iteration count for each token.
@@ -249,8 +249,8 @@ This script demonstrates TaH's selective latent iteration mechanism, with color-
 
 #### Evaluate TaH model
 ```bash
-python script/evaluation/eval.py \
-    --eval_config ./script/recipes/qwen3_1.7/eval_tah.yaml \
+python script/tah/evaluation/eval.py \
+    --eval_config ./script/tah/recipes/qwen3_1.7/eval_tah.yaml \
     --model_path nics-efc/TaH-plus-1.7B \
     --dataset_name gsm8k \
     --backend tah \
@@ -274,9 +274,9 @@ one GPU in a couple of minutes, slice the dataset and shrink `max_new_tokens`:
 ```bash
 # clone the recipe and shrink generation length
 sed 's/max_new_tokens: 4096/max_new_tokens: 512/' \
-    script/recipes/qwen3_1.7/eval_tah.yaml > /tmp/eval_tah_smoke.yaml
+    script/tah/recipes/qwen3_1.7/eval_tah.yaml > /tmp/eval_tah_smoke.yaml
 
-CUDA_VISIBLE_DEVICES=0 python script/evaluation/eval.py \
+CUDA_VISIBLE_DEVICES=0 python script/tah/evaluation/eval.py \
     --eval_config /tmp/eval_tah_smoke.yaml \
     --model_path nics-efc/TaH-plus-1.7B \
     --dataset_name gsm8k --backend tah \
@@ -289,7 +289,7 @@ throughput, use `--backend sglang` or the dedicated `minisgl-tah` server.
 
 #### Evaluate with a different backend
 
-The same `script/evaluation/eval.py` accepts `--backend hf` (vanilla
+The same `script/tah/evaluation/eval.py` accepts `--backend hf` (vanilla
 `AutoModelForCausalLM.generate` — useful for non-TaH baselines) or
 `--backend sglang` (sgl Engine for high-throughput serving). All three
 backends share the same job-sharded driver under
@@ -307,17 +307,17 @@ Use a reference model to generate hard token labels for the training and validat
 
 ```bash
 # download the default subset of OpenR1-Math-220k
-python script/preparation/download.py
+python script/tah/preparation/download.py
 # filter and split
-python script/preparation/filter_split.py
+python script/tah/preparation/filter_split.py
 # label the hard tokens
-python script/preparation/label.py \
+python script/tah/preparation/label.py \
     --num_gpu 8 \
     --dataset_path ./data/initial_data/openr1-math/train.jsonl \
     --test_model_list Qwen/Qwen3-1.7B \
     --output_path ./data/processed_data/openr1-math/1_7/train \
     --max_input_length 10000
-python script/preparation/label.py \
+python script/tah/preparation/label.py \
     --num_gpu 8 \
     --dataset_path ./data/initial_data/openr1-math/eval.jsonl \
     --test_model_list Qwen/Qwen3-1.7B \
@@ -330,7 +330,7 @@ python script/preparation/label.py \
 For the TaH version, prune one layer from the base model to match the parameter count of the standard baseline (skip this step for TaH+ version):
 
 ```bash
-python script/preparation/prune.py \
+python script/tah/preparation/prune.py \
     --model Qwen/Qwen3-1.7B-Base \
     --dataset ./data/processed_data/openr1-math/1_7/eval \
     --output ./model/qwen3_1.7_base_pruned \
@@ -343,10 +343,10 @@ The first stage uses fixed iteration labels for training:
 
 ```bash
 python -m accelerate.commands.launch \
-    --config_file ./script/recipes/accelerate_configs/zero2.yaml \
+    --config_file ./script/tah/recipes/accelerate_configs/zero2.yaml \
     --num_processes 8 \
-    ./script/train/SFT_TaH.py \
-    --config ./script/recipes/qwen3_1.7/sft_tah_step1.yaml
+    ./script/tah/train/SFT_TaH.py \
+    --config ./script/tah/recipes/qwen3_1.7/sft_tah_step1.yaml
 ```
 
 Key configurations in Step1 (`sft_tah_step1.yaml`):
@@ -366,10 +366,10 @@ The second stage trains the iteration decider:
 
 ```bash
 python -m accelerate.commands.launch \
-    --config_file ./script/recipes/accelerate_configs/zero2.yaml \
+    --config_file ./script/tah/recipes/accelerate_configs/zero2.yaml \
     --num_processes 8 \
-    ./script/train/SFT_TaH.py \
-    --config ./script/recipes/qwen3_1.7/sft_tah_step2.yaml
+    ./script/tah/train/SFT_TaH.py \
+    --config ./script/tah/recipes/qwen3_1.7/sft_tah_step2.yaml
 ```
 
 Key configurations in Step2 (`sft_tah_step2.yaml`):
@@ -385,7 +385,6 @@ After two-stage training, the model can automatically decide when to perform lat
 ```text
 TaH/
 ├── tah/                # TaH model, LoRA training, and evaluation
-├── script/             # TaH preparation, training, evaluation, and recipes
 ├── tah2/
 │   ├── model/          # recurrent model, decider, posterior labels, losses
 │   ├── kernels/        # Triton recurrent attention
@@ -393,7 +392,9 @@ TaH/
 │   ├── evaluate/       # inference backends and benchmark grading
 │   ├── minisgl/        # bundled mini-SGLang engine and native kernels
 │   └── utils/          # data preparation and serialization
-├── script2/            # TaH2 data, training, evaluation, and recipes
+├── script/
+│   ├── tah/            # TaH preparation, training, evaluation, and recipes
+│   └── tah2/           # TaH2 data, training, evaluation, and recipes
 ├── bash/               # TaH2 training, evaluation, and server launchers
 └── pyproject.toml      # separate tah/tah2 dependency selections
 ```

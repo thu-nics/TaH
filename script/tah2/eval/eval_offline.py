@@ -3,7 +3,7 @@ eval_offline.py — evaluate one model across multiple (dataset, threshold) comb
                  with a single model load per GPU worker.
 
 Usage example:
-    python script2/eval/eval_offline.py \
+    python script/tah2/eval/eval_offline.py \
         --temperature 0.6 --top_p 0.95 --top_k 20 --max_new_tokens 16384 \
         --model_path output/.../checkpoint-2340 \
         --output_dir output/.../custom_eval_results \
