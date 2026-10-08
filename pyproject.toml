@@ -5,33 +5,36 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "tah"
 version = "0.1.0"
-description = "Think-at-Hard: Selective Latent Iterations to Improve Reasoning Language Models"
+description = "Think-at-Hard: TaH and TaH2 training, evaluation, and inference"
 readme = "README.md"
 requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
-dependencies = [
+dependencies = []
+
+[project.license]
+file = "LICENSE"
+
+[project.optional-dependencies]
+# Install in separate environments: .[tah] or .[tah2].
+tah = [
     "transformers==4.52.4",
     "torch==2.6.0",
     "accelerate",
     "datasets",
     "peft==0.15.2",
+    "PyYAML",
 ]
 
-[project.license]
-text = "MIT"
-
-[project.optional-dependencies]
 training = ["wandb", "deepspeed==0.17.1", "flash-attn==2.7.3"]
 evaluation = [
-    "latex2sympy2==1.9.1",
     "pylatexenc==2.10",
     "sympy==1.13.1",
     "math_verify",
@@ -39,6 +42,31 @@ evaluation = [
     "evalplus",
     "sglang>=0.4.6",
 ]
+tah2 = [
+    "torch==2.9.1",
+    "transformers==4.57.3",
+    "triton==3.5.1",
+    "accelerate==1.12.0",
+    "datasets==4.6.1",
+    "numpy==2.4.2",
+    "PyYAML==6.0.3",
+    "safetensors==0.7.0",
+    "tqdm==4.67.3",
+    "evalplus @ git+https://github.com/evalplus/evalplus@26d6d00bb1fd0fa37f39c99d5290da67891d1c5e",
+    "termcolor==3.3.0",
+    "wandb==0.25.0",
+    "pandas==3.0.1",
+    "math-verify==0.9.0",
+    "latex2sympy2-extended==1.11.0",
+    "flashinfer-python==0.6.4",
+    "apache-tvm-ffi==0.1.9",
+    "huggingface-hub",
+    "msgpack",
+    "pyzmq",
+    "uvicorn",
+    "fastapi",
+]
+dev = ["pytest>=6", "ruff>=0.11"]
 
 [tool.black]
 line-length = 100
@@ -49,4 +77,9 @@ profile = "black"
 line_length = 100
 
 [tool.setuptools.packages.find]
-include = ["tah*"]
+include = ["tah", "tah.*", "tah2", "tah2.*"]
+
+[tool.setuptools.package-data]
+"tah.evaluate" = ["eval_configs/*.json"]
+"tah2.evaluate" = ["eval_configs/*.json"]
+"tah2.minisgl" = ["LICENSE", "README.md", "kernel/csrc/**/*"]

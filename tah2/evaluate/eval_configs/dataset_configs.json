@@ -1,0 +1,102 @@
+{
+  "gsm8k": {
+    "name": "GSM8K",
+    "path": "pss0204/gsm8k_test",
+    "subset": "gsm8k_test",
+    "split_name": "test",
+    "answer_type": "boxed",
+    "id_field": "id",
+    "question_field": "problem",
+    "answer_field": "answer",
+    "prompt_template": "{question}\n\nPlease reason step by step, and put your final answer within \\boxed{}.",
+    "description": "test set of GSM8K dataset"
+  },
+  "math500": {
+    "name": "Math500",
+    "path": "HuggingFaceH4/MATH-500",
+    "split_name": "test",
+    "answer_type": "boxed",
+    "id_field": "id",
+    "question_field": "problem",
+    "answer_field": "answer",
+    "prompt_template": "{question}\n\nPlease reason step by step, and put your final answer within \\boxed{}.",
+    "description": "Math500 dataset"
+  },
+  "amc23": {
+    "name": "AMC 2023",
+    "path": "math-ai/amc23",
+    "split_name": "test",
+    "answer_type": "boxed",
+    "id_field": "id",
+    "question_field": "question",
+    "answer_field": "answer",
+    "prompt_template": "{question}\n\nPlease reason step by step, and put your final answer within \\boxed{}.",
+    "description": "AMC 2023 dataset"
+  },
+  "olympiadbench": {
+    "name": "OlympiadBench",
+    "path": "realtreetune/olympiadbench",
+    "split_name": "test",
+    "answer_type": "boxed",
+    "id_field": "id",
+    "question_field": "problem",
+    "answer_field": "answer",
+    "prompt_template": "{question}\n\nPlease reason step by step, and put your final answer within \\boxed{}.",
+    "description": "test set of OlympiadBench dataset"
+  },
+  "aime25": {
+    "name": "AIME Mathematical Problems",
+    "path": "yentinglin/aime_2025",
+    "split_name": "train",
+    "answer_type": "boxed",
+    "id_field": "id",
+    "question_field": "problem",
+    "answer_field": "answer",
+    "prompt_template": "{question}\n\nPlease reason step by step, and put your final answer within \\boxed{}.",
+    "description": "American Invitational Mathematics Examination problems with numerical answers"
+  },
+  "aime26": {
+    "name": "AIME Mathematical Problems",
+    "path": "MathArena/aime_2026",
+    "answer_type": "boxed",
+    "id_field": "problem_idx",
+    "question_field": "problem",
+    "answer_field": "answer",
+    "prompt_template": "{question}\n\nPlease reason step by step, and put your final answer within \\boxed{}.",
+    "description": "American Invitational Mathematics Examination problems with numerical answers"
+  },
+  "humaneval": {
+    "name": "HumanEval",
+    "path": "TaH-plus/eval_science_code/humaneval.jsonl",
+    "answer_type": "humaneval",
+    "id_field": "task_id",
+    "question_field": "prompt",
+    "answer_field": "answer",
+    "contract": "contract",
+    "entry_point": "entry_point",
+    "canonical_solution": "canonical_solution",
+    "base_input": "base_input",
+    "atol": "atol",
+    "plus_input": "plus_input",
+    "prompt_template": "{question}",
+    "description": "HumanEval dataset",
+    "assertion": "test"
+  },
+  "mbpp": {
+    "name": "mbpp",
+    "path": "TaH-plus/eval_science_code/mbpp.jsonl",
+    "answer_type": "mbpp",
+    "id_field": "task_id",
+    "question_field": "prompt",
+    "answer_field": "answer",
+    "contract": "contract",
+    "entry_point": "entry_point",
+    "canonical_solution": "canonical_solution",
+    "base_input": "base_input",
+    "atol": "atol",
+    "plus_input": "plus_input",
+    "prompt_template": "{question}",
+    "description": "MBPP dataset",
+    "assertion": "assertion"
+  }
+}

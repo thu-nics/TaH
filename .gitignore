@@ -1,18 +1,22 @@
-# File types
+__pycache__/
+*.py[cod]
 *.egg-info/
-*.pyc
-*.png
+.venv*/
+.pytest_cache/
+.ruff_cache/
+/build/
+/dist/
+/reference/
+/local/
+/data/
+/models/
+/output/
+/wandb/
+/tests/
+/tmp.md
 *.log
-
-# Folders
-reference/
+.env
+.env.*
 .vscode/
 .cursor/
-local/
-output/
-wandb/
-build/
-__pycache__/
-
-data/
-!script/data/
+.DS_Store

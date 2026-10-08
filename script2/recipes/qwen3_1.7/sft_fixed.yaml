@@ -1,0 +1,73 @@
+# Fixed loop-2: uniform mixture of per-iteration token probabilities.
+### run ###
+seed: 42
+
+### Model Configuration ###
+model:
+  name: Qwen/Qwen3-1.7B-Base
+  torch_dtype: "bfloat16"
+  device_map: "auto"
+  trust_remote_code: true
+  attn_implementation: "sdpa"
+  iter_attention_mode: "causal"      # earlier positions expose iter-0 KV
+  iter_attention_impl: "triton"
+  embedding_key: "model.embed_tokens"
+  memory_lean_fp32_reductions: true
+  weighted_hidden_method: "even_mix" # uniform probability mixture
+  max_iter: 2
+  iter_label_generator: null  # fixed routing needs no posterior labels
+  input_updater: "Qwen3MLPUpdater"   # same updater as the mainline TaH recipe
+  input_updater_kwargs:
+    hidden_size: 2048
+    intermediate_size: 2048
+    enable_norm_pre_mlp: true
+    enable_norm_out: true
+  iter_decider: "AlwaysIterDecider"  # parameter-free fixed-depth control
+  eval_iter_decider: "AlwaysIterDecider"
+  train_loss: "NextTokenPredLoss"    # CE of the mixed probability distribution
+  train_loss_kwargs:
+    use_target_gather_mix: true      # exact target log-prob, avoids full-vocab accumulation
+  eval_loss: "NextTokenPredLoss"
+  eval_loss_kwargs:
+    use_target_gather_mix: true
+
+### data ###
+data:
+  train_data_path: data/1.7b/train
+  eval_data_path: data/1.7b/eval
+  output_dir: "output/amteam-mix-8b/uniform/loop2"
+  even_strategy: "drop"
+  dp: 8
+  max_length: 16384
+  max_length_action: "cutoff"
+
+### training ###
+training:
+  num_train_epochs: 3
+  dynamic_batch:
+    enabled: true
+    global_batch_samples: 128
+    token_budget: 4096
+    max_batch_size: 32
+  gradient_checkpointing: true
+  learning_rate: 4.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  max_grad_norm: 1.0
+  lr_scheduler_type: "cosine_with_min_lr"
+  lr_scheduler_kwargs:
+    min_lr_rate: 0.1
+  logging_steps: 1
+  save_strategy: "epoch"
+  save_only_model: true
+  save_total_limit: 50
+  bf16: true
+  # evaluation
+  eval_strategy: "steps"
+  eval_steps: 120
+  eval_on_start: false
+  per_device_eval_batch_size: 1
+  # wandb
+  report_to: ""
+  wandb_project: ""
+  wandb_name: ""

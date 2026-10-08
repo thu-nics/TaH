@@ -14,7 +14,6 @@
   TaH2 &nbsp;
   <a href="https://fuvty.github.io/thinking_yard_project_page/projects/tah2/"><strong>🌐 Project</strong></a> ·
   <a href="https://arxiv.org/abs/2609.35748"><strong>📑 Paper</strong></a> ·
-  <a href="https://github.com/thu-nics/TaH/tree/tah2"><strong>💻 Code</strong></a> ·
   <a href="https://huggingface.co/collections/nics-efc/tah2"><strong>🤗 HuggingFace</strong></a>
 </h3>
 
@@ -33,7 +32,6 @@ TaH2 improves test-time scaling by allocating extra latent iterations to tokens 
   TaH &nbsp;
   <a href="https://fuvty.github.io/thinking_yard_project_page/projects/tah/"><strong>🌐 Project</strong></a> ·
   <a href="https://arxiv.org/abs/2511.08577"><strong>📑 Paper</strong></a> ·
-  <a href="https://github.com/thu-nics/TaH/tree/main"><strong>💻 Code</strong></a> ·
   <a href="https://huggingface.co/collections/nics-efc/tah"><strong>🤗 HuggingFace</strong></a>
 </h3>
 
@@ -50,7 +48,7 @@ Think-at-Hard (TaH) improves LLM reasoning by running extra latent iterations on
 
 ## News
 
-* [2026/10] We released the TaH2 [code](https://github.com/thu-nics/TaH/tree/tah2), [models](https://huggingface.co/collections/nics-efc/tah2), and [training data](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool).
+* [2026/10] We released the TaH2 [code](https://github.com/thu-nics/TaH/tree/main/tah2), [models](https://huggingface.co/collections/nics-efc/tah2), and [training data](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool).
 
 * [2026/09] We introduced TaH2 in [Improving Test-Time Scaling with Adaptive Looped Transformers](https://arxiv.org/abs/2609.35748).
 
@@ -58,32 +56,181 @@ Think-at-Hard (TaH) improves LLM reasoning by running extra latent iterations on
 
 * [2025/11] Our paper was featured as the #2 Paper of the Day on [Huggingface Daily Papers](https://huggingface.co/papers/date/2025-11-19)
 
-## Usage
+TaH and TaH2 require different dependency versions. Activate their separate environments before running the corresponding scripts.
+
+## TaH2 Usage
+
+This repository includes training recipes, evaluation tools, and an inference engine adapted from [mini-SGLang](https://github.com/sgl-project/mini-sglang), integrated under `tah2/minisgl/`.
 
 ### Environment Setup
-Create a new environment:
+
+Use Linux, Python 3.12, and CUDA GPUs. TaH2 uses `tah2/`, `script2/`, and `bash/`. From the repository root:
 
 ```bash
-conda create -n tah python=3.10
-conda activate tah
+python3.12 -m venv .venv-tah2
+source .venv-tah2/bin/activate
+pip install -e '.[tah2]'
 ```
 
-Install the package:
+### Run an Example
+
+Download a checkpoint:
 
 ```bash
-pip install -e .
+hf download nics-efc/TaH2-1.7B-max2 --local-dir models/TaH2-1.7B-max2
+```
+
+Generate with the bundled inference engine:
+
+```python
+from transformers import AutoTokenizer
+from tah2.minisgl.core import SamplingParams
+from tah2.minisgl.llm import LLM
+
+model_path = "models/TaH2-1.7B-max2"
+tokenizer = AutoTokenizer.from_pretrained(model_path)
+prompt = tokenizer.apply_chat_template(
+    [{"role": "user", "content": "What is 1 + 1?"}],
+    tokenize=False, add_generation_prompt=True,
+)
+llm = LLM(model_path=model_path)
+try:
+    result = llm.generate([prompt], SamplingParams(max_tokens=1024, temperature=0.6))
+    print(result[0]["text"])
+finally:
+    llm.shutdown()
+```
+
+| Checkpoint | Model |
+| --- | --- |
+| [TaH2-1.7B-max2](https://huggingface.co/nics-efc/TaH2-1.7B-max2) | Adaptive iteration, maximum depth 2 |
+| [TaH2-1.7B-Standard](https://huggingface.co/nics-efc/TaH2-1.7B-Standard) | Single-iteration baseline; also loads with Transformers |
+
+### Run Evaluation
+
+Start a server, then run evaluation in another terminal:
+
+```bash
+MODEL_PATH=models/TaH2-1.7B-max2 bash bash/launch_server.sh \
+  --tah_iter_threshold 0.5
+```
+
+```bash
+MODEL_PATH=models/TaH2-1.7B-max2 bash bash/eval_online.sh \
+  --datasets math500 amc23 olympiadbench aime25 aime26
+```
+
+The server defaults to GPU 0 and `http://127.0.0.1:30080`. Set `GPU`, `SERVER_HOST`, `PORT`, and `DISTRIBUTED_PORT` to change its placement; set `BASE_URL` for the evaluation client. The server reads the iteration limit from the checkpoint; `--tah_max_iter` overrides it. Set the client's `--tah_iter_threshold` to the server threshold when labeling evaluation outputs. The [engine README](tah2/minisgl/README.md) also describes its Python API and OpenAI-compatible endpoints.
+
+### Train Your Own TaH2 Model
+
+<details>
+<summary><strong>Step 0: Prepare Data and Base Model</strong></summary>
+
+Download the prepared data from [nics-efc/TaH2-amteam-tool](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool):
+
+```bash
+hf download nics-efc/TaH2-amteam-tool --repo-type dataset --local-dir data
+```
+
+The math, code, science, and tool-calling mixture provides `train/` and `eval/` splits for each model.
+
+| Student | Directory | Train samples | Train tokens | Eval samples |
+| --- | --- | ---: | ---: | ---: |
+| Qwen3-1.7B | `data/1.7b/` | 273,195 | 1,099,413,406 | 955 |
+| Qwen3-4B | `data/4b/` | 638,817 | 2,586,857,725 | 1,000 |
+| Qwen3-8B | `data/8b/` | 1,282,124 | 5,192,783,145 | 1,000 |
+
+Load with `datasets.load_from_disk("data/1.7b/train")`; `mask=1` marks assistant tokens for training. Recipes load `Qwen/Qwen3-{1.7B,4B,8B}-Base` automatically, or use a local path in `model.name`.
+
+**Data Sources and Regeneration**
+
+| Original dataset | Files used |
+| --- | --- |
+| [a-m-team/AM-Qwen3-Distilled](https://huggingface.co/datasets/a-m-team/AM-Qwen3-Distilled) | `math.jsonl`, `code.jsonl`, `science.jsonl` |
+| [nvidia/Nemotron-Agentic-v1](https://huggingface.co/datasets/nvidia/Nemotron-Agentic-v1) | `data/tool_calling.jsonl` |
+
+For 1.7B, **Qwen3-8B** regenerates assistant responses; tool results use reference replay or **Qwen3-32B** simulation. Key code: [generation and tokenization](script2/data/regenerate.py), [tool rollout](script2/data/tool_rollout.py). Input prompts are available at [`1.7b-prompts/`](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool/tree/main/1.7b-prompts).
+
+Serve Qwen3-8B at port 30080 and Qwen3-32B at port 30081, then run:
+
+```bash
+python script2/data/regenerate.py generate --kind am \
+  --prompts data/1.7b-prompts/am/train.jsonl \
+  --urls http://127.0.0.1:30080 --output data/regenerated/am_train.jsonl
+
+python script2/data/regenerate.py generate --kind tool_calling \
+  --prompts data/1.7b-prompts/tool_calling/train.jsonl \
+  --urls http://127.0.0.1:30080 --sim-urls http://127.0.0.1:30081 \
+  --output data/regenerated/tool_train.jsonl
+
+python script2/data/regenerate.py build \
+  --inputs data/regenerated/am_train.jsonl data/regenerated/tool_train.jsonl \
+  --output data/regenerated/train
+```
+
+Prepared data: [`1.7b/`](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool/tree/main/1.7b), [`4b/`](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool/tree/main/4b), [`8b/`](https://huggingface.co/datasets/nics-efc/TaH2-amteam-tool/tree/main/8b). The 4B/8B mixtures retain the original teacher responses: 8B uses the full pool; 4B uses a source-stratified subset with the same eval split.
+
+To regenerate both splits, build eval first, then pass `--exclude data/regenerated/eval` when building train to remove duplicate eval samples.
+
+</details>
+
+#### Step 1: Train
+
+| Recipe directory | Standard | Fixed loop-2 | TaH2 |
+| --- | --- | --- | --- |
+| [`qwen3_1.7/`](script2/recipes/qwen3_1.7/) | `sft_base.yaml` | `sft_fixed.yaml` | `sft_tah.yaml`, `sft_tah_max4.yaml`, `sft_tah_max8.yaml` |
+| [`qwen3_4b/`](script2/recipes/qwen3_4b/) | `sft_base.yaml` | — | `sft_tah.yaml` |
+| [`qwen3_8b/`](script2/recipes/qwen3_8b/) | `sft_base.yaml` | — | `sft_tah.yaml` |
+
+TaH2 jointly optimizes the backbone, input updater, and decider. Posterior labels are generated online from next-token cross-entropy improvements; separate offline token labeling is unnecessary. The main recipes use DUO attention, Triton kernels, and `stop_prob_mix`. The fixed loop-2 recipe uses `even_mix` without decider supervision.
+
+The 1.7B TaH2 recipes use global batch size 128, three epochs, learning rate `4e-5`, and a 16,384-token packing budget.
+
+For one node with eight GPUs, run:
+
+```bash
+NPROC=8 TP=1 CONFIG=script2/recipes/qwen3_1.7/sft_tah.yaml bash bash/sft_tah.sh
+```
+
+Change `CONFIG` to select a recipe and adjust `TP` to fit the actual GPU memory usage. Update `data.dp` in the recipe accordingly (`data.dp = NPROC / TP` for one node).
+
+Suggested starting points for one node with 8 H200 GPUs, BF16, and gradient checkpointing:
+
+| Model | `max_iter` | `max_length` | Suggested `TP` | GPU (memory per GPU) |
+| --- | ---: | --- | ---: | --- |
+| Qwen3-1.7B | 1 | 16K | 1 | H200 (141GB) |
+| Qwen3-1.7B | 2 | 16K | 1 | H200 (141GB) |
+| Qwen3-1.7B | 4 | 16K | 1 | H200 (141GB) |
+| Qwen3-1.7B | 8 | 16K | 2 | H200 (141GB) |
+| Qwen3-4B | 1 | 16K | 2 | H200 (141GB) |
+| Qwen3-4B | 2 | 16K | 2 | H200 (141GB) |
+| Qwen3-8B | 1 | 16K | 2 | H200 (141GB) |
+| Qwen3-8B | 2 | 16K | 2 | H200 (141GB) |
+
+Checkpoints include model weights, tokenizer, and the recurrent components when enabled. Recipes use `save_only_model: true`; set it to `false` before training to save optimizer state for continuation.
+
+## TaH Usage
+
+### Environment Setup
+Use Python 3.10 and activate a separate environment for `tah/` and `script/`:
+
+```bash
+python3.10 -m venv .venv-tah
+source .venv-tah/bin/activate
+pip install -e '.[tah]'
 ```
 
 For training and evaluation, install additional dependencies:
 
 ```bash
-pip install -e ".[training,evaluation]"
+pip install -e '.[tah,training,evaluation]'
 ```
 
 For code generation evaluation, install [evalplus](https://github.com/evalplus/evalplus)
 
 > **Note** if you ``git pull`` and the top-level package layout changes
-> (e.g. ``__init__.py`` is added or removed), re-run ``pip install -e .``
+> (e.g. ``__init__.py`` is added or removed), re-run ``pip install -e '.[tah]'``
 > — the editable install caches the layout in
 > ``site-packages/__editable___tah_*_finder.py`` and stale state will
 > silently drop ``tah/__init__.py``'s re-exports.
@@ -233,36 +380,30 @@ Key configurations in Step2 (`sft_tah_step2.yaml`):
 
 After two-stage training, the model can automatically decide when to perform latent reasoning iterations.
 
-### Understand the Code
+## Understand the Code
 
-#### Code Structure
-
-```
+```text
 TaH/
-├── tah/
-│   ├── model/                     # core model
-│   │   ├── tah_model.py           # TaHForCausalLM wrapper + inlined slot helpers
-│   │   ├── iter_decider.py        # IterLabelDecider, MLPIterDecider, _BY_NAME
-│   │   ├── loss.py                # NextTokenPredLoss, IterDeciderLoss, _BY_NAME
-│   │   ├── causal_cache.py        # TaHCache: per-(layer, iter) KV
-│   │   ├── tah_config.py          # @dataclass TaHConfig
-│   │   └── utils.py               # generation helper, IterCountColors
-│   ├── train/                     # HF Trainer subclass + collator + iter-aware callback
-│   ├── evaluate/                  # multi-backend eval driver
-│   │   ├── datasets.py            # benchmark loading + standardisation
-│   │   ├── backends.py            # sglang / hf / tah model + inference fn
-│   │   ├── jobs.py                # job-sharded runner + result aggregation
-│   │   ├── matheval.py            # math benchmark graders (math_verify)
-│   │   └── codeeval.py            # humaneval / mbpp via evalplus
-│   └── utils/                     # SFT preprocessing
-├── script/
-│   ├── preparation/               # download.py, label.py, prune.py, filter_split.py
-│   ├── train/SFT_TaH.py           # SFT entrypoint
-│   ├── evaluation/eval.py         # eval CLI entrypoint
-│   ├── playground/                # inference demo
-│   └── recipes/qwen3_{0.6,1.7}/   # training + eval YAML recipes
-└── pyproject.toml
+├── tah/                # TaH model, LoRA training, and evaluation
+├── script/             # TaH preparation, training, evaluation, and recipes
+├── tah2/
+│   ├── model/          # recurrent model, decider, posterior labels, losses
+│   ├── kernels/        # Triton recurrent attention
+│   ├── train/          # FSDP2/TP training and checkpoint saving
+│   ├── evaluate/       # inference backends and benchmark grading
+│   ├── minisgl/        # bundled mini-SGLang engine and native kernels
+│   └── utils/          # data preparation and serialization
+├── script2/            # TaH2 data, training, evaluation, and recipes
+├── bash/               # TaH2 training, evaluation, and server launchers
+└── pyproject.toml      # separate tah/tah2 dependency selections
 ```
+
+## License
+
+TaH and TaH2 are released under [Apache-2.0](LICENSE). The bundled
+[mini-SGLang](https://github.com/sgl-project/mini-sglang) engine retains its
+[MIT license](tah2/minisgl/LICENSE) and the bundled NCCL header retains its
+[NVIDIA license](tah2/minisgl/kernel/csrc/include/minisgl/LICENSE.txt).
 
 ## Related Projects
 

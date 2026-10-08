@@ -1,0 +1,52 @@
+# Qwen3-8B base; TaH-plus/amteam-tool, 8b subset.
+seed: 42
+model:
+  name: Qwen/Qwen3-8B-Base
+  torch_dtype: bfloat16
+  device_map: auto
+  trust_remote_code: true
+  attn_implementation: sdpa
+  embedding_key: model.embed_tokens
+  memory_lean_fp32_reductions: false
+  max_iter: 1
+  input_updater: IdentityUpdater
+  iter_decider: TrivialIterDecider
+  train_loss: NextTokenPredLoss
+  train_loss_kwargs:
+    use_target_gather_mix: true
+  eval_loss: NextTokenPredLoss
+data:
+  train_data_path: data/8b/train
+  eval_data_path: data/8b/eval
+  output_dir: output/amteam_tool/8b/base
+  even_strategy: drop
+  dp: 8
+  max_length: 16384
+  max_length_action: cutoff
+training:
+  num_train_epochs: 3
+  dynamic_batch:
+    enabled: true
+    global_batch_samples: 128
+    token_budget: 16384
+    max_batch_size: 32
+  gradient_checkpointing: true
+  learning_rate: 4.0e-05
+  weight_decay: 0.01
+  warmup_ratio: 0.03
+  max_grad_norm: 1.0
+  lr_scheduler_type: cosine_with_min_lr
+  lr_scheduler_kwargs:
+    min_lr_rate: 0.1
+  logging_steps: 1
+  save_strategy: epoch
+  save_only_model: true
+  save_total_limit: 50
+  bf16: true
+  eval_strategy: steps
+  eval_steps: 120
+  eval_on_start: false
+  per_device_eval_batch_size: 1
+  report_to: ""
+  wandb_project: ""
+  wandb_name: ""
