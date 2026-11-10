@@ -1,0 +1,79 @@
+{
+  "standard_gsm8k": {
+    "n": 1319,
+    "correct": 701,
+    "accuracy": 0.5314632297194845,
+    "raw_accuracy": 0.5837755875663382,
+    "truncated": 370,
+    "unfinished_thinking": 349,
+    "depth": 1.0,
+    "continue_percent": 0.0,
+    "seconds": 27669.242184571922,
+    "hours": 7.685900606825534,
+    "mean_output_tokens": 2169.0500379075056,
+    "total_valid_token_passes": 2952024,
+    "peak_gib": 5.025683403015137,
+    "truncated_but_correct": 2
+  },
+  "tah_gsm8k": {
+    "n": 1319,
+    "correct": 806,
+    "accuracy": 0.6110689916603488,
+    "raw_accuracy": 0.6497346474601972,
+    "truncated": 269,
+    "unfinished_thinking": 261,
+    "depth": 1.0149811797574873,
+    "continue_percent": 1.498117975748725,
+    "seconds": 30785.82916361211,
+    "hours": 8.551619212114476,
+    "mean_output_tokens": 1819.2145564821835,
+    "total_valid_token_passes": 2532461,
+    "peak_gib": 5.575089454650879,
+    "truncated_but_correct": 0
+  },
+  "paired_gsm8k": {
+    "tah_only_correct": 225,
+    "standard_only_correct": 120,
+    "both_correct": 581,
+    "both_wrong": 393
+  },
+  "standard_math500": {
+    "n": 500,
+    "correct": 171,
+    "accuracy": 0.342,
+    "raw_accuracy": 0.374,
+    "truncated": 210,
+    "unfinished_thinking": 201,
+    "depth": 1.0,
+    "continue_percent": 0.0,
+    "seconds": 27414.294095591875,
+    "hours": 7.615081693219965,
+    "mean_output_tokens": 5286.222,
+    "total_valid_token_passes": 2682371,
+    "peak_gib": 9.352046012878418,
+    "truncated_but_correct": 0
+  },
+  "tah_math500": {
+    "n": 500,
+    "correct": 201,
+    "accuracy": 0.402,
+    "raw_accuracy": 0.464,
+    "truncated": 226,
+    "unfinished_thinking": 223,
+    "depth": 1.0100182522295853,
+    "continue_percent": 1.00182522295853,
+    "seconds": 37139.729038985446,
+    "hours": 10.31659139971818,
+    "mean_output_tokens": 5274.972,
+    "total_valid_token_passes": 2705295,
+    "peak_gib": 17.031601905822754,
+    "truncated_but_correct": 0
+  },
+  "paired_math500": {
+    "tah_only_correct": 79,
+    "standard_only_correct": 49,
+    "both_correct": 122,
+    "both_wrong": 250
+  },
+  "verified": "All four runs cover every expected problem exactly once; inputs, gold answers and aggregate scores match saved records."
+}

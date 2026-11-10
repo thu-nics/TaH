@@ -74,6 +74,8 @@ Artifacts include `cache.pt`, `cache.verification.json`, `router.pt`, `router.re
 
 ## Larger training experiment
 
+The 200-problem experiment has completed. See [the audited results](RESULTS_MATH200.md): the selected epoch-10 checkpoint reduces local validation token loss by 0.53% relative to imitation at the same continuation rate. Both generation checks truncated; answer-accuracy gains remain untested.
+
 `experiment.py` runs preparation, resumable collection, history replay checks, a five-penalty training sweep, and two generation smoke tests in order. Launch from `/root/TaH`:
 
 ```bash

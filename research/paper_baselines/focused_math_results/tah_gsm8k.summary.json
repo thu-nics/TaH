@@ -1,0 +1,12 @@
+{
+  "completed_samples": 1319,
+  "completed_problems": 1319,
+  "pass_at_1": 0.6110689916603488,
+  "truncation_rate": 0.20394238059135708,
+  "mean_prediction_depth": 1.0149811797574873,
+  "output_tokens": 2399544,
+  "total_valid_token_passes": 2532461,
+  "generation_seconds": 30785.82916361211,
+  "peak_allocated_gib": 5.575089454650879,
+  "accuracy_status": "graded"
+}

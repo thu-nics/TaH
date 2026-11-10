@@ -1,0 +1,240 @@
+{
+  "validation_tokens": 15278,
+  "continued_imitation": 258,
+  "continued_bandit": 258,
+  "changed_decisions": 308,
+  "imitation_nll": 0.6374120712280273,
+  "bandit_nll": 0.6340482831001282,
+  "nll_gain": 0.003363740863278508,
+  "relative_nll_reduction_percent": 0.5277258157730103,
+  "problems_improved": 14,
+  "problems_worsened": 5,
+  "problems_tied": 1,
+  "descriptive_problem_bootstrap_nll_gain_95_interval": [
+    0.0001230630005011335,
+    0.0065097142942249775
+  ],
+  "bootstrap_note": "Conditional on model and threshold selected on the same validation set; not an independent test confidence interval.",
+  "saved_report_reproduced": true,
+  "per_problem": [
+    {
+      "problem_id": "mot_1df52ea32d5030d2",
+      "tokens": 857,
+      "imitation_nll": 0.7958722710609436,
+      "bandit_nll": 0.7884262204170227,
+      "nll_gain_sum": 6.381255626678467,
+      "imitation_continues": 16,
+      "bandit_continues": 19
+    },
+    {
+      "problem_id": "mot_3879d636ca2bd58c",
+      "tokens": 916,
+      "imitation_nll": 0.5544238686561584,
+      "bandit_nll": 0.5635492205619812,
+      "nll_gain_sum": -8.358819961547852,
+      "imitation_continues": 16,
+      "bandit_continues": 9
+    },
+    {
+      "problem_id": "mot_3f9e463cf27a7018",
+      "tokens": 903,
+      "imitation_nll": 0.6925990581512451,
+      "bandit_nll": 0.6890694499015808,
+      "nll_gain_sum": 3.1872177124023438,
+      "imitation_continues": 18,
+      "bandit_continues": 16
+    },
+    {
+      "problem_id": "mot_4edda481ef2fe32a",
+      "tokens": 979,
+      "imitation_nll": 0.7160775661468506,
+      "bandit_nll": 0.7132503986358643,
+      "nll_gain_sum": 2.767812728881836,
+      "imitation_continues": 22,
+      "bandit_continues": 20
+    },
+    {
+      "problem_id": "mot_6764a63016730f3a",
+      "tokens": 927,
+      "imitation_nll": 0.5850667953491211,
+      "bandit_nll": 0.5844222903251648,
+      "nll_gain_sum": 0.597453236579895,
+      "imitation_continues": 8,
+      "bandit_continues": 6
+    },
+    {
+      "problem_id": "mot_6d612c3345f6aa7d",
+      "tokens": 888,
+      "imitation_nll": 0.7476199269294739,
+      "bandit_nll": 0.7439530491828918,
+      "nll_gain_sum": 3.2562828063964844,
+      "imitation_continues": 15,
+      "bandit_continues": 17
+    },
+    {
+      "problem_id": "mot_707c315e0edfe9b5",
+      "tokens": 856,
+      "imitation_nll": 0.782368540763855,
+      "bandit_nll": 0.7756739258766174,
+      "nll_gain_sum": 5.730609893798828,
+      "imitation_continues": 21,
+      "bandit_continues": 29
+    },
+    {
+      "problem_id": "mot_75a7987c9ea1fcc1",
+      "tokens": 352,
+      "imitation_nll": 0.6642792820930481,
+      "bandit_nll": 0.6587279438972473,
+      "nll_gain_sum": 1.954094409942627,
+      "imitation_continues": 5,
+      "bandit_continues": 8
+    },
+    {
+      "problem_id": "mot_8c1e07e83b50bcc8",
+      "tokens": 97,
+      "imitation_nll": 0.05682917311787605,
+      "bandit_nll": 0.05682917311787605,
+      "nll_gain_sum": 0.0,
+      "imitation_continues": 0,
+      "bandit_continues": 0
+    },
+    {
+      "problem_id": "mot_972acb6e46628c97",
+      "tokens": 970,
+      "imitation_nll": 0.4295417070388794,
+      "bandit_nll": 0.42495250701904297,
+      "nll_gain_sum": 4.45156717300415,
+      "imitation_continues": 14,
+      "bandit_continues": 7
+    },
+    {
+      "problem_id": "mot_ae459c96c8a6d80b",
+      "tokens": 960,
+      "imitation_nll": 0.6068141460418701,
+      "bandit_nll": 0.5896024703979492,
+      "nll_gain_sum": 16.523168563842773,
+      "imitation_continues": 20,
+      "bandit_continues": 14
+    },
+    {
+      "problem_id": "mot_ba1d0c44533f7a34",
+      "tokens": 800,
+      "imitation_nll": 0.8284802436828613,
+      "bandit_nll": 0.8196377754211426,
+      "nll_gain_sum": 7.073998928070068,
+      "imitation_continues": 15,
+      "bandit_continues": 15
+    },
+    {
+      "problem_id": "mot_bae40029e7b456ad",
+      "tokens": 107,
+      "imitation_nll": 0.10174722969532013,
+      "bandit_nll": 0.13146288692951202,
+      "nll_gain_sum": -3.1795761585235596,
+      "imitation_continues": 5,
+      "bandit_continues": 1
+    },
+    {
+      "problem_id": "mot_c4796fc7c81f7a3b",
+      "tokens": 1010,
+      "imitation_nll": 0.7487999200820923,
+      "bandit_nll": 0.7561174035072327,
+      "nll_gain_sum": -7.390722274780273,
+      "imitation_continues": 22,
+      "bandit_continues": 18
+    },
+    {
+      "problem_id": "mot_c57ae7a8b4655798",
+      "tokens": 1016,
+      "imitation_nll": 0.4780716896057129,
+      "bandit_nll": 0.46694618463516235,
+      "nll_gain_sum": 11.303494453430176,
+      "imitation_continues": 19,
+      "bandit_continues": 23
+    },
+    {
+      "problem_id": "mot_d13e8e434369aa2a",
+      "tokens": 403,
+      "imitation_nll": 0.6698821187019348,
+      "bandit_nll": 0.6726155281066895,
+      "nll_gain_sum": -1.1015781164169312,
+      "imitation_continues": 3,
+      "bandit_continues": 5
+    },
+    {
+      "problem_id": "mot_d4fa5f9645db94a5",
+      "tokens": 825,
+      "imitation_nll": 0.4492340385913849,
+      "bandit_nll": 0.44538456201553345,
+      "nll_gain_sum": 3.1757898330688477,
+      "imitation_continues": 10,
+      "bandit_continues": 7
+    },
+    {
+      "problem_id": "mot_e9aa02a7ce871b75",
+      "tokens": 948,
+      "imitation_nll": 0.7443217635154724,
+      "bandit_nll": 0.748594343662262,
+      "nll_gain_sum": -4.0504374504089355,
+      "imitation_continues": 4,
+      "bandit_continues": 11
+    },
+    {
+      "problem_id": "mot_ec21cae469df5dcf",
+      "tokens": 777,
+      "imitation_nll": 0.670154869556427,
+      "bandit_nll": 0.6630459427833557,
+      "nll_gain_sum": 5.523573875427246,
+      "imitation_continues": 13,
+      "bandit_continues": 17
+    },
+    {
+      "problem_id": "mot_fb8b7de2f3ebde56",
+      "tokens": 687,
+      "imitation_nll": 0.47297656536102295,
+      "bandit_nll": 0.46781492233276367,
+      "nll_gain_sum": 3.546053647994995,
+      "imitation_continues": 12,
+      "bandit_continues": 16
+    }
+  ],
+  "selected_curve_initial": {
+    "epoch": 0,
+    "train_objective": 0.6842526197433472,
+    "validation_objective": 0.7278797626495361,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6598983407020569,
+      "local_reward": -0.01649469882249832,
+      "expected_reward": -0.7278797626495361
+    },
+    "logit_threshold": "0.2968282103538513"
+  },
+  "selected_curve_best": {
+    "epoch": 10,
+    "train_objective": -0.03405916690826416,
+    "validation_objective": -0.011192072182893753,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6340482831001282,
+      "local_reward": 0.009355331771075726,
+      "expected_reward": 0.011192072182893753
+    },
+    "logit_threshold": "3.234154224395752"
+  },
+  "selected_curve_last": {
+    "epoch": 25,
+    "train_objective": -0.07339984178543091,
+    "validation_objective": -0.011229420080780983,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6390274167060852,
+      "local_reward": 0.004376232158392668,
+      "expected_reward": 0.011229420080780983
+    },
+    "logit_threshold": "9.684173583984375"
+  }
+}

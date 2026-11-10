@@ -1,0 +1,405 @@
+[
+  {
+    "epoch": 0,
+    "train_objective": 0.7569479942321777,
+    "validation_objective": 0.8001264333724976,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6598983407020569,
+      "local_reward": -0.019027752801775932,
+      "expected_reward": -0.8001264333724976
+    },
+    "logit_threshold": "0.2968282103538513"
+  },
+  {
+    "epoch": 1,
+    "train_objective": 0.002396400785073638,
+    "validation_objective": 0.0021168699022382498,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6465375423431396,
+      "local_reward": -0.005666978657245636,
+      "expected_reward": -0.0021168699022382498
+    },
+    "logit_threshold": "-3.905771255493164"
+  },
+  {
+    "epoch": 2,
+    "train_objective": 0.0006273773615248501,
+    "validation_objective": 0.0005694050341844559,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6460975408554077,
+      "local_reward": -0.0052269864827394485,
+      "expected_reward": -0.0005694050341844559
+    },
+    "logit_threshold": "-5.2217535972595215"
+  },
+  {
+    "epoch": 3,
+    "train_objective": -0.00021181853662710637,
+    "validation_objective": -0.0003664651303552091,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6439760327339172,
+      "local_reward": -0.0031054774299263954,
+      "expected_reward": 0.0003664651303552091
+    },
+    "logit_threshold": "-5.53046989440918"
+  },
+  {
+    "epoch": 4,
+    "train_objective": -0.0006572202546522021,
+    "validation_objective": -0.0005350147257559001,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6423662900924683,
+      "local_reward": -0.0014957133680582047,
+      "expected_reward": 0.0005350147257559001
+    },
+    "logit_threshold": "-5.794336795806885"
+  },
+  {
+    "epoch": 5,
+    "train_objective": -0.0009780144318938255,
+    "validation_objective": -0.0006464882171712816,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.641960084438324,
+      "local_reward": -0.0010895301820710301,
+      "expected_reward": 0.0006464882171712816
+    },
+    "logit_threshold": "-5.898488998413086"
+  },
+  {
+    "epoch": 6,
+    "train_objective": -0.001578447176143527,
+    "validation_objective": -0.0004890835261903703,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6428232192993164,
+      "local_reward": -0.001952626509591937,
+      "expected_reward": 0.0004890835261903703
+    },
+    "logit_threshold": "-6.27949333190918"
+  },
+  {
+    "epoch": 7,
+    "train_objective": -0.0017435672925785184,
+    "validation_objective": -0.0006319193635135889,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6430507302284241,
+      "local_reward": -0.0021801507100462914,
+      "expected_reward": 0.0006319193635135889
+    },
+    "logit_threshold": "-6.521981716156006"
+  },
+  {
+    "epoch": 8,
+    "train_objective": -0.0032771665137261152,
+    "validation_objective": -0.0007154891500249505,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6383956670761108,
+      "local_reward": 0.0024749026633799076,
+      "expected_reward": 0.0007154891500249505
+    },
+    "logit_threshold": "-5.672611236572266"
+  },
+  {
+    "epoch": 9,
+    "train_objective": -0.005220944061875343,
+    "validation_objective": -0.0011387623380869627,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6419394612312317,
+      "local_reward": -0.0010688817128539085,
+      "expected_reward": 0.0011387623380869627
+    },
+    "logit_threshold": "-4.67544412612915"
+  },
+  {
+    "epoch": 10,
+    "train_objective": -0.007245292887091637,
+    "validation_objective": -0.0017512439517304301,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6382001638412476,
+      "local_reward": 0.0026703947223722935,
+      "expected_reward": 0.0017512439517304301
+    },
+    "logit_threshold": "-4.145805358886719"
+  },
+  {
+    "epoch": 11,
+    "train_objective": -0.009560445323586464,
+    "validation_objective": -0.002270415425300598,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6400611400604248,
+      "local_reward": 0.0008094426593743265,
+      "expected_reward": 0.002270415425300598
+    },
+    "logit_threshold": "-3.3626558780670166"
+  },
+  {
+    "epoch": 12,
+    "train_objective": -0.01080961525440216,
+    "validation_objective": -0.002145123202353716,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6390706300735474,
+      "local_reward": 0.001800013124011457,
+      "expected_reward": 0.002145123202353716
+    },
+    "logit_threshold": "-4.052806854248047"
+  },
+  {
+    "epoch": 13,
+    "train_objective": -0.012896564789116383,
+    "validation_objective": -0.00026199527201242745,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6396843791007996,
+      "local_reward": 0.0011862393002957106,
+      "expected_reward": 0.00026199527201242745
+    },
+    "logit_threshold": "-1.3365448713302612"
+  },
+  {
+    "epoch": 14,
+    "train_objective": -0.015177501365542412,
+    "validation_objective": -0.003448214614763856,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6390714645385742,
+      "local_reward": 0.0017990758642554283,
+      "expected_reward": 0.003448214614763856
+    },
+    "logit_threshold": "-2.7791874408721924"
+  },
+  {
+    "epoch": 15,
+    "train_objective": -0.01846107840538025,
+    "validation_objective": -0.004564943723380566,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6348373293876648,
+      "local_reward": 0.006033182144165039,
+      "expected_reward": 0.004564943723380566
+    },
+    "logit_threshold": "-1.6617244482040405"
+  },
+  {
+    "epoch": 16,
+    "train_objective": -0.019359000027179718,
+    "validation_objective": -0.001991056138649583,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6384410858154297,
+      "local_reward": 0.0024294399190694094,
+      "expected_reward": 0.001991056138649583
+    },
+    "logit_threshold": "-1.6589317321777344"
+  },
+  {
+    "epoch": 17,
+    "train_objective": -0.020125675946474075,
+    "validation_objective": -0.0034370797220617533,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6367117762565613,
+      "local_reward": 0.004158801399171352,
+      "expected_reward": 0.0034370797220617533
+    },
+    "logit_threshold": "-2.056110382080078"
+  },
+  {
+    "epoch": 18,
+    "train_objective": -0.023627256974577904,
+    "validation_objective": -0.002348005771636963,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6381778120994568,
+      "local_reward": 0.0026926530990749598,
+      "expected_reward": 0.002348005771636963
+    },
+    "logit_threshold": "-1.1252615451812744"
+  },
+  {
+    "epoch": 19,
+    "train_objective": -0.02669890597462654,
+    "validation_objective": -0.003648907644674182,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6367351412773132,
+      "local_reward": 0.004135446157306433,
+      "expected_reward": 0.003648907644674182
+    },
+    "logit_threshold": "0.06206268072128296"
+  },
+  {
+    "epoch": 20,
+    "train_objective": -0.02830488793551922,
+    "validation_objective": -0.0024958616122603416,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6383953094482422,
+      "local_reward": 0.002475333632901311,
+      "expected_reward": 0.0024958616122603416
+    },
+    "logit_threshold": "0.30644333362579346"
+  },
+  {
+    "epoch": 21,
+    "train_objective": -0.03001604788005352,
+    "validation_objective": -0.0038795992732048035,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.637445330619812,
+      "local_reward": 0.0034252621699124575,
+      "expected_reward": 0.0038795992732048035
+    },
+    "logit_threshold": "-0.3583236336708069"
+  },
+  {
+    "epoch": 22,
+    "train_objective": -0.029489394277334213,
+    "validation_objective": -0.0006033509853295982,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6400640606880188,
+      "local_reward": 0.0008065176662057638,
+      "expected_reward": 0.0006033509853295982
+    },
+    "logit_threshold": "0.16616472601890564"
+  },
+  {
+    "epoch": 23,
+    "train_objective": -0.03275084123015404,
+    "validation_objective": -0.004218972288072109,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6357965469360352,
+      "local_reward": 0.0050740628503263,
+      "expected_reward": 0.004218972288072109
+    },
+    "logit_threshold": "0.48262298107147217"
+  },
+  {
+    "epoch": 24,
+    "train_objective": -0.0330997072160244,
+    "validation_objective": -0.003952613100409508,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6367219686508179,
+      "local_reward": 0.004148585256189108,
+      "expected_reward": 0.003952613100409508
+    },
+    "logit_threshold": "-0.26531660556793213"
+  },
+  {
+    "epoch": 25,
+    "train_objective": -0.03436589241027832,
+    "validation_objective": -0.003369392827153206,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6368729472160339,
+      "local_reward": 0.003997658845037222,
+      "expected_reward": 0.003369392827153206
+    },
+    "logit_threshold": "0.4167472720146179"
+  },
+  {
+    "epoch": 26,
+    "train_objective": -0.03593409061431885,
+    "validation_objective": -0.003739875741302967,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6370939016342163,
+      "local_reward": 0.003776657162234187,
+      "expected_reward": 0.003739875741302967
+    },
+    "logit_threshold": "0.14380085468292236"
+  },
+  {
+    "epoch": 27,
+    "train_objective": -0.03606632724404335,
+    "validation_objective": -0.0019432130502536893,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6371326446533203,
+      "local_reward": 0.0037379232235252857,
+      "expected_reward": 0.0019432130502536893
+    },
+    "logit_threshold": "1.3398452997207642"
+  },
+  {
+    "epoch": 28,
+    "train_objective": -0.038779836148023605,
+    "validation_objective": -0.0026306933723390102,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6372900009155273,
+      "local_reward": 0.00358062912710011,
+      "expected_reward": 0.0026306933723390102
+    },
+    "logit_threshold": "1.5042692422866821"
+  },
+  {
+    "epoch": 29,
+    "train_objective": -0.03781711682677269,
+    "validation_objective": -0.0017954675713554025,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6386334300041199,
+      "local_reward": 0.00223714392632246,
+      "expected_reward": 0.0017954675713554025
+    },
+    "logit_threshold": "2.0744235515594482"
+  },
+  {
+    "epoch": 30,
+    "train_objective": -0.04098416492342949,
+    "validation_objective": -0.00347980041988194,
+    "matched_validation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6362118124961853,
+      "local_reward": 0.004658793099224567,
+      "expected_reward": 0.00347980041988194
+    },
+    "logit_threshold": "1.937976360321045"
+  }
+]
