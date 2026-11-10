@@ -543,3 +543,29 @@ rng = RequestRNG.from_seeds(per_request_seeds, device="cuda")
 ```
 
 `GraphSampler(vocab_size, greedy_only=True)` gives a separately captured all-greedy bucket.
+
+## External routing policies
+
+`TaHEngine(..., decider_factory=callable)` installs a decider immediately after
+loading weights, before hidden indices, prefill and CUDA graphs are initialized.
+The returned module follows `forward(logits, depth, hidden, labels=None,
+hidden_indices=None)` and returns `(keep, raw, probability)`. It must support
+rowwise tensor depths without host reads during capture. Do not replace it after
+graph capture. `research.bandit_router.engine.EngineRoutingDecider` implements
+the bandit, entropy, fixed-depth and native policies.
+
+The paired collector uses `forward_cached`, with a speculative depth-2 KV entry
+removed by `pop_last` whenever frozen imitation stops. It accumulates bf16
+logits before computing fp32 losses. It never commits the losing branch.
+Validate both branches and future cache isolation on CPU, then replay collected
+production histories through unbranched `forward_chunk` on the target GPU:
+
+```bash
+CUDA_VISIBLE_DEVICES='' python -m pytest -q research/bandit_router/test_engine.py research/bandit_router/test_core.py tah/engine/tests/test_engine.py
+CUDA_VISIBLE_DEVICES=0 python -m research.bandit_router.engine_run verify --cache RUN/cache.pt --max-problems 3
+```
+
+Collection is eager; generation uses the production scheduler and CUDA graphs.
+Engine generation applies the selected policy to prompt and generated positions;
+the legacy reference smoke script used imitation for the prompt prefix. These
+are different workloads and their timings must not be compared directly.

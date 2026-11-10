@@ -129,7 +129,7 @@ class TaHEngine:
                  swap_chunk_entries=256, max_new_tokens=1024, seed=0,
                  eos_token_id='tokenizer', sampling_topk=128, compile=False,
                  profile_steps=0, cuda_graphs=True, graph_batch_sizes=None,
-                 compile_cache_dir=None, overlap=None):
+                 compile_cache_dir=None, overlap=None, decider_factory=None):
         if not isinstance(compile, bool):
             raise ValueError('compile must be boolean')
         if compile and torch.device(device).type != 'cuda':
@@ -148,6 +148,10 @@ class TaHEngine:
             raise ValueError('overlap must be None (auto) or boolean')
         self.graph_batch_sizes = batch_sizes(max_batch_size, graph_batch_sizes)
         self.model = EagerTaHModel.from_pretrained(model_path, config_override, device=device)
+        if decider_factory is not None:
+            # Install once, before prefill helpers, compiled steps and graph capture.
+            decider = decider_factory(self.model).eval()
+            self.model.iter_decider = self.model.eval_iter_decider = decider
         # Auto (None): overlap unless RoPE frequencies depend on the exact
         # context length, which the lagged host does not know at launch.
         static_rope = self.model.model.rotary_emb.kind not in ('dynamic', 'longrope')

@@ -13,7 +13,7 @@ def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True).encode()).hexdigest()
 
 
-def features(logits, hidden, layers):
+def features(logits, hidden, layers, *, indices=None):
     """HF hidden-state indices: 0 is embeddings, 1 is first transformer layer."""
     if hidden is None or max(layers) >= hidden.shape[-2] or min(layers) < 1:
         raise ValueError("Expected shallow/middle/final transformer hidden states")
@@ -21,7 +21,8 @@ def features(logits, hidden, layers):
     p = logp.exp()
     entropy = -(p * logp).sum(-1, keepdim=True)
     maximum = p.max(-1, keepdim=True).values
-    return torch.cat((hidden[..., list(layers), :].flatten(-2).float(), entropy, maximum), -1)
+    selected = hidden[..., list(layers), :] if indices is None else hidden.index_select(-2, indices)
+    return torch.cat((selected.flatten(-2).float(), entropy, maximum), -1)
 
 
 class RoutingDecider(nn.Module):

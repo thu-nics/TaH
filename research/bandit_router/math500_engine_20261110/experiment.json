@@ -1,0 +1,8 @@
+{
+  "output_dir": "research/bandit_router/math500_engine_20261110",
+  "count": 500,
+  "max_reference_tokens": 1024,
+  "backend": "engine",
+  "model": "models/TaH-plus-0.6B",
+  "seed": 42
+}

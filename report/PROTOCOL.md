@@ -90,3 +90,34 @@ Reference: Fu et al., *Think-at-Hard*, arXiv:2511.08577 (v4), §6.1 and Table 2 
 ## Later checkpoints (e.g. RL-trained deciders)
 
 Evaluated with exactly the R2 protocol, the same seeds and the same frozen engine, and compared to the R2 baseline with the paired per-problem analysis of R1 (difference with confidence interval). They are not compared against reference-backend or paper numbers alone.
+
+## Exploratory bandit training with the engine (2026-11-10)
+
+This is training and method development, separate from the confirmatory R1/R2
+studies. Freeze `TaH-plus-0.6B`; select 500 complete MoT math/train solutions
+with the existing seed-42 sampler, prompt cap 512 and reference cap 1024, with
+normalized duplicate and lexical GSM8K/MATH500 overlap screening. This extends
+the length-biased pilot population; it is not an independent test set.
+
+Collect both depth-1 and depth-2 next-token losses on identical histories using
+the engine's persistent cached passes, committing only native imitation routing
+(threshold 0.9). Remove a speculative depth-2 KV entry whenever imitation stops.
+Record checkpoint and engine source hashes. Require tiny-model branch-isolation
+tests and real GPU unbranched replay before training. No benchmark test answers
+are used for training, checkpoint selection or threshold fitting.
+
+Split by normalized problem text with seed 42, 10% validation. Use the existing
+five-penalty sweep (0, .01, .05, .1, .2), width 64, AdamW lr .0003, weight decay
+.001, batch 512, 100-epoch maximum, patience 15, clip norm 1 and four CPU threads.
+Select epoch, penalty and threshold by validation token NLL at imitation's
+continuation budget. Report all curves; these are selected validation diagnostics,
+not independent confidence intervals or answer accuracy. Do not extend training
+based on an unfavorable result. Preserve the earlier 200-problem experiment.
+
+Run imitation and selected-bandit 512-token greedy generation checks with the
+same engine; selected routing applies during prefill and decoding. Record
+truncation and actual pass counts; these smoke checks cannot support accuracy or
+latency claims. Subsequent benchmark comparisons must freeze the engine and
+rerun all compared policies on it. The focused 0.6B benchmark inputs, decoding
+settings and final-answer grader are a separate comparison from the 1.7B R2
+paper-reproduction baseline.

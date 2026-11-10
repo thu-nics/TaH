@@ -105,3 +105,36 @@ Training splits 180/20 problems, normalizes from training only, and uses mini-ba
 `math200/training/` contains per-epoch curves, per-penalty checkpoints/reports, `selected_router.pt`, and `summary.json`. Validation is used for model and threshold selection, so these measurements are tuning diagnostics. They require a separate test evaluation before making an accuracy claim. The final two generation checks use 512-token caps on one arithmetic prompt; completed answers and truncations remain visible in their JSON files.
 
 For the next experiment, supply JSONL rows with `id`, `question`, and a complete `reference` assistant continuation. Screen/deduplicate training problems against benchmark test questions before collection. Train on a meaningful math set, tune lambda and thresholds on validation, then generate completed GSM8K/MATH500 answers under all five policies at matched compute budgets. Final-answer accuracy requires that separate generation evaluation.
+
+## Engine-backed training experiment
+
+The reference path remains available. Use `--backend engine` to collect paired
+STOP/CONTINUE losses with the new engine's persistent KV cache, verify frozen
+imitation histories, train the existing five-penalty sweep, and run imitation
+and bandit generation checks with CUDA graphs. Both use the same frozen 0.6B
+checkpoint. A new directory keeps earlier caches and results intact.
+
+```bash
+CUDA_VISIBLE_DEVICES=0 .venv-tah/bin/python -u -m research.bandit_router.experiment \
+  --backend engine --model models/TaH-plus-0.6B --seed 42 \
+  --count 500 --max-reference-tokens 1024 \
+  --output-dir research/bandit_router/math500_engine_20261110
+```
+
+This is an exploratory training run, not an R1/R2 confirmatory evaluation.
+Selection screens GSM8K/MATH500 overlap and preserves complete solutions; the
+short-solution length bias remains. Expected split: 450 training and 50
+validation problems. Training uses seed 42, width 64, AdamW learning rate
+0.0003, weight decay 0.001, batch size 512, at most 100 epochs and patience 15.
+Penalties are 0, 0.01, 0.05, 0.1 and 0.2; select minimum validation token loss
+at imitation's continuation budget. These are tuning metrics, not test accuracy.
+
+`experiment.json`, `collection.json`, `progress.json` and `status.json` record
+settings and progress. Collection records engine source and checkpoint hashes
+and rejects incompatible shards. The first three full histories are replayed
+without counterfactual branching before training. Output schemas match the
+existing sweep and audit tools. Generation applies the selected policy during
+prefill too, unlike the legacy reference smoke script.
+
+The [November 10 engine experiment record](ENGINE_EXPERIMENT_20261110.md) lists
+the source snapshot, launch command, checks and saved engineering outputs.

@@ -1,0 +1,26 @@
+{
+  "dataset": "open-r1/Mixture-of-Thoughts",
+  "config": "math",
+  "split": "train",
+  "revision": "e55fa28006c0d0ec60fb3547520f775dd42d02cd",
+  "seed": 42,
+  "problems": 500,
+  "counts": {
+    "scanned": 40481,
+    "reference_length": 39976,
+    "missing_final_answer": 2,
+    "prompt_length": 1,
+    "benchmark_overlap": 1,
+    "duplicate": 1
+  },
+  "reference_tokens": 401685,
+  "max_reference_tokens": 1024,
+  "truncated": false,
+  "selection": "Seeded streaming shuffle; complete short solutions only (length-biased pilot)",
+  "overlap_screen": "normalized exact match and 5-word-shingle Jaccard >= 0.8",
+  "benchmark_files": {
+    "research/paper_baselines/author_data/gsm8k.jsonl": "9783aac4ef4fe2e66dfa60890e9570207196b4746bcd3403ca5b57a0f6ff4924",
+    "research/paper_baselines/author_data/math500.jsonl": "9819d46e25f4257454ac89dc69661fae51ea0a95bea8f270d3044c3ed88db628"
+  },
+  "reference_sha256": "f37d803e3b59a249200ca7bde012d148b503153d25c92c4a736e6b802b8dfaef"
+}

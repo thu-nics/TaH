@@ -1,0 +1,8 @@
+{
+  "backend": "tah_engine",
+  "verified_rows": 1740,
+  "verified_problems": 2,
+  "fixed_history_replay": "passed",
+  "imitation_action_losses": "passed",
+  "note": "Unbranched native forward_chunk replay; counterfactual isolation also tested on tiny CPU models."
+}

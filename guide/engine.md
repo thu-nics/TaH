@@ -76,6 +76,7 @@ Keyword arguments of `TaHEngine`. The first argument is the checkpoint path, and
 | `cuda_graphs` | `True` | Capture decode at startup. `False` runs eager decode for debugging. CPU is always eager. |
 | `graph_batch_sizes` | `None` | Exact batch sizes to capture; `None` captures 1 to `max_batch_size`. Other sizes run eager; `[]` disables capture. |
 | `sampling_topk` | 128 | Largest top-k handled by the bounded shortlist sampler. Larger values, or 0, use the full-vocabulary path. |
+| `decider_factory` | `None` | Optional callable receiving the loaded engine model and returning an engine-compatible decider; installed before prefill and graph capture. Keep the returned policy fixed for the engine lifetime. |
 | `overlap` | `None` | Pipelined scheduler. `None` is automatic; see [overlap scheduler](#overlap-scheduler). |
 | `compile` | `False` | Experimental TorchInductor fusion of the decode step (CUDA only). Keep it off for accuracy work: its end-to-end parity is not established. |
 | `compile_cache_dir` | `None` | Persistent TorchInductor cache. Default: `TORCHINDUCTOR_CACHE_DIR`, or `~/.cache/torch/inductor`. |
