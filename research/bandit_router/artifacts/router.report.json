@@ -1,0 +1,62 @@
+{
+  "initial_train_objective": 0.6853148341178894,
+  "final_train_objective": -0.6671183109283447,
+  "penalty": 0.05,
+  "threshold": 0.9999918937683105,
+  "entropy_threshold": "3.586155414581299",
+  "train_problem_ids": [
+    "toy_area",
+    "toy_bus",
+    "toy_fraction"
+  ],
+  "validation_problem_ids": [
+    "toy_apples"
+  ],
+  "train_rows": 90,
+  "validation_rows": 24,
+  "validation": {
+    "always_1": {
+      "continue_fraction": 0.0,
+      "average_depth": 1.0,
+      "token_nll": 2.65570330619812,
+      "local_reward": 0.0,
+      "expected_reward": 0.0
+    },
+    "always_2": {
+      "continue_fraction": 1.0,
+      "average_depth": 2.0,
+      "token_nll": 4.573290824890137,
+      "local_reward": -1.9675878286361694,
+      "expected_reward": -1.9675878286361694
+    },
+    "imitation": {
+      "continue_fraction": 0.0416666679084301,
+      "average_depth": 1.04166666790843,
+      "token_nll": 2.577380418777466,
+      "local_reward": 0.07623981684446335,
+      "expected_reward": 0.07623981684446335
+    },
+    "entropy": {
+      "continue_fraction": 0.0416666679084301,
+      "average_depth": 1.04166666790843,
+      "token_nll": 2.643348455429077,
+      "local_reward": 0.010271468199789524,
+      "expected_reward": 0.010271468199789524
+    },
+    "bandit": {
+      "continue_fraction": 0.0416666679084301,
+      "average_depth": 1.04166666790843,
+      "token_nll": 2.6864640712738037,
+      "local_reward": -0.03284407779574394,
+      "expected_reward": 0.15057043731212616
+    },
+    "reference_oracle": {
+      "continue_fraction": 0.125,
+      "average_depth": 1.125,
+      "token_nll": 2.325010061264038,
+      "local_reward": 0.32444334030151367,
+      "expected_reward": 0.32444334030151367
+    }
+  },
+  "note": "Local reference-token diagnostic only; tiny pilot is not answer-accuracy evidence. Threshold ties can prevent exact depth matching."
+}

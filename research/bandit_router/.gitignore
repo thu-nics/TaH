@@ -1,0 +1,5 @@
+artifacts/*.pt
+math200/shards/
+math200/*.pt
+math200/training/*.pt
+sweep_check/

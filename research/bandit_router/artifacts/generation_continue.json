@@ -1,0 +1,33 @@
+{
+  "policy": "continue",
+  "prompt": "What is 17 + 25?",
+  "output": "<think>\nOkay so the problem here,",
+  "token_ids": [
+    151667,
+    198,
+    32313,
+    773,
+    279,
+    3491,
+    1588,
+    11
+  ],
+  "depths": [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2
+  ],
+  "average_depth": 2.0,
+  "continue_fraction": 1.0,
+  "total_latent_passes": 34,
+  "prefill_passes": 18,
+  "seconds": 2.0517439800314605,
+  "termination": "token_limit",
+  "decoding": "greedy",
+  "threshold": 0.9999918937683105
+}

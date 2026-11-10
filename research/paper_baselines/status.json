@@ -1,0 +1,54 @@
+{
+  "pid": 132765,
+  "started": "2026-10-11T13:37:09.958219+00:00",
+  "jobs": {
+    "humaneval": {
+      "state": "running",
+      "reason": null,
+      "command": [
+        "/root/TaH/.venv-tah/bin/python",
+        "-u",
+        "/root/TaH/research/paper_baselines/run.py",
+        "--datasets",
+        "humaneval",
+        "--batch-size",
+        "8",
+        "--output",
+        "/root/TaH/research/paper_baselines/full/humaneval"
+      ],
+      "started": "2026-10-11T13:37:09.958592+00:00"
+    },
+    "mbpp": {
+      "state": "queued",
+      "reason": null
+    },
+    "gsm8k": {
+      "state": "queued",
+      "reason": null
+    },
+    "math500": {
+      "state": "queued",
+      "reason": null
+    },
+    "amc23": {
+      "state": "queued",
+      "reason": null
+    },
+    "aime25": {
+      "state": "queued",
+      "reason": null
+    },
+    "olympiadbench": {
+      "state": "queued",
+      "reason": null
+    },
+    "mmlu_stem": {
+      "state": "queued",
+      "reason": null
+    },
+    "gpqa": {
+      "state": "queued",
+      "reason": null
+    }
+  }
+}

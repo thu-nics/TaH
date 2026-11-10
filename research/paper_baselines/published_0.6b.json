@@ -1,0 +1,16 @@
+{
+  "source": "https://arxiv.org/html/2511.08577v4#S6.T2",
+  "table": 2,
+  "status": "published_reference_scores_not_our_measurements",
+  "unit": "pass@1 percent",
+  "Standard": {
+    "aime25": 1.9, "olympiadbench": 15.4, "amc23": 22.7,
+    "math500": 39.9, "gsm8k": 58.2, "gpqa": 31.1,
+    "mmlu_stem": 54.2, "humaneval": 16.8, "mbpp": 28.8
+  },
+  "TaH+": {
+    "aime25": 4.6, "olympiadbench": 20.6, "amc23": 24.7,
+    "math500": 51.8, "gsm8k": 67.6, "gpqa": 31.3,
+    "mmlu_stem": 59.0, "humaneval": 22.0, "mbpp": 35.1
+  }
+}
