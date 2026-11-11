@@ -47,7 +47,8 @@ add `tah` or `engine` to this environment.
 
 The engine needs Linux, a CUDA-enabled torch build, an NVIDIA GPU with compute
 capability 8.0 or newer (BF16), and a driver that supports that CUDA build.
-FlashInfer compiles kernels on first use, which also needs:
+The engine's bounded prefill kernel compiles on first use, including with
+prebuilt FlashInfer packages. This needs:
 
 - A CUDA Toolkit whose **major version** matches `torch.version.cuda`, including
   `nvcc`. The driver alone is not enough. `nvcc` is searched on `PATH`, then at
@@ -67,8 +68,8 @@ CUDA_VISIBLE_DEVICES=0 python -c 'import tah.engine'
 ```
 
 Importing `tah.engine` runs `check_environment()` unless `CUDA_VISIBLE_DEVICES`
-is exactly the empty string. The check covers imports, CUDA, GPU capability and,
-only when FlashInfer lacks prebuilt kernels, the compiler toolchain. Passing it
+is exactly the empty string. The check covers imports, CUDA, GPU capability and
+the compiler toolchain required by the bounded prefill kernel. Passing it
 does not prove kernel correctness or enough free GPU memory.
 
 | Message starts with | Action |

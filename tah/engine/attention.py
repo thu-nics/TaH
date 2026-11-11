@@ -239,11 +239,11 @@ class PrefillAttention:
         self.mask = torch.cat([g[3].flatten() for g in self.groups])
         self.wrapper = None
         if pool.device.type == "cuda":
-            import flashinfer
+            from .prefill_kernel import make_prefill_wrapper
             qo = torch.tensor([0, *[g[1] for g in self.groups]], dtype=torch.int32)
             kv = torch.tensor([0, *torch.tensor([len(g[2]) for g in self.groups]).cumsum(0).tolist()], dtype=torch.int32)
             self.workspace = workspace if workspace is not None else torch.empty(workspace_bytes, dtype=torch.uint8, device=pool.device)
-            self.wrapper = flashinfer.BatchPrefillWithPagedKVCacheWrapper(self.workspace, "NHD")
+            self.wrapper = make_prefill_wrapper(self.workspace, pool.dtype, pool.values.shape[-1])
             # FlashInfer 0.2.5 segment_packbits requires DEVICE mask pointers.
             # Prefill planning may synchronize; it is outside decode/capture.
             # Source slot IDs, visibility comparisons and packing stay on GPU.
@@ -260,7 +260,8 @@ class PrefillAttention:
         if q.shape != expected or q.dtype != self.pool.dtype or q.device != self.pool.device:
             raise ValueError("prefill query shape/device/dtype mismatch")
         if self.wrapper is not None:
-            return self.wrapper.run(q, (self.pool.values[layer, 0], self.pool.values[layer, 1]))
+            from .prefill_kernel import run_prefill
+            return run_prefill(self.wrapper, q, (self.pool.values[layer, 0], self.pool.values[layer, 1]))
         out = torch.empty_like(q)
         for begin, end, ids, mask in self.groups:
             out[begin:end] = _sdpa(q[begin:end], self.pool.values[layer], ids, mask)
