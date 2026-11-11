@@ -13,6 +13,7 @@ repository root with `source .venv-tah/bin/activate`.
 | `host_arena.py` | `HostArena`: the fixed host swap buffer, pinned once with `cudaHostRegister`. |
 | `kv_cache.py` | `SlotPool`: page-size-one KV storage, request tables, snapshots, audit. |
 | `attention.py`, `attention_kernels.py` | FlashInfer decode/prefill buckets and Triton table kernels. |
+| `prefill_kernel.py` | Cached FA2 prefill JIT variant with bounds checks before custom-mask reads. |
 | `graphs.py` | CUDA graph capture per exact batch size. |
 | `sampling.py` | `SamplingParams`, `GraphSampler`, `RequestRNG`. |
 | `model.py`, `cached_model.py`, `layers.py`, `rope.py`, `weights.py` | Engine-owned model: `EagerTaHModel`, cached passes, LoRA, RoPE, checkpoint loading. |
@@ -32,6 +33,48 @@ CUDA_VISIBLE_DEVICES=0 python -m pytest -q -s -o addopts= -m 'gpu and slow' tah/
 `slow` (production fixture replay or long validation). Use `-o addopts=` to run slow
 cases. `kernel_check.py` is a GPU utility, not a pytest module; see
 [installation](../guide/installation.md#kernel-check-gpu).
+
+`test_prefill_tail.py` compares prefill with an independent float32 CPU oracle
+at query tile boundaries for GQA ratios 1/2/4, including fragmented pages, repeated
+requests and mixed-depth groups. GPU integration tests cover a 209-token prompt
+in `EnginePairs` and eager/graph generation. Run only on an idle GPU:
+
+```bash
+CUDA_VISIBLE_DEVICES=0 PYTORCH_NO_CUDA_MEMORY_CACHING=1 compute-sanitizer \
+  --target-processes application-only --tool memcheck --error-exitcode 99 \
+  python -m pytest -q tah/engine/tests/test_prefill_tail.py -m 'gpu and not slow'
+CUDA_VISIBLE_DEVICES=0 python -m pytest -q -o addopts= \
+  tah/engine/tests/test_prefill_tail.py -m 'gpu and slow'
+CUDA_VISIBLE_DEVICES=0 python -m pytest -q \
+  tah/engine/tests/test_prefill_tail.py::test_chunked_prefill_generation_graph_matches_eager
+```
+
+CUDA graph capture requires the caching allocator, so its generation test is
+skipped when `PYTORCH_NO_CUDA_MEMORY_CACHING=1`; run it separately as above. The
+slow tests launch fresh processes for aligned 128, tail 81, depth-2 tail 80,
+and collector 80 (a 209-token prompt with the last token held for the first paired
+step). The standalone probe compares stock FlashInfer (`--path direct`) with
+the engine's bounded variant (`--path engine`):
+
+```bash
+CUDA_VISIBLE_DEVICES=0 PYTORCH_NO_CUDA_MEMORY_CACHING=1 compute-sanitizer \
+  --target-processes application-only --tool memcheck --error-exitcode 99 \
+  .venv-tah/bin/python -m tah.engine.tests.prefill_tail_probe --case tail80 --path direct
+```
+
+Repeat with `--case aligned`, `--case tail81` and `--case collector80`, then
+`--path engine` to exercise engine metadata. These use synthetic tensors, not
+the remote failed run's saved state. `--path direct --pad-packed-mask` extends only the internal packed
+mask storage as a diagnostic control for FlashInfer 0.2.5 FA2 tail reads; it is not
+a production fix. A numerical pass alone does not establish memory safety: require
+a clean memcheck report too. Keep compiler subprocesses outside instrumentation
+(`--target-processes application-only`); optionally warm the JIT cache by running
+the aligned case without the sanitizer first. CPU metadata/oracle checks:
+
+```bash
+CUDA_VISIBLE_DEVICES='' python -m tah.engine.tests.prefill_tail_probe \
+  --case tail80 --path engine --device cpu
+```
 
 ## Validation CLIs
 
@@ -393,6 +436,14 @@ the GPU; `run(q, layer, *, out=None)` runs attention. `PrefillAttention(pool, ro
 num_q_heads)` handles prefill groups; prefill planning may synchronize with the host.
 Attention objects reject stale cache revisions. Release slots only after in-flight
 attention completes.
+
+CUDA prefill uses an engine-owned FA2 JIT variant (`prefill_kernel.py`) of
+FlashInfer 0.2.5's default attention. It rejects out-of-range Q/KV coordinates
+before reading a custom mask; logical mask sizes and valid-row attention math
+are unchanged. The adapter uses the pinned wrapper's packed mask buffers and
+per-group byte offsets. JIT modules are cached per dtype/head dimension, with a
+source digest in the module name to avoid stale binaries after a source change.
+The local compiler toolchain is required even with prebuilt FlashInfer ops.
 
 `model.forward_cached(embeddings, position_ids, depths, slots, pool, attention, *,
 rotary=None)` runs one pass per row, across requests and depths. It writes K/V for every
