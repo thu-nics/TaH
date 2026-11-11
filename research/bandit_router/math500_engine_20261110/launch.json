@@ -1,0 +1,49 @@
+{
+  "pid": 240898,
+  "command": [
+    "/root/TaH-bandit-engine-20261110/.venv-tah/bin/python",
+    "-u",
+    "-m",
+    "research.bandit_router.experiment",
+    "--backend",
+    "engine",
+    "--model",
+    "models/TaH-plus-0.6B",
+    "--seed",
+    "42",
+    "--count",
+    "500",
+    "--max-reference-tokens",
+    "1024",
+    "--output-dir",
+    "research/bandit_router/math500_engine_20261110"
+  ],
+  "working_directory": "/root/TaH-bandit-engine-20261110",
+  "started_at": "2026-11-10T14:59:19.904527+00:00",
+  "log": "/root/TaH-bandit-engine-20261110/research/bandit_router/math500_engine_20261110/experiment.log",
+  "source": {
+    "base_commit": "93298e5b22d62f56c505b8b4a294427b89f05b4a",
+    "snapshot_sha256": "4a8aeafd518c0b260dbc77bbb9c2e665aad13a11671c5113d8009c9111fd0197",
+    "changed_files": [
+      " M dev-guide/engine.md",
+      " M guide/engine.md",
+      " M report/PROTOCOL.md",
+      " M report/README.md",
+      " M research/bandit_router/.gitignore",
+      " M research/bandit_router/README.md",
+      " M research/bandit_router/core.py",
+      " M research/bandit_router/experiment.py",
+      " M tah/engine/engine.py",
+      "?? research/bandit_router/engine.py",
+      "?? research/bandit_router/engine_run.py",
+      "?? research/bandit_router/test_engine.py"
+    ]
+  },
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "0",
+    "CUDA_HOME": "/usr/local/cuda",
+    "MAX_JOBS": "2",
+    "TORCH_CUDA_ARCH_LIST": "8.9+PTX",
+    "OMP_NUM_THREADS": "4"
+  }
+}

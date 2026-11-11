@@ -1,0 +1,445 @@
+{
+  "runs": {
+    "code-tah2-seed1234": {
+      "created_utc": "2026-10-14T23:20:17+00:00",
+      "datasets": {
+        "humaneval": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 164,
+          "problems": 164,
+          "repeat_size": 1,
+          "samples": 164,
+          "status": "complete"
+        },
+        "mbpp": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 378,
+          "problems": 378,
+          "repeat_size": 1,
+          "samples": 378,
+          "status": "complete"
+        }
+      },
+      "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+      "groups": [
+        {
+          "completed_samples": 164,
+          "datasets": [
+            "humaneval"
+          ],
+          "group": "humaneval_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "fe585eb4df8c88d844eeb463ea4d0302",
+                "graded_at_local": "2026-10-15 03:58",
+                "graded_mtime_utc": "2026-10-15T01:59:11.809288+00:00"
+              },
+              "finished_utc": "2026-10-14T23:31:45+00:00",
+              "metrics": {
+                "generated_tokens": 596358,
+                "generation_seconds": 575.635390440817,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "tah2",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T23:20:17+00:00",
+              "status": "failed"
+            }
+          ]
+        },
+        {
+          "completed_samples": 378,
+          "datasets": [
+            "mbpp"
+          ],
+          "group": "mbpp_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "ee43ecabebf20deef4bb776a405ac5b1",
+                "graded_at_local": "2026-10-15 04:50",
+                "graded_mtime_utc": "2026-10-15T02:55:08.046544+00:00"
+              },
+              "finished_utc": "2026-10-15T02:55:08+00:00",
+              "metrics": {
+                "generated_tokens": 1202172,
+                "generation_seconds": 1202.9235062852968,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "tah2",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-15T02:29:41+00:00",
+              "status": "complete"
+            }
+          ]
+        }
+      ],
+      "merge": {
+        "dropped": 0,
+        "dropped_items": [],
+        "rule": "unique_flushed_csv_source_with_same_leaf_raw; discard_only_unbacked_interrupted_raw",
+        "selected": 542
+      },
+      "merged_utc": "2026-10-15T02:55:09+00:00",
+      "protocol": "paper_r2_code_tah2",
+      "protocol_config_sha256": "1ac25754ab22b5cd25d9dcbd1501b6f15e4591a27912c6aee4d1ac90efec8cce",
+      "samples": 542,
+      "seed": 1234,
+      "source_dir": "data/engine/paper_code_tah2_seed1234",
+      "status": "complete"
+    },
+    "code-tah2-seed2024": {
+      "created_utc": "2026-10-14T23:31:47+00:00",
+      "datasets": {
+        "humaneval": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 164,
+          "problems": 164,
+          "repeat_size": 1,
+          "samples": 164,
+          "status": "complete"
+        },
+        "mbpp": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 378,
+          "problems": 378,
+          "repeat_size": 1,
+          "samples": 378,
+          "status": "complete"
+        }
+      },
+      "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+      "groups": [
+        {
+          "completed_samples": 164,
+          "datasets": [
+            "humaneval"
+          ],
+          "group": "humaneval_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "fe585eb4df8c88d844eeb463ea4d0302",
+                "graded_at_local": "2026-10-15 03:59",
+                "graded_mtime_utc": "2026-10-15T02:00:56.148022+00:00"
+              },
+              "finished_utc": "2026-10-14T23:43:37+00:00",
+              "metrics": {
+                "generated_tokens": 589558,
+                "generation_seconds": 554.395518573001,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "tah2",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T23:31:47+00:00",
+              "status": "failed"
+            }
+          ]
+        },
+        {
+          "completed_samples": 378,
+          "datasets": [
+            "mbpp"
+          ],
+          "group": "mbpp_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "ee43ecabebf20deef4bb776a405ac5b1",
+                "graded_at_local": "2026-10-15 05:15",
+                "graded_mtime_utc": "2026-10-15T03:20:14.746063+00:00"
+              },
+              "finished_utc": "2026-10-15T03:20:15+00:00",
+              "metrics": {
+                "generated_tokens": 1211761,
+                "generation_seconds": 1181.214959864621,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "tah2",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-15T02:55:12+00:00",
+              "status": "complete"
+            }
+          ]
+        }
+      ],
+      "merge": {
+        "dropped": 0,
+        "dropped_items": [],
+        "rule": "unique_flushed_csv_source_with_same_leaf_raw; discard_only_unbacked_interrupted_raw",
+        "selected": 542
+      },
+      "merged_utc": "2026-10-15T03:20:16+00:00",
+      "protocol": "paper_r2_code_tah2",
+      "protocol_config_sha256": "1ac25754ab22b5cd25d9dcbd1501b6f15e4591a27912c6aee4d1ac90efec8cce",
+      "samples": 542,
+      "seed": 2024,
+      "source_dir": "data/engine/paper_code_tah2_seed2024",
+      "status": "complete"
+    },
+    "code-tah2-seed42": {
+      "created_utc": "2026-10-14T23:08:02+00:00",
+      "datasets": {
+        "humaneval": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 164,
+          "problems": 164,
+          "repeat_size": 1,
+          "samples": 164,
+          "status": "complete"
+        },
+        "mbpp": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 378,
+          "problems": 378,
+          "repeat_size": 1,
+          "samples": 378,
+          "status": "complete"
+        }
+      },
+      "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+      "groups": [
+        {
+          "completed_samples": 164,
+          "datasets": [
+            "humaneval"
+          ],
+          "group": "humaneval_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "fe585eb4df8c88d844eeb463ea4d0302",
+                "graded_at_local": "2026-10-15 03:58",
+                "graded_mtime_utc": "2026-10-15T01:58:54.514817+00:00"
+              },
+              "finished_utc": "2026-10-14T23:20:15+00:00",
+              "metrics": {
+                "generated_tokens": 601255,
+                "generation_seconds": 629.5799198347377,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "tah2",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T23:08:02+00:00",
+              "status": "failed"
+            }
+          ]
+        },
+        {
+          "completed_samples": 378,
+          "datasets": [
+            "mbpp"
+          ],
+          "group": "mbpp_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "ee43ecabebf20deef4bb776a405ac5b1",
+                "graded_at_local": "2026-10-15 04:25",
+                "graded_mtime_utc": "2026-10-15T02:29:37.657714+00:00"
+              },
+              "finished_utc": "2026-10-15T02:29:38+00:00",
+              "metrics": {
+                "generated_tokens": 1223953,
+                "generation_seconds": 1327.0865485859104,
+                "restarts": 5
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "tah2",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-15T02:02:10+00:00",
+              "status": "complete"
+            }
+          ]
+        }
+      ],
+      "merge": {
+        "dropped": 0,
+        "dropped_items": [],
+        "rule": "unique_flushed_csv_source_with_same_leaf_raw; discard_only_unbacked_interrupted_raw",
+        "selected": 542
+      },
+      "merged_utc": "2026-10-15T02:29:39+00:00",
+      "protocol": "paper_r2_code_tah2",
+      "protocol_config_sha256": "1ac25754ab22b5cd25d9dcbd1501b6f15e4591a27912c6aee4d1ac90efec8cce",
+      "samples": 542,
+      "seed": 42,
+      "source_dir": "data/engine/paper_code_tah2_seed42",
+      "status": "complete"
+    }
+  },
+  "seeds": [
+    42,
+    1234,
+    2024
+  ],
+  "study": "code-tah2"
+}

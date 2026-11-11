@@ -1,0 +1,84 @@
+{
+  "accuracy_se_factor": 2,
+  "compile_all_bucket_startup_lower_bound_seconds": 300,
+  "compile_startup_note": "Recorded interrupted attempt in notes/log/WP8.md; not a completed startup measurement.",
+  "confirmatory": {
+    "confidence": 0.9,
+    "engine_seeds": [
+      42,
+      1234,
+      2024
+    ],
+    "equivalence_margin_pp": 3,
+    "max_new_tokens": 4096,
+    "problems": {
+      "gpqa": 198,
+      "math500": 200
+    },
+    "reference_seed": 1234,
+    "repeats": 2
+  },
+  "external_experiments": {
+    "memory_ab": {
+      "device": "GPU",
+      "runtime": "5–10 min"
+    }
+  },
+  "generated_mlp_count_floor": 2,
+  "greedy_median_factor": 0.5,
+  "margin_floor": 0.01,
+  "noise_multiplier": 1.5,
+  "note": "Method constants transcribed from notes/SPEC.md and report/PROTOCOL.md; these are policy, not measured results. Historical limit changes are discussed in README.",
+  "pass_relative_margin": 0.1,
+  "performance_target": 5,
+  "reproduction": {
+    "accuracy": {
+      "device": "GPU; resumable groups",
+      "runtime": "12–17 h"
+    },
+    "diagnostics": {
+      "device": "GPU",
+      "runtime": "11–15 min"
+    },
+    "equivalence": {
+      "device": "GPU",
+      "runtime": "2–4 h"
+    },
+    "exact": {
+      "device": "CPU",
+      "runtime": "under 1 min"
+    },
+    "fixtures": {
+      "device": "GPU + CPU preparation",
+      "runtime": "30–45 min"
+    },
+    "memory_ab": {
+      "device": "CPU",
+      "runtime": "seconds"
+    },
+    "negative": {
+      "device": "GPU",
+      "runtime": "20–35 min"
+    },
+    "r1o": {
+      "device": "RTX 3090 24 GiB; CPU curation in seconds",
+      "runtime": "6.08 h measured successful blocks (loading and gaps extra)"
+    },
+    "r2_speed": {
+      "device": "CPU",
+      "runtime": "seconds"
+    },
+    "reference": {
+      "device": "GPU",
+      "runtime": "72–85 min"
+    },
+    "robustness": {
+      "device": "GPU",
+      "runtime": "25–30 min"
+    },
+    "speed": {
+      "device": "GPU",
+      "runtime": "18–25 min"
+    }
+  }
+}

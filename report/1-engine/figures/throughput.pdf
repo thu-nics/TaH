@@ -1,0 +1,45 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 550 340] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+5 0 obj
+<< /Length 692 >>
+stream
+BT /F1 14 Tf 30 310 Td (Generation throughput \(tokens/s\)) Tj ET
+BT /F1 10 Tf 25 275 Td (Reference) Tj ET
+0.15 0.38 0.58 rg 180 270 13.04123 19 re f 0 0 0 rg
+BT /F1 10 Tf 460 275 Td (78.3) Tj ET
+BT /F1 10 Tf 25 236 Td (Eager) Tj ET
+0.15 0.38 0.58 rg 180 231 160.44318 19 re f 0 0 0 rg
+BT /F1 10 Tf 460 236 Td (962.8) Tj ET
+BT /F1 10 Tf 25 197 Td (CUDA graphs) Tj ET
+0.15 0.38 0.58 rg 180 192 225.49417 19 re f 0 0 0 rg
+BT /F1 10 Tf 460 197 Td (1353.2) Tj ET
+BT /F1 10 Tf 25 158 Td (+ overlap) Tj ET
+0.15 0.38 0.58 rg 180 153 270.00000 19 re f 0 0 0 rg
+BT /F1 10 Tf 460 158 Td (1620.3) Tj ET
+BT /F1 9 Tf 25 20 Td (Load, capture and warmup excluded; historical runs on the same device.) Tj ET
+endstream
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000311 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1053
+%%EOF

@@ -58,6 +58,8 @@ Think-at-Hard (TaH) improves LLM reasoning by running extra latent iterations on
 
 TaH and TaH2 require different dependency versions. Activate their separate environments before running the corresponding scripts.
 
+See the [user guide](guide/README.md) for repository layout, installation, TaH evaluation, results, and engine options.
+
 ## TaH2 Usage
 
 This repository includes training recipes, evaluation tools, and an inference engine adapted from [mini-SGLang](https://github.com/sgl-project/mini-sglang), integrated under `tah2/minisgl/`.
@@ -227,7 +229,22 @@ For training and evaluation, install additional dependencies:
 pip install -e '.[tah,training,evaluation]'
 ```
 
-For code generation evaluation, install [evalplus](https://github.com/evalplus/evalplus)
+The TaH inference engine uses FlashInfer and Triton. Install it with the evaluation
+dependencies using:
+
+```bash
+pip install -e '.[tah,evaluation,engine]'
+```
+
+Engine inference requires Linux, an NVIDIA GPU with compute capability 8.0 or newer,
+and an NVIDIA driver supported by the installed PyTorch CUDA build. FlashInfer's PyPI
+package compiles kernels on first use, so a CUDA Toolkit with the same CUDA major version
+as PyTorch and `nvcc` on `PATH`
+or configured through `CUDA_HOME` is also required. Importing `tah.engine` checks these
+requirements and reports setup guidance when one is missing. Runtime JIT compilation
+also needs Python development headers matching the active interpreter (for example,
+`python3.10-devel` on Fedora or `python3.10-dev` on Debian/Ubuntu). Evaluation installs
+`evalplus` according to the `evaluation` extra in `pyproject.toml`.
 
 > **Note** if you ``git pull`` and the top-level package layout changes
 > (e.g. ``__init__.py`` is added or removed), re-run ``pip install -e '.[tah]'``
@@ -238,11 +255,12 @@ For code generation evaluation, install [evalplus](https://github.com/evalplus/e
 ### Run an example for TaH
 
 ```bash
-python script/tah/playground/inference_example.py                       # quick demo (~1 min)
+python script/tah/playground/inference_example.py                       # engine demo (512 tokens)
 python script/tah/playground/inference_example.py --max-new-tokens 16384 # full reasoning chain
 ```
 
-This script demonstrates TaH's selective latent iteration mechanism, with color-coded output showing the iteration count for each token.
+The demo uses the TaH v1 engine by default, with per-token iteration colours.
+Use `--backend tah` for the preserved correctness reference. See [engine usage](guide/engine.md).
 
 ### Run evaluation
 
@@ -253,8 +271,8 @@ python script/tah/evaluation/eval.py \
     --eval_config ./script/tah/recipes/qwen3_1.7/eval_tah.yaml \
     --model_path nics-efc/TaH-plus-1.7B \
     --dataset_name gsm8k \
-    --backend tah \
-    --job_nums 8 \
+    --backend tah_engine \
+    --job_nums 1 \
     --tp_size_per_job 1
 ```
 
@@ -262,15 +280,14 @@ Key parameters:
 - `--eval_config`: Path to evaluation config file
 - `--model_path`: Path to the model
 - `--dataset_name`: Dataset name (supports gsm8k, math500, aime24, etc. Detailed configs can be found in `tah/evaluate/eval_configs/dataset_configs.json`)
-- `--backend`: Inference backend (`tah` for TaH)
+- `--backend`: `tah_engine` (default, recommended for TaH v1), or `tah` (correctness reference)
 - `--job_nums`: Number of parallel jobs (one job pins `tp_size_per_job` GPUs)
 - `--tp_size_per_job`: Tensor parallel size per job
 - `--data_range N` / `--data_range start end`: subset slice — handy for smoke tests
 - `--data_ids gsm8k_0,gsm8k_5`: run only specific problem ids
 
 ##### Single-GPU smoke
-The default recipe targets 8 GPUs (`--job_nums 8`). To sanity-check the pipeline on
-one GPU in a couple of minutes, slice the dataset and shrink `max_new_tokens`:
+To sanity-check the pipeline on one GPU in a couple of minutes, slice the dataset and shrink `max_new_tokens`:
 ```bash
 # clone the recipe and shrink generation length
 sed 's/max_new_tokens: 4096/max_new_tokens: 512/' \
@@ -279,19 +296,21 @@ sed 's/max_new_tokens: 4096/max_new_tokens: 512/' \
 CUDA_VISIBLE_DEVICES=0 python script/tah/evaluation/eval.py \
     --eval_config /tmp/eval_tah_smoke.yaml \
     --model_path nics-efc/TaH-plus-1.7B \
-    --dataset_name gsm8k --backend tah \
+    --dataset_name gsm8k --backend tah_engine \
     --job_nums 1 --tp_size_per_job 1 \
     --data_range 5 \
     --output_dir /tmp/tah_eval_smoke
 ```
-The TaH backend is a token-by-token Python loop intended for research; for serving
-throughput, use `--backend sglang` or the dedicated `minisgl-tah` server.
+The engine submits all selected prompts once, uses continuous batching and CUDA
+graphs, and writes each completion incrementally. The same eval YAML also works
+with `--backend tah`. See [evaluation configuration](guide/evaluation.md) for
+resident batch, swap budget, grading and long-generation settings.
 
 #### Evaluate with a different backend
 
 The same `script/tah/evaluation/eval.py` accepts `--backend hf` (vanilla
 `AutoModelForCausalLM.generate` — useful for non-TaH baselines) or
-`--backend sglang` (sgl Engine for high-throughput serving). All three
+`--backend sglang` (sgl Engine for high-throughput serving). All four
 backends share the same job-sharded driver under
 `tah/evaluate/jobs.py:allocate_gpus_and_run_jobs`.
 

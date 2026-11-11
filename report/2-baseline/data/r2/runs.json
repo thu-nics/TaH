@@ -1,0 +1,1883 @@
+{
+  "runs": {
+    "r2-seed1234": {
+      "created_utc": "2026-10-14T09:47:16+00:00",
+      "datasets": {
+        "aime25": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 240,
+          "problems": 30,
+          "repeat_size": 8,
+          "samples": 240,
+          "status": "complete"
+        },
+        "amc23": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 320,
+          "problems": 40,
+          "repeat_size": 8,
+          "samples": 320,
+          "status": "complete"
+        },
+        "gpqa": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 198,
+          "problems": 198,
+          "repeat_size": 1,
+          "samples": 198,
+          "status": "complete"
+        },
+        "gsm8k": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 1319,
+          "problems": 1319,
+          "repeat_size": 1,
+          "samples": 1319,
+          "status": "complete"
+        },
+        "humaneval": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 164,
+          "problems": 164,
+          "repeat_size": 1,
+          "samples": 164,
+          "status": "complete"
+        },
+        "math500": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 500,
+          "problems": 500,
+          "repeat_size": 1,
+          "samples": 500,
+          "status": "complete"
+        },
+        "mbpp": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 378,
+          "problems": 378,
+          "repeat_size": 1,
+          "samples": 378,
+          "status": "complete"
+        },
+        "mmlu_stem": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 3153,
+          "problems": 3153,
+          "repeat_size": 1,
+          "samples": 3153,
+          "status": "complete"
+        },
+        "olympiadbench": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 675,
+          "problems": 675,
+          "repeat_size": 1,
+          "samples": 675,
+          "status": "complete"
+        }
+      },
+      "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+      "groups": [
+        {
+          "completed_samples": 240,
+          "datasets": [
+            "aime25"
+          ],
+          "group": "aime25",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T10:30:11+00:00",
+              "metrics": {
+                "generated_tokens": 1823204,
+                "generation_seconds": 2529.1258337734034,
+                "restarts": 46
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 8,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T09:47:16+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 320,
+          "datasets": [
+            "amc23"
+          ],
+          "group": "amc23",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T11:07:23+00:00",
+              "metrics": {
+                "generated_tokens": 1938050,
+                "generation_seconds": 2183.683752050274,
+                "restarts": 44
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 8,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T10:30:11+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 675,
+          "datasets": [
+            "olympiadbench"
+          ],
+          "group": "olympiadbench",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T12:29:48+00:00",
+              "metrics": {
+                "generated_tokens": 4259623,
+                "generation_seconds": 4883.988566893968,
+                "restarts": 91
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T11:07:24+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 500,
+          "datasets": [
+            "math500"
+          ],
+          "group": "math500",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T13:03:15+00:00",
+              "metrics": {
+                "generated_tokens": 2087994,
+                "generation_seconds": 1955.2266619959846,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T12:29:49+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 198,
+          "datasets": [
+            "gpqa"
+          ],
+          "group": "gpqa",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T13:32:47+00:00",
+              "metrics": {
+                "generated_tokens": 1254080,
+                "generation_seconds": 1726.860669983551,
+                "restarts": 39
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T13:03:15+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 164,
+          "datasets": [
+            "humaneval"
+          ],
+          "group": "humaneval_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "fe585eb4df8c88d844eeb463ea4d0302",
+                "graded_at_local": "2026-10-14 15:48",
+                "graded_mtime_utc": "2026-10-14T13:50:05.666322+00:00"
+              },
+              "finished_utc": "2026-10-14T13:50:06+00:00",
+              "metrics": {
+                "generated_tokens": 59919,
+                "generation_seconds": 166.33760028728284,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T13:32:48+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 378,
+          "datasets": [
+            "mbpp"
+          ],
+          "group": "mbpp_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "ee43ecabebf20deef4bb776a405ac5b1",
+                "graded_at_local": "2026-10-14 16:29",
+                "graded_mtime_utc": "2026-10-14T14:34:08.881370+00:00"
+              },
+              "finished_utc": "2026-10-14T14:34:09+00:00",
+              "metrics": {
+                "generated_tokens": 121353,
+                "generation_seconds": 197.87243031628896,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T13:50:06+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 1319,
+          "datasets": [
+            "gsm8k"
+          ],
+          "group": "gsm8k",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T14:50:49+00:00",
+              "metrics": {
+                "generated_tokens": 2079187,
+                "generation_seconds": 938.4384382553399,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 4096,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T14:34:09+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 3153,
+          "datasets": [
+            "mmlu_stem"
+          ],
+          "group": "mmlu_stem",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T15:41:55+00:00",
+              "metrics": {
+                "generated_tokens": 5609795,
+                "generation_seconds": 2969.822886765469,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 1234,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 4096,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T14:50:50+00:00",
+              "status": "complete"
+            }
+          ]
+        }
+      ],
+      "merge": {
+        "dropped": 0,
+        "dropped_items": [],
+        "rule": "unique_flushed_csv_source_with_same_leaf_raw; discard_only_unbacked_interrupted_raw",
+        "selected": 6947
+      },
+      "merged_utc": "2026-10-14T15:42:03+00:00",
+      "protocol": "paper_r2",
+      "protocol_config_sha256": "ff888078a08501de663fc60457acdb202eba4c2d386af46a03625a611c69916a",
+      "samples": 6947,
+      "seed": 1234,
+      "source_dir": "data/engine/paper_protocol_seed1234",
+      "status": "complete"
+    },
+    "r2-seed2024": {
+      "created_utc": "2026-10-14T15:42:12+00:00",
+      "datasets": {
+        "aime25": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 240,
+          "problems": 30,
+          "repeat_size": 8,
+          "samples": 240,
+          "status": "complete"
+        },
+        "amc23": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 320,
+          "problems": 40,
+          "repeat_size": 8,
+          "samples": 320,
+          "status": "complete"
+        },
+        "gpqa": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 198,
+          "problems": 198,
+          "repeat_size": 1,
+          "samples": 198,
+          "status": "complete"
+        },
+        "gsm8k": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 1319,
+          "problems": 1319,
+          "repeat_size": 1,
+          "samples": 1319,
+          "status": "complete"
+        },
+        "humaneval": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 164,
+          "problems": 164,
+          "repeat_size": 1,
+          "samples": 164,
+          "status": "complete"
+        },
+        "math500": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 500,
+          "problems": 500,
+          "repeat_size": 1,
+          "samples": 500,
+          "status": "complete"
+        },
+        "mbpp": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 378,
+          "problems": 378,
+          "repeat_size": 1,
+          "samples": 378,
+          "status": "complete"
+        },
+        "mmlu_stem": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 3153,
+          "problems": 3153,
+          "repeat_size": 1,
+          "samples": 3153,
+          "status": "complete"
+        },
+        "olympiadbench": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 675,
+          "problems": 675,
+          "repeat_size": 1,
+          "samples": 675,
+          "status": "complete"
+        }
+      },
+      "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+      "groups": [
+        {
+          "completed_samples": 240,
+          "datasets": [
+            "aime25"
+          ],
+          "group": "aime25",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T16:19:45+00:00",
+              "metrics": {
+                "generated_tokens": 1775383,
+                "generation_seconds": 2204.878385387012,
+                "restarts": 38
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 8,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T15:42:12+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 320,
+          "datasets": [
+            "amc23"
+          ],
+          "group": "amc23",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T16:57:02+00:00",
+              "metrics": {
+                "generated_tokens": 1936972,
+                "generation_seconds": 2189.153163595125,
+                "restarts": 57
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 8,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T16:19:45+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 675,
+          "datasets": [
+            "olympiadbench"
+          ],
+          "group": "olympiadbench",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T18:18:59+00:00",
+              "metrics": {
+                "generated_tokens": 4266826,
+                "generation_seconds": 4854.838448698632,
+                "restarts": 81
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T16:57:03+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 500,
+          "datasets": [
+            "math500"
+          ],
+          "group": "math500",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T18:51:22+00:00",
+              "metrics": {
+                "generated_tokens": 2042649,
+                "generation_seconds": 1891.8893165719928,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T18:19:00+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 198,
+          "datasets": [
+            "gpqa"
+          ],
+          "group": "gpqa",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T19:22:07+00:00",
+              "metrics": {
+                "generated_tokens": 1265085,
+                "generation_seconds": 1799.1944825944956,
+                "restarts": 55
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T18:51:22+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 164,
+          "datasets": [
+            "humaneval"
+          ],
+          "group": "humaneval_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "fe585eb4df8c88d844eeb463ea4d0302",
+                "graded_at_local": "2026-10-14 21:36",
+                "graded_mtime_utc": "2026-10-14T19:38:27.203358+00:00"
+              },
+              "finished_utc": "2026-10-14T19:38:27+00:00",
+              "metrics": {
+                "generated_tokens": 43320,
+                "generation_seconds": 135.07378485321533,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T19:22:07+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 378,
+          "datasets": [
+            "mbpp"
+          ],
+          "group": "mbpp_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "ee43ecabebf20deef4bb776a405ac5b1",
+                "graded_at_local": "2026-10-14 22:30",
+                "graded_mtime_utc": "2026-10-14T20:34:58.942105+00:00"
+              },
+              "finished_utc": "2026-10-14T20:34:59+00:00",
+              "metrics": {
+                "generated_tokens": 139781,
+                "generation_seconds": 205.08600764768198,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T19:38:27+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 1319,
+          "datasets": [
+            "gsm8k"
+          ],
+          "group": "gsm8k",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T20:51:29+00:00",
+              "metrics": {
+                "generated_tokens": 2070027,
+                "generation_seconds": 929.0741005212767,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 4096,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T20:34:59+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 3153,
+          "datasets": [
+            "mmlu_stem"
+          ],
+          "group": "mmlu_stem",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T21:42:12+00:00",
+              "metrics": {
+                "generated_tokens": 5562121,
+                "generation_seconds": 2946.455333497026,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 2024,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 4096,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T20:51:30+00:00",
+              "status": "complete"
+            }
+          ]
+        }
+      ],
+      "merge": {
+        "dropped": 0,
+        "dropped_items": [],
+        "rule": "unique_flushed_csv_source_with_same_leaf_raw; discard_only_unbacked_interrupted_raw",
+        "selected": 6947
+      },
+      "merged_utc": "2026-10-14T21:42:18+00:00",
+      "protocol": "paper_r2",
+      "protocol_config_sha256": "ff888078a08501de663fc60457acdb202eba4c2d386af46a03625a611c69916a",
+      "samples": 6947,
+      "seed": 2024,
+      "source_dir": "data/engine/paper_protocol_seed2024",
+      "status": "complete"
+    },
+    "r2-seed42": {
+      "created_utc": "2026-10-14T00:56:06+00:00",
+      "datasets": {
+        "aime25": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 240,
+          "problems": 30,
+          "repeat_size": 8,
+          "samples": 240,
+          "status": "complete"
+        },
+        "amc23": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 320,
+          "problems": 40,
+          "repeat_size": 8,
+          "samples": 320,
+          "status": "complete"
+        },
+        "gpqa": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 198,
+          "problems": 198,
+          "repeat_size": 1,
+          "samples": 198,
+          "status": "complete"
+        },
+        "gsm8k": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 1319,
+          "problems": 1319,
+          "repeat_size": 1,
+          "samples": 1319,
+          "status": "complete"
+        },
+        "humaneval": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 164,
+          "problems": 164,
+          "repeat_size": 1,
+          "samples": 164,
+          "status": "complete"
+        },
+        "math500": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 500,
+          "problems": 500,
+          "repeat_size": 1,
+          "samples": 500,
+          "status": "complete"
+        },
+        "mbpp": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 378,
+          "problems": 378,
+          "repeat_size": 1,
+          "samples": 378,
+          "status": "complete"
+        },
+        "mmlu_stem": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 3153,
+          "problems": 3153,
+          "repeat_size": 1,
+          "samples": 3153,
+          "status": "complete"
+        },
+        "olympiadbench": {
+          "config_values": {
+            "code_prompt": "harness",
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 1,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "expected_samples": 675,
+          "problems": 675,
+          "repeat_size": 1,
+          "samples": 675,
+          "status": "complete"
+        }
+      },
+      "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+      "groups": [
+        {
+          "completed_samples": 240,
+          "datasets": [
+            "aime25"
+          ],
+          "group": "aime25",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T01:35:14+00:00",
+              "metrics": {
+                "generated_tokens": 1824975,
+                "generation_seconds": 2275.87718356424,
+                "restarts": 37
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 8,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T00:56:06+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 320,
+          "datasets": [
+            "amc23"
+          ],
+          "group": "amc23",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": null,
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 8,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T01:35:14+00:00",
+              "status": "started"
+            },
+            {
+              "attempt": "0002-resume-sample-0",
+              "finished_utc": "2026-10-14T04:27:47+00:00",
+              "metrics": {
+                "generated_tokens": 56414,
+                "generation_seconds": 162.65408054215368,
+                "restarts": 0
+              },
+              "sample_index_remap": 0,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:24:51+00:00",
+              "status": "complete"
+            },
+            {
+              "attempt": "0003-resume-sample-1",
+              "finished_utc": "2026-10-14T04:30:43+00:00",
+              "metrics": {
+                "generated_tokens": 56414,
+                "generation_seconds": 163.07570263370872,
+                "restarts": 0
+              },
+              "sample_index_remap": 1,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:27:47+00:00",
+              "status": "complete"
+            },
+            {
+              "attempt": "0004-resume-sample-2",
+              "finished_utc": null,
+              "sample_index_remap": 2,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:30:43+00:00",
+              "status": "started"
+            },
+            {
+              "attempt": "0005-resume-sample-2",
+              "finished_utc": "2026-10-14T04:39:20+00:00",
+              "metrics": {
+                "generated_tokens": 56414,
+                "generation_seconds": 163.07235364802182,
+                "restarts": 0
+              },
+              "sample_index_remap": 2,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:36:25+00:00",
+              "status": "complete"
+            },
+            {
+              "attempt": "0006-resume-sample-3",
+              "finished_utc": "2026-10-14T04:42:17+00:00",
+              "metrics": {
+                "generated_tokens": 56414,
+                "generation_seconds": 163.43666042096447,
+                "restarts": 0
+              },
+              "sample_index_remap": 3,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:39:20+00:00",
+              "status": "complete"
+            },
+            {
+              "attempt": "0007-resume-sample-4",
+              "finished_utc": "2026-10-14T04:45:13+00:00",
+              "metrics": {
+                "generated_tokens": 56414,
+                "generation_seconds": 163.68541409401223,
+                "restarts": 0
+              },
+              "sample_index_remap": 4,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:42:17+00:00",
+              "status": "complete"
+            },
+            {
+              "attempt": "0008-resume-sample-5",
+              "finished_utc": "2026-10-14T04:48:09+00:00",
+              "metrics": {
+                "generated_tokens": 56414,
+                "generation_seconds": 163.86840703804046,
+                "restarts": 0
+              },
+              "sample_index_remap": 5,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:45:13+00:00",
+              "status": "complete"
+            },
+            {
+              "attempt": "0009-resume-sample-6",
+              "finished_utc": "2026-10-14T04:51:09+00:00",
+              "metrics": {
+                "generated_tokens": 61956,
+                "generation_seconds": 165.8152689859271,
+                "restarts": 0
+              },
+              "sample_index_remap": 6,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:48:09+00:00",
+              "status": "complete"
+            },
+            {
+              "attempt": "0010-resume-sample-7",
+              "finished_utc": "2026-10-14T04:54:06+00:00",
+              "metrics": {
+                "generated_tokens": 56414,
+                "generation_seconds": 163.94866519700736,
+                "restarts": 0
+              },
+              "sample_index_remap": 7,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:51:09+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 675,
+          "datasets": [
+            "olympiadbench"
+          ],
+          "group": "olympiadbench",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T06:26:56+00:00",
+              "metrics": {
+                "generated_tokens": 4279624,
+                "generation_seconds": 5510.523889435339,
+                "restarts": 130
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T04:54:06+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 500,
+          "datasets": [
+            "math500"
+          ],
+          "group": "math500",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T07:02:32+00:00",
+              "metrics": {
+                "generated_tokens": 2088749,
+                "generation_seconds": 2084.434079890605,
+                "restarts": 8
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T06:26:56+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 198,
+          "datasets": [
+            "gpqa"
+          ],
+          "group": "gpqa",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T07:36:47+00:00",
+              "metrics": {
+                "generated_tokens": 1302941,
+                "generation_seconds": 2008.3387940233806,
+                "restarts": 30
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T07:02:32+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 164,
+          "datasets": [
+            "humaneval"
+          ],
+          "group": "humaneval_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "fe585eb4df8c88d844eeb463ea4d0302",
+                "graded_at_local": "2026-10-14 09:51",
+                "graded_mtime_utc": "2026-10-14T07:53:48.838711+00:00"
+              },
+              "finished_utc": "2026-10-14T07:53:49+00:00",
+              "metrics": {
+                "generated_tokens": 45151,
+                "generation_seconds": 131.91586574155372,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T07:36:47+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 378,
+          "datasets": [
+            "mbpp"
+          ],
+          "group": "mbpp_plus",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "evalplus": {
+                "dataset_hash": "ee43ecabebf20deef4bb776a405ac5b1",
+                "graded_at_local": "2026-10-14 10:33",
+                "graded_mtime_utc": "2026-10-14T08:38:12.391436+00:00"
+              },
+              "finished_utc": "2026-10-14T08:38:13+00:00",
+              "metrics": {
+                "generated_tokens": 86953,
+                "generation_seconds": 179.62298269628081,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 8192,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T07:53:49+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 1319,
+          "datasets": [
+            "gsm8k"
+          ],
+          "group": "gsm8k",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T08:54:44+00:00",
+              "metrics": {
+                "generated_tokens": 2069100,
+                "generation_seconds": 931.8395644705743,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 4096,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T08:38:13+00:00",
+              "status": "complete"
+            }
+          ]
+        },
+        {
+          "completed_samples": 3153,
+          "datasets": [
+            "mmlu_stem"
+          ],
+          "group": "mmlu_stem",
+          "subruns": [
+            {
+              "attempt": "0001-initial",
+              "finished_utc": "2026-10-14T09:47:01+00:00",
+              "metrics": {
+                "generated_tokens": 5660753,
+                "generation_seconds": 3040.3235863107257,
+                "restarts": 0
+              },
+              "sample_index_remap": null,
+              "settings": {
+                "_random_seed": 42,
+                "code_prompt": "harness",
+                "dtype": "bfloat16",
+                "eval_iter_decider": "iter_decider",
+                "iter_decider": "MLPIterDecider",
+                "max_iter": 2,
+                "max_new_tokens": 4096,
+                "min_p": 0.0,
+                "repeat_size": 1,
+                "temperature": 0.6,
+                "threshold": 0.9,
+                "top_k": 20,
+                "top_p": 0.95
+              },
+              "started_utc": "2026-10-14T08:54:44+00:00",
+              "status": "complete"
+            }
+          ]
+        }
+      ],
+      "merge": {
+        "dropped": 1,
+        "dropped_items": [
+          {
+            "attempt": "0001-initial",
+            "group": "amc23",
+            "problem_id": "amc23_33",
+            "reason": "no_flushed_csv_row_in_interrupted_leaf",
+            "sample_idx": 6
+          }
+        ],
+        "rule": "unique_flushed_csv_source_with_same_leaf_raw; discard_only_unbacked_interrupted_raw",
+        "selected": 6947
+      },
+      "merged_utc": "2026-10-14T10:02:43+00:00",
+      "protocol": "paper_r2",
+      "protocol_config_sha256": "ff888078a08501de663fc60457acdb202eba4c2d386af46a03625a611c69916a",
+      "samples": 6947,
+      "seed": 42,
+      "source_dir": "data/engine/paper_protocol_seed42",
+      "status": "complete"
+    }
+  },
+  "seeds": [
+    42,
+    1234,
+    2024
+  ],
+  "study": "r2"
+}

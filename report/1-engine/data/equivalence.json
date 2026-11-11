@@ -1,0 +1,2711 @@
+{
+  "greedy": [
+    {
+      "checkpoint": "real",
+      "median_first_divergence": 41.5,
+      "median_limit": 21.0,
+      "reference_median_first_divergence": 42.0,
+      "status": "PASS"
+    },
+    {
+      "checkpoint": "mlp3",
+      "median_first_divergence": 28.5,
+      "median_limit": 16.0,
+      "reference_median_first_divergence": 32.0,
+      "status": "PASS"
+    },
+    {
+      "checkpoint": "mlp1",
+      "median_first_divergence": 256.0,
+      "median_limit": 128.0,
+      "reference_median_first_divergence": 256.0,
+      "status": "PASS"
+    },
+    {
+      "checkpoint": "label3",
+      "median_first_divergence": 256.0,
+      "median_limit": 128.0,
+      "reference_median_first_divergence": 256.0,
+      "status": "PASS"
+    }
+  ],
+  "reports": [
+    {
+      "checkpoint": "real",
+      "decision_limits": {
+        "flip_margin_limit": 0.041015625,
+        "pass_count_mismatch_rate_limit": 0.001232328869047619,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.001232328869047619,
+            "reference_common_visited": 64512,
+            "reference_flips": 53
+          },
+          {
+            "depth": 2,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 340,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.02734375,
+        "reference_pass_count_mismatches": 53,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "full",
+      "noise_limits": {
+        "common_decision_mismatches": 53,
+        "decision_agreement": 0.998366843848702,
+        "decision_compared": 64905,
+        "decision_mismatches": 106,
+        "g_tf_logit_mae_limit": 0.16488081029899007,
+        "g_tf_logit_max_abs_limit": 35.25,
+        "g_tf_logit_rmse_limit": 0.7021726658548125,
+        "g_tf_top1_disagreement_limit": 0.00337146577380959,
+        "logit_abs_sum": 1077407634.770605,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.10992054019932672,
+        "logit_max_abs": 23.5,
+        "logit_rmse": 0.46811511056987504,
+        "logit_squared_sum": 2147862695.2559423,
+        "mismatches_within_0.01": 51,
+        "pass_count_mismatches": 53,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 53,
+            "decision_agreement": 0.9991784474206349,
+            "decision_compared": 64512,
+            "decision_mismatches": 53,
+            "depth": 1,
+            "mismatches_within_0.01": 51,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 0.8651399491094147,
+            "decision_compared": 393,
+            "decision_mismatches": 53,
+            "depth": 2,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 53
+          }
+        ],
+        "reference_max_flip_margin": 0.02734375,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.14379387273517433,
+          "g_tf_logit_max_abs_limit": 7.921875,
+          "g_tf_logit_rmse_limit": 0.3685371218780731,
+          "logit_elements": 21878784,
+          "logit_mae": 0.09586258182344955,
+          "logit_max_abs": 5.28125,
+          "logit_rmse": 0.24569141458538207
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.16744107291811988,
+          "g_tf_logit_max_abs_limit": 32.625,
+          "g_tf_logit_rmse_limit": 0.6889254087629288,
+          "logit_elements": 2064384,
+          "logit_mae": 0.11162738194541326,
+          "logit_max_abs": 21.75,
+          "logit_rmse": 0.45928360584195255
+        },
+        "top1_agreement": 0.9977523561507936,
+        "top1_compared": 64512,
+        "top1_mismatches": 145,
+        "visited_mismatches": 53
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 76,
+        "decision_agreement": 0.998126879282299,
+        "decision_compared": 81148,
+        "decision_mismatches": 152,
+        "g_tf_logit_mae_limit": 0.17112150542511007,
+        "g_tf_logit_max_abs_limit": 35.25,
+        "g_tf_logit_rmse_limit": 0.7552313324082105,
+        "g_tf_top1_disagreement_limit": 0.004017857142857129,
+        "logit_abs_sum": 1397734036.5149696,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.11408100361674005,
+        "logit_max_abs": 23.5,
+        "logit_rmse": 0.503487554938807,
+        "logit_squared_sum": 3105908721.2760487,
+        "mismatches_within_0.01": 63,
+        "pass_count_mismatch_rate": 0.0009424603174603175,
+        "pass_count_mismatches": 76,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 76,
+            "common_flip_rate": 0.0009424603174603175,
+            "common_visited_compared": 80640,
+            "decision_agreement": 0.9990575396825396,
+            "decision_compared": 80640,
+            "decision_mismatches": 76,
+            "depth": 1,
+            "max_flip_margin": 0.0234375,
+            "mismatches_within_0.01": 63,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 432,
+            "decision_agreement": 0.8503937007874016,
+            "decision_compared": 508,
+            "decision_mismatches": 76,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 76
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.11683120473126635,
+          "g_tf_logit_max_abs_limit": 5.53857421875,
+          "g_tf_logit_rmse_limit": 0.24718614743302014,
+          "logit_elements": 27348480,
+          "logit_mae": 0.07788746982084423,
+          "logit_max_abs": 3.6923828125,
+          "logit_rmse": 0.16479076495534675
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.17383048647925967,
+          "g_tf_logit_max_abs_limit": 29.25,
+          "g_tf_logit_rmse_limit": 0.7412895932027427,
+          "logit_elements": 2580480,
+          "logit_mae": 0.11588699098617311,
+          "logit_max_abs": 19.5,
+          "logit_rmse": 0.4941930621351618
+        },
+        "top1_agreement": 0.9973214285714286,
+        "top1_compared": 80640,
+        "top1_mismatches": 216,
+        "visited_mismatches": 76
+      }
+    },
+    {
+      "checkpoint": "real",
+      "decision_limits": {
+        "flip_margin_limit": 0.041015625,
+        "pass_count_mismatch_rate_limit": 0.001232328869047619,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.001232328869047619,
+            "reference_common_visited": 64512,
+            "reference_flips": 53
+          },
+          {
+            "depth": 2,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 340,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.02734375,
+        "reference_pass_count_mismatches": 53,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "cached-1",
+      "noise_limits": {
+        "common_decision_mismatches": 53,
+        "decision_agreement": 0.998366843848702,
+        "decision_compared": 64905,
+        "decision_mismatches": 106,
+        "g_tf_logit_mae_limit": 0.16488081029899007,
+        "g_tf_logit_max_abs_limit": 35.25,
+        "g_tf_logit_rmse_limit": 0.7021726658548125,
+        "g_tf_top1_disagreement_limit": 0.00337146577380959,
+        "logit_abs_sum": 1077407634.770605,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.10992054019932672,
+        "logit_max_abs": 23.5,
+        "logit_rmse": 0.46811511056987504,
+        "logit_squared_sum": 2147862695.2559423,
+        "mismatches_within_0.01": 51,
+        "pass_count_mismatches": 53,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 53,
+            "decision_agreement": 0.9991784474206349,
+            "decision_compared": 64512,
+            "decision_mismatches": 53,
+            "depth": 1,
+            "mismatches_within_0.01": 51,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 0.8651399491094147,
+            "decision_compared": 393,
+            "decision_mismatches": 53,
+            "depth": 2,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 53
+          }
+        ],
+        "reference_max_flip_margin": 0.02734375,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.14379387273517433,
+          "g_tf_logit_max_abs_limit": 7.921875,
+          "g_tf_logit_rmse_limit": 0.3685371218780731,
+          "logit_elements": 21878784,
+          "logit_mae": 0.09586258182344955,
+          "logit_max_abs": 5.28125,
+          "logit_rmse": 0.24569141458538207
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.16744107291811988,
+          "g_tf_logit_max_abs_limit": 32.625,
+          "g_tf_logit_rmse_limit": 0.6889254087629288,
+          "logit_elements": 2064384,
+          "logit_mae": 0.11162738194541326,
+          "logit_max_abs": 21.75,
+          "logit_rmse": 0.45928360584195255
+        },
+        "top1_agreement": 0.9977523561507936,
+        "top1_compared": 64512,
+        "top1_mismatches": 145,
+        "visited_mismatches": 53
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 68,
+        "decision_agreement": 0.998323657385152,
+        "decision_compared": 81129,
+        "decision_mismatches": 136,
+        "g_tf_logit_mae_limit": 0.1667918631285692,
+        "g_tf_logit_max_abs_limit": 35.26171875,
+        "g_tf_logit_rmse_limit": 0.7184756872002647,
+        "g_tf_top1_disagreement_limit": 0.00394345238095245,
+        "logit_abs_sum": 1362369174.636411,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.11119457541904612,
+        "logit_max_abs": 23.5078125,
+        "logit_rmse": 0.4789837914668431,
+        "logit_squared_sum": 2810948199.7306356,
+        "mismatches_within_0.01": 64,
+        "pass_count_mismatch_rate": 0.0008432539682539683,
+        "pass_count_mismatches": 68,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 68,
+            "common_flip_rate": 0.0008432539682539683,
+            "common_visited_compared": 80640,
+            "decision_agreement": 0.999156746031746,
+            "decision_compared": 80640,
+            "decision_mismatches": 68,
+            "depth": 1,
+            "max_flip_margin": 0.0234375,
+            "mismatches_within_0.01": 64,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 421,
+            "decision_agreement": 0.8609406952965235,
+            "decision_compared": 489,
+            "decision_mismatches": 68,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 68
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.1178985484993527,
+          "g_tf_logit_max_abs_limit": 5.841796875,
+          "g_tf_logit_rmse_limit": 0.2098746339568345,
+          "logit_elements": 27348480,
+          "logit_mae": 0.0785990323329018,
+          "logit_max_abs": 3.89453125,
+          "logit_rmse": 0.13991642263788967
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.17000281924293156,
+          "g_tf_logit_max_abs_limit": 29.25,
+          "g_tf_logit_rmse_limit": 0.7125065124424426,
+          "logit_elements": 2580480,
+          "logit_mae": 0.11333521282862104,
+          "logit_max_abs": 19.5,
+          "logit_rmse": 0.475004341628295
+        },
+        "top1_agreement": 0.9973710317460317,
+        "top1_compared": 80640,
+        "top1_mismatches": 212,
+        "visited_mismatches": 68
+      }
+    },
+    {
+      "checkpoint": "real",
+      "decision_limits": {
+        "flip_margin_limit": 0.041015625,
+        "pass_count_mismatch_rate_limit": 0.001232328869047619,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.001232328869047619,
+            "reference_common_visited": 64512,
+            "reference_flips": 53
+          },
+          {
+            "depth": 2,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 340,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.02734375,
+        "reference_pass_count_mismatches": 53,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "cached-256",
+      "noise_limits": {
+        "common_decision_mismatches": 53,
+        "decision_agreement": 0.998366843848702,
+        "decision_compared": 64905,
+        "decision_mismatches": 106,
+        "g_tf_logit_mae_limit": 0.16488081029899007,
+        "g_tf_logit_max_abs_limit": 35.25,
+        "g_tf_logit_rmse_limit": 0.7021726658548125,
+        "g_tf_top1_disagreement_limit": 0.00337146577380959,
+        "logit_abs_sum": 1077407634.770605,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.10992054019932672,
+        "logit_max_abs": 23.5,
+        "logit_rmse": 0.46811511056987504,
+        "logit_squared_sum": 2147862695.2559423,
+        "mismatches_within_0.01": 51,
+        "pass_count_mismatches": 53,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 53,
+            "decision_agreement": 0.9991784474206349,
+            "decision_compared": 64512,
+            "decision_mismatches": 53,
+            "depth": 1,
+            "mismatches_within_0.01": 51,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 0.8651399491094147,
+            "decision_compared": 393,
+            "decision_mismatches": 53,
+            "depth": 2,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 53
+          }
+        ],
+        "reference_max_flip_margin": 0.02734375,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.14379387273517433,
+          "g_tf_logit_max_abs_limit": 7.921875,
+          "g_tf_logit_rmse_limit": 0.3685371218780731,
+          "logit_elements": 21878784,
+          "logit_mae": 0.09586258182344955,
+          "logit_max_abs": 5.28125,
+          "logit_rmse": 0.24569141458538207
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.16744107291811988,
+          "g_tf_logit_max_abs_limit": 32.625,
+          "g_tf_logit_rmse_limit": 0.6889254087629288,
+          "logit_elements": 2064384,
+          "logit_mae": 0.11162738194541326,
+          "logit_max_abs": 21.75,
+          "logit_rmse": 0.45928360584195255
+        },
+        "top1_agreement": 0.9977523561507936,
+        "top1_compared": 64512,
+        "top1_mismatches": 145,
+        "visited_mismatches": 53
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 70,
+        "decision_agreement": 0.9982745871333497,
+        "decision_compared": 81140,
+        "decision_mismatches": 140,
+        "g_tf_logit_mae_limit": 0.16804184303019293,
+        "g_tf_logit_max_abs_limit": 34.875,
+        "g_tf_logit_rmse_limit": 0.7215690792078612,
+        "g_tf_top1_disagreement_limit": 0.0038504464285713524,
+        "logit_abs_sum": 1372579109.6712787,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.11202789535346196,
+        "logit_max_abs": 23.25,
+        "logit_rmse": 0.48104605280524076,
+        "logit_squared_sum": 2835205342.3612423,
+        "mismatches_within_0.01": 54,
+        "pass_count_mismatch_rate": 0.0008680555555555555,
+        "pass_count_mismatches": 70,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 70,
+            "common_flip_rate": 0.0008680555555555555,
+            "common_visited_compared": 80640,
+            "decision_agreement": 0.9991319444444444,
+            "decision_compared": 80640,
+            "decision_mismatches": 70,
+            "depth": 1,
+            "max_flip_margin": 0.015625,
+            "mismatches_within_0.01": 54,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 430,
+            "decision_agreement": 0.86,
+            "decision_compared": 500,
+            "decision_mismatches": 70,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 70
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.1214449034313871,
+          "g_tf_logit_max_abs_limit": 7.8984375,
+          "g_tf_logit_rmse_limit": 0.2523982249452092,
+          "logit_elements": 27348480,
+          "logit_mae": 0.08096326895425807,
+          "logit_max_abs": 5.265625,
+          "logit_rmse": 0.16826548329680613
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.17173665364583335,
+          "g_tf_logit_max_abs_limit": 28.3125,
+          "g_tf_logit_rmse_limit": 0.7119118617384659,
+          "logit_elements": 2580480,
+          "logit_mae": 0.11449110243055556,
+          "logit_max_abs": 18.875,
+          "logit_rmse": 0.47460790782564394
+        },
+        "top1_agreement": 0.9974330357142858,
+        "top1_compared": 80640,
+        "top1_mismatches": 207,
+        "visited_mismatches": 70
+      }
+    },
+    {
+      "checkpoint": "real",
+      "comparison_unix_time": 1791823881.3921354,
+      "decision_limits": {
+        "flip_margin_limit": 0.029296875,
+        "pass_count_mismatch_rate_limit": 0.007523442611034383,
+        "per_depth": [
+          {
+            "depth": 1,
+            "effective_reference_flips": 69,
+            "flip_rate_limit": 0.007523442611034383,
+            "reference_common_visited": 13757,
+            "reference_flips": 69
+          },
+          {
+            "depth": 2,
+            "effective_reference_flips": 0,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 1036,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.01953125,
+        "reference_pass_count_mismatches": 69,
+        "reference_token_comparisons": 13757
+      },
+      "generated_positions": 9113,
+      "layout": "generated",
+      "limits_saved_unix_time": 1791823772.22208,
+      "limits_sha256": "091c3bcd630a77b8e7e27582c8eb51d3267ba91f7050c94cfdb559ce0c20decb",
+      "noise_limits": {
+        "common_decision_mismatches": 69,
+        "decision_agreement": 0.9907145740815503,
+        "decision_compared": 14862,
+        "decision_mismatches": 138,
+        "g_tf_logit_mae_limit": 0.24879039479730636,
+        "g_tf_logit_max_abs_limit": 40.171875,
+        "g_tf_logit_rmse_limit": 1.7084114854459402,
+        "g_tf_top1_disagreement_limit": 0.02246129243294326,
+        "learned_depths": [
+          1
+        ],
+        "logit_abs_sum": 346678394.06727743,
+        "logit_elements": 2090183552,
+        "logit_mae": 0.16586026319820424,
+        "logit_max_abs": 26.78125,
+        "logit_rmse": 1.1389409902972936,
+        "logit_squared_sum": 2711358052.093922,
+        "mismatches_within_0.01": 65,
+        "mlp_count_floor": 2,
+        "pass_count_mismatch_rate": 0.005015628407356255,
+        "pass_count_mismatches": 69,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 69,
+            "common_flip_rate": 0.005015628407356255,
+            "common_visited_compared": 13757,
+            "decision_agreement": 0.9949843715926437,
+            "decision_compared": 13757,
+            "decision_mismatches": 69,
+            "depth": 1,
+            "max_flip_margin": 0.01953125,
+            "mismatches_within_0.01": 65,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 1036,
+            "decision_agreement": 0.9375565610859729,
+            "decision_compared": 1105,
+            "decision_mismatches": 69,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 69
+          }
+        ],
+        "reference_max_flip_margin": 0.01953125,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.09912367600090699,
+          "g_tf_logit_max_abs_limit": 1.81640625,
+          "g_tf_logit_rmse_limit": 0.146763916557899,
+          "logit_elements": 21878784,
+          "logit_mae": 0.06608245066727132,
+          "logit_max_abs": 1.2109375,
+          "logit_rmse": 0.09784261103859933
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.2727369865965963,
+          "g_tf_logit_max_abs_limit": 35.8125,
+          "g_tf_logit_rmse_limit": 1.821764994129838,
+          "logit_elements": 440224,
+          "logit_mae": 0.18182465773106418,
+          "logit_max_abs": 23.875,
+          "logit_rmse": 1.2145099960865586
+        },
+        "top1_agreement": 0.9850258050447045,
+        "top1_compared": 13757,
+        "top1_mismatches": 206,
+        "visited_mismatches": 69
+      },
+      "registration": {
+        "corpus_manifest_sha256": "ae23b626b116d3c204a0a06446d6af4b8c24650cfe09e207259869dcbf366492",
+        "layouts": {
+          "A": "singleton prompt chunks128 + cached token1",
+          "B": "batched left-padded full prompt + aligned cached token1; finished rows EOS-filled"
+        },
+        "saved_unix_time": 1791823772.22208,
+        "source": "reference layout A vs reference layout B ONLY"
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 70,
+        "decision_agreement": 0.9905812701829925,
+        "decision_compared": 14864,
+        "decision_mismatches": 140,
+        "g_tf_logit_mae_limit": 0.2486802433808185,
+        "g_tf_logit_max_abs_limit": 40.359375,
+        "g_tf_logit_rmse_limit": 1.7511597893303636,
+        "g_tf_top1_disagreement_limit": 0.02376971723486221,
+        "logit_abs_sum": 346524902.94796246,
+        "logit_elements": 2090183552,
+        "logit_mae": 0.16578682892054566,
+        "logit_max_abs": 26.90625,
+        "logit_rmse": 1.1674398595535758,
+        "logit_squared_sum": 2848744241.585282,
+        "mismatches_within_0.01": 65,
+        "pass_count_mismatch_rate": 0.005088318674129534,
+        "pass_count_mismatches": 70,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 70,
+            "common_flip_rate": 0.005088318674129534,
+            "common_visited_compared": 13757,
+            "decision_agreement": 0.9949116813258705,
+            "decision_compared": 13757,
+            "decision_mismatches": 70,
+            "depth": 1,
+            "max_flip_margin": 0.0234375,
+            "mismatches_within_0.01": 65,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 1037,
+            "decision_agreement": 0.9367660343270099,
+            "decision_compared": 1107,
+            "decision_mismatches": 70,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 70
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.09407783185815073,
+          "g_tf_logit_max_abs_limit": 1.5,
+          "g_tf_logit_rmse_limit": 0.1452236713854597,
+          "logit_elements": 21878784,
+          "logit_mae": 0.06271855457210049,
+          "logit_max_abs": 1.0,
+          "logit_rmse": 0.0968157809236398
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.2722546327267482,
+          "g_tf_logit_max_abs_limit": 35.8125,
+          "g_tf_logit_rmse_limit": 1.8615810114721985,
+          "logit_elements": 440224,
+          "logit_mae": 0.1815030884844988,
+          "logit_max_abs": 23.875,
+          "logit_rmse": 1.2410540076481322
+        },
+        "top1_agreement": 0.9841535218434252,
+        "top1_compared": 13757,
+        "top1_mismatches": 218,
+        "visited_mismatches": 70
+      }
+    },
+    {
+      "checkpoint": "mlp3",
+      "decision_limits": {
+        "flip_margin_limit": 0.0234375,
+        "pass_count_mismatch_rate_limit": 0.03173828125,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.017020089285714284,
+            "reference_common_visited": 64512,
+            "reference_flips": 732
+          },
+          {
+            "depth": 2,
+            "flip_rate_limit": 0.043332420591456734,
+            "reference_common_visited": 21912,
+            "reference_flips": 633
+          },
+          {
+            "depth": 3,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 4275,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.015625,
+        "reference_pass_count_mismatches": 1365,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "full",
+      "noise_limits": {
+        "common_decision_mismatches": 1365,
+        "decision_agreement": 0.9686632546842471,
+        "decision_compared": 92224,
+        "decision_mismatches": 2890,
+        "g_tf_logit_mae_limit": 0.2765517079015354,
+        "g_tf_logit_max_abs_limit": 72.9375,
+        "g_tf_logit_rmse_limit": 0.8908772725645258,
+        "g_tf_top1_disagreement_limit": 0.03031994047619041,
+        "logit_abs_sum": 1807117037.8266242,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.18436780526769025,
+        "logit_max_abs": 48.625,
+        "logit_rmse": 0.5939181817096838,
+        "logit_squared_sum": 3457438278.4528337,
+        "mismatches_within_0.01": 1362,
+        "pass_count_mismatches": 1365,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 732,
+            "decision_agreement": 0.9886532738095238,
+            "decision_compared": 64512,
+            "decision_mismatches": 732,
+            "depth": 1,
+            "mismatches_within_0.01": 729,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 633,
+            "decision_agreement": 0.9397191308956014,
+            "decision_compared": 22644,
+            "decision_mismatches": 1365,
+            "depth": 2,
+            "mismatches_within_0.01": 633,
+            "visited_mismatches": 732
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 0.8435280189423836,
+            "decision_compared": 5068,
+            "decision_mismatches": 793,
+            "depth": 3,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 793
+          }
+        ],
+        "reference_max_flip_margin": 0.015625,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.21276287576226502,
+          "g_tf_logit_max_abs_limit": 33.0,
+          "g_tf_logit_rmse_limit": 0.5982470025438776,
+          "logit_elements": 21878784,
+          "logit_mae": 0.14184191717484335,
+          "logit_max_abs": 22.0,
+          "logit_rmse": 0.3988313350292518
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.6864154282070342,
+          "g_tf_logit_max_abs_limit": 72.9375,
+          "g_tf_logit_rmse_limit": 3.505325670334956,
+          "logit_elements": 2064384,
+          "logit_mae": 0.4576102854713561,
+          "logit_max_abs": 48.625,
+          "logit_rmse": 2.336883780223304
+        },
+        "top1_agreement": 0.9797867063492064,
+        "top1_compared": 64512,
+        "top1_mismatches": 1304,
+        "visited_mismatches": 1525
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 1627,
+        "decision_agreement": 0.9699504954787026,
+        "decision_compared": 115343,
+        "decision_mismatches": 3466,
+        "g_tf_logit_mae_limit": 0.26955149408346507,
+        "g_tf_logit_max_abs_limit": 77.25,
+        "g_tf_logit_rmse_limit": 0.8838107956504386,
+        "g_tf_top1_disagreement_limit": 0.0289806547619047,
+        "logit_abs_sum": 2201717995.280313,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.17970099605564338,
+        "logit_max_abs": 51.5,
+        "logit_rmse": 0.5892071971002925,
+        "logit_squared_sum": 4253508390.4343376,
+        "mismatches_within_0.01": 1615,
+        "pass_count_mismatch_rate": 0.02017609126984127,
+        "pass_count_mismatches": 1627,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 883,
+            "common_flip_rate": 0.010949900793650793,
+            "common_visited_compared": 80640,
+            "decision_agreement": 0.9890500992063492,
+            "decision_compared": 80640,
+            "decision_mismatches": 883,
+            "depth": 1,
+            "max_flip_margin": 0.015625,
+            "mismatches_within_0.01": 875,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 744,
+            "common_flip_rate": 0.02705651320096007,
+            "common_visited_compared": 27498,
+            "decision_agreement": 0.9426729149783306,
+            "decision_compared": 28381,
+            "decision_mismatches": 1627,
+            "depth": 2,
+            "max_flip_margin": 0.01171875,
+            "mismatches_within_0.01": 740,
+            "visited_mismatches": 883
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 5366,
+            "decision_agreement": 0.8487820310028472,
+            "decision_compared": 6322,
+            "decision_mismatches": 956,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 956
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.19601272672303105,
+          "g_tf_logit_max_abs_limit": 33.75,
+          "g_tf_logit_rmse_limit": 0.5405327294870708,
+          "logit_elements": 27348480,
+          "logit_mae": 0.13067515114868736,
+          "logit_max_abs": 22.5,
+          "logit_rmse": 0.36035515299138055
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.6699493499029251,
+          "g_tf_logit_max_abs_limit": 77.25,
+          "g_tf_logit_rmse_limit": 3.50657869542698,
+          "logit_elements": 2580480,
+          "logit_mae": 0.4466328999352834,
+          "logit_max_abs": 51.5,
+          "logit_rmse": 2.3377191302846536
+        },
+        "top1_agreement": 0.9806795634920635,
+        "top1_compared": 80640,
+        "top1_mismatches": 1558,
+        "visited_mismatches": 1839
+      }
+    },
+    {
+      "checkpoint": "mlp3",
+      "decision_limits": {
+        "flip_margin_limit": 0.0234375,
+        "pass_count_mismatch_rate_limit": 0.03173828125,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.017020089285714284,
+            "reference_common_visited": 64512,
+            "reference_flips": 732
+          },
+          {
+            "depth": 2,
+            "flip_rate_limit": 0.043332420591456734,
+            "reference_common_visited": 21912,
+            "reference_flips": 633
+          },
+          {
+            "depth": 3,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 4275,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.015625,
+        "reference_pass_count_mismatches": 1365,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "cached-1",
+      "noise_limits": {
+        "common_decision_mismatches": 1365,
+        "decision_agreement": 0.9686632546842471,
+        "decision_compared": 92224,
+        "decision_mismatches": 2890,
+        "g_tf_logit_mae_limit": 0.2765517079015354,
+        "g_tf_logit_max_abs_limit": 72.9375,
+        "g_tf_logit_rmse_limit": 0.8908772725645258,
+        "g_tf_top1_disagreement_limit": 0.03031994047619041,
+        "logit_abs_sum": 1807117037.8266242,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.18436780526769025,
+        "logit_max_abs": 48.625,
+        "logit_rmse": 0.5939181817096838,
+        "logit_squared_sum": 3457438278.4528337,
+        "mismatches_within_0.01": 1362,
+        "pass_count_mismatches": 1365,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 732,
+            "decision_agreement": 0.9886532738095238,
+            "decision_compared": 64512,
+            "decision_mismatches": 732,
+            "depth": 1,
+            "mismatches_within_0.01": 729,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 633,
+            "decision_agreement": 0.9397191308956014,
+            "decision_compared": 22644,
+            "decision_mismatches": 1365,
+            "depth": 2,
+            "mismatches_within_0.01": 633,
+            "visited_mismatches": 732
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 0.8435280189423836,
+            "decision_compared": 5068,
+            "decision_mismatches": 793,
+            "depth": 3,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 793
+          }
+        ],
+        "reference_max_flip_margin": 0.015625,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.21276287576226502,
+          "g_tf_logit_max_abs_limit": 33.0,
+          "g_tf_logit_rmse_limit": 0.5982470025438776,
+          "logit_elements": 21878784,
+          "logit_mae": 0.14184191717484335,
+          "logit_max_abs": 22.0,
+          "logit_rmse": 0.3988313350292518
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.6864154282070342,
+          "g_tf_logit_max_abs_limit": 72.9375,
+          "g_tf_logit_rmse_limit": 3.505325670334956,
+          "logit_elements": 2064384,
+          "logit_mae": 0.4576102854713561,
+          "logit_max_abs": 48.625,
+          "logit_rmse": 2.336883780223304
+        },
+        "top1_agreement": 0.9797867063492064,
+        "top1_compared": 64512,
+        "top1_mismatches": 1304,
+        "visited_mismatches": 1525
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 1684,
+        "decision_agreement": 0.9691436696404574,
+        "decision_compared": 115341,
+        "decision_mismatches": 3559,
+        "g_tf_logit_mae_limit": 0.26767169951345443,
+        "g_tf_logit_max_abs_limit": 72.0,
+        "g_tf_logit_rmse_limit": 0.8846680165292944,
+        "g_tf_top1_disagreement_limit": 0.02799479166666663,
+        "logit_abs_sum": 2186363684.051969,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.1784477996756363,
+        "logit_max_abs": 48.0,
+        "logit_rmse": 0.5897786776861963,
+        "logit_squared_sum": 4261763470.5212693,
+        "mismatches_within_0.01": 1676,
+        "pass_count_mismatch_rate": 0.020882936507936507,
+        "pass_count_mismatches": 1684,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 881,
+            "common_flip_rate": 0.010925099206349206,
+            "common_visited_compared": 80640,
+            "decision_agreement": 0.9890749007936508,
+            "decision_compared": 80640,
+            "decision_mismatches": 881,
+            "depth": 1,
+            "max_flip_margin": 0.01171875,
+            "mismatches_within_0.01": 874,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 803,
+            "common_flip_rate": 0.02923827556073405,
+            "common_visited_compared": 27464,
+            "decision_agreement": 0.9405891691656377,
+            "decision_compared": 28345,
+            "decision_mismatches": 1684,
+            "depth": 2,
+            "max_flip_margin": 0.01171875,
+            "mismatches_within_0.01": 802,
+            "visited_mismatches": 881
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 5362,
+            "decision_agreement": 0.8436123348017621,
+            "decision_compared": 6356,
+            "decision_mismatches": 994,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 994
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.21427884590422996,
+          "g_tf_logit_max_abs_limit": 34.5,
+          "g_tf_logit_rmse_limit": 0.5569196911256052,
+          "logit_elements": 27348480,
+          "logit_mae": 0.1428525639361533,
+          "logit_max_abs": 23.0,
+          "logit_rmse": 0.37127979408373685
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.6811098507472446,
+          "g_tf_logit_max_abs_limit": 72.0,
+          "g_tf_logit_rmse_limit": 3.5279690073436223,
+          "logit_elements": 2580480,
+          "logit_mae": 0.45407323383149645,
+          "logit_max_abs": 48.0,
+          "logit_rmse": 2.3519793382290817
+        },
+        "top1_agreement": 0.9813368055555556,
+        "top1_compared": 80640,
+        "top1_mismatches": 1505,
+        "visited_mismatches": 1875
+      }
+    },
+    {
+      "checkpoint": "mlp3",
+      "decision_limits": {
+        "flip_margin_limit": 0.0234375,
+        "pass_count_mismatch_rate_limit": 0.03173828125,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.017020089285714284,
+            "reference_common_visited": 64512,
+            "reference_flips": 732
+          },
+          {
+            "depth": 2,
+            "flip_rate_limit": 0.043332420591456734,
+            "reference_common_visited": 21912,
+            "reference_flips": 633
+          },
+          {
+            "depth": 3,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 4275,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.015625,
+        "reference_pass_count_mismatches": 1365,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "cached-256",
+      "noise_limits": {
+        "common_decision_mismatches": 1365,
+        "decision_agreement": 0.9686632546842471,
+        "decision_compared": 92224,
+        "decision_mismatches": 2890,
+        "g_tf_logit_mae_limit": 0.2765517079015354,
+        "g_tf_logit_max_abs_limit": 72.9375,
+        "g_tf_logit_rmse_limit": 0.8908772725645258,
+        "g_tf_top1_disagreement_limit": 0.03031994047619041,
+        "logit_abs_sum": 1807117037.8266242,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.18436780526769025,
+        "logit_max_abs": 48.625,
+        "logit_rmse": 0.5939181817096838,
+        "logit_squared_sum": 3457438278.4528337,
+        "mismatches_within_0.01": 1362,
+        "pass_count_mismatches": 1365,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 732,
+            "decision_agreement": 0.9886532738095238,
+            "decision_compared": 64512,
+            "decision_mismatches": 732,
+            "depth": 1,
+            "mismatches_within_0.01": 729,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 633,
+            "decision_agreement": 0.9397191308956014,
+            "decision_compared": 22644,
+            "decision_mismatches": 1365,
+            "depth": 2,
+            "mismatches_within_0.01": 633,
+            "visited_mismatches": 732
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 0.8435280189423836,
+            "decision_compared": 5068,
+            "decision_mismatches": 793,
+            "depth": 3,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 793
+          }
+        ],
+        "reference_max_flip_margin": 0.015625,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.21276287576226502,
+          "g_tf_logit_max_abs_limit": 33.0,
+          "g_tf_logit_rmse_limit": 0.5982470025438776,
+          "logit_elements": 21878784,
+          "logit_mae": 0.14184191717484335,
+          "logit_max_abs": 22.0,
+          "logit_rmse": 0.3988313350292518
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.6864154282070342,
+          "g_tf_logit_max_abs_limit": 72.9375,
+          "g_tf_logit_rmse_limit": 3.505325670334956,
+          "logit_elements": 2064384,
+          "logit_mae": 0.4576102854713561,
+          "logit_max_abs": 48.625,
+          "logit_rmse": 2.336883780223304
+        },
+        "top1_agreement": 0.9797867063492064,
+        "top1_compared": 64512,
+        "top1_mismatches": 1304,
+        "visited_mismatches": 1525
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 1714,
+        "decision_agreement": 0.9685275578945544,
+        "decision_compared": 115339,
+        "decision_mismatches": 3630,
+        "g_tf_logit_mae_limit": 0.2791079032799412,
+        "g_tf_logit_max_abs_limit": 77.625,
+        "g_tf_logit_rmse_limit": 0.9008783488192011,
+        "g_tf_top1_disagreement_limit": 0.030524553571428525,
+        "logit_abs_sum": 2279775503.9937644,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.18607193551996082,
+        "logit_max_abs": 51.75,
+        "logit_rmse": 0.6005855658794674,
+        "logit_squared_sum": 4419376362.9304285,
+        "mismatches_within_0.01": 1695,
+        "pass_count_mismatch_rate": 0.02125496031746032,
+        "pass_count_mismatches": 1714,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 914,
+            "common_flip_rate": 0.011334325396825396,
+            "common_visited_compared": 80640,
+            "decision_agreement": 0.9886656746031746,
+            "decision_compared": 80640,
+            "decision_mismatches": 914,
+            "depth": 1,
+            "max_flip_margin": 0.015625,
+            "mismatches_within_0.01": 899,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 800,
+            "common_flip_rate": 0.029159832330964097,
+            "common_visited_compared": 27435,
+            "decision_agreement": 0.9395393135560337,
+            "decision_compared": 28349,
+            "decision_mismatches": 1714,
+            "depth": 2,
+            "max_flip_margin": 0.01171875,
+            "mismatches_within_0.01": 796,
+            "visited_mismatches": 914
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 5348,
+            "decision_agreement": 0.8422047244094488,
+            "decision_compared": 6350,
+            "decision_mismatches": 1002,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 1002
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.18545271207610878,
+          "g_tf_logit_max_abs_limit": 34.5,
+          "g_tf_logit_rmse_limit": 0.5419632760026449,
+          "logit_elements": 27348480,
+          "logit_mae": 0.12363514138407251,
+          "logit_max_abs": 23.0,
+          "logit_rmse": 0.36130885066842994
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.7016184080214727,
+          "g_tf_logit_max_abs_limit": 77.625,
+          "g_tf_logit_rmse_limit": 3.5874158254740696,
+          "logit_elements": 2580480,
+          "logit_mae": 0.4677456053476485,
+          "logit_max_abs": 51.75,
+          "logit_rmse": 2.3916105503160465
+        },
+        "top1_agreement": 0.9796502976190476,
+        "top1_compared": 80640,
+        "top1_mismatches": 1641,
+        "visited_mismatches": 1916
+      }
+    },
+    {
+      "checkpoint": "mlp3",
+      "comparison_unix_time": 1791824835.5756185,
+      "decision_limits": {
+        "flip_margin_limit": 0.01171875,
+        "pass_count_mismatch_rate_limit": 0.020250395957462856,
+        "per_depth": [
+          {
+            "depth": 1,
+            "effective_reference_flips": 115,
+            "flip_rate_limit": 0.013010030922392337,
+            "reference_common_visited": 13259,
+            "reference_flips": 115
+          },
+          {
+            "depth": 2,
+            "effective_reference_flips": 64,
+            "flip_rate_limit": 0.012104400453915016,
+            "reference_common_visited": 7931,
+            "reference_flips": 64
+          },
+          {
+            "depth": 3,
+            "effective_reference_flips": 0,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 1342,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0078125,
+        "reference_pass_count_mismatches": 179,
+        "reference_token_comparisons": 13259
+      },
+      "generated_positions": 8615,
+      "layout": "generated",
+      "limits_saved_unix_time": 1791824786.867259,
+      "limits_sha256": "3e18a529439f0ed4602d44393803502b9bc6a4023230aa00ce5aca4bb424c2c8",
+      "noise_limits": {
+        "common_decision_mismatches": 179,
+        "decision_agreement": 0.9837602323739107,
+        "decision_compared": 22722,
+        "decision_mismatches": 369,
+        "g_tf_logit_mae_limit": 0.20006137370629712,
+        "g_tf_logit_max_abs_limit": 53.8125,
+        "g_tf_logit_rmse_limit": 0.6519538157724816,
+        "g_tf_top1_disagreement_limit": 0.029413982954973994,
+        "learned_depths": [
+          1,
+          2
+        ],
+        "logit_abs_sum": 268685015.54897225,
+        "logit_elements": 2014519424,
+        "logit_mae": 0.1333742491375314,
+        "logit_max_abs": 35.875,
+        "logit_rmse": 0.43463587718165436,
+        "logit_squared_sum": 380559531.835775,
+        "mismatches_within_0.01": 179,
+        "mlp_count_floor": 2,
+        "pass_count_mismatch_rate": 0.013500263971641904,
+        "pass_count_mismatches": 179,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 115,
+            "common_flip_rate": 0.008673353948261558,
+            "common_visited_compared": 13259,
+            "decision_agreement": 0.9913266460517385,
+            "decision_compared": 13259,
+            "decision_mismatches": 115,
+            "depth": 1,
+            "max_flip_margin": 0.00390625,
+            "mismatches_within_0.01": 115,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 64,
+            "common_flip_rate": 0.008069600302610011,
+            "common_visited_compared": 7931,
+            "decision_agreement": 0.9777529207059409,
+            "decision_compared": 8046,
+            "decision_mismatches": 179,
+            "depth": 2,
+            "max_flip_margin": 0.0078125,
+            "mismatches_within_0.01": 64,
+            "visited_mismatches": 115
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 1342,
+            "decision_agreement": 0.9470712773465066,
+            "decision_compared": 1417,
+            "decision_mismatches": 75,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 75
+          }
+        ],
+        "reference_max_flip_margin": 0.0078125,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.2572199566762787,
+          "g_tf_logit_max_abs_limit": 26.71875,
+          "g_tf_logit_rmse_limit": 0.6097294190932054,
+          "logit_elements": 21878784,
+          "logit_mae": 0.17147997111751914,
+          "logit_max_abs": 17.8125,
+          "logit_rmse": 0.4064862793954703
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.46865034775906933,
+          "g_tf_logit_max_abs_limit": 53.8125,
+          "g_tf_logit_rmse_limit": 2.5762615065553467,
+          "logit_elements": 424288,
+          "logit_mae": 0.31243356517271287,
+          "logit_max_abs": 35.875,
+          "logit_rmse": 1.717507671036898
+        },
+        "top1_agreement": 0.9803906780300173,
+        "top1_compared": 13259,
+        "top1_mismatches": 260,
+        "visited_mismatches": 190
+      },
+      "registration": {
+        "corpus_manifest_sha256": "abae7c3e7692c1251facd34b76965240a59db7eb3bae9173e5df65cc347e536d",
+        "layouts": {
+          "A": "singleton prompt chunks128 + cached token1",
+          "B": "batched left-padded full prompt + aligned cached token1; finished rows EOS-filled"
+        },
+        "saved_unix_time": 1791824786.867259,
+        "source": "reference layout A vs reference layout B ONLY"
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 156,
+        "decision_agreement": 0.9856111942268767,
+        "decision_compared": 22726,
+        "decision_mismatches": 327,
+        "g_tf_logit_mae_limit": 0.18170717964675417,
+        "g_tf_logit_max_abs_limit": 70.3125,
+        "g_tf_logit_rmse_limit": 0.6675657384711078,
+        "g_tf_top1_disagreement_limit": 0.030771551399049635,
+        "logit_abs_sum": 244035095.25242916,
+        "logit_elements": 2014519424,
+        "logit_mae": 0.12113811976450278,
+        "logit_max_abs": 46.875,
+        "logit_rmse": 0.4450438256474052,
+        "logit_squared_sum": 399003788.7868528,
+        "mismatches_within_0.01": 156,
+        "pass_count_mismatch_rate": 0.011765593181989591,
+        "pass_count_mismatches": 156,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 77,
+            "common_flip_rate": 0.005807376121879478,
+            "common_visited_compared": 13259,
+            "decision_agreement": 0.9941926238781206,
+            "decision_compared": 13259,
+            "decision_mismatches": 77,
+            "depth": 1,
+            "max_flip_margin": 0.00390625,
+            "mismatches_within_0.01": 77,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 79,
+            "common_flip_rate": 0.009938357026041011,
+            "common_visited_compared": 7949,
+            "decision_agreement": 0.9805631696984799,
+            "decision_compared": 8026,
+            "decision_mismatches": 156,
+            "depth": 2,
+            "max_flip_margin": 0.0078125,
+            "mismatches_within_0.01": 79,
+            "visited_mismatches": 77
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 1347,
+            "decision_agreement": 0.9347675225537821,
+            "decision_compared": 1441,
+            "decision_mismatches": 94,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 94
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.10213537249804594,
+          "g_tf_logit_max_abs_limit": 3.0,
+          "g_tf_logit_rmse_limit": 0.1856799225678295,
+          "logit_elements": 21878784,
+          "logit_mae": 0.06809024833203063,
+          "logit_max_abs": 2.0,
+          "logit_rmse": 0.12378661504521968
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.4296518520438947,
+          "g_tf_logit_max_abs_limit": 60.9375,
+          "g_tf_logit_rmse_limit": 2.5073280855442173,
+          "logit_elements": 424288,
+          "logit_mae": 0.28643456802926315,
+          "logit_max_abs": 40.625,
+          "logit_rmse": 1.6715520570294782
+        },
+        "top1_agreement": 0.9794856324006336,
+        "top1_compared": 13259,
+        "top1_mismatches": 272,
+        "visited_mismatches": 171
+      }
+    },
+    {
+      "checkpoint": "mlp1",
+      "decision_limits": {
+        "flip_margin_limit": 0.01,
+        "pass_count_mismatch_rate_limit": 0.0,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 64512,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "reference_pass_count_mismatches": 0,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "full",
+      "noise_limits": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 64512,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.09217352493780713,
+        "g_tf_logit_max_abs_limit": 6.84375,
+        "g_tf_logit_rmse_limit": 0.13089353277289092,
+        "g_tf_top1_disagreement_limit": 0.005603608630952439,
+        "logit_abs_sum": 602304533.2663581,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.06144901662520475,
+        "logit_max_abs": 4.5625,
+        "logit_rmse": 0.08726235518192728,
+        "logit_squared_sum": 74637151.30728471,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 64512,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.11235797096523793,
+          "g_tf_logit_max_abs_limit": 1.359375,
+          "g_tf_logit_rmse_limit": 0.1629886916501915,
+          "logit_elements": 21878784,
+          "logit_mae": 0.07490531397682529,
+          "logit_max_abs": 0.90625,
+          "logit_rmse": 0.10865912776679433
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.10325883683704194,
+          "g_tf_logit_max_abs_limit": 3.28125,
+          "g_tf_logit_rmse_limit": 0.15088545617053947,
+          "logit_elements": 2064384,
+          "logit_mae": 0.06883922455802796,
+          "logit_max_abs": 2.1875,
+          "logit_rmse": 0.10059030411369298
+        },
+        "top1_agreement": 0.9962642609126984,
+        "top1_compared": 64512,
+        "top1_mismatches": 241,
+        "visited_mismatches": 0
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 80640,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.09490715555387572,
+        "g_tf_logit_max_abs_limit": 7.30078125,
+        "g_tf_logit_rmse_limit": 0.13557069122234036,
+        "g_tf_top1_disagreement_limit": 0.0062313988095238915,
+        "logit_abs_sum": 775209178.3959216,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.06327143703591714,
+        "logit_max_abs": 4.8671875,
+        "logit_rmse": 0.09038046081489358,
+        "logit_squared_sum": 100082998.93846357,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 80640,
+            "decision_agreement": 1.0,
+            "decision_compared": 80640,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.11055238105565626,
+          "g_tf_logit_max_abs_limit": 1.78125,
+          "g_tf_logit_rmse_limit": 0.1590253577313411,
+          "logit_elements": 27348480,
+          "logit_mae": 0.07370158737043751,
+          "logit_max_abs": 1.1875,
+          "logit_rmse": 0.1060169051542274
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.10773070199148996,
+          "g_tf_logit_max_abs_limit": 3.75,
+          "g_tf_logit_rmse_limit": 0.15724681869310755,
+          "logit_elements": 2580480,
+          "logit_mae": 0.07182046799432663,
+          "logit_max_abs": 2.5,
+          "logit_rmse": 0.10483121246207171
+        },
+        "top1_agreement": 0.9958457341269841,
+        "top1_compared": 80640,
+        "top1_mismatches": 335,
+        "visited_mismatches": 0
+      }
+    },
+    {
+      "checkpoint": "mlp1",
+      "decision_limits": {
+        "flip_margin_limit": 0.01,
+        "pass_count_mismatch_rate_limit": 0.0,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 64512,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "reference_pass_count_mismatches": 0,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "cached-1",
+      "noise_limits": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 64512,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.09217352493780713,
+        "g_tf_logit_max_abs_limit": 6.84375,
+        "g_tf_logit_rmse_limit": 0.13089353277289092,
+        "g_tf_top1_disagreement_limit": 0.005603608630952439,
+        "logit_abs_sum": 602304533.2663581,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.06144901662520475,
+        "logit_max_abs": 4.5625,
+        "logit_rmse": 0.08726235518192728,
+        "logit_squared_sum": 74637151.30728471,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 64512,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.11235797096523793,
+          "g_tf_logit_max_abs_limit": 1.359375,
+          "g_tf_logit_rmse_limit": 0.1629886916501915,
+          "logit_elements": 21878784,
+          "logit_mae": 0.07490531397682529,
+          "logit_max_abs": 0.90625,
+          "logit_rmse": 0.10865912776679433
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.10325883683704194,
+          "g_tf_logit_max_abs_limit": 3.28125,
+          "g_tf_logit_rmse_limit": 0.15088545617053947,
+          "logit_elements": 2064384,
+          "logit_mae": 0.06883922455802796,
+          "logit_max_abs": 2.1875,
+          "logit_rmse": 0.10059030411369298
+        },
+        "top1_agreement": 0.9962642609126984,
+        "top1_compared": 64512,
+        "top1_mismatches": 241,
+        "visited_mismatches": 0
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 80640,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.09410859786023684,
+        "g_tf_logit_max_abs_limit": 6.75,
+        "g_tf_logit_rmse_limit": 0.133829026804141,
+        "g_tf_top1_disagreement_limit": 0.006324404761904823,
+        "logit_abs_sum": 768686495.7807406,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.06273906524015789,
+        "logit_max_abs": 4.5,
+        "logit_rmse": 0.08921935120276067,
+        "logit_squared_sum": 97528002.46044365,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 80640,
+            "decision_agreement": 1.0,
+            "decision_compared": 80640,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.1375027943017837,
+          "g_tf_logit_max_abs_limit": 1.9921875,
+          "g_tf_logit_rmse_limit": 0.20712722151041787,
+          "logit_elements": 27348480,
+          "logit_mae": 0.09166852953452245,
+          "logit_max_abs": 1.328125,
+          "logit_rmse": 0.13808481434027858
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.1037496112641834,
+          "g_tf_logit_max_abs_limit": 3.1875,
+          "g_tf_logit_rmse_limit": 0.15207014561687687,
+          "logit_elements": 2580480,
+          "logit_mae": 0.0691664075094556,
+          "logit_max_abs": 2.125,
+          "logit_rmse": 0.10138009707791792
+        },
+        "top1_agreement": 0.9957837301587301,
+        "top1_compared": 80640,
+        "top1_mismatches": 340,
+        "visited_mismatches": 0
+      }
+    },
+    {
+      "checkpoint": "mlp1",
+      "decision_limits": {
+        "flip_margin_limit": 0.01,
+        "pass_count_mismatch_rate_limit": 0.0,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 64512,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "reference_pass_count_mismatches": 0,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "cached-256",
+      "noise_limits": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 64512,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.09217352493780713,
+        "g_tf_logit_max_abs_limit": 6.84375,
+        "g_tf_logit_rmse_limit": 0.13089353277289092,
+        "g_tf_top1_disagreement_limit": 0.005603608630952439,
+        "logit_abs_sum": 602304533.2663581,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.06144901662520475,
+        "logit_max_abs": 4.5625,
+        "logit_rmse": 0.08726235518192728,
+        "logit_squared_sum": 74637151.30728471,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 64512,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.11235797096523793,
+          "g_tf_logit_max_abs_limit": 1.359375,
+          "g_tf_logit_rmse_limit": 0.1629886916501915,
+          "logit_elements": 21878784,
+          "logit_mae": 0.07490531397682529,
+          "logit_max_abs": 0.90625,
+          "logit_rmse": 0.10865912776679433
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.10325883683704194,
+          "g_tf_logit_max_abs_limit": 3.28125,
+          "g_tf_logit_rmse_limit": 0.15088545617053947,
+          "logit_elements": 2064384,
+          "logit_mae": 0.06883922455802796,
+          "logit_max_abs": 2.1875,
+          "logit_rmse": 0.10059030411369298
+        },
+        "top1_agreement": 0.9962642609126984,
+        "top1_compared": 64512,
+        "top1_mismatches": 241,
+        "visited_mismatches": 0
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 80640,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.09183500662085463,
+        "g_tf_logit_max_abs_limit": 7.8046875,
+        "g_tf_logit_rmse_limit": 0.1314856745551387,
+        "g_tf_top1_disagreement_limit": 0.006696428571428548,
+        "logit_abs_sum": 750115622.1052661,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.06122333774723642,
+        "logit_max_abs": 5.203125,
+        "logit_rmse": 0.08765711637009246,
+        "logit_squared_sum": 94142465.3325066,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 80640,
+            "decision_agreement": 1.0,
+            "decision_compared": 80640,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.10191002303391372,
+          "g_tf_logit_max_abs_limit": 1.359375,
+          "g_tf_logit_rmse_limit": 0.15206067429254633,
+          "logit_elements": 27348480,
+          "logit_mae": 0.06794001535594248,
+          "logit_max_abs": 0.90625,
+          "logit_rmse": 0.10137378286169754
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.102076902843657,
+          "g_tf_logit_max_abs_limit": 4.21875,
+          "g_tf_logit_rmse_limit": 0.15089808186557263,
+          "logit_elements": 2580480,
+          "logit_mae": 0.068051268562438,
+          "logit_max_abs": 2.8125,
+          "logit_rmse": 0.10059872124371508
+        },
+        "top1_agreement": 0.9955357142857143,
+        "top1_compared": 80640,
+        "top1_mismatches": 360,
+        "visited_mismatches": 0
+      }
+    },
+    {
+      "checkpoint": "mlp1",
+      "comparison_unix_time": 1791825284.4338706,
+      "decision_limits": {
+        "flip_margin_limit": 0.01,
+        "pass_count_mismatch_rate_limit": 0.0,
+        "per_depth": [
+          {
+            "depth": 1,
+            "effective_reference_flips": 0,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 13418,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "reference_pass_count_mismatches": 0,
+        "reference_token_comparisons": 13418
+      },
+      "generated_positions": 8774,
+      "layout": "generated",
+      "limits_saved_unix_time": 1791825235.015916,
+      "limits_sha256": "ed6fb0c940b389d347a88db9687a1987c6efe01ad46e88381e8fc0bd14082182",
+      "noise_limits": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 13418,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.0888364485939162,
+        "g_tf_logit_max_abs_limit": 4.59375,
+        "g_tf_logit_rmse_limit": 0.11971591306076036,
+        "g_tf_top1_disagreement_limit": 0.013414815918914913,
+        "learned_depths": [],
+        "logit_abs_sum": 120739231.02769236,
+        "logit_elements": 2038677248,
+        "logit_mae": 0.0592242990626108,
+        "logit_max_abs": 3.0625,
+        "logit_rmse": 0.07981060870717357,
+        "logit_squared_sum": 12985830.27749547,
+        "mismatches_within_0.01": 0,
+        "mlp_count_floor": 2,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 13418,
+            "decision_agreement": 1.0,
+            "decision_compared": 13418,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.1339441016041522,
+          "g_tf_logit_max_abs_limit": 1.96875,
+          "g_tf_logit_rmse_limit": 0.18916455811161625,
+          "logit_elements": 21878784,
+          "logit_mae": 0.08929606773610148,
+          "logit_max_abs": 1.3125,
+          "logit_rmse": 0.12610970540774416
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.10323163730623044,
+          "g_tf_logit_max_abs_limit": 2.90625,
+          "g_tf_logit_rmse_limit": 0.15001882655852927,
+          "logit_elements": 429376,
+          "logit_mae": 0.06882109153748696,
+          "logit_max_abs": 1.9375,
+          "logit_rmse": 0.10001255103901951
+        },
+        "top1_agreement": 0.9910567893873901,
+        "top1_compared": 13418,
+        "top1_mismatches": 120,
+        "visited_mismatches": 0
+      },
+      "registration": {
+        "corpus_manifest_sha256": "530d4fa31c1b66a3fd98f96c02d675ba49f18bd90e7b52524d607cd5a3517679",
+        "layouts": {
+          "A": "singleton prompt chunks128 + cached token1",
+          "B": "batched left-padded full prompt + aligned cached token1; finished rows EOS-filled"
+        },
+        "saved_unix_time": 1791825235.015916,
+        "source": "reference layout A vs reference layout B ONLY"
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 13418,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.08554202291124678,
+        "g_tf_logit_max_abs_limit": 5.671875,
+        "g_tf_logit_rmse_limit": 0.11581369349004086,
+        "g_tf_top1_disagreement_limit": 0.012408704724996278,
+        "logit_abs_sum": 116261717.2380357,
+        "logit_elements": 2038677248,
+        "logit_mae": 0.05702801527416452,
+        "logit_max_abs": 3.78125,
+        "logit_rmse": 0.07720912899336058,
+        "logit_squared_sum": 12153063.928992538,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 13418,
+            "decision_agreement": 1.0,
+            "decision_compared": 13418,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.06261732639072332,
+          "g_tf_logit_max_abs_limit": 0.84375,
+          "g_tf_logit_rmse_limit": 0.09514647299356273,
+          "logit_elements": 21878784,
+          "logit_mae": 0.04174488426048221,
+          "logit_max_abs": 0.5625,
+          "logit_rmse": 0.06343098199570849
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.09957018295153897,
+          "g_tf_logit_max_abs_limit": 3.5625,
+          "g_tf_logit_rmse_limit": 0.14678680445732842,
+          "logit_elements": 429376,
+          "logit_mae": 0.06638012196769265,
+          "logit_max_abs": 2.375,
+          "logit_rmse": 0.09785786963821895
+        },
+        "top1_agreement": 0.9917275301833358,
+        "top1_compared": 13418,
+        "top1_mismatches": 111,
+        "visited_mismatches": 0
+      }
+    },
+    {
+      "checkpoint": "label3",
+      "decision_limits": {
+        "flip_margin_limit": 0.01,
+        "pass_count_mismatch_rate_limit": 0.0,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 64512,
+            "reference_flips": 0
+          },
+          {
+            "depth": 2,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 16128,
+            "reference_flips": 0
+          },
+          {
+            "depth": 3,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 4032,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "reference_pass_count_mismatches": 0,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "full",
+      "noise_limits": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 84672,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.10981348908017832,
+        "g_tf_logit_max_abs_limit": 14.53125,
+        "g_tf_logit_rmse_limit": 0.16559697877399904,
+        "g_tf_top1_disagreement_limit": 0.008393787202380876,
+        "logit_abs_sum": 717572234.8843119,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.07320899272011888,
+        "logit_max_abs": 9.6875,
+        "logit_rmse": 0.11039798584933269,
+        "logit_squared_sum": 119460270.74492556,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 64512,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 16128,
+            "decision_mismatches": 0,
+            "depth": 2,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 4032,
+            "decision_mismatches": 0,
+            "depth": 3,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.35371717096873145,
+          "g_tf_logit_max_abs_limit": 7.65234375,
+          "g_tf_logit_rmse_limit": 0.7789244631180616,
+          "logit_elements": 21878784,
+          "logit_mae": 0.23581144731248765,
+          "logit_max_abs": 5.1015625,
+          "logit_rmse": 0.519282975412041
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.1262116205124628,
+          "g_tf_logit_max_abs_limit": 14.25,
+          "g_tf_logit_rmse_limit": 0.20587828361386784,
+          "logit_elements": 2064384,
+          "logit_mae": 0.08414108034164186,
+          "logit_max_abs": 9.5,
+          "logit_rmse": 0.13725218907591188
+        },
+        "top1_agreement": 0.9944041418650794,
+        "top1_compared": 64512,
+        "top1_mismatches": 361,
+        "visited_mismatches": 0
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 105840,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.11309015607214265,
+        "g_tf_logit_max_abs_limit": 14.4375,
+        "g_tf_logit_rmse_limit": 0.17203399483138423,
+        "g_tf_top1_disagreement_limit": 0.00890997023809531,
+        "logit_abs_sum": 923729369.6320472,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.07539343738142844,
+        "logit_max_abs": 9.625,
+        "logit_rmse": 0.1146893298875895,
+        "logit_squared_sum": 161159992.37265828,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 80640,
+            "decision_agreement": 1.0,
+            "decision_compared": 80640,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 20160,
+            "decision_agreement": 1.0,
+            "decision_compared": 20160,
+            "decision_mismatches": 0,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 5040,
+            "decision_agreement": 1.0,
+            "decision_compared": 5040,
+            "decision_mismatches": 0,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.3248506690111962,
+          "g_tf_logit_max_abs_limit": 10.734375,
+          "g_tf_logit_rmse_limit": 0.7376715505827129,
+          "logit_elements": 27348480,
+          "logit_mae": 0.2165671126741308,
+          "logit_max_abs": 7.15625,
+          "logit_rmse": 0.49178103372180865
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.13063468933105468,
+          "g_tf_logit_max_abs_limit": 13.5,
+          "g_tf_logit_rmse_limit": 0.2131541749396747,
+          "logit_elements": 2580480,
+          "logit_mae": 0.08708979288736979,
+          "logit_max_abs": 9.0,
+          "logit_rmse": 0.14210278329311646
+        },
+        "top1_agreement": 0.9940600198412698,
+        "top1_compared": 80640,
+        "top1_mismatches": 479,
+        "visited_mismatches": 0
+      }
+    },
+    {
+      "checkpoint": "label3",
+      "decision_limits": {
+        "flip_margin_limit": 0.01,
+        "pass_count_mismatch_rate_limit": 0.0,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 64512,
+            "reference_flips": 0
+          },
+          {
+            "depth": 2,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 16128,
+            "reference_flips": 0
+          },
+          {
+            "depth": 3,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 4032,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "reference_pass_count_mismatches": 0,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "cached-1",
+      "noise_limits": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 84672,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.10981348908017832,
+        "g_tf_logit_max_abs_limit": 14.53125,
+        "g_tf_logit_rmse_limit": 0.16559697877399904,
+        "g_tf_top1_disagreement_limit": 0.008393787202380876,
+        "logit_abs_sum": 717572234.8843119,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.07320899272011888,
+        "logit_max_abs": 9.6875,
+        "logit_rmse": 0.11039798584933269,
+        "logit_squared_sum": 119460270.74492556,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 64512,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 16128,
+            "decision_mismatches": 0,
+            "depth": 2,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 4032,
+            "decision_mismatches": 0,
+            "depth": 3,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.35371717096873145,
+          "g_tf_logit_max_abs_limit": 7.65234375,
+          "g_tf_logit_rmse_limit": 0.7789244631180616,
+          "logit_elements": 21878784,
+          "logit_mae": 0.23581144731248765,
+          "logit_max_abs": 5.1015625,
+          "logit_rmse": 0.519282975412041
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.1262116205124628,
+          "g_tf_logit_max_abs_limit": 14.25,
+          "g_tf_logit_rmse_limit": 0.20587828361386784,
+          "logit_elements": 2064384,
+          "logit_mae": 0.08414108034164186,
+          "logit_max_abs": 9.5,
+          "logit_rmse": 0.13725218907591188
+        },
+        "top1_agreement": 0.9944041418650794,
+        "top1_compared": 64512,
+        "top1_mismatches": 361,
+        "visited_mismatches": 0
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 105840,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.11101862702473789,
+        "g_tf_logit_max_abs_limit": 19.3125,
+        "g_tf_logit_rmse_limit": 0.16972637487146575,
+        "g_tf_top1_disagreement_limit": 0.008928571428571397,
+        "logit_abs_sum": 906808955.9762998,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.07401241801649193,
+        "logit_max_abs": 12.875,
+        "logit_rmse": 0.11315091658097716,
+        "logit_squared_sum": 156865471.90259412,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 80640,
+            "decision_agreement": 1.0,
+            "decision_compared": 80640,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 20160,
+            "decision_agreement": 1.0,
+            "decision_compared": 20160,
+            "decision_mismatches": 0,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 5040,
+            "decision_agreement": 1.0,
+            "decision_compared": 5040,
+            "decision_mismatches": 0,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.3065933956702222,
+          "g_tf_logit_max_abs_limit": 7.59375,
+          "g_tf_logit_rmse_limit": 0.6738392617180579,
+          "logit_elements": 27348480,
+          "logit_mae": 0.20439559711348146,
+          "logit_max_abs": 5.0625,
+          "logit_rmse": 0.4492261744787052
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.12526426769438243,
+          "g_tf_logit_max_abs_limit": 17.4375,
+          "g_tf_logit_rmse_limit": 0.22003806664224887,
+          "logit_elements": 2580480,
+          "logit_mae": 0.08350951179625496,
+          "logit_max_abs": 11.625,
+          "logit_rmse": 0.1466920444281659
+        },
+        "top1_agreement": 0.9940476190476191,
+        "top1_compared": 80640,
+        "top1_mismatches": 480,
+        "visited_mismatches": 0
+      }
+    },
+    {
+      "checkpoint": "label3",
+      "decision_limits": {
+        "flip_margin_limit": 0.01,
+        "pass_count_mismatch_rate_limit": 0.0,
+        "per_depth": [
+          {
+            "depth": 1,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 64512,
+            "reference_flips": 0
+          },
+          {
+            "depth": 2,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 16128,
+            "reference_flips": 0
+          },
+          {
+            "depth": 3,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 4032,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "reference_pass_count_mismatches": 0,
+        "reference_token_comparisons": 64512
+      },
+      "layout": "cached-256",
+      "noise_limits": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 84672,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.10981348908017832,
+        "g_tf_logit_max_abs_limit": 14.53125,
+        "g_tf_logit_rmse_limit": 0.16559697877399904,
+        "g_tf_top1_disagreement_limit": 0.008393787202380876,
+        "logit_abs_sum": 717572234.8843119,
+        "logit_elements": 9801695232,
+        "logit_mae": 0.07320899272011888,
+        "logit_max_abs": 9.6875,
+        "logit_rmse": 0.11039798584933269,
+        "logit_squared_sum": 119460270.74492556,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 64512,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 16128,
+            "decision_mismatches": 0,
+            "depth": 2,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 4032,
+            "decision_mismatches": 0,
+            "depth": 3,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.35371717096873145,
+          "g_tf_logit_max_abs_limit": 7.65234375,
+          "g_tf_logit_rmse_limit": 0.7789244631180616,
+          "logit_elements": 21878784,
+          "logit_mae": 0.23581144731248765,
+          "logit_max_abs": 5.1015625,
+          "logit_rmse": 0.519282975412041
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.1262116205124628,
+          "g_tf_logit_max_abs_limit": 14.25,
+          "g_tf_logit_rmse_limit": 0.20587828361386784,
+          "logit_elements": 2064384,
+          "logit_mae": 0.08414108034164186,
+          "logit_max_abs": 9.5,
+          "logit_rmse": 0.13725218907591188
+        },
+        "top1_agreement": 0.9944041418650794,
+        "top1_compared": 64512,
+        "top1_mismatches": 361,
+        "visited_mismatches": 0
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 105840,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.10887775872761626,
+        "g_tf_logit_max_abs_limit": 15.0,
+        "g_tf_logit_rmse_limit": 0.16513140942108873,
+        "g_tf_top1_disagreement_limit": 0.009002976190476242,
+        "logit_abs_sum": 889322173.8261023,
+        "logit_elements": 12252119040,
+        "logit_mae": 0.07258517248507751,
+        "logit_max_abs": 10.0,
+        "logit_rmse": 0.11008760628072581,
+        "logit_squared_sum": 148486874.18492645,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 80640,
+            "decision_agreement": 1.0,
+            "decision_compared": 80640,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 20160,
+            "decision_agreement": 1.0,
+            "decision_compared": 20160,
+            "decision_mismatches": 0,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 5040,
+            "decision_agreement": 1.0,
+            "decision_compared": 5040,
+            "decision_mismatches": 0,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.3049370896434409,
+          "g_tf_logit_max_abs_limit": 7.5,
+          "g_tf_logit_rmse_limit": 0.7077457836079655,
+          "logit_elements": 27348480,
+          "logit_mae": 0.20329139309562727,
+          "logit_max_abs": 5.0,
+          "logit_rmse": 0.4718305224053103
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.12390750703357516,
+          "g_tf_logit_max_abs_limit": 14.625,
+          "g_tf_logit_rmse_limit": 0.20571059085067095,
+          "logit_elements": 2580480,
+          "logit_mae": 0.0826050046890501,
+          "logit_max_abs": 9.75,
+          "logit_rmse": 0.1371403939004473
+        },
+        "top1_agreement": 0.9939980158730158,
+        "top1_compared": 80640,
+        "top1_mismatches": 484,
+        "visited_mismatches": 0
+      }
+    },
+    {
+      "checkpoint": "label3",
+      "comparison_unix_time": 1791825729.4372869,
+      "decision_limits": {
+        "flip_margin_limit": 0.01,
+        "pass_count_mismatch_rate_limit": 0.0,
+        "per_depth": [
+          {
+            "depth": 1,
+            "effective_reference_flips": 0,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 13418,
+            "reference_flips": 0
+          },
+          {
+            "depth": 2,
+            "effective_reference_flips": 0,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 0,
+            "reference_flips": 0
+          },
+          {
+            "depth": 3,
+            "effective_reference_flips": 0,
+            "flip_rate_limit": 0.0,
+            "reference_common_visited": 0,
+            "reference_flips": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "reference_pass_count_mismatches": 0,
+        "reference_token_comparisons": 13418
+      },
+      "generated_positions": 8774,
+      "layout": "generated",
+      "limits_saved_unix_time": 1791825680.1733196,
+      "limits_sha256": "f51f61a4cee7bea889a20ce658f893eca9abf062d080bc3d7615829fdabe9ecc",
+      "noise_limits": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 13418,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.0888364485939162,
+        "g_tf_logit_max_abs_limit": 4.59375,
+        "g_tf_logit_rmse_limit": 0.11971591306076036,
+        "g_tf_top1_disagreement_limit": 0.013414815918914913,
+        "learned_depths": [],
+        "logit_abs_sum": 120739231.02769236,
+        "logit_elements": 2038677248,
+        "logit_mae": 0.0592242990626108,
+        "logit_max_abs": 3.0625,
+        "logit_rmse": 0.07981060870717357,
+        "logit_squared_sum": 12985830.27749547,
+        "mismatches_within_0.01": 0,
+        "mlp_count_floor": 2,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 13418,
+            "decision_agreement": 1.0,
+            "decision_compared": 13418,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 0,
+            "decision_mismatches": 0,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 0,
+            "decision_mismatches": 0,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "reference_max_flip_margin": 0.0,
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.1339441016041522,
+          "g_tf_logit_max_abs_limit": 1.96875,
+          "g_tf_logit_rmse_limit": 0.18916455811161625,
+          "logit_elements": 21878784,
+          "logit_mae": 0.08929606773610148,
+          "logit_max_abs": 1.3125,
+          "logit_rmse": 0.12610970540774416
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.10323163730623044,
+          "g_tf_logit_max_abs_limit": 2.90625,
+          "g_tf_logit_rmse_limit": 0.15001882655852927,
+          "logit_elements": 429376,
+          "logit_mae": 0.06882109153748696,
+          "logit_max_abs": 1.9375,
+          "logit_rmse": 0.10001255103901951
+        },
+        "top1_agreement": 0.9910567893873901,
+        "top1_compared": 13418,
+        "top1_mismatches": 120,
+        "visited_mismatches": 0
+      },
+      "registration": {
+        "corpus_manifest_sha256": "45753846e73a01a69908cab0edeae1560c0c2d54a14eafd3add3db58a7602d45",
+        "layouts": {
+          "A": "singleton prompt chunks128 + cached token1",
+          "B": "batched left-padded full prompt + aligned cached token1; finished rows EOS-filled"
+        },
+        "saved_unix_time": 1791825680.1733196,
+        "source": "reference layout A vs reference layout B ONLY"
+      },
+      "status": "PASS",
+      "summary": {
+        "common_decision_mismatches": 0,
+        "decision_agreement": 1.0,
+        "decision_compared": 13418,
+        "decision_mismatches": 0,
+        "g_tf_logit_mae_limit": 0.08554202291124678,
+        "g_tf_logit_max_abs_limit": 5.671875,
+        "g_tf_logit_rmse_limit": 0.11581369349004086,
+        "g_tf_top1_disagreement_limit": 0.012408704724996278,
+        "logit_abs_sum": 116261717.2380357,
+        "logit_elements": 2038677248,
+        "logit_mae": 0.05702801527416452,
+        "logit_max_abs": 3.78125,
+        "logit_rmse": 0.07720912899336058,
+        "logit_squared_sum": 12153063.928992538,
+        "mismatches_within_0.01": 0,
+        "pass_count_mismatch_rate": 0.0,
+        "pass_count_mismatches": 0,
+        "per_depth": [
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 13418,
+            "decision_agreement": 1.0,
+            "decision_compared": 13418,
+            "decision_mismatches": 0,
+            "depth": 1,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 0,
+            "decision_mismatches": 0,
+            "depth": 2,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          },
+          {
+            "common_decision_mismatches": 0,
+            "common_flip_rate": 0.0,
+            "common_visited_compared": 0,
+            "decision_agreement": 1.0,
+            "decision_compared": 0,
+            "decision_mismatches": 0,
+            "depth": 3,
+            "max_flip_margin": 0.0,
+            "mismatches_within_0.01": 0,
+            "visited_mismatches": 0
+          }
+        ],
+        "retained_dense_error": {
+          "g_tf_logit_mae_limit": 0.06261732639072332,
+          "g_tf_logit_max_abs_limit": 0.84375,
+          "g_tf_logit_rmse_limit": 0.09514647299356273,
+          "logit_elements": 21878784,
+          "logit_mae": 0.04174488426048221,
+          "logit_max_abs": 0.5625,
+          "logit_rmse": 0.06343098199570849
+        },
+        "retained_topk_error": {
+          "g_tf_logit_mae_limit": 0.09957018295153897,
+          "g_tf_logit_max_abs_limit": 3.5625,
+          "g_tf_logit_rmse_limit": 0.14678680445732842,
+          "logit_elements": 429376,
+          "logit_mae": 0.06638012196769265,
+          "logit_max_abs": 2.375,
+          "logit_rmse": 0.09785786963821895
+        },
+        "top1_agreement": 0.9917275301833358,
+        "top1_compared": 13418,
+        "top1_mismatches": 111,
+        "visited_mismatches": 0
+      }
+    }
+  ]
+}

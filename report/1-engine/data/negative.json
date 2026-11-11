@@ -1,0 +1,288 @@
+{
+  "compiled": {
+    "batch_size": 64,
+    "compile": true,
+    "cuda_graphs": true,
+    "device": "NVIDIA GeForce RTX 3090",
+    "max_new_tokens": 4096,
+    "peak_gpu_allocated_bytes": 21292921856,
+    "peak_gpu_reserved_bytes": 21619539968,
+    "requests": 128,
+    "run": {
+      "generated_tokens": 341688,
+      "tokens_per_second": 1325.3314631087667,
+      "wall_seconds": 257.8132410729304
+    },
+    "runtime_sha256": {
+      "tah/engine/__init__.py": "e80377bec1a1d80c41c9ab6963758f3f316c8ba162b425433c514496d8b3362e",
+      "tah/engine/attention.py": "1b90e481ee3bf5baf7c0430bffc4c891f69e2cf1e4d4b4bfe280522fade82684",
+      "tah/engine/attention_kernels.py": "3f637598a765a5edc6bffda5304214143e18591dae5e8e53729411e931062e8c",
+      "tah/engine/cached_model.py": "3752d4135d592f3199fc733f7027c9eaca9984387d95dedbcd818993f85e41cb",
+      "tah/engine/compiled.py": "420dafd5edc012e3556ec07191486c3958e0927040c6bf3f455f09001fc71237",
+      "tah/engine/config.py": "8969a8c08e14cae835a758131c7ffab2cebae5a74f6c368fca3586d7b8063dfe",
+      "tah/engine/decider.py": "7f8ff43de73ced9947350749056b0417507fc0b557c73aff613dfd78624e5015",
+      "tah/engine/engine.py": "fa5f44ed8d7a8c6273c39cbee20d3b7b359a352074ceeed5ba1f1825b6c08a3c",
+      "tah/engine/fixtures.py": "fbeb40c5bac6882f340048abb40ce852e38d3b3f3d3ce096f347806e9de65cc0",
+      "tah/engine/generate_fixtures.py": "2151cebef592ca29531682678e5ab34cf0564d46ad26512c6259d31e18a6f3e3",
+      "tah/engine/graphs.py": "7165d25edbe313140efe1efcbeaf485e4b01ec0d341118c94b81d99981fd8c4b",
+      "tah/engine/kv_cache.py": "846e048e70e8868bee729e00045852961921a8d3127883e0aaa1d8e746d5f3e2",
+      "tah/engine/layers.py": "e009fd0db1b52e8170562356d3e80dc23e7c9e76a9b62c1dbdabb1944f6f46db",
+      "tah/engine/model.py": "54251a5342b6369e60f2799dcdc63a67dd5376698b432a2c9be186b2c0d944ef",
+      "tah/engine/parity.py": "5d8a9246d3dc49c7c1adb5d526f114918185caf1c4390c0bd924a28a2432e889",
+      "tah/engine/reference_capture.py": "88096ce03a0e51e2b4abbdbc626d3fcbdedf9e633786ea43d584aafa5dd841c0",
+      "tah/engine/rope.py": "3a03d19de657938c048ecbfe2044e2d3f1fa36dae891a087bc7986b7f2529aa3",
+      "tah/engine/sampling.py": "a4ca91b6bcf7b3e78b9df845ac6a650875350c682ff40d4b582f553af2a95237",
+      "tah/engine/scheduler.py": "9a8661afc487d93766ca689b2b9fb7be7e6e0b20cbed6279985a92918d4c3e78",
+      "tah/engine/tensors.py": "2f4ae9617d5fe13659bc988b08ef22014c1a53ff91c5c3c50ebbbffce151ab11",
+      "tah/engine/weights.py": "e62a5362244a9e7405111ca68732dcf326149466a695cf6887e57f96c59798f5"
+    },
+    "status": "PASS",
+    "workload": "W-perf"
+  },
+  "graphs": {
+    "batch_size": 64,
+    "cuda_graphs": true,
+    "device": "NVIDIA GeForce RTX 3090",
+    "max_new_tokens": 4096,
+    "peak_gpu_allocated_bytes": 19933201920,
+    "peak_gpu_reserved_bytes": 20321402880,
+    "requests": 128,
+    "run": {
+      "generated_tokens": 351748,
+      "tokens_per_second": 1353.1827245312734,
+      "wall_seconds": 259.94124342803843
+    },
+    "runtime_sha256": {
+      "tah/engine/__init__.py": "e80377bec1a1d80c41c9ab6963758f3f316c8ba162b425433c514496d8b3362e",
+      "tah/engine/attention.py": "1b90e481ee3bf5baf7c0430bffc4c891f69e2cf1e4d4b4bfe280522fade82684",
+      "tah/engine/attention_kernels.py": "3f637598a765a5edc6bffda5304214143e18591dae5e8e53729411e931062e8c",
+      "tah/engine/cached_model.py": "3752d4135d592f3199fc733f7027c9eaca9984387d95dedbcd818993f85e41cb",
+      "tah/engine/config.py": "8969a8c08e14cae835a758131c7ffab2cebae5a74f6c368fca3586d7b8063dfe",
+      "tah/engine/decider.py": "7f8ff43de73ced9947350749056b0417507fc0b557c73aff613dfd78624e5015",
+      "tah/engine/engine.py": "ec29cdf1771b006453e09cb52ba20ef415f03d65f349634b98c512c9198b2b00",
+      "tah/engine/fixtures.py": "fbeb40c5bac6882f340048abb40ce852e38d3b3f3d3ce096f347806e9de65cc0",
+      "tah/engine/generate_fixtures.py": "2151cebef592ca29531682678e5ab34cf0564d46ad26512c6259d31e18a6f3e3",
+      "tah/engine/graphs.py": "2ebf2e8ef7b07302b1db5dd34d20a6f5a708c502b5dafb97cb668485860d3786",
+      "tah/engine/kv_cache.py": "846e048e70e8868bee729e00045852961921a8d3127883e0aaa1d8e746d5f3e2",
+      "tah/engine/layers.py": "e009fd0db1b52e8170562356d3e80dc23e7c9e76a9b62c1dbdabb1944f6f46db",
+      "tah/engine/model.py": "54251a5342b6369e60f2799dcdc63a67dd5376698b432a2c9be186b2c0d944ef",
+      "tah/engine/parity.py": "5d8a9246d3dc49c7c1adb5d526f114918185caf1c4390c0bd924a28a2432e889",
+      "tah/engine/reference_capture.py": "88096ce03a0e51e2b4abbdbc626d3fcbdedf9e633786ea43d584aafa5dd841c0",
+      "tah/engine/rope.py": "3a03d19de657938c048ecbfe2044e2d3f1fa36dae891a087bc7986b7f2529aa3",
+      "tah/engine/sampling.py": "a4ca91b6bcf7b3e78b9df845ac6a650875350c682ff40d4b582f553af2a95237",
+      "tah/engine/scheduler.py": "9a8661afc487d93766ca689b2b9fb7be7e6e0b20cbed6279985a92918d4c3e78",
+      "tah/engine/tensors.py": "2f4ae9617d5fe13659bc988b08ef22014c1a53ff91c5c3c50ebbbffce151ab11",
+      "tah/engine/weights.py": "e62a5362244a9e7405111ca68732dcf326149466a695cf6887e57f96c59798f5"
+    },
+    "status": "PASS",
+    "workload": "W-perf"
+  },
+  "greedy": {
+    "median_first_divergence": 12.5,
+    "median_limit": 16.0,
+    "reference_median_first_divergence": 32.0,
+    "status": "FAIL"
+  },
+  "parity": {
+    "checkpoint": "mlp3",
+    "comparison_unix_time": 1791866518.447144,
+    "decision_limits": {
+      "flip_margin_limit": 0.01171875,
+      "pass_count_mismatch_rate_limit": 0.02470984649943841,
+      "per_depth": [
+        {
+          "depth": 1,
+          "effective_reference_flips": 127,
+          "flip_rate_limit": 0.014264320479221266,
+          "reference_common_visited": 13355,
+          "reference_flips": 127
+        },
+        {
+          "depth": 2,
+          "effective_reference_flips": 93,
+          "flip_rate_limit": 0.018977009930621683,
+          "reference_common_visited": 7351,
+          "reference_flips": 93
+        },
+        {
+          "depth": 3,
+          "effective_reference_flips": 0,
+          "flip_rate_limit": 0.0,
+          "reference_common_visited": 939,
+          "reference_flips": 0
+        }
+      ],
+      "reference_max_flip_margin": 0.0078125,
+      "reference_pass_count_mismatches": 220,
+      "reference_token_comparisons": 13355
+    },
+    "generated_positions": 8711,
+    "limits_saved_unix_time": 1791866464.7971053,
+    "limits_sha256": "d40c872670110c2e59559a6a8e85c992e98ad7d6a4bd7bb866ddfd2a36924d5b",
+    "noise_limits": {
+      "common_decision_mismatches": 220,
+      "decision_agreement": 0.9795629114850036,
+      "decision_compared": 21872,
+      "decision_mismatches": 447,
+      "g_tf_logit_mae_limit": 0.2072291076964164,
+      "g_tf_logit_max_abs_limit": 47.15625,
+      "g_tf_logit_rmse_limit": 0.7309417573732568,
+      "g_tf_top1_disagreement_limit": 0.029427180831149424,
+      "learned_depths": [
+        1,
+        2
+      ],
+      "logit_abs_sum": 280326451.06432474,
+      "logit_elements": 2029105280,
+      "logit_mae": 0.13815273846427759,
+      "logit_max_abs": 31.4375,
+      "logit_rmse": 0.4872945049155045,
+      "logit_squared_sum": 481823090.5035842,
+      "mismatches_within_0.01": 220,
+      "mlp_count_floor": 2,
+      "pass_count_mismatch_rate": 0.01647323099962561,
+      "pass_count_mismatches": 220,
+      "per_depth": [
+        {
+          "common_decision_mismatches": 127,
+          "common_flip_rate": 0.00950954698614751,
+          "common_visited_compared": 13355,
+          "decision_agreement": 0.9904904530138525,
+          "decision_compared": 13355,
+          "decision_mismatches": 127,
+          "depth": 1,
+          "max_flip_margin": 0.00390625,
+          "mismatches_within_0.01": 127,
+          "visited_mismatches": 0
+        },
+        {
+          "common_decision_mismatches": 93,
+          "common_flip_rate": 0.01265133995374779,
+          "common_visited_compared": 7351,
+          "decision_agreement": 0.9705803690826424,
+          "decision_compared": 7478,
+          "decision_mismatches": 220,
+          "depth": 2,
+          "max_flip_margin": 0.0078125,
+          "mismatches_within_0.01": 93,
+          "visited_mismatches": 127
+        },
+        {
+          "common_decision_mismatches": 0,
+          "common_flip_rate": 0.0,
+          "common_visited_compared": 939,
+          "decision_agreement": 0.9037536092396535,
+          "decision_compared": 1039,
+          "decision_mismatches": 100,
+          "depth": 3,
+          "max_flip_margin": 0.0,
+          "mismatches_within_0.01": 0,
+          "visited_mismatches": 100
+        }
+      ],
+      "reference_max_flip_margin": 0.0078125,
+      "retained_dense_error": {
+        "g_tf_logit_mae_limit": 0.21972903654758674,
+        "g_tf_logit_max_abs_limit": 26.71875,
+        "g_tf_logit_rmse_limit": 0.4902667782347516,
+        "logit_elements": 21878784,
+        "logit_mae": 0.14648602436505784,
+        "logit_max_abs": 17.8125,
+        "logit_rmse": 0.32684451882316773
+      },
+      "retained_topk_error": {
+        "g_tf_logit_mae_limit": 0.521362624602209,
+        "g_tf_logit_max_abs_limit": 43.3125,
+        "g_tf_logit_rmse_limit": 2.840269223876049,
+        "logit_elements": 427360,
+        "logit_mae": 0.3475750830681393,
+        "logit_max_abs": 28.875,
+        "logit_rmse": 1.893512815917366
+      },
+      "top1_agreement": 0.9803818794459004,
+      "top1_compared": 13355,
+      "top1_mismatches": 262,
+      "visited_mismatches": 227
+    },
+    "status": "FAIL",
+    "summary": {
+      "common_decision_mismatches": 719,
+      "decision_agreement": 0.934297796572446,
+      "decision_compared": 22465,
+      "decision_mismatches": 1476,
+      "g_tf_logit_mae_limit": 0.3511805981994555,
+      "g_tf_logit_max_abs_limit": 70.3125,
+      "g_tf_logit_rmse_limit": 1.2090227574687447,
+      "g_tf_top1_disagreement_limit": 0.04312991388992887,
+      "logit_abs_sum": 475054937.3600491,
+      "logit_elements": 2029105280,
+      "logit_mae": 0.234120398799637,
+      "logit_max_abs": 46.875,
+      "logit_rmse": 0.8060151716458297,
+      "logit_squared_sum": 1318229463.350192,
+      "mismatches_within_0.01": 718,
+      "pass_count_mismatch_rate": 0.05383751403968551,
+      "pass_count_mismatches": 719,
+      "per_depth": [
+        {
+          "common_decision_mismatches": 294,
+          "common_flip_rate": 0.022014226881317857,
+          "common_visited_compared": 13355,
+          "decision_agreement": 0.9779857731186822,
+          "decision_compared": 13355,
+          "decision_mismatches": 294,
+          "depth": 1,
+          "max_flip_margin": 0.00390625,
+          "mismatches_within_0.01": 294,
+          "visited_mismatches": 0
+        },
+        {
+          "common_decision_mismatches": 425,
+          "common_flip_rate": 0.05741691434747365,
+          "common_visited_compared": 7402,
+          "decision_agreement": 0.9065748440748441,
+          "decision_compared": 7696,
+          "decision_mismatches": 719,
+          "depth": 2,
+          "max_flip_margin": 0.01171875,
+          "mismatches_within_0.01": 424,
+          "visited_mismatches": 294
+        },
+        {
+          "common_decision_mismatches": 0,
+          "common_flip_rate": 0.0,
+          "common_visited_compared": 951,
+          "decision_agreement": 0.6725601131541725,
+          "decision_compared": 1414,
+          "decision_mismatches": 463,
+          "depth": 3,
+          "max_flip_margin": 0.0,
+          "mismatches_within_0.01": 0,
+          "visited_mismatches": 463
+        }
+      ],
+      "retained_dense_error": {
+        "g_tf_logit_mae_limit": 0.3264040091304996,
+        "g_tf_logit_max_abs_limit": 34.5,
+        "g_tf_logit_rmse_limit": 1.0471999257899993,
+        "logit_elements": 21878784,
+        "logit_mae": 0.2176026727536664,
+        "logit_max_abs": 23.0,
+        "logit_rmse": 0.6981332838599995
+      },
+      "retained_topk_error": {
+        "g_tf_logit_mae_limit": 1.324776388758892,
+        "g_tf_logit_max_abs_limit": 66.5625,
+        "g_tf_logit_rmse_limit": 5.129190276218845,
+        "logit_elements": 427360,
+        "logit_mae": 0.8831842591725946,
+        "logit_max_abs": 44.375,
+        "logit_rmse": 3.4194601841458963
+      },
+      "top1_agreement": 0.9712467240733808,
+      "top1_compared": 13355,
+      "top1_mismatches": 384,
+      "visited_mismatches": 757
+    }
+  }
+}

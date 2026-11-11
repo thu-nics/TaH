@@ -1,0 +1,4 @@
+{"id":"toy_apples","question":"Mira has 17 apples and buys 25 more. How many apples does she have?","reference":"17 + 25 = 42.\n</think>\nMira has \\boxed{42} apples."}
+{"id":"toy_bus","question":"A bus starts with 36 passengers. Twelve leave and seven board. How many passengers remain?","reference":"36 - 12 + 7 = 31.\n</think>\nThere are \\boxed{31} passengers."}
+{"id":"toy_area","question":"A rectangle is 9 cm long and 6 cm wide. What is its area in square centimeters?","reference":"The area is length times width: 9 * 6 = 54.\n</think>\nThe area is \\boxed{54} square centimeters."}
+{"id":"toy_fraction","question":"Lea spends one quarter of her 80 dollars. How many dollars does she have left?","reference":"One quarter of 80 is 20. She has 80 - 20 = 60 left.\n</think>\nLea has \\boxed{60} dollars left."}

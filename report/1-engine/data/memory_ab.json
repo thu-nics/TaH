@@ -1,0 +1,56 @@
+{
+  "budgets": {
+    "0.5g": {
+      "differing_per_request_counters": 19,
+      "differing_requests": 30,
+      "identical_outputs": false,
+      "requests": 48,
+      "restarts": {
+        "new": 16,
+        "old": 11
+      },
+      "rss_growth_during_gib": {
+        "new": 0.0453033447265625,
+        "old": 1.3470649719238281
+      },
+      "swap_outs": {
+        "new": 121,
+        "old": 116
+      },
+      "swap_seconds": {
+        "new": 0.10894689010456204,
+        "old": 5.333989419159479
+      }
+    },
+    "8g": {
+      "differing_per_request_counters": 0,
+      "differing_requests": 0,
+      "identical_outputs": true,
+      "requests": 48,
+      "restarts": {
+        "new": 0,
+        "old": 0
+      },
+      "rss_growth_during_gib": {
+        "new": 0.049915313720703125,
+        "old": 1.5340652465820312
+      },
+      "swap_outs": {
+        "new": 135,
+        "old": 135
+      },
+      "swap_seconds": {
+        "new": 0.11424144974444062,
+        "old": 5.172108348691836
+      }
+    }
+  },
+  "page_bytes": 29360128,
+  "workload": {
+    "batch_size": 16,
+    "benchmark": "MATH500",
+    "kv_capacity": 8192,
+    "max_new_tokens": 1024,
+    "requests": 48
+  }
+}

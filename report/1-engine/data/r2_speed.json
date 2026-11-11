@@ -1,0 +1,238 @@
+{
+  "benchmarks": {
+    "aime25": {
+      "complete_seed_count": 3,
+      "max_new_tokens": 8192,
+      "mean_tokens_per_second": 775.9891565079977,
+      "seed_rates": {
+        "1234": {
+          "generated_tokens": 1823204,
+          "generation_seconds": 2529.1258337734034,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 720.8830717923661,
+          "total_subruns": 1
+        },
+        "2024": {
+          "generated_tokens": 1775383,
+          "generation_seconds": 2204.878385387012,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 805.2067686664611,
+          "total_subruns": 1
+        },
+        "42": {
+          "generated_tokens": 1824975,
+          "generation_seconds": 2275.87718356424,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 801.8776290651658,
+          "total_subruns": 1
+        }
+      },
+      "speed_category": "reasoning"
+    },
+    "amc23": {
+      "complete_seed_count": 2,
+      "max_new_tokens": 8192,
+      "mean_tokens_per_second": null,
+      "seed_rates": {
+        "1234": {
+          "generated_tokens": 1938050,
+          "generation_seconds": 2183.683752050274,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 887.514045099412,
+          "total_subruns": 1
+        },
+        "2024": {
+          "generated_tokens": 1936972,
+          "generation_seconds": 2189.153163595125,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 884.8042394708546,
+          "total_subruns": 1
+        },
+        "42": {
+          "generated_tokens": 456854,
+          "generation_seconds": 1309.5565525598358,
+          "measured_subruns": 8,
+          "metrics_complete": false,
+          "tokens_per_second": null,
+          "total_subruns": 10
+        }
+      },
+      "speed_category": "reasoning"
+    },
+    "gpqa": {
+      "complete_seed_count": 3,
+      "max_new_tokens": 8192,
+      "mean_tokens_per_second": 692.7082543505347,
+      "seed_rates": {
+        "1234": {
+          "generated_tokens": 1254080,
+          "generation_seconds": 1726.860669983551,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 726.2195623529636,
+          "total_subruns": 1
+        },
+        "2024": {
+          "generated_tokens": 1265085,
+          "generation_seconds": 1799.1944825944956,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 703.1396617978214,
+          "total_subruns": 1
+        },
+        "42": {
+          "generated_tokens": 1302941,
+          "generation_seconds": 2008.3387940233806,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 648.7655389008193,
+          "total_subruns": 1
+        }
+      },
+      "speed_category": "reasoning"
+    },
+    "humaneval": {
+      "complete_seed_count": 3,
+      "max_new_tokens": 8192,
+      "mean_tokens_per_second": 341.07000562469153,
+      "seed_rates": {
+        "1234": {
+          "generated_tokens": 59919,
+          "generation_seconds": 166.33760028728284,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 360.22522806938105,
+          "total_subruns": 1
+        },
+        "2024": {
+          "generated_tokens": 43320,
+          "generation_seconds": 135.07378485321533,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 320.7136014369912,
+          "total_subruns": 1
+        },
+        "42": {
+          "generated_tokens": 45151,
+          "generation_seconds": 131.91586574155372,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 342.27118736770234,
+          "total_subruns": 1
+        }
+      },
+      "speed_category": "code"
+    },
+    "math500": {
+      "complete_seed_count": 3,
+      "max_new_tokens": 8192,
+      "mean_tokens_per_second": 1049.8870822431177,
+      "seed_rates": {
+        "1234": {
+          "generated_tokens": 2087994,
+          "generation_seconds": 1955.2266619959846,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 1067.903809100312,
+          "total_subruns": 1
+        },
+        "2024": {
+          "generated_tokens": 2042649,
+          "generation_seconds": 1891.8893165719928,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 1079.6873697141946,
+          "total_subruns": 1
+        },
+        "42": {
+          "generated_tokens": 2088749,
+          "generation_seconds": 2084.434079890605,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 1002.0700679148468,
+          "total_subruns": 1
+        }
+      },
+      "speed_category": "reasoning"
+    },
+    "mbpp": {
+      "complete_seed_count": 3,
+      "max_new_tokens": 8192,
+      "mean_tokens_per_second": 592.9826065684626,
+      "seed_rates": {
+        "1234": {
+          "generated_tokens": 121353,
+          "generation_seconds": 197.87243031628896,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 613.2890762296872,
+          "total_subruns": 1
+        },
+        "2024": {
+          "generated_tokens": 139781,
+          "generation_seconds": 205.08600764768198,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 681.5725831482872,
+          "total_subruns": 1
+        },
+        "42": {
+          "generated_tokens": 86953,
+          "generation_seconds": 179.62298269628081,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 484.08616032741344,
+          "total_subruns": 1
+        }
+      },
+      "speed_category": "code"
+    },
+    "olympiadbench": {
+      "complete_seed_count": 3,
+      "max_new_tokens": 8192,
+      "mean_tokens_per_second": 842.5564340619862,
+      "seed_rates": {
+        "1234": {
+          "generated_tokens": 4259623,
+          "generation_seconds": 4883.988566893968,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 872.1607230765815,
+          "total_subruns": 1
+        },
+        "2024": {
+          "generated_tokens": 4266826,
+          "generation_seconds": 4854.838448698632,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 878.8811502355444,
+          "total_subruns": 1
+        },
+        "42": {
+          "generated_tokens": 4279624,
+          "generation_seconds": 5510.523889435339,
+          "measured_subruns": 1,
+          "metrics_complete": true,
+          "tokens_per_second": 776.6274288738327,
+          "total_subruns": 1
+        }
+      },
+      "speed_category": "reasoning"
+    }
+  },
+  "capacity_context": {
+    "admission_headroom_fraction": 0.1,
+    "comparison_resident_requests": 64,
+    "comparison_workload": "W-perf",
+    "estimated_long_requests": 15,
+    "kv_capacity_slots": 137659,
+    "long_output_cap": 8192,
+    "mean_prompt_tokens": 103.25575757575757
+  },
+  "rate_definition": "For each seed, generated tokens divided by generation seconds, summed across metric-bearing sub-runs; a benchmark mean is the arithmetic mean of its three complete seed rates, or null when any seed has incomplete metrics."
+}

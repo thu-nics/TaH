@@ -1,27 +1,88 @@
 """Per-backend model loaders + inference adapters for the eval driver.
 
-Each ``setup_*`` function returns ``(model, inference_function)`` where
-``inference_function(prompts: list[str]) -> list[(text, seconds)]``. This
-shape is what the per-job runner consumes; it doesn't care which backend
-produced the strings.
+Each ``setup_*`` function returns ``(model, inference_function)``. Legacy
+inference functions accept ``prompts`` and return ``[(text, seconds)]``.
+Callback backends may set ``infer.supports_callback = True`` and accept
+``infer(prompts, on_result=callback)`` instead. Such a function receives the
+complete prompt list once and calls ``callback(index, result)`` as results
+arrive, where a result is ``(text, seconds)`` or
+``(text, seconds, pass_counts)``. ``pass_counts`` is an optional sequence of
+per-generated-token pass counts. The callback path lets the harness persist
+each result immediately; existing backends need no changes.
 
 Backends:
   * ``setup_sglang`` — ``sgl.Engine`` for production-throughput inference.
   * ``setup_hf``     — vanilla ``AutoModelForCausalLM.generate``.
   * ``setup_tah``    — :class:`tah.model.tah_model.TaHForCausalLM` with
     its own iter-aware generation helper.
+  * ``setup_tah_engine`` — engine-owned generation with indexed callbacks.
 """
 from __future__ import annotations
 
+import inspect
 import os
+import sys
+import threading
 import time
+from pathlib import Path
 from dataclasses import fields
-from typing import Callable, Dict, Iterable, List, Tuple
+from typing import Callable, Dict, List, Optional, Tuple
 
 import torch
 
 
-InferenceFn = Callable[[List[str]], List[Tuple[str, float]]]
+InferenceFn = Callable[..., Optional[List[Tuple]]]
+
+
+class _EngineTokenCounter:
+    """Read CPU request state without hooks, engine locks or tensor access.
+
+    The frozen engine keeps its complete, fixed ``states`` list local to generate.
+    Locate the generating thread's frame once (also through inference_mode's
+    wrapper), retain only the states, and drop all frame references. CPython's GIL
+    makes Python int reads / list lengths safe. Read wasted *before* the length:
+    restart clears generated before adding wasted, so a racing read can only lag,
+    never double-count. A high-water mark hides that short accounting gap.
+    """
+
+    def __init__(self, engine):
+        self.engine = engine
+        self.code = inspect.unwrap(engine.generate).__code__
+        self.thread_id = threading.get_ident()
+        self.started = time.perf_counter()
+        self.states = None
+        self.total = 0
+        self.final = None
+
+    def snapshot(self):
+        if self.final is not None:
+            return self.final
+        states = self.states
+        if states is None:
+            frame = sys._current_frames().get(self.thread_id)
+            try:
+                while frame is not None:
+                    if frame.f_code is self.code and frame.f_locals.get('self') is self.engine:
+                        states = frame.f_locals.get('states')
+                        self.states = states
+                        break
+                    frame = frame.f_back
+            finally:
+                del frame
+        if states is None:
+            return None
+        total = 0
+        for state in states:
+            wasted = state.wasted_tokens
+            total += wasted + len(state.generated)
+        self.total = max(self.total, total)
+        return self.final if self.final is not None else (time.perf_counter() - self.started, self.total)
+
+    def finish(self, total=None):
+        snapshot = self.snapshot()
+        elapsed = time.perf_counter() - self.started
+        self.final = (elapsed, total if total is not None else snapshot[1] if snapshot else 0)
+        self.states = None
 
 
 def time_inference(fn: Callable):
@@ -173,7 +234,7 @@ def setup_tah(config: Dict, model_path: str, tokenizer, tp_size: int = 1) -> Tup
             batch = prompts[i:i + bs]
             inputs = tokenizer(batch, return_tensors="pt", padding=True, padding_side="left")
             inputs = {k: v.to(model.device) for k, v in inputs.items()}
-            (_, texts), elapsed = time_inference(lambda: TaHForCasualLM_generate(
+            (_, texts, pass_counts), elapsed = time_inference(lambda: TaHForCasualLM_generate(
                 tah_model=model, tokenizer=tokenizer, model_inputs=inputs,
                 max_new_tokens=config["max_new_tokens"],
                 do_sample=config["temperature"] > 0.0,
@@ -182,15 +243,96 @@ def setup_tah(config: Dict, model_path: str, tokenizer, tp_size: int = 1) -> Tup
                 top_k=config.get("top_k", 0),
                 min_p=config.get("min_p", 0.0),
                 verbose=False,
+                return_pass_counts=True,
             ))
             per = elapsed / max(len(texts), 1)
-            out.extend((t, per) for t in texts)
+            out.extend((t, per, counts) for t, counts in zip(texts, pass_counts))
         return out
 
     return model, infer
 
 
-_SETUP_BY_NAME = {"sglang": setup_sglang, "hf": setup_hf, "tah": setup_tah}
+def setup_tah_engine(config: Dict, model_path: str, tokenizer, tp_size: int = 1) -> Tuple[object, InferenceFn]:
+    """One engine for all job prompts, with indexed completion callbacks."""
+    if tp_size != 1:
+        raise ValueError("tah_engine requires --tp_size_per_job 1 (one GPU per engine)")
+    try:
+        from tah.engine import TaHEngine, Request, SamplingParams, check_environment
+        check_environment()
+    except (ImportError, RuntimeError) as exc:
+        raise RuntimeError(f"tah_engine environment check failed: {exc}\n"
+                           "Use --backend tah for the correctness reference backend.") from exc
+    if config.get("dtype", "bfloat16") != "bfloat16":
+        raise ValueError("tah_engine uses bfloat16; set dtype: bfloat16")
+    path = model_path
+    if not Path(path).is_dir():
+        from huggingface_hub import snapshot_download
+        path = snapshot_download(model_path)
+    options = dict(config.get("engine") or {})
+    options.setdefault("max_batch_size", 64)
+    count = config.get("_prompt_count")
+    if count is not None:
+        options["max_batch_size"] = min(options["max_batch_size"], max(1, count))
+        if options.get("graph_batch_sizes") is not None:
+            options["graph_batch_sizes"] = [b for b in options["graph_batch_sizes"]
+                                             if b <= options["max_batch_size"]]
+    options.setdefault("max_new_tokens", config["max_new_tokens"])
+    options.setdefault("seed", config.get("_random_seed", 42))
+    model = TaHEngine(path, config_override=config, **options)
+    sampling = SamplingParams(temperature=config["temperature"], top_p=config["top_p"],
+                              top_k=config.get("top_k", 0), min_p=config.get("min_p", 0.0),
+                              do_sample=config["temperature"] > 0)
+    warmed = False
+    token_counter = None
+
+    def infer(prompts, on_result=None):
+        nonlocal warmed, token_counter
+        token_counter = None
+        # Exercise the real maximum resident shape outside measured inference.
+        ids = [tokenizer.encode(p) for p in prompts]
+        if ids and not warmed:
+            model.generate([Request(ids[i % len(ids)], 4, i)
+                            for i in range(model.max_batch_size)], sampling)
+            warmed = True
+        if model.device.type == "cuda":
+            torch.cuda.reset_peak_memory_stats(model.device)
+        callback_seconds = 0.0
+
+        def completed(result):
+            nonlocal callback_seconds
+            started = time.perf_counter()
+            if on_result is not None:
+                on_result(result.request_id, dict(text=result.text,
+                    seconds=result.timing["total_seconds"],
+                    pass_counts=result.generated_pass_counts, token_ids=result.token_ids,
+                    prompt_pass_counts=result.prompt_pass_counts,
+                    finish_reason=result.finish_reason, timing=result.timing))
+            callback_seconds += time.perf_counter() - started
+
+        requests = [Request(p, config["max_new_tokens"], model.seed + i)
+                    for i, p in enumerate(ids)]
+        token_counter = _EngineTokenCounter(model)
+        try:
+            results = model.generate(requests, sampling, completed)
+        except BaseException:
+            token_counter.finish()
+            raise
+        token_counter.finish(model.last_run['generated_tokens'] + model.last_run.get('wasted_tokens', 0))
+        infer.telemetry = dict(engine_run=model.last_run.copy(), memory_budget=model.memory_budget,
+            engine_options=options, callback_seconds=callback_seconds,
+            generation_seconds=model.last_run["wall_seconds"] - callback_seconds,
+            peak_gpu_allocated_bytes=torch.cuda.max_memory_allocated(model.device),
+            peak_gpu_reserved_bytes=torch.cuda.max_memory_reserved(model.device))
+        return results
+
+    infer.supports_callback = True
+    infer.telemetry = {}
+    infer.progress_snapshot = lambda: token_counter.snapshot() if token_counter is not None else None
+    return model, infer
+
+
+_SETUP_BY_NAME = {"sglang": setup_sglang, "hf": setup_hf, "tah": setup_tah,
+                  "tah_engine": setup_tah_engine}
 
 
 def setup_backend(

@@ -1,0 +1,1185 @@
+{
+  "c1": {
+    "C1": {
+      "alpha": 0.025,
+      "difference": -0.39739884393063585,
+      "difference_lower": -4.167630057803469,
+      "engine_mean": 63.69364161849711,
+      "limit": -6.409104046242774,
+      "problems": 692,
+      "reference_mean": 64.09104046242774,
+      "status": "PASS"
+    },
+    "C2": "withdrawn before confirmatory data",
+    "cap": 512,
+    "censoring": {
+      "engine_cap_censored": 0.0,
+      "engine_no_observed_difference": 0.0,
+      "reference_cap_censored": 0.0,
+      "reference_no_observed_difference": 0.0
+    },
+    "censoring_counts": {
+      "engine_cap_censored": 0,
+      "engine_no_observed_difference": 0,
+      "reference_cap_censored": 0,
+      "reference_no_observed_difference": 0
+    },
+    "conclusion": "PASS",
+    "datasets": {
+      "gpqa": 194,
+      "math500": 498
+    },
+    "early_identical_counts": {
+      "engine": 0,
+      "reference": 0
+    },
+    "look": 1,
+    "next_action": "stop_for_success",
+    "prompt_limit": 675,
+    "validity_met": true
+  },
+  "composition": {
+    "engine_vs_engine": {
+      "alpha": 0.05,
+      "composition_correlations": {
+        "decision": {
+          "disagreement_position_phi": 0.8344750610595868,
+          "jointly_eligible_positions": 177180,
+          "per_sequence_maxima_pearson": 0.7332610310247376,
+          "position_jaccard": 0.7174922600619195,
+          "shared_disagreement_positions": 927,
+          "union_disagreement_positions": 1292
+        },
+        "top1": {
+          "disagreement_position_phi": 0.8743381978703514,
+          "jointly_eligible_positions": 177180,
+          "per_sequence_maxima_pearson": 0.9490585922240903,
+          "position_jaccard": 0.7809703250117758,
+          "shared_disagreement_positions": 3316,
+          "union_disagreement_positions": 4246
+        }
+      },
+      "conclusion": "not shown",
+      "confidence": 0.95,
+      "criteria": {
+        "decision": {
+          "D": -0.00032095508649945294,
+          "critical": 1.9767435514990868,
+          "engine_events": 1110,
+          "engine_mean_q90": 0.004909551702439785,
+          "original_max": {
+            "engine": 0.029320180416107178,
+            "engine_events": 1110,
+            "limit": 0.022358751296997072,
+            "reference": 0.02032613754272461,
+            "reference_events": 1109,
+            "status": "not shown"
+          },
+          "reference_events": 1109,
+          "reference_mean_q90": 0.004755006171762943,
+          "standard_error": 0.0003281695254975011,
+          "status": "not shown",
+          "upper95": 0.0003277519068262475,
+          "upper_bound": 0.0003277519068262475
+        },
+        "top1": {
+          "D": -0.09669337272644052,
+          "critical": 1.7868979473094793,
+          "engine_events": 3791,
+          "engine_mean_q90": 1.1325000524520874,
+          "original_max": {
+            "engine": 15.12502670288086,
+            "engine_events": 3791,
+            "limit": 16.637529373168945,
+            "reference": 15.12502670288086,
+            "reference_events": 3771,
+            "status": "PASS"
+          },
+          "reference_events": 3771,
+          "reference_mean_q90": 1.1174485683441162,
+          "standard_error": 0.05977087152053936,
+          "status": "not shown",
+          "upper95": 0.01011107490250987,
+          "upper_bound": 0.01011107490250987
+        }
+      },
+      "delta": 0.1,
+      "estimator": "mean within-sequence q90 (zero if no disagreements)",
+      "method": "studentized cluster bootstrap with Student-t critical floor",
+      "original_max_binding": false,
+      "paired": true,
+      "quantile": 0.9,
+      "resamples": 10000
+    },
+    "engine_vs_reference": {
+      "alpha": 0.025,
+      "composition_correlations": {
+        "decision": {
+          "disagreement_position_phi": 0.448758886115081,
+          "jointly_eligible_positions": 177180,
+          "per_sequence_maxima_pearson": 0.4461429281297411,
+          "position_jaccard": 0.2921739130434783,
+          "shared_disagreement_positions": 504,
+          "union_disagreement_positions": 1725
+        },
+        "top1": {
+          "disagreement_position_phi": 0.5433506504396529,
+          "jointly_eligible_positions": 177180,
+          "per_sequence_maxima_pearson": 0.6098198617047035,
+          "position_jaccard": 0.38225068618481245,
+          "shared_disagreement_positions": 2089,
+          "union_disagreement_positions": 5465
+        }
+      },
+      "conclusion": "not shown",
+      "confidence": 0.975,
+      "criteria": {
+        "decision": {
+          "D": -0.0007823709398508075,
+          "critical": 1.9983405425207268,
+          "engine_events": 1109,
+          "engine_mean_q90": 0.004755006171762943,
+          "original_max": {
+            "engine": 0.02032613754272461,
+            "engine_events": 1109,
+            "limit": 0.0322521984577179,
+            "reference": 0.029320180416107178,
+            "reference_events": 1120,
+            "status": "PASS"
+          },
+          "reference_events": 1120,
+          "reference_mean_q90": 0.005033979192376137,
+          "standard_error": 0.00042620694908496995,
+          "status": "not shown",
+          "upper975": 6.933568600975509e-05,
+          "upper_bound": 6.933568600975509e-05
+        },
+        "top1": {
+          "D": -0.268044537305832,
+          "critical": 1.9983405425207268,
+          "engine_events": 3771,
+          "engine_mean_q90": 1.1174485683441162,
+          "original_max": {
+            "engine": 15.12502670288086,
+            "engine_events": 3771,
+            "limit": 6.76577377319336,
+            "reference": 6.150703430175781,
+            "reference_events": 3783,
+            "status": "not shown"
+          },
+          "reference_events": 3783,
+          "reference_mean_q90": 1.2595391869544983,
+          "standard_error": 0.07841047225096251,
+          "status": "PASS",
+          "upper975": -0.11135371164853719,
+          "upper_bound": -0.11135371164853719
+        }
+      },
+      "delta": 0.1,
+      "estimator": "mean within-sequence q90 (zero if no disagreements)",
+      "method": "studentized cluster bootstrap with Student-t critical floor",
+      "original_max_binding": false,
+      "paired": true,
+      "quantile": 0.9,
+      "resamples": 10000
+    }
+  },
+  "conclusion": "PASS",
+  "design": {
+    "C2_withdrawn": true,
+    "alpha_per_look": 0.025,
+    "amended": "2026-10-15",
+    "bootstrap_seed": 20261013,
+    "c1_increment": 512,
+    "c1_maximum": 1204,
+    "delta": 0.1,
+    "maximum_binding": false,
+    "maximum_teacher_forced_length": 8192,
+    "minimum_tail_events": 20,
+    "oracle_threshold": 0.8984375,
+    "quantile": 0.9,
+    "resamples": 10000,
+    "validity_factor": 0.05,
+    "validity_min_positions": 20000,
+    "validity_min_sequences": 20,
+    "withdrawn_c2_margin_pp": 1
+  },
+  "forced": {
+    "M1": {
+      "engine": 0.008927256469671126,
+      "estimate": 0.798559937570294,
+      "margin": 1.1,
+      "positions": 177180,
+      "reference": 0.011179194008696804,
+      "sequences": 64,
+      "status": "PASS",
+      "stopped_at_look": 1,
+      "upper975": 0.8052232710822477
+    },
+    "M2": {
+      "engine": 0.0037514445513355914,
+      "estimate": 1.0002746607128044,
+      "margin": 1.1,
+      "positions": 177180,
+      "reference": 0.0037504144598267445,
+      "sequences": 64,
+      "status": "PASS",
+      "stopped_at_look": 1,
+      "upper975": 1.007469988241368
+    },
+    "M3": {
+      "engine": 0.09049345651852898,
+      "estimate": 1.0394715104775147,
+      "margin": 1.1,
+      "positions": 177180,
+      "reference": 0.08705717819717627,
+      "sequences": 64,
+      "status": "PASS",
+      "stopped_at_look": 1,
+      "upper975": 1.0486108733541644
+    },
+    "bias": {
+      "D": -0.0003879518265026364,
+      "engine_bias": 0.0002345674586793295,
+      "positions": 177180,
+      "reference_M2": 0.0037504144598267445,
+      "reference_bias": 0.00022497985381753766,
+      "sequences": 64,
+      "status": "PASS",
+      "stopped_at_look": 1,
+      "upper975": -0.00032950060756174623
+    }
+  },
+  "gpu_time": {
+    "runs": [
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "d642ecb5adf77340f666c73d432b3bb590ab2528f90ec7601972c0e29d8d1d52",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "c1/stage1/engine",
+        "seconds": 149.10554151108954,
+        "settings": {
+          "batch": 8,
+          "block_size": 128,
+          "dtype": "bf16",
+          "engine_options": {
+            "compile": false,
+            "cuda_graphs": true,
+            "max_batch_size": 64,
+            "overlap": true
+          },
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "implementation": "engine",
+          "max_new_tokens": 512
+        },
+        "source_sha256": "5233bcb25b69f3c8d637ca4bb0437eef8001759233daf86d115e1dc41cdd27db",
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "d642ecb5adf77340f666c73d432b3bb590ab2528f90ec7601972c0e29d8d1d52",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "c1/stage1/oracle-b4",
+        "seconds": 4291.198047111626,
+        "settings": {
+          "batch": 4,
+          "block_size": 4,
+          "dtype": "fp32",
+          "engine_options": {
+            "compile": false,
+            "cuda_graphs": true,
+            "max_batch_size": 64,
+            "overlap": true
+          },
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "implementation": "oracle",
+          "max_new_tokens": 512
+        },
+        "source_sha256": "5233bcb25b69f3c8d637ca4bb0437eef8001759233daf86d115e1dc41cdd27db",
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "d642ecb5adf77340f666c73d432b3bb590ab2528f90ec7601972c0e29d8d1d52",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "c1/stage1/reference",
+        "seconds": 2731.602149805636,
+        "settings": {
+          "batch": 8,
+          "block_size": 8,
+          "dtype": "bf16",
+          "engine_options": {
+            "compile": false,
+            "cuda_graphs": true,
+            "max_batch_size": 64,
+            "overlap": true
+          },
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "implementation": "reference",
+          "max_new_tokens": 512
+        },
+        "source_sha256": "5233bcb25b69f3c8d637ca4bb0437eef8001759233daf86d115e1dc41cdd27db",
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/engine-forced",
+        "seconds": 1056.0624747721013,
+        "settings": {
+          "batch": 8,
+          "block": 32,
+          "chunk": 256,
+          "dtype": "bf16",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "engine",
+          "layout": "engine",
+          "max_batch_size": 32,
+          "mode": "forced"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/engine-free",
+        "seconds": 486.598327549058,
+        "settings": {
+          "batch": 8,
+          "block": 32,
+          "chunk": 256,
+          "dtype": "bf16",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "engine",
+          "layout": "engine",
+          "max_batch_size": 32,
+          "mode": "free"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/engine-free-reordered",
+        "seconds": 345.62829055509064,
+        "settings": {
+          "batch": 8,
+          "block": 64,
+          "chunk": 256,
+          "dtype": "bf16",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "engine",
+          "layout": "engine",
+          "max_batch_size": 32,
+          "mode": "free",
+          "sequence_order": "reverse"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/oracle-fp32-c256",
+        "seconds": 136.51169367774855,
+        "settings": {
+          "batch": 8,
+          "block": 100,
+          "chunk": 256,
+          "dtype": "fp32",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "reference",
+          "layout": "chunk",
+          "max_batch_size": 32,
+          "mode": "free"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/oracle-fp64-c128",
+        "seconds": 249.36205647909082,
+        "settings": {
+          "batch": 8,
+          "block": 100,
+          "chunk": 128,
+          "dtype": "fp64",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "fp64_attention": "odd-kv-masked-pad-v1 (PyTorch #143644)",
+          "impl": "reference",
+          "layout": "chunk",
+          "max_batch_size": 32,
+          "mode": "free"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/ref-b1",
+        "seconds": 167.2508835119661,
+        "settings": {
+          "batch": 1,
+          "block": 100,
+          "chunk": 256,
+          "dtype": "bf16",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "reference",
+          "layout": "generate",
+          "max_batch_size": 32,
+          "mode": "forced"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/ref-forced",
+        "seconds": 2673.4556258390658,
+        "settings": {
+          "batch": 8,
+          "block": 100,
+          "chunk": 256,
+          "dtype": "bf16",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "reference",
+          "layout": "generate",
+          "max_batch_size": 32,
+          "mode": "forced"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/ref-free",
+        "seconds": 2441.0253613031236,
+        "settings": {
+          "batch": 8,
+          "block": 100,
+          "chunk": 256,
+          "dtype": "bf16",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "reference",
+          "layout": "generate",
+          "max_batch_size": 32,
+          "mode": "free"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/validity-fp32-c256",
+        "seconds": 425.5927517400123,
+        "settings": {
+          "batch": 8,
+          "block": 100,
+          "chunk": 256,
+          "dtype": "fp32",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "reference",
+          "layout": "chunk",
+          "max_batch_size": 32,
+          "mode": "forced"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage1/validity-reference",
+        "seconds": 791.7152836109744,
+        "settings": {
+          "batch": 8,
+          "block": 100,
+          "chunk": 256,
+          "dtype": "bf16",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "reference",
+          "layout": "generate",
+          "max_batch_size": 32,
+          "mode": "forced"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage2/engine-free",
+        "seconds": 1012.2235376500757,
+        "settings": {
+          "batch": 8,
+          "block": 34,
+          "chunk": 256,
+          "dtype": "bf16",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "engine",
+          "layout": "engine",
+          "max_batch_size": 32,
+          "mode": "free"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage2/oracle-fp32-c256",
+        "seconds": 269.29717447108123,
+        "settings": {
+          "batch": 8,
+          "block": 100,
+          "chunk": 256,
+          "dtype": "fp32",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "reference",
+          "layout": "chunk",
+          "max_batch_size": 32,
+          "mode": "free"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      },
+      {
+        "environment": {
+          "cuda": "12.6",
+          "git_commit": "b6499b527e46febf43e01786fb2bcb982ffebaa9",
+          "git_dirty": true,
+          "gpu": "NVIDIA GeForce RTX 3090",
+          "python": "3.10.21",
+          "torch": "2.6.0+cu126",
+          "transformers": "4.52.4"
+        },
+        "manifest_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+        "model_sha256": "7b8377b93bd66ce00462fe20a8f82e7865110d1ab354360db8363b61b2b3de3a",
+        "phase": "o1/stage2/ref-free",
+        "seconds": 4671.73546443705,
+        "settings": {
+          "batch": 8,
+          "block": 100,
+          "chunk": 256,
+          "dtype": "bf16",
+          "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+          "impl": "reference",
+          "layout": "generate",
+          "max_batch_size": 32,
+          "mode": "free"
+        },
+        "source_sha256": null,
+        "timing_scope": "sum of saved block seconds; excludes process/model loading and gaps"
+      }
+    ],
+    "scope": "Saved successful-block wall time on GPU; not CUDA event time or end-to-end chain wall time. The chain also incurred loading, CPU analysis, a failed KV-capacity launch and idle gaps.",
+    "total_block_seconds": 21898.36466402479
+  },
+  "provenance": {
+    "date": "2026-10-15",
+    "fp64_attention": "odd-kv-masked-pad-v1 (PyTorch #143644): validation-only odd float64 KV width padded with one zero K/V slot masked out; no dependency or reference-model change",
+    "kv_capacity": 148000,
+    "kv_capacity_fix": {
+      "change": "confirmatory.sh: --kv-capacity 148000 for all engine capture runs; no result-affecting parameter",
+      "confirmatory_sh_sha256_after": "3184ba5cd5f4fa075d8a15eecf761745b72cdeb4298737ec66cfa6436e386961",
+      "confirmatory_sh_sha256_before": "17e3e69ca2e2539fc65e9eef78ba4f43f82c5afe71dacb91a333051f6d35a049",
+      "date": "2026-10-15",
+      "eng_forced_block0_kv_capacity": 154677,
+      "eng_forced_block0_swap_outs": 0,
+      "previous_snapshot": "source.before-kvcap.sha256",
+      "reason": "eng-forced block 1 KVCapacityError 154677 > measured 154069 after fp32 target comparison; tooling only"
+    },
+    "manifests": {
+      "c1_canonical_json_sha256": "d642ecb5adf77340f666c73d432b3bb590ab2528f90ec7601972c0e29d8d1d52",
+      "c1_file_sha256": "509ea4b88e371ae0ec96bbe1437a26be3013713128cb93a56f02016bc73b3ba1",
+      "o1_file_sha256": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5"
+    },
+    "preserved_failed_root": {
+      "disposition": "Native fp64 attention invalid; preserved, excluded, never pooled with this study",
+      "path": "data/engine/oracle/wp23b",
+      "sources": [
+        {
+          "source_bytes": 9747,
+          "source_path": "data/engine/oracle/wp23b/source.sha256",
+          "source_sha256": "53a3467d4166a16b3514fa94d1b6bb5e9c199aabb5d88cc11a4552d522f86393"
+        },
+        {
+          "source_bytes": 895,
+          "source_path": "data/engine/oracle/wp23b/replay-fix.json",
+          "source_sha256": "f0c245d2223478a4cba9f73a72c614dc0208c288cf5ae796adefa1a8d7c5cd7c"
+        }
+      ]
+    },
+    "previous_inventory": {
+      "source_bytes": 11050,
+      "source_path": "data/engine/oracle/wp23c/source.before-kvcap.sha256",
+      "source_sha256": "82f07ed51515f948f423889a8dc4a92360f57120078fb9962ae6d1731d548047"
+    },
+    "root": "data/engine/oracle/wp23c",
+    "source_hashes": {
+      "data/engine/oracle/wp23c/inputs/c1-manifest.json": "509ea4b88e371ae0ec96bbe1437a26be3013713128cb93a56f02016bc73b3ba1",
+      "data/engine/oracle/wp23c/inputs/manifest.json": "375a22fe6ff3ef56ae42fb4629af3ab6cb35e5e84e00a7306a26186716c59bf5",
+      "models/TaH-plus-1.7B/added_tokens.json": "c0284b582e14987fbd3d5a2cb2bd139084371ed9acbae488829a1c900833c680",
+      "models/TaH-plus-1.7B/config.json": "2de9a1bc0b00a4becd73f1b53c1c2ca66cf015be33a70d0e1e57d885aab0e4ef",
+      "models/TaH-plus-1.7B/generation_config.json": "e42ecf2c2707a2c4c64d3a1dd42025bde7f3875aec75fc92602f05d4134453e2",
+      "models/TaH-plus-1.7B/lora/adapter_config.json": "31514a9ae54ac978eb0e51df42114b67d86ebbef7911311a704ef42d627239f1",
+      "models/TaH-plus-1.7B/lora/adapter_model.safetensors": "fe5713268d8eae2f9fa75d7326811d5042ffdead55bf8322f9ab713f18998b46",
+      "models/TaH-plus-1.7B/model.safetensors": "737a22f5db4ad7327f338a093a319ca55e1cd055086bd29573675c1e5fe897ec",
+      "models/TaH-plus-1.7B/special_tokens_map.json": "a36726f7fe394c1324021cac4a9ee3ad6c4f6285c0d98721f9b0b95888ec9905",
+      "models/TaH-plus-1.7B/tah_config.json": "638c9e3e84251fb0b4a10bf695391f64b8310e9f7ea0415a955d0e8535b22794",
+      "models/TaH-plus-1.7B/tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "models/TaH-plus-1.7B/tokenizer_config.json": "69f096f6a08b3a543bed940eaea699844eb02b489e350dbf2388bf1b07676779",
+      "models/TaH-plus-1.7B/trainer_state.json": "75bde3a4b1ba19d2dc11e3964d14dedf9cf431e04069289bd7c83630a10efee4",
+      "models/TaH-plus-1.7B/vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "notes/tools/WP23/confirmatory.sh": "3184ba5cd5f4fa075d8a15eecf761745b72cdeb4298737ec66cfa6436e386961",
+      "notes/tools/WP23/followup.py": "56846ec06fb70f6dfe69288daaa6bcb53590008c619989ddb45d8b6827e37ab0",
+      "notes/tools/WP23/look.py": "08b0a13042d37998a31e5faf66d8749ba41165d6100769c00280a586baa71177",
+      "notes/tools/WP23/padded_attention_diagnostic.py": "71c30b5ba513c5c30627b368fa825bb5b2536a4261a87b070ed478401d892380",
+      "notes/tools/WP23/project.py": "481a1833e49474e98d784cb2f4cd695768c9cd23a606c337fd982725a9d80021",
+      "notes/tools/WP23/repair_replay_snapshot.py": "3454f94c1ab5c9171c1a26b2c79d045df15ca214a73f556f6ebbce02c802843d",
+      "notes/tools/WP23/resume_replay_fix.sh": "941787ed97c2f26c25a5059d047a427f75d50201cc25718b127a38dad34fc510",
+      "notes/tools/WP23/review.py": "541ebd1b813a493e036b7d0649bc32e374b935d0d75e5be035f9ac11cf2ea936",
+      "notes/tools/WP23/sdpa_probe.py": "6677e18122a76ea1e8dad46b2e1fdfb2135bb5c664c4ff7282dd9f9ce0fe2e5f",
+      "notes/tools/WP23/select_manifest.py": "f54045ffa749de43136a2b7b66ec048aeff29cb03ef382baa06ff56912320299",
+      "notes/tools/WP23/softmax_probe.py": "8baf256a02983aad80da4eb172293888e87ad6255b2ab25ce8b35e11dac05dc5",
+      "notes/tools/WP23/softmax_root_cause_probe.py": "69e7910edab4563131b55e2a3ebdde121de82cb1dc08144d32a54275aab699c7",
+      "notes/tools/WP23/softmax_shape_probe.py": "1caf190ec6bb093fb48120ba452a5258fe7e93bbb251b3d6d9dc6c51257676e9",
+      "notes/tools/WP23/tail_two_look_power.py": "58e6b80cba8ceacc04b2d3581cf31f63de7360d11f319a03b777014256e82348",
+      "notes/tools/WP23/test_repair_replay_snapshot.py": "d471ebcc9eb15a748353892673f94a238aaac596c93aa582602346d7b32f3883",
+      "script/tah/recipes/qwen3_1.7/eval_tah.yaml": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+      "script/tah/validation/__init__.py": "f73638cb96d63fa501808bfd2ece7b0d61ab79330b9b9967f526c05fca0cdbe7",
+      "script/tah/validation/analyze.py": "0e7ec048f6549caf6b990f636f4cf49a6124abfc9b4df1e9df53898a7493a663",
+      "script/tah/validation/capture.py": "cbb101097116210e9ab0c9618631e7a2dc2d04ae224bf46c86046af9a00149f9",
+      "script/tah/validation/common.py": "3d600b0368107aa3a5299bdb2c268bcac39ddacaf1b326187247058c0d490e53",
+      "script/tah/validation/coupled_analyze.py": "5a1e6e45810ce33dea709ff017c0d1fd348fa8ce59b40db11ebe8a73e7564b0b",
+      "script/tah/validation/coupled_run.py": "e0f9d89476d906e151e21da93698221c58bf30e108b9ef9ba24e94e565804e83",
+      "script/tah/validation/coupling.py": "3e4a278940a40debd26a8c8f90a80146b7dbdcae7e4ded60f896d7d6434fcb24",
+      "script/tah/validation/diagnose_replay.py": "75adfae65d6ab1e3e1df3c38818a5b01f430b22ac97eb15a1877444a19be669b",
+      "script/tah/validation/engine_run.py": "69850d1742b8bc16631f257c426b52ea6dc37ccbc200f20cc467c7aef68565ef",
+      "script/tah/validation/fp64_attention.py": "06b30f3d49b6c83940acdd7a294e5ecd5688c615c25d148f5a2ec1db9e0ec127",
+      "script/tah/validation/near_tie.py": "b771a82474528a93032bdad723cb389ee99124c4f8662f414d1c814871eee289",
+      "script/tah/validation/paired_look.py": "2a91a0f36210a7e8f13b4df0f92aa6472145dc409a1ad4a2af5fcefc487cdfee",
+      "script/tah/validation/reference_run.py": "19167672050654ffef3305265fba2fbdf5d4cfbd4a1a8d0265f41a4da4edac70",
+      "script/tah/validation/select_sequences.py": "8904169d27f8e06cfad985f357d2301ed1c9aa1318fc80970c621a33076e8729",
+      "script/tah/validation/short_c1.py": "3aad1a3e6ec808292dce38a55d5baede534ccf10503aeab5872ff73eaf250a5c",
+      "script/tah/validation/tests/test_coupled.py": "d9fb59f467eb5ca664f5f8be371f8dec14df539d3efadb0986f979b456350800",
+      "script/tah/validation/tests/test_diagnose_replay.py": "8a99666c45d665881639699ec84c8d8aba6f4c953b57ff168a96b0af1323083c",
+      "script/tah/validation/tests/test_fp64_attention.py": "2531eccc19ba980bee4870248bf7252b11f61cc139f7dcbc947a8ff7cfe8b84c",
+      "script/tah/validation/tests/test_short_design.py": "e6f0ba004d92518ccc8a87422346b431a0049df36e9f0ef424ba279047f88052",
+      "script/tah/validation/tests/test_validation.py": "acd74edd8eba7609c583363c2d653b7d653a759139c3f30072afab69cc9794f2",
+      "tah/engine/__init__.py": "e80377bec1a1d80c41c9ab6963758f3f316c8ba162b425433c514496d8b3362e",
+      "tah/engine/attention.py": "e523668dfd98cc9e29bad9fdc601f943c2d19971429c045312c16b69d413a66a",
+      "tah/engine/attention_kernels.py": "aec7cdfe47e9609bc390f7cef6fa214b28f1e2d780495fdeefe17705c504924a",
+      "tah/engine/cached_model.py": "3752d4135d592f3199fc733f7027c9eaca9984387d95dedbcd818993f85e41cb",
+      "tah/engine/compiled.py": "420dafd5edc012e3556ec07191486c3958e0927040c6bf3f455f09001fc71237",
+      "tah/engine/config.py": "8969a8c08e14cae835a758131c7ffab2cebae5a74f6c368fca3586d7b8063dfe",
+      "tah/engine/decider.py": "7f8ff43de73ced9947350749056b0417507fc0b557c73aff613dfd78624e5015",
+      "tah/engine/engine.py": "3636f54199747f3657af4d387640e0b050f82be098008057117be49580a81fd8",
+      "tah/engine/fixtures.py": "fbeb40c5bac6882f340048abb40ce852e38d3b3f3d3ce096f347806e9de65cc0",
+      "tah/engine/generate_fixtures.py": "2151cebef592ca29531682678e5ab34cf0564d46ad26512c6259d31e18a6f3e3",
+      "tah/engine/graphs.py": "7165d25edbe313140efe1efcbeaf485e4b01ec0d341118c94b81d99981fd8c4b",
+      "tah/engine/host_arena.py": "48240d3924e2cd03256f5c56695399783f9f330b2176f7f7f37576959132b149",
+      "tah/engine/kv_cache.py": "8f243576dd44614b469f47306a80c3e5579fff109f18444bd432daf24352d817",
+      "tah/engine/layers.py": "e009fd0db1b52e8170562356d3e80dc23e7c9e76a9b62c1dbdabb1944f6f46db",
+      "tah/engine/model.py": "54251a5342b6369e60f2799dcdc63a67dd5376698b432a2c9be186b2c0d944ef",
+      "tah/engine/parity.py": "5d8a9246d3dc49c7c1adb5d526f114918185caf1c4390c0bd924a28a2432e889",
+      "tah/engine/reference_capture.py": "88096ce03a0e51e2b4abbdbc626d3fcbdedf9e633786ea43d584aafa5dd841c0",
+      "tah/engine/rope.py": "3a03d19de657938c048ecbfe2044e2d3f1fa36dae891a087bc7986b7f2529aa3",
+      "tah/engine/sampling.py": "a4ca91b6bcf7b3e78b9df845ac6a650875350c682ff40d4b582f553af2a95237",
+      "tah/engine/scheduler.py": "173e875b5b29428e460afd9afd2daef028c89bae7580da7f7129990003fb0159",
+      "tah/engine/tensors.py": "2f4ae9617d5fe13659bc988b08ef22014c1a53ff91c5c3c50ebbbffce151ab11",
+      "tah/engine/tests/attention_check.py": "0554d802c3bb0123d4c6a74349a0d295c6b75eeb5e9f44edaead7dc4f07bb299",
+      "tah/engine/tests/engine_check.py": "94564ba78b190fd81fcddc7aa6a3167bcad4a65aba0a284b431833821332d129",
+      "tah/engine/tests/generated_gtf.py": "a5e7aca1a6f8b3a1a605f5aaec7d28b850d1e38af9d5ccab82bdc99cb1b655d5",
+      "tah/engine/tests/kernel_check.py": "ba4de1dde9518579fa79f6e3c50841dd0c36fc10706a2f61371f51e6850ec096",
+      "tah/engine/tests/metadata_check.py": "35f0b8a319e2907b738bc2ed9ab02144c1386a0ab50d59aed09d27cc60b78bcd",
+      "tah/engine/tests/overlap_replay.py": "fab221f3c3c3ef1fd49a7aed46307caf36bc8badebec6816b10e84f7686d4261",
+      "tah/engine/tests/sampling_check.py": "c9d259e5efc5e5a8245323738ddbc1cb19c144b6b926ab970b794119db09bc67",
+      "tah/engine/tests/test_attention.py": "22c124b65603630e900128621068445cc51f5ce73be45ae1f8ab6e62b21f1134",
+      "tah/engine/tests/test_attention_gpu.py": "c4b1d2c8fc17fa46ea3f60abfe5a3d4722a7725736ee3b161e845db70972274e",
+      "tah/engine/tests/test_cached_gtf.py": "08ecced25e583da839ce85fa7792ec4b4cd77d5b8ab5f44ac4e9cb6f4d22b889",
+      "tah/engine/tests/test_cached_model.py": "f9a243fbe442b4a1a245650fe5ec858acae05e0b93936d9ba538775cc6db5676",
+      "tah/engine/tests/test_cpu_probes.py": "aafe413410f1c34dba0e293b3da07e521db3a7c2da114c29b9bd8e859133f1e4",
+      "tah/engine/tests/test_engine.py": "42921a15176971802e1bcec4434f8dd404625295ef2f029d83c4e085bf83c757",
+      "tah/engine/tests/test_engine_gpu.py": "83ce155e346358358e430b3ea05af3e18c943e75f1a05a1b9f83abbf92d598cd",
+      "tah/engine/tests/test_eval_integration.py": "00f88a0150ec808a554fc2ce5de96a3a070d2d5301d5f26b720c7e73b543458b",
+      "tah/engine/tests/test_fixtures.py": "032a5ae934c7d32f462b7fa8867bb22cad2b82a19a44352802fc1f1104a6529e",
+      "tah/engine/tests/test_gtf.py": "1f9e14b0ecafdeebb4b69313853f78c71e5a0116fead95c0817ae660c6b31318",
+      "tah/engine/tests/test_host_swap.py": "0ee40e4a7dbcacc577a474d27329dbab0f15c721684ec8209dfc0b3e432ebf48",
+      "tah/engine/tests/test_kv_cache.py": "a66d716f09e24736da70fb4c7d0b2e267e88782846585eb39a019a639a41b30e",
+      "tah/engine/tests/test_model.py": "67bbd57d41fc78fb2677ade926a9aafc803d8d3dc643fe046c630db5ba43b833",
+      "tah/engine/tests/test_parity.py": "115d2c2108a3ccad813719b3acacfd2fbc5db5a4b8d6c774cc1256fa972fcd1a",
+      "tah/engine/tests/test_rope.py": "3313f9cc8d1d85dd254b6b94e443a132395d94dc21c85c97a1eb2186379af5e3",
+      "tah/engine/tests/test_sampling.py": "1c035184f046aca56d54cf131aabc7cdad736345cf3ef564d52bdf0b8f85452f",
+      "tah/engine/tests/test_sampling_gpu.py": "109fc4f0fbe9b10313ca1d2569fd84449bf56b555276302b2c5d07e0c8de1228",
+      "tah/engine/weights.py": "e62a5362244a9e7405111ca68732dcf326149466a695cf6887e57f96c59798f5",
+      "tah/evaluate/__init__.py": "9f362a453ee7ed4973739d4a1f3d3e6fa209a2cd0dcb59b02d4eb1b57b6331ce",
+      "tah/evaluate/backends.py": "3fba19e91d559823c31563fd09c9b54844c4e703746040d3a7b1e2aff1344e7e",
+      "tah/evaluate/code_prompts.py": "d31ace590ee9b4706e7a63edd90086f0944cfaa01da84e67105fa480f9b7d58b",
+      "tah/evaluate/codeeval.py": "4ec8861e3b1d8635470cab95538b7645b7b2bd2c8182b8ab30ff6f53d5feceb6",
+      "tah/evaluate/datasets.py": "4f52eeec0797cc4d81674e6bdbdc3b13c5585488459a3e2d3656a70730dffb5e",
+      "tah/evaluate/jobs.py": "f848f2a49056e689e4bf370269452e4c31bcf253b6e13747ba02a3ba93ce808c",
+      "tah/evaluate/matheval.py": "9b92faf373464dbd9fbcb387c3b02d747eb80637e2a60bf9885b0ff9846982aa",
+      "tah/evaluate/progress.py": "e7b9c3feb177a2e9f42405e4ac0213d6dc90ae9d4350ef74e615059fb9c1d7e8",
+      "tah/evaluate/results.py": "bde07fa27dc2fbbc4260e167d566f08ec3489f57fd7fac1da4cfd88c00d9e9cb",
+      "tah/model/__init__.py": "00285c2d9062cea04b59a195588d7781cfc877187dc02a440d70b498bff17189",
+      "tah/model/causal_cache.py": "54a057ea9e421816556c97748550fb1a9fde0fec56060273760b8d52d98dbd49",
+      "tah/model/iter_decider.py": "e1b961584f684379138359e79af89b44f8a7b2121760370349ec2438c15731f6",
+      "tah/model/loss.py": "9a5914040770d8d205ee24759eafd752b057063ffaac63b8bc6b145b4d0451d3",
+      "tah/model/tah_config.py": "0f94404fde09b424facb6c4464e2d6e829d54d5fa893baa0c5bbff34fed0a391",
+      "tah/model/tah_model.py": "9febfa06f81d7022cd70854ec73ed0b6d565e49333779b34a4af3a15f1cfae96",
+      "tah/model/utils.py": "e534e4b93a227ca8b3922a4541eea27c33e1597fda2ce871768fbd7ba0c8317c"
+    },
+    "source_inventory": {
+      "source_bytes": 11050,
+      "source_path": "data/engine/oracle/wp23c/source.sha256",
+      "source_sha256": "3e482afe6a31bd784fa6e0b41916f0f315cd6adc41facdcfdec91cdb78e0b907"
+    },
+    "unavailable_historical_sources": [
+      "script/tah/validation/diagnose_replay.py",
+      "script/tah/validation/tests/test_diagnose_replay.py"
+    ]
+  },
+  "schema_version": 1,
+  "secondary_reference_b1": {
+    "binding": false,
+    "confidence": 0.95,
+    "datasets": {
+      "gpqa": 1,
+      "humaneval": 1,
+      "math500": 1,
+      "mbpp": 1
+    },
+    "generators": {
+      "engine": 3,
+      "reference": 1
+    },
+    "max_total_length": 2923,
+    "metrics": {
+      "M1": {
+        "engine": 0.009146211283329958,
+        "margin": 1.1,
+        "ratio": 0.812217612002765,
+        "ratio_upper95": 0.8166725038205198,
+        "reference": 0.011260789163112635,
+        "status": "PASS"
+      },
+      "M2": {
+        "engine": 0.004110788799614897,
+        "margin": 1.1,
+        "ratio": 1.0115733557682054,
+        "ratio_upper95": 1.0881321971795421,
+        "reference": 0.0040637574884454086,
+        "status": "PASS"
+      },
+      "M3": {
+        "engine": 0.09193904249091432,
+        "margin": 1.1,
+        "ratio": 1.0521141497205648,
+        "ratio_upper95": 1.0623616782550214,
+        "reference": 0.0873850451639043,
+        "status": "PASS"
+      }
+    },
+    "note": "Descriptive four-sequence secondary; original 95% bounds, not confirmatory looks",
+    "positions": 3723,
+    "sequences": 4
+  },
+  "self_split": {
+    "bootstrap_per_split": 1000,
+    "diagnostic_only": true,
+    "exact_permutations": 12870,
+    "interpretation": "Equality false-alarm calibration is not NI power; not shown does not establish inferiority.",
+    "per_half": 8,
+    "rates": {
+      "decision": {
+        "boundary_false_noninferiority": 0.047,
+        "equality_false_alarm": 0.054,
+        "max_not_shown": 0.5,
+        "noninferiority_not_shown": 0.898
+      },
+      "top1": {
+        "boundary_false_noninferiority": 0.032,
+        "equality_false_alarm": 0.054,
+        "max_not_shown": 0.499,
+        "noninferiority_not_shown": 0.889
+      }
+    },
+    "sequences": 16,
+    "splits": 1000
+  },
+  "sizes": {
+    "b1": {
+      "datasets": {
+        "gpqa": 1,
+        "humaneval": 1,
+        "math500": 1,
+        "mbpp": 1
+      },
+      "generators": {
+        "engine": 3,
+        "reference": 1
+      },
+      "max_total_length": 2923,
+      "positions": 3723,
+      "sequences": 4
+    },
+    "stage1": {
+      "datasets": {
+        "gpqa": 24,
+        "humaneval": 8,
+        "math500": 24,
+        "mbpp": 8
+      },
+      "generators": {
+        "engine": 32,
+        "reference": 32
+      },
+      "max_total_length": 7282,
+      "positions": 177180,
+      "sequences": 64
+    },
+    "stage2": {
+      "datasets": {
+        "gpqa": 51,
+        "humaneval": 17,
+        "math500": 51,
+        "mbpp": 17
+      },
+      "generators": {
+        "engine": 68,
+        "reference": 68
+      },
+      "max_total_length": 8034,
+      "positions": 351106,
+      "sequences": 136
+    },
+    "validity": {
+      "datasets": {
+        "gpqa": 2,
+        "humaneval": 7,
+        "math500": 4,
+        "mbpp": 7
+      },
+      "generators": {
+        "engine": 18,
+        "reference": 2
+      },
+      "max_total_length": 7282,
+      "positions": 20670,
+      "sequences": 20
+    }
+  },
+  "tail_looks": [
+    {
+      "criteria": {
+        "decision": {
+          "D": -0.0007823709398508075,
+          "critical": 1.9983405425207268,
+          "engine_events": 1109,
+          "engine_mean_q90": 0.004755006171762943,
+          "original_max": {
+            "engine": 0.02032613754272461,
+            "engine_events": 1109,
+            "limit": 0.0322521984577179,
+            "reference": 0.029320180416107178,
+            "reference_events": 1120,
+            "status": "PASS"
+          },
+          "reference_events": 1120,
+          "reference_mean_q90": 0.005033979192376137,
+          "standard_error": 0.00042620694908496995,
+          "status": "not shown",
+          "upper975": 6.933568600975509e-05,
+          "upper_bound": 6.933568600975509e-05
+        },
+        "top1": {
+          "D": -0.268044537305832,
+          "critical": 1.9983405425207268,
+          "engine_events": 3771,
+          "engine_mean_q90": 1.1174485683441162,
+          "original_max": {
+            "engine": 15.12502670288086,
+            "engine_events": 3771,
+            "limit": 6.76577377319336,
+            "reference": 6.150703430175781,
+            "reference_events": 3783,
+            "status": "not shown"
+          },
+          "reference_events": 3783,
+          "reference_mean_q90": 1.2595391869544983,
+          "standard_error": 0.07841047225096251,
+          "status": "PASS",
+          "upper975": -0.11135371164853719,
+          "upper_bound": -0.11135371164853719
+        }
+      },
+      "look": 1,
+      "next_action": "continue_fixed_136",
+      "original_maximum": {
+        "binding": false,
+        "criteria": {
+          "decision": {
+            "engine": 0.02032613754272461,
+            "engine_events": 1109,
+            "limit": 0.0322521984577179,
+            "reference": 0.029320180416107178,
+            "reference_events": 1120,
+            "status": "PASS"
+          },
+          "top1": {
+            "engine": 15.12502670288086,
+            "engine_events": 3771,
+            "limit": 6.76577377319336,
+            "reference": 6.150703430175781,
+            "reference_events": 3783,
+            "status": "not shown"
+          }
+        }
+      },
+      "positions": 177180,
+      "sequences": 64
+    },
+    {
+      "criteria": {
+        "decision": {
+          "D": -0.0008223956823349005,
+          "critical": 1.9719565442517357,
+          "engine_events": 3297,
+          "engine_mean_q90": 0.004904903471469879,
+          "original_max": {
+            "engine": 0.029774010181427002,
+            "engine_events": 3297,
+            "limit": 0.03715502619743347,
+            "reference": 0.03377729654312134,
+            "reference_events": 3301,
+            "status": "PASS"
+          },
+          "reference_events": 3301,
+          "reference_mean_q90": 0.005206635594367981,
+          "standard_error": 0.0003042799295348033,
+          "status": "PASS",
+          "upper975": -0.0002223688840042881,
+          "upper_bound": -0.0002223688840042881
+        },
+        "top1": {
+          "D": -0.2809921493530274,
+          "critical": 1.9719565442517357,
+          "engine_events": 11290,
+          "engine_mean_q90": 1.1843845176696777,
+          "observed_status": "PASS",
+          "original_max": {
+            "engine": 15.12502670288086,
+            "engine_events": 11290,
+            "limit": 20.659672927856448,
+            "reference": 18.78152084350586,
+            "reference_events": 11257,
+            "status": "PASS"
+          },
+          "reference_events": 11257,
+          "reference_mean_q90": 1.3321606063842772,
+          "standard_error": 0.09408277187616558,
+          "status": "PASS",
+          "stopped_for_success_at_look": 1,
+          "upper975": -0.09546501165047955,
+          "upper_bound": -0.09546501165047955
+        }
+      },
+      "look": 2,
+      "next_action": "stop_for_success",
+      "original_maximum": {
+        "binding": false,
+        "criteria": {
+          "decision": {
+            "engine": 0.029774010181427002,
+            "engine_events": 3297,
+            "limit": 0.03715502619743347,
+            "reference": 0.03377729654312134,
+            "reference_events": 3301,
+            "status": "PASS"
+          },
+          "top1": {
+            "engine": 15.12502670288086,
+            "engine_events": 11290,
+            "limit": 20.659672927856448,
+            "reference": 18.78152084350586,
+            "reference_events": 11257,
+            "status": "PASS"
+          }
+        }
+      },
+      "positions": 528286,
+      "sequences": 200
+    }
+  ],
+  "tail_stopped_at_look": {
+    "decision": 2,
+    "top1": 1
+  },
+  "validity": {
+    "metrics": {
+      "M1": {
+        "fp32_vs_fp64": 1.8599347314491054e-06,
+        "limit": 0.0006541396642547491,
+        "reference_vs_fp64": 0.013082793285094981,
+        "status": "PASS"
+      },
+      "M2": {
+        "fp32_vs_fp64": 1.0029462939138038e-06,
+        "limit": 0.00019050737441841893,
+        "reference_vs_fp64": 0.003810147488368378,
+        "status": "PASS"
+      },
+      "M3": {
+        "fp32_vs_fp64": 1.0308683606264337e-05,
+        "limit": 0.004369019155161429,
+        "reference_vs_fp64": 0.08738038310322857,
+        "status": "PASS"
+      }
+    },
+    "positions": 20670,
+    "sequences": 20,
+    "size_requirement_met": true,
+    "status": "PASS: float32 oracle valid"
+  }
+}

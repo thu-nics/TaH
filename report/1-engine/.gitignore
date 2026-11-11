@@ -1,0 +1,5 @@
+reproduction/
+__pycache__/
+*.pyc
+# Historical logs are hashed report evidence.
+!data/negative/*.log

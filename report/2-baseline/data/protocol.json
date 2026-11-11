@@ -1,0 +1,136 @@
+{
+  "code-tah2": {
+    "groups": [
+      {
+        "datasets": [
+          "humaneval"
+        ],
+        "max_new_tokens": 8192,
+        "name": "humaneval_plus",
+        "overrides": {
+          "code_prompt": "tah2"
+        },
+        "repeat_size": 1
+      },
+      {
+        "datasets": [
+          "mbpp"
+        ],
+        "max_new_tokens": 8192,
+        "name": "mbpp_plus",
+        "overrides": {
+          "code_prompt": "tah2"
+        },
+        "repeat_size": 1
+      }
+    ],
+    "name": "paper_r2_code_tah2",
+    "paper_average": null,
+    "paper_values": {
+      "humaneval": 0.515,
+      "mbpp": 0.575
+    },
+    "sha256": "1ac25754ab22b5cd25d9dcbd1501b6f15e4591a27912c6aee4d1ac90efec8cce",
+    "source_path": "script/tah/recipes/qwen3_1.7/protocol_paper_code_tah2.yaml"
+  },
+  "r2": {
+    "groups": [
+      {
+        "datasets": [
+          "aime25"
+        ],
+        "max_new_tokens": 8192,
+        "name": "aime25",
+        "overrides": {},
+        "repeat_size": 8
+      },
+      {
+        "datasets": [
+          "amc23"
+        ],
+        "max_new_tokens": 8192,
+        "name": "amc23",
+        "overrides": {},
+        "repeat_size": 8
+      },
+      {
+        "datasets": [
+          "olympiadbench"
+        ],
+        "max_new_tokens": 8192,
+        "name": "olympiadbench",
+        "overrides": {},
+        "repeat_size": 1
+      },
+      {
+        "datasets": [
+          "math500"
+        ],
+        "max_new_tokens": 8192,
+        "name": "math500",
+        "overrides": {},
+        "repeat_size": 1
+      },
+      {
+        "datasets": [
+          "gpqa"
+        ],
+        "max_new_tokens": 8192,
+        "name": "gpqa",
+        "overrides": {},
+        "repeat_size": 1
+      },
+      {
+        "datasets": [
+          "humaneval"
+        ],
+        "max_new_tokens": 8192,
+        "name": "humaneval_plus",
+        "overrides": {},
+        "repeat_size": 1
+      },
+      {
+        "datasets": [
+          "mbpp"
+        ],
+        "max_new_tokens": 8192,
+        "name": "mbpp_plus",
+        "overrides": {},
+        "repeat_size": 1
+      },
+      {
+        "datasets": [
+          "gsm8k"
+        ],
+        "max_new_tokens": 4096,
+        "name": "gsm8k",
+        "overrides": {},
+        "repeat_size": 1
+      },
+      {
+        "datasets": [
+          "mmlu_stem"
+        ],
+        "max_new_tokens": 4096,
+        "name": "mmlu_stem",
+        "overrides": {},
+        "repeat_size": 1
+      }
+    ],
+    "name": "paper_r2",
+    "paper_average": 0.537,
+    "paper_values": {
+      "aime25": 0.154,
+      "amc23": 0.484,
+      "gpqa": 0.394,
+      "gsm8k": 0.845,
+      "humaneval": 0.515,
+      "math500": 0.726,
+      "mbpp": 0.575,
+      "mmlu_stem": 0.766,
+      "olympiadbench": 0.376
+    },
+    "sha256": "ff888078a08501de663fc60457acdb202eba4c2d386af46a03625a611c69916a",
+    "source_path": "script/tah/recipes/qwen3_1.7/protocol_paper.yaml"
+  }
+}

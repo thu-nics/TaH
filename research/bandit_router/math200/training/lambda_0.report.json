@@ -1,0 +1,195 @@
+{
+  "penalty": 0.0,
+  "best_epoch": 11,
+  "epochs_run": 26,
+  "threshold": 0.9997254014015198,
+  "logit_threshold": "8.200050354003906",
+  "entropy_threshold": "1.3564453125",
+  "validation": {
+    "always_1": {
+      "continue_fraction": 0.0,
+      "average_depth": 1.0,
+      "token_nll": 0.6442479491233826,
+      "local_reward": 0.0,
+      "expected_reward": 0.0
+    },
+    "always_2": {
+      "continue_fraction": 1.0,
+      "average_depth": 2.0,
+      "token_nll": 2.113175868988037,
+      "local_reward": -1.4689279794692993,
+      "expected_reward": -1.4689279794692993
+    },
+    "imitation": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6374120712280273,
+      "local_reward": 0.006835941690951586,
+      "expected_reward": 0.006835941690951586
+    },
+    "bandit": {
+      "continue_fraction": 0.016887027770280838,
+      "average_depth": 1.0168870277702808,
+      "token_nll": 0.6361713409423828,
+      "local_reward": 0.008076624013483524,
+      "expected_reward": 0.014786169864237309
+    }
+  },
+  "budget_curve": [
+    {
+      "target_continue_fraction": 0.0,
+      "logit_threshold": "24.880332946777344",
+      "entropy_threshold": "2.84765625",
+      "bandit": {
+        "continue_fraction": 0.0,
+        "average_depth": 1.0,
+        "token_nll": 0.6442479491233826,
+        "local_reward": 0.0,
+        "expected_reward": 0.014786169864237309
+      },
+      "entropy": {
+        "continue_fraction": 0.0,
+        "average_depth": 1.0,
+        "token_nll": 0.6442479491233826,
+        "local_reward": 0.0,
+        "expected_reward": 0.0
+      }
+    },
+    {
+      "target_continue_fraction": 0.016887027770280838,
+      "logit_threshold": "8.200050354003906",
+      "entropy_threshold": "1.3564453125",
+      "bandit": {
+        "continue_fraction": 0.016887027770280838,
+        "average_depth": 1.0168870277702808,
+        "token_nll": 0.6361713409423828,
+        "local_reward": 0.008076624013483524,
+        "expected_reward": 0.014786169864237309
+      },
+      "entropy": {
+        "continue_fraction": 0.016887027770280838,
+        "average_depth": 1.0168870277702808,
+        "token_nll": 0.6397272944450378,
+        "local_reward": 0.004520691465586424,
+        "expected_reward": 0.004520691465586424
+      }
+    },
+    {
+      "target_continue_fraction": 0.05,
+      "logit_threshold": "0.9053459167480469",
+      "entropy_threshold": "0.931640625",
+      "bandit": {
+        "continue_fraction": 0.05000654608011246,
+        "average_depth": 1.0500065460801125,
+        "token_nll": 0.6301296353340149,
+        "local_reward": 0.014118357561528683,
+        "expected_reward": 0.014786169864237309
+      },
+      "entropy": {
+        "continue_fraction": 0.05007199943065643,
+        "average_depth": 1.0500719994306564,
+        "token_nll": 0.6331256628036499,
+        "local_reward": 0.011122389696538448,
+        "expected_reward": 0.011122389696538448
+      }
+    },
+    {
+      "target_continue_fraction": 0.1,
+      "logit_threshold": "-4.2197113037109375",
+      "entropy_threshold": "0.6630859375",
+      "bandit": {
+        "continue_fraction": 0.10001309216022491,
+        "average_depth": 1.100013092160225,
+        "token_nll": 0.633203387260437,
+        "local_reward": 0.011044609360396862,
+        "expected_reward": 0.014786169864237309
+      },
+      "entropy": {
+        "continue_fraction": 0.09981673210859299,
+        "average_depth": 1.099816732108593,
+        "token_nll": 0.6251768469810486,
+        "local_reward": 0.019071102142333984,
+        "expected_reward": 0.019071102142333984
+      }
+    },
+    {
+      "target_continue_fraction": 0.2,
+      "logit_threshold": "-9.374942779541016",
+      "entropy_threshold": "0.23876953125",
+      "bandit": {
+        "continue_fraction": 0.20002618432044983,
+        "average_depth": 1.2000261843204498,
+        "token_nll": 0.706520676612854,
+        "local_reward": -0.062272656708955765,
+        "expected_reward": 0.014786169864237309
+      },
+      "entropy": {
+        "continue_fraction": 0.20002618432044983,
+        "average_depth": 1.2000261843204498,
+        "token_nll": 0.6517522931098938,
+        "local_reward": -0.007504304870963097,
+        "expected_reward": -0.007504304870963097
+      }
+    },
+    {
+      "target_continue_fraction": 0.3,
+      "logit_threshold": "-11.841296195983887",
+      "entropy_threshold": "0.044525146484375",
+      "bandit": {
+        "continue_fraction": 0.29997381567955017,
+        "average_depth": 1.2999738156795502,
+        "token_nll": 0.8101280927658081,
+        "local_reward": -0.16588006913661957,
+        "expected_reward": 0.014786169864237309
+      },
+      "entropy": {
+        "continue_fraction": 0.29997381567955017,
+        "average_depth": 1.2999738156795502,
+        "token_nll": 0.8531778454780579,
+        "local_reward": -0.2089299112558365,
+        "expected_reward": -0.2089299112558365
+      }
+    },
+    {
+      "target_continue_fraction": 0.5,
+      "logit_threshold": "-14.81098461151123",
+      "entropy_threshold": "0.0005979537963867188",
+      "bandit": {
+        "continue_fraction": 0.5,
+        "average_depth": 1.5,
+        "token_nll": 1.0626152753829956,
+        "local_reward": -0.4183673560619354,
+        "expected_reward": 0.014786169864237309
+      },
+      "entropy": {
+        "continue_fraction": 0.5,
+        "average_depth": 1.5,
+        "token_nll": 1.4077036380767822,
+        "local_reward": -0.7634557485580444,
+        "expected_reward": -0.7634557485580444
+      }
+    },
+    {
+      "target_continue_fraction": 1.0,
+      "logit_threshold": "-inf",
+      "entropy_threshold": "-inf",
+      "bandit": {
+        "continue_fraction": 1.0,
+        "average_depth": 2.0,
+        "token_nll": 2.113175868988037,
+        "local_reward": -1.4689279794692993,
+        "expected_reward": 0.014786169864237309
+      },
+      "entropy": {
+        "continue_fraction": 1.0,
+        "average_depth": 2.0,
+        "token_nll": 2.113175868988037,
+        "local_reward": -1.4689279794692993,
+        "expected_reward": -1.4689279794692993
+      }
+    }
+  ],
+  "curve_file": "lambda_0.curve.json",
+  "checkpoint_selection": "lowest validation token NLL at imitation's continuation budget",
+  "note": "Validation is used for checkpoint and threshold selection; these are local surrogate diagnostics, not unbiased test scores or answer accuracy."
+}

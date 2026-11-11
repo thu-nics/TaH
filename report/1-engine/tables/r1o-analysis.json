@@ -1,0 +1,1796 @@
+{
+  "conclusion": "PASS",
+  "placeholders": {
+    "r1o_alpha_per_look": {
+      "meaning": "Registered alpha per look",
+      "rendered": "0.025",
+      "value": 0.025
+    },
+    "r1o_b1_M1_engine": {
+      "meaning": "Descriptive b1 secondary M1: engine (original 95% bound if applicable)",
+      "rendered": "0.00914621",
+      "value": 0.009146211283329958
+    },
+    "r1o_b1_M1_margin": {
+      "meaning": "Descriptive b1 secondary M1: margin (original 95% bound if applicable)",
+      "rendered": "1.1",
+      "value": 1.1
+    },
+    "r1o_b1_M1_ratio": {
+      "meaning": "Descriptive b1 secondary M1: ratio (original 95% bound if applicable)",
+      "rendered": "0.812218",
+      "value": 0.812217612002765
+    },
+    "r1o_b1_M1_ratio_upper95": {
+      "meaning": "Descriptive b1 secondary M1: ratio_upper95 (original 95% bound if applicable)",
+      "rendered": "0.816673",
+      "value": 0.8166725038205198
+    },
+    "r1o_b1_M1_reference": {
+      "meaning": "Descriptive b1 secondary M1: reference (original 95% bound if applicable)",
+      "rendered": "0.0112608",
+      "value": 0.011260789163112635
+    },
+    "r1o_b1_M1_status": {
+      "meaning": "Descriptive b1 secondary M1: status (original 95% bound if applicable)",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_b1_M2_engine": {
+      "meaning": "Descriptive b1 secondary M2: engine (original 95% bound if applicable)",
+      "rendered": "0.00411079",
+      "value": 0.004110788799614897
+    },
+    "r1o_b1_M2_margin": {
+      "meaning": "Descriptive b1 secondary M2: margin (original 95% bound if applicable)",
+      "rendered": "1.1",
+      "value": 1.1
+    },
+    "r1o_b1_M2_ratio": {
+      "meaning": "Descriptive b1 secondary M2: ratio (original 95% bound if applicable)",
+      "rendered": "1.01157",
+      "value": 1.0115733557682054
+    },
+    "r1o_b1_M2_ratio_upper95": {
+      "meaning": "Descriptive b1 secondary M2: ratio_upper95 (original 95% bound if applicable)",
+      "rendered": "1.08813",
+      "value": 1.0881321971795421
+    },
+    "r1o_b1_M2_reference": {
+      "meaning": "Descriptive b1 secondary M2: reference (original 95% bound if applicable)",
+      "rendered": "0.00406376",
+      "value": 0.0040637574884454086
+    },
+    "r1o_b1_M2_status": {
+      "meaning": "Descriptive b1 secondary M2: status (original 95% bound if applicable)",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_b1_M3_engine": {
+      "meaning": "Descriptive b1 secondary M3: engine (original 95% bound if applicable)",
+      "rendered": "0.091939",
+      "value": 0.09193904249091432
+    },
+    "r1o_b1_M3_margin": {
+      "meaning": "Descriptive b1 secondary M3: margin (original 95% bound if applicable)",
+      "rendered": "1.1",
+      "value": 1.1
+    },
+    "r1o_b1_M3_ratio": {
+      "meaning": "Descriptive b1 secondary M3: ratio (original 95% bound if applicable)",
+      "rendered": "1.05211",
+      "value": 1.0521141497205648
+    },
+    "r1o_b1_M3_ratio_upper95": {
+      "meaning": "Descriptive b1 secondary M3: ratio_upper95 (original 95% bound if applicable)",
+      "rendered": "1.06236",
+      "value": 1.0623616782550214
+    },
+    "r1o_b1_M3_reference": {
+      "meaning": "Descriptive b1 secondary M3: reference (original 95% bound if applicable)",
+      "rendered": "0.087385",
+      "value": 0.0873850451639043
+    },
+    "r1o_b1_M3_status": {
+      "meaning": "Descriptive b1 secondary M3: status (original 95% bound if applicable)",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_bootstrap_seed": {
+      "meaning": "Registered bootstrap seed",
+      "rendered": "20261013",
+      "value": 20261013
+    },
+    "r1o_c1_alpha": {
+      "meaning": "C1 alpha",
+      "rendered": "0.025",
+      "value": 0.025
+    },
+    "r1o_c1_cap": {
+      "meaning": "C1 cap",
+      "rendered": "512",
+      "value": 512
+    },
+    "r1o_c1_difference": {
+      "meaning": "C1 difference",
+      "rendered": "-0.397399",
+      "value": -0.39739884393063585
+    },
+    "r1o_c1_difference_lower": {
+      "meaning": "C1 difference lower",
+      "rendered": "-4.16763",
+      "value": -4.167630057803469
+    },
+    "r1o_c1_engine_cap_censored_count": {
+      "meaning": "C1 count: engine cap censored",
+      "rendered": "0",
+      "value": 0
+    },
+    "r1o_c1_engine_cap_censored_rate": {
+      "meaning": "C1 fraction: engine cap censored",
+      "rendered": "0",
+      "value": 0.0
+    },
+    "r1o_c1_engine_early_identical": {
+      "meaning": "engine identical early-EOS trajectories (excludes cap censoring)",
+      "rendered": "0",
+      "value": 0
+    },
+    "r1o_c1_engine_mean": {
+      "meaning": "C1 engine mean",
+      "rendered": "63.6936",
+      "value": 63.69364161849711
+    },
+    "r1o_c1_engine_no_observed_difference_count": {
+      "meaning": "C1 count: engine no observed difference",
+      "rendered": "0",
+      "value": 0
+    },
+    "r1o_c1_engine_no_observed_difference_rate": {
+      "meaning": "C1 fraction: engine no observed difference",
+      "rendered": "0",
+      "value": 0.0
+    },
+    "r1o_c1_gpqa_problems": {
+      "meaning": "C1 eligible problems in gpqa",
+      "rendered": "194",
+      "value": 194
+    },
+    "r1o_c1_increment": {
+      "meaning": "Registered c1 increment",
+      "rendered": "512",
+      "value": 512
+    },
+    "r1o_c1_limit": {
+      "meaning": "C1 limit",
+      "rendered": "-6.4091",
+      "value": -6.409104046242774
+    },
+    "r1o_c1_look": {
+      "meaning": "C1 look",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_c1_math500_problems": {
+      "meaning": "C1 eligible problems in math500",
+      "rendered": "498",
+      "value": 498
+    },
+    "r1o_c1_maximum": {
+      "meaning": "Registered c1 maximum",
+      "rendered": "1204",
+      "value": 1204
+    },
+    "r1o_c1_problems": {
+      "meaning": "C1 problems",
+      "rendered": "692",
+      "value": 692
+    },
+    "r1o_c1_prompt_limit": {
+      "meaning": "C1 prompt limit",
+      "rendered": "675",
+      "value": 675
+    },
+    "r1o_c1_reference_cap_censored_count": {
+      "meaning": "C1 count: reference cap censored",
+      "rendered": "0",
+      "value": 0
+    },
+    "r1o_c1_reference_cap_censored_rate": {
+      "meaning": "C1 fraction: reference cap censored",
+      "rendered": "0",
+      "value": 0.0
+    },
+    "r1o_c1_reference_early_identical": {
+      "meaning": "reference identical early-EOS trajectories (excludes cap censoring)",
+      "rendered": "0",
+      "value": 0
+    },
+    "r1o_c1_reference_mean": {
+      "meaning": "C1 reference mean",
+      "rendered": "64.091",
+      "value": 64.09104046242774
+    },
+    "r1o_c1_reference_no_observed_difference_count": {
+      "meaning": "C1 count: reference no observed difference",
+      "rendered": "0",
+      "value": 0
+    },
+    "r1o_c1_reference_no_observed_difference_rate": {
+      "meaning": "C1 fraction: reference no observed difference",
+      "rendered": "0",
+      "value": 0.0
+    },
+    "r1o_c1_status": {
+      "meaning": "C1 status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_composition_block": {
+      "meaning": "Reordered-engine composition setting: block",
+      "rendered": "64",
+      "value": 64
+    },
+    "r1o_composition_engine_vs_engine_alpha": {
+      "meaning": "engine_vs_engine diagnostic alpha",
+      "rendered": "0.05",
+      "value": 0.05
+    },
+    "r1o_composition_engine_vs_engine_confidence": {
+      "meaning": "engine_vs_engine diagnostic confidence",
+      "rendered": "0.95",
+      "value": 0.95
+    },
+    "r1o_composition_engine_vs_engine_decision_engine_mean_q90": {
+      "meaning": "engine_vs_engine, decision: engine_mean_q90",
+      "rendered": "0.00490955",
+      "value": 0.004909551702439785
+    },
+    "r1o_composition_engine_vs_engine_decision_maximum_engine": {
+      "meaning": "engine_vs_engine, decision: descriptive maximum engine",
+      "rendered": "0.0293202",
+      "value": 0.029320180416107178
+    },
+    "r1o_composition_engine_vs_engine_decision_maximum_engine_events": {
+      "meaning": "engine_vs_engine, decision: descriptive maximum engine_events",
+      "rendered": "1110",
+      "value": 1110
+    },
+    "r1o_composition_engine_vs_engine_decision_maximum_limit": {
+      "meaning": "engine_vs_engine, decision: descriptive maximum limit",
+      "rendered": "0.0223588",
+      "value": 0.022358751296997072
+    },
+    "r1o_composition_engine_vs_engine_decision_maximum_reference": {
+      "meaning": "engine_vs_engine, decision: descriptive maximum reference",
+      "rendered": "0.0203261",
+      "value": 0.02032613754272461
+    },
+    "r1o_composition_engine_vs_engine_decision_maximum_reference_events": {
+      "meaning": "engine_vs_engine, decision: descriptive maximum reference_events",
+      "rendered": "1109",
+      "value": 1109
+    },
+    "r1o_composition_engine_vs_engine_decision_maximum_status": {
+      "meaning": "engine_vs_engine, decision: descriptive maximum status",
+      "rendered": "not shown",
+      "value": "not shown"
+    },
+    "r1o_composition_engine_vs_engine_decision_phi": {
+      "meaning": "engine_vs_engine, decision: correlation of disagreement positions (phi)",
+      "rendered": "0.834475",
+      "value": 0.8344750610595868
+    },
+    "r1o_composition_engine_vs_engine_decision_reference_mean_q90": {
+      "meaning": "engine_vs_engine, decision: reference_mean_q90",
+      "rendered": "0.00475501",
+      "value": 0.004755006171762943
+    },
+    "r1o_composition_engine_vs_engine_decision_status": {
+      "meaning": "engine_vs_engine, decision: status",
+      "rendered": "not shown",
+      "value": "not shown"
+    },
+    "r1o_composition_engine_vs_engine_decision_upper_bound": {
+      "meaning": "engine_vs_engine, decision: upper_bound",
+      "rendered": "0.000327752",
+      "value": 0.0003277519068262475
+    },
+    "r1o_composition_engine_vs_engine_top1_engine_mean_q90": {
+      "meaning": "engine_vs_engine, top1: engine_mean_q90",
+      "rendered": "1.1325",
+      "value": 1.1325000524520874
+    },
+    "r1o_composition_engine_vs_engine_top1_maximum_engine": {
+      "meaning": "engine_vs_engine, top1: descriptive maximum engine",
+      "rendered": "15.125",
+      "value": 15.12502670288086
+    },
+    "r1o_composition_engine_vs_engine_top1_maximum_engine_events": {
+      "meaning": "engine_vs_engine, top1: descriptive maximum engine_events",
+      "rendered": "3791",
+      "value": 3791
+    },
+    "r1o_composition_engine_vs_engine_top1_maximum_limit": {
+      "meaning": "engine_vs_engine, top1: descriptive maximum limit",
+      "rendered": "16.6375",
+      "value": 16.637529373168945
+    },
+    "r1o_composition_engine_vs_engine_top1_maximum_reference": {
+      "meaning": "engine_vs_engine, top1: descriptive maximum reference",
+      "rendered": "15.125",
+      "value": 15.12502670288086
+    },
+    "r1o_composition_engine_vs_engine_top1_maximum_reference_events": {
+      "meaning": "engine_vs_engine, top1: descriptive maximum reference_events",
+      "rendered": "3771",
+      "value": 3771
+    },
+    "r1o_composition_engine_vs_engine_top1_maximum_status": {
+      "meaning": "engine_vs_engine, top1: descriptive maximum status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_composition_engine_vs_engine_top1_phi": {
+      "meaning": "engine_vs_engine, top1: correlation of disagreement positions (phi)",
+      "rendered": "0.874338",
+      "value": 0.8743381978703514
+    },
+    "r1o_composition_engine_vs_engine_top1_reference_mean_q90": {
+      "meaning": "engine_vs_engine, top1: reference_mean_q90",
+      "rendered": "1.11745",
+      "value": 1.1174485683441162
+    },
+    "r1o_composition_engine_vs_engine_top1_status": {
+      "meaning": "engine_vs_engine, top1: status",
+      "rendered": "not shown",
+      "value": "not shown"
+    },
+    "r1o_composition_engine_vs_engine_top1_upper_bound": {
+      "meaning": "engine_vs_engine, top1: upper_bound",
+      "rendered": "0.0101111",
+      "value": 0.01011107490250987
+    },
+    "r1o_composition_engine_vs_reference_alpha": {
+      "meaning": "engine_vs_reference diagnostic alpha",
+      "rendered": "0.025",
+      "value": 0.025
+    },
+    "r1o_composition_engine_vs_reference_confidence": {
+      "meaning": "engine_vs_reference diagnostic confidence",
+      "rendered": "0.975",
+      "value": 0.975
+    },
+    "r1o_composition_engine_vs_reference_decision_engine_mean_q90": {
+      "meaning": "engine_vs_reference, decision: engine_mean_q90",
+      "rendered": "0.00475501",
+      "value": 0.004755006171762943
+    },
+    "r1o_composition_engine_vs_reference_decision_maximum_engine": {
+      "meaning": "engine_vs_reference, decision: descriptive maximum engine",
+      "rendered": "0.0203261",
+      "value": 0.02032613754272461
+    },
+    "r1o_composition_engine_vs_reference_decision_maximum_engine_events": {
+      "meaning": "engine_vs_reference, decision: descriptive maximum engine_events",
+      "rendered": "1109",
+      "value": 1109
+    },
+    "r1o_composition_engine_vs_reference_decision_maximum_limit": {
+      "meaning": "engine_vs_reference, decision: descriptive maximum limit",
+      "rendered": "0.0322522",
+      "value": 0.0322521984577179
+    },
+    "r1o_composition_engine_vs_reference_decision_maximum_reference": {
+      "meaning": "engine_vs_reference, decision: descriptive maximum reference",
+      "rendered": "0.0293202",
+      "value": 0.029320180416107178
+    },
+    "r1o_composition_engine_vs_reference_decision_maximum_reference_events": {
+      "meaning": "engine_vs_reference, decision: descriptive maximum reference_events",
+      "rendered": "1120",
+      "value": 1120
+    },
+    "r1o_composition_engine_vs_reference_decision_maximum_status": {
+      "meaning": "engine_vs_reference, decision: descriptive maximum status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_composition_engine_vs_reference_decision_phi": {
+      "meaning": "engine_vs_reference, decision: correlation of disagreement positions (phi)",
+      "rendered": "0.448759",
+      "value": 0.448758886115081
+    },
+    "r1o_composition_engine_vs_reference_decision_reference_mean_q90": {
+      "meaning": "engine_vs_reference, decision: reference_mean_q90",
+      "rendered": "0.00503398",
+      "value": 0.005033979192376137
+    },
+    "r1o_composition_engine_vs_reference_decision_status": {
+      "meaning": "engine_vs_reference, decision: status",
+      "rendered": "not shown",
+      "value": "not shown"
+    },
+    "r1o_composition_engine_vs_reference_decision_upper_bound": {
+      "meaning": "engine_vs_reference, decision: upper_bound",
+      "rendered": "6.93357e-05",
+      "value": 6.933568600975509e-05
+    },
+    "r1o_composition_engine_vs_reference_top1_engine_mean_q90": {
+      "meaning": "engine_vs_reference, top1: engine_mean_q90",
+      "rendered": "1.11745",
+      "value": 1.1174485683441162
+    },
+    "r1o_composition_engine_vs_reference_top1_maximum_engine": {
+      "meaning": "engine_vs_reference, top1: descriptive maximum engine",
+      "rendered": "15.125",
+      "value": 15.12502670288086
+    },
+    "r1o_composition_engine_vs_reference_top1_maximum_engine_events": {
+      "meaning": "engine_vs_reference, top1: descriptive maximum engine_events",
+      "rendered": "3771",
+      "value": 3771
+    },
+    "r1o_composition_engine_vs_reference_top1_maximum_limit": {
+      "meaning": "engine_vs_reference, top1: descriptive maximum limit",
+      "rendered": "6.76577",
+      "value": 6.76577377319336
+    },
+    "r1o_composition_engine_vs_reference_top1_maximum_reference": {
+      "meaning": "engine_vs_reference, top1: descriptive maximum reference",
+      "rendered": "6.1507",
+      "value": 6.150703430175781
+    },
+    "r1o_composition_engine_vs_reference_top1_maximum_reference_events": {
+      "meaning": "engine_vs_reference, top1: descriptive maximum reference_events",
+      "rendered": "3783",
+      "value": 3783
+    },
+    "r1o_composition_engine_vs_reference_top1_maximum_status": {
+      "meaning": "engine_vs_reference, top1: descriptive maximum status",
+      "rendered": "not shown",
+      "value": "not shown"
+    },
+    "r1o_composition_engine_vs_reference_top1_phi": {
+      "meaning": "engine_vs_reference, top1: correlation of disagreement positions (phi)",
+      "rendered": "0.543351",
+      "value": 0.5433506504396529
+    },
+    "r1o_composition_engine_vs_reference_top1_reference_mean_q90": {
+      "meaning": "engine_vs_reference, top1: reference_mean_q90",
+      "rendered": "1.25954",
+      "value": 1.2595391869544983
+    },
+    "r1o_composition_engine_vs_reference_top1_status": {
+      "meaning": "engine_vs_reference, top1: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_composition_engine_vs_reference_top1_upper_bound": {
+      "meaning": "engine_vs_reference, top1: upper_bound",
+      "rendered": "-0.111354",
+      "value": -0.11135371164853719
+    },
+    "r1o_composition_max_batch_size": {
+      "meaning": "Reordered-engine composition setting: max_batch_size",
+      "rendered": "32",
+      "value": 32
+    },
+    "r1o_confidence_percent": {
+      "meaning": "One-sided confidence at each of two looks (%)",
+      "rendered": "97.5",
+      "value": 97.5
+    },
+    "r1o_delta_percent": {
+      "meaning": "Relative non-inferiority margin (%)",
+      "rendered": "10",
+      "value": 10.0
+    },
+    "r1o_device": {
+      "meaning": "R1-O reproduction device",
+      "rendered": "RTX 3090 24 GiB; CPU curation in seconds",
+      "value": "RTX 3090 24 GiB; CPU curation in seconds"
+    },
+    "r1o_forced_M1_engine": {
+      "meaning": "M1 forced: engine",
+      "rendered": "0.00892726",
+      "value": 0.008927256469671126
+    },
+    "r1o_forced_M1_estimate": {
+      "meaning": "M1 forced: estimate",
+      "rendered": "0.79856",
+      "value": 0.798559937570294
+    },
+    "r1o_forced_M1_margin": {
+      "meaning": "M1 forced: margin",
+      "rendered": "1.1",
+      "value": 1.1
+    },
+    "r1o_forced_M1_positions": {
+      "meaning": "M1 forced: positions",
+      "rendered": "177180",
+      "value": 177180
+    },
+    "r1o_forced_M1_reference": {
+      "meaning": "M1 forced: reference",
+      "rendered": "0.0111792",
+      "value": 0.011179194008696804
+    },
+    "r1o_forced_M1_sequences": {
+      "meaning": "M1 forced: sequences",
+      "rendered": "64",
+      "value": 64
+    },
+    "r1o_forced_M1_status": {
+      "meaning": "M1 forced: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_forced_M1_stopped_at_look": {
+      "meaning": "M1 forced: stopped at look",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_forced_M1_upper975": {
+      "meaning": "M1 forced: upper975",
+      "rendered": "0.805223",
+      "value": 0.8052232710822477
+    },
+    "r1o_forced_M2_engine": {
+      "meaning": "M2 forced: engine",
+      "rendered": "0.00375144",
+      "value": 0.0037514445513355914
+    },
+    "r1o_forced_M2_estimate": {
+      "meaning": "M2 forced: estimate",
+      "rendered": "1.00027",
+      "value": 1.0002746607128044
+    },
+    "r1o_forced_M2_margin": {
+      "meaning": "M2 forced: margin",
+      "rendered": "1.1",
+      "value": 1.1
+    },
+    "r1o_forced_M2_positions": {
+      "meaning": "M2 forced: positions",
+      "rendered": "177180",
+      "value": 177180
+    },
+    "r1o_forced_M2_reference": {
+      "meaning": "M2 forced: reference",
+      "rendered": "0.00375041",
+      "value": 0.0037504144598267445
+    },
+    "r1o_forced_M2_sequences": {
+      "meaning": "M2 forced: sequences",
+      "rendered": "64",
+      "value": 64
+    },
+    "r1o_forced_M2_status": {
+      "meaning": "M2 forced: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_forced_M2_stopped_at_look": {
+      "meaning": "M2 forced: stopped at look",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_forced_M2_upper975": {
+      "meaning": "M2 forced: upper975",
+      "rendered": "1.00747",
+      "value": 1.007469988241368
+    },
+    "r1o_forced_M3_engine": {
+      "meaning": "M3 forced: engine",
+      "rendered": "0.0904935",
+      "value": 0.09049345651852898
+    },
+    "r1o_forced_M3_estimate": {
+      "meaning": "M3 forced: estimate",
+      "rendered": "1.03947",
+      "value": 1.0394715104775147
+    },
+    "r1o_forced_M3_margin": {
+      "meaning": "M3 forced: margin",
+      "rendered": "1.1",
+      "value": 1.1
+    },
+    "r1o_forced_M3_positions": {
+      "meaning": "M3 forced: positions",
+      "rendered": "177180",
+      "value": 177180
+    },
+    "r1o_forced_M3_reference": {
+      "meaning": "M3 forced: reference",
+      "rendered": "0.0870572",
+      "value": 0.08705717819717627
+    },
+    "r1o_forced_M3_sequences": {
+      "meaning": "M3 forced: sequences",
+      "rendered": "64",
+      "value": 64
+    },
+    "r1o_forced_M3_status": {
+      "meaning": "M3 forced: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_forced_M3_stopped_at_look": {
+      "meaning": "M3 forced: stopped at look",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_forced_M3_upper975": {
+      "meaning": "M3 forced: upper975",
+      "rendered": "1.04861",
+      "value": 1.0486108733541644
+    },
+    "r1o_forced_bias_D": {
+      "meaning": "bias forced: D",
+      "rendered": "-0.000387952",
+      "value": -0.0003879518265026364
+    },
+    "r1o_forced_bias_engine_bias": {
+      "meaning": "bias forced: engine bias",
+      "rendered": "0.000234567",
+      "value": 0.0002345674586793295
+    },
+    "r1o_forced_bias_positions": {
+      "meaning": "bias forced: positions",
+      "rendered": "177180",
+      "value": 177180
+    },
+    "r1o_forced_bias_reference_M2": {
+      "meaning": "bias forced: reference M2",
+      "rendered": "0.00375041",
+      "value": 0.0037504144598267445
+    },
+    "r1o_forced_bias_reference_bias": {
+      "meaning": "bias forced: reference bias",
+      "rendered": "0.00022498",
+      "value": 0.00022497985381753766
+    },
+    "r1o_forced_bias_sequences": {
+      "meaning": "bias forced: sequences",
+      "rendered": "64",
+      "value": 64
+    },
+    "r1o_forced_bias_status": {
+      "meaning": "bias forced: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_forced_bias_stopped_at_look": {
+      "meaning": "bias forced: stopped at look",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_forced_bias_upper975": {
+      "meaning": "bias forced: upper975",
+      "rendered": "-0.000329501",
+      "value": -0.00032950060756174623
+    },
+    "r1o_free_look1_positions": {
+      "meaning": "Free-mode look 1 positions",
+      "rendered": "177180",
+      "value": 177180
+    },
+    "r1o_free_look1_sequences": {
+      "meaning": "Free-mode look 1 sequences",
+      "rendered": "64",
+      "value": 64
+    },
+    "r1o_free_look2_positions": {
+      "meaning": "Free-mode look 2 positions",
+      "rendered": "528286",
+      "value": 528286
+    },
+    "r1o_free_look2_sequences": {
+      "meaning": "Free-mode look 2 sequences",
+      "rendered": "200",
+      "value": 200
+    },
+    "r1o_gpu_block_hours": {
+      "meaning": "Successful-block GPU wall time in hours; excludes loading, failures and gaps",
+      "rendered": "6.08288",
+      "value": 6.082879073340219
+    },
+    "r1o_gpu_c1_stage1_engine_minutes": {
+      "meaning": "Saved block minutes: c1/stage1/engine",
+      "rendered": "2.48509",
+      "value": 2.485092358518159
+    },
+    "r1o_gpu_c1_stage1_oracle_b4_minutes": {
+      "meaning": "Saved block minutes: c1/stage1/oracle-b4",
+      "rendered": "71.52",
+      "value": 71.51996745186042
+    },
+    "r1o_gpu_c1_stage1_reference_minutes": {
+      "meaning": "Saved block minutes: c1/stage1/reference",
+      "rendered": "45.5267",
+      "value": 45.5267024967606
+    },
+    "r1o_gpu_o1_stage1_engine_forced_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/engine-forced",
+      "rendered": "17.601",
+      "value": 17.60104124620169
+    },
+    "r1o_gpu_o1_stage1_engine_free_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/engine-free",
+      "rendered": "8.10997",
+      "value": 8.109972125817633
+    },
+    "r1o_gpu_o1_stage1_engine_free_reordered_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/engine-free-reordered",
+      "rendered": "5.76047",
+      "value": 5.760471509251511
+    },
+    "r1o_gpu_o1_stage1_oracle_fp32_c256_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/oracle-fp32-c256",
+      "rendered": "2.27519",
+      "value": 2.2751948946291427
+    },
+    "r1o_gpu_o1_stage1_oracle_fp64_c128_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/oracle-fp64-c128",
+      "rendered": "4.15603",
+      "value": 4.156034274651514
+    },
+    "r1o_gpu_o1_stage1_ref_b1_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/ref-b1",
+      "rendered": "2.78751",
+      "value": 2.787514725199435
+    },
+    "r1o_gpu_o1_stage1_ref_forced_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/ref-forced",
+      "rendered": "44.5576",
+      "value": 44.55759376398443
+    },
+    "r1o_gpu_o1_stage1_ref_free_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/ref-free",
+      "rendered": "40.6838",
+      "value": 40.68375602171873
+    },
+    "r1o_gpu_o1_stage1_validity_fp32_c256_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/validity-fp32-c256",
+      "rendered": "7.09321",
+      "value": 7.093212529000206
+    },
+    "r1o_gpu_o1_stage1_validity_reference_minutes": {
+      "meaning": "Saved block minutes: o1/stage1/validity-reference",
+      "rendered": "13.1953",
+      "value": 13.195254726849575
+    },
+    "r1o_gpu_o1_stage2_engine_free_minutes": {
+      "meaning": "Saved block minutes: o1/stage2/engine-free",
+      "rendered": "16.8704",
+      "value": 16.870392294167928
+    },
+    "r1o_gpu_o1_stage2_oracle_fp32_c256_minutes": {
+      "meaning": "Saved block minutes: o1/stage2/oracle-fp32-c256",
+      "rendered": "4.48829",
+      "value": 4.488286241184687
+    },
+    "r1o_gpu_o1_stage2_ref_free_minutes": {
+      "meaning": "Saved block minutes: o1/stage2/ref-free",
+      "rendered": "77.8623",
+      "value": 77.8622577406175
+    },
+    "r1o_kv_capacity": {
+      "meaning": "Fixed engine capture KV-capacity launch setting (entries)",
+      "rendered": "148000",
+      "value": 148000
+    },
+    "r1o_max_look1_decision_engine": {
+      "meaning": "Descriptive maximum, look 1, decision: engine",
+      "rendered": "0.0203261",
+      "value": 0.02032613754272461
+    },
+    "r1o_max_look1_decision_engine_events": {
+      "meaning": "Descriptive maximum, look 1, decision: engine_events",
+      "rendered": "1109",
+      "value": 1109
+    },
+    "r1o_max_look1_decision_limit": {
+      "meaning": "Descriptive maximum, look 1, decision: limit",
+      "rendered": "0.0322522",
+      "value": 0.0322521984577179
+    },
+    "r1o_max_look1_decision_reference": {
+      "meaning": "Descriptive maximum, look 1, decision: reference",
+      "rendered": "0.0293202",
+      "value": 0.029320180416107178
+    },
+    "r1o_max_look1_decision_reference_events": {
+      "meaning": "Descriptive maximum, look 1, decision: reference_events",
+      "rendered": "1120",
+      "value": 1120
+    },
+    "r1o_max_look1_decision_status": {
+      "meaning": "Descriptive maximum, look 1, decision: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_max_look1_top1_engine": {
+      "meaning": "Descriptive maximum, look 1, top1: engine",
+      "rendered": "15.125",
+      "value": 15.12502670288086
+    },
+    "r1o_max_look1_top1_engine_events": {
+      "meaning": "Descriptive maximum, look 1, top1: engine_events",
+      "rendered": "3771",
+      "value": 3771
+    },
+    "r1o_max_look1_top1_limit": {
+      "meaning": "Descriptive maximum, look 1, top1: limit",
+      "rendered": "6.76577",
+      "value": 6.76577377319336
+    },
+    "r1o_max_look1_top1_reference": {
+      "meaning": "Descriptive maximum, look 1, top1: reference",
+      "rendered": "6.1507",
+      "value": 6.150703430175781
+    },
+    "r1o_max_look1_top1_reference_events": {
+      "meaning": "Descriptive maximum, look 1, top1: reference_events",
+      "rendered": "3783",
+      "value": 3783
+    },
+    "r1o_max_look1_top1_status": {
+      "meaning": "Descriptive maximum, look 1, top1: status",
+      "rendered": "not shown",
+      "value": "not shown"
+    },
+    "r1o_max_look2_decision_engine": {
+      "meaning": "Descriptive maximum, look 2, decision: engine",
+      "rendered": "0.029774",
+      "value": 0.029774010181427002
+    },
+    "r1o_max_look2_decision_engine_events": {
+      "meaning": "Descriptive maximum, look 2, decision: engine_events",
+      "rendered": "3297",
+      "value": 3297
+    },
+    "r1o_max_look2_decision_limit": {
+      "meaning": "Descriptive maximum, look 2, decision: limit",
+      "rendered": "0.037155",
+      "value": 0.03715502619743347
+    },
+    "r1o_max_look2_decision_reference": {
+      "meaning": "Descriptive maximum, look 2, decision: reference",
+      "rendered": "0.0337773",
+      "value": 0.03377729654312134
+    },
+    "r1o_max_look2_decision_reference_events": {
+      "meaning": "Descriptive maximum, look 2, decision: reference_events",
+      "rendered": "3301",
+      "value": 3301
+    },
+    "r1o_max_look2_decision_status": {
+      "meaning": "Descriptive maximum, look 2, decision: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_max_look2_top1_engine": {
+      "meaning": "Descriptive maximum, look 2, top1: engine",
+      "rendered": "15.125",
+      "value": 15.12502670288086
+    },
+    "r1o_max_look2_top1_engine_events": {
+      "meaning": "Descriptive maximum, look 2, top1: engine_events",
+      "rendered": "11290",
+      "value": 11290
+    },
+    "r1o_max_look2_top1_limit": {
+      "meaning": "Descriptive maximum, look 2, top1: limit",
+      "rendered": "20.6597",
+      "value": 20.659672927856448
+    },
+    "r1o_max_look2_top1_reference": {
+      "meaning": "Descriptive maximum, look 2, top1: reference",
+      "rendered": "18.7815",
+      "value": 18.78152084350586
+    },
+    "r1o_max_look2_top1_reference_events": {
+      "meaning": "Descriptive maximum, look 2, top1: reference_events",
+      "rendered": "11257",
+      "value": 11257
+    },
+    "r1o_max_look2_top1_status": {
+      "meaning": "Descriptive maximum, look 2, top1: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_maximum_teacher_forced_length": {
+      "meaning": "Registered maximum teacher forced length",
+      "rendered": "8192",
+      "value": 8192
+    },
+    "r1o_minimum_tail_events": {
+      "meaning": "Registered minimum tail events",
+      "rendered": "20",
+      "value": 20
+    },
+    "r1o_oracle_threshold": {
+      "meaning": "Registered oracle threshold",
+      "rendered": "0.898438",
+      "value": 0.8984375
+    },
+    "r1o_quantile": {
+      "meaning": "Registered quantile",
+      "rendered": "0.9",
+      "value": 0.9
+    },
+    "r1o_ratio_limit": {
+      "meaning": "Upper engine/reference error ratio allowed",
+      "rendered": "1.1",
+      "value": 1.1
+    },
+    "r1o_resamples": {
+      "meaning": "Registered resamples",
+      "rendered": "10000",
+      "value": 10000
+    },
+    "r1o_runtime": {
+      "meaning": "R1-O reproduction runtime",
+      "rendered": "6.08 h measured successful blocks (loading and gaps extra)",
+      "value": "6.08 h measured successful blocks (loading and gaps extra)"
+    },
+    "r1o_self_split_bootstrap_per_split": {
+      "meaning": "CPU random-half diagnostic bootstrap per split",
+      "rendered": "1000",
+      "value": 1000
+    },
+    "r1o_self_split_decision_boundary_false_noninferiority_percent": {
+      "meaning": "decision self-split boundary_false_noninferiority (%)",
+      "rendered": "4.7",
+      "value": 4.7
+    },
+    "r1o_self_split_decision_equality_false_alarm_percent": {
+      "meaning": "decision self-split equality_false_alarm (%)",
+      "rendered": "5.4",
+      "value": 5.4
+    },
+    "r1o_self_split_decision_max_not_shown_percent": {
+      "meaning": "decision self-split max_not_shown (%)",
+      "rendered": "50",
+      "value": 50.0
+    },
+    "r1o_self_split_decision_noninferiority_not_shown_percent": {
+      "meaning": "decision self-split noninferiority_not_shown (%)",
+      "rendered": "89.8",
+      "value": 89.8
+    },
+    "r1o_self_split_exact_permutations": {
+      "meaning": "CPU random-half diagnostic exact permutations",
+      "rendered": "12870",
+      "value": 12870
+    },
+    "r1o_self_split_per_half": {
+      "meaning": "CPU random-half diagnostic per half",
+      "rendered": "8",
+      "value": 8
+    },
+    "r1o_self_split_sequences": {
+      "meaning": "CPU random-half diagnostic sequences",
+      "rendered": "16",
+      "value": 16
+    },
+    "r1o_self_split_splits": {
+      "meaning": "CPU random-half diagnostic splits",
+      "rendered": "1000",
+      "value": 1000
+    },
+    "r1o_self_split_top1_boundary_false_noninferiority_percent": {
+      "meaning": "top1 self-split boundary_false_noninferiority (%)",
+      "rendered": "3.2",
+      "value": 3.2
+    },
+    "r1o_self_split_top1_equality_false_alarm_percent": {
+      "meaning": "top1 self-split equality_false_alarm (%)",
+      "rendered": "5.4",
+      "value": 5.4
+    },
+    "r1o_self_split_top1_max_not_shown_percent": {
+      "meaning": "top1 self-split max_not_shown (%)",
+      "rendered": "49.9",
+      "value": 49.9
+    },
+    "r1o_self_split_top1_noninferiority_not_shown_percent": {
+      "meaning": "top1 self-split noninferiority_not_shown (%)",
+      "rendered": "88.9",
+      "value": 88.9
+    },
+    "r1o_size_b1_datasets_gpqa": {
+      "meaning": "b1: sequence count by datasets, gpqa",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_size_b1_datasets_humaneval": {
+      "meaning": "b1: sequence count by datasets, humaneval",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_size_b1_datasets_math500": {
+      "meaning": "b1: sequence count by datasets, math500",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_size_b1_datasets_mbpp": {
+      "meaning": "b1: sequence count by datasets, mbpp",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_size_b1_generators_engine": {
+      "meaning": "b1: sequence count by generators, engine",
+      "rendered": "3",
+      "value": 3
+    },
+    "r1o_size_b1_generators_reference": {
+      "meaning": "b1: sequence count by generators, reference",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_size_b1_max_total_length": {
+      "meaning": "b1 max total length",
+      "rendered": "2923",
+      "value": 2923
+    },
+    "r1o_size_b1_positions": {
+      "meaning": "b1 positions",
+      "rendered": "3723",
+      "value": 3723
+    },
+    "r1o_size_b1_sequences": {
+      "meaning": "b1 sequences",
+      "rendered": "4",
+      "value": 4
+    },
+    "r1o_size_stage1_datasets_gpqa": {
+      "meaning": "stage1: sequence count by datasets, gpqa",
+      "rendered": "24",
+      "value": 24
+    },
+    "r1o_size_stage1_datasets_humaneval": {
+      "meaning": "stage1: sequence count by datasets, humaneval",
+      "rendered": "8",
+      "value": 8
+    },
+    "r1o_size_stage1_datasets_math500": {
+      "meaning": "stage1: sequence count by datasets, math500",
+      "rendered": "24",
+      "value": 24
+    },
+    "r1o_size_stage1_datasets_mbpp": {
+      "meaning": "stage1: sequence count by datasets, mbpp",
+      "rendered": "8",
+      "value": 8
+    },
+    "r1o_size_stage1_generators_engine": {
+      "meaning": "stage1: sequence count by generators, engine",
+      "rendered": "32",
+      "value": 32
+    },
+    "r1o_size_stage1_generators_reference": {
+      "meaning": "stage1: sequence count by generators, reference",
+      "rendered": "32",
+      "value": 32
+    },
+    "r1o_size_stage1_max_total_length": {
+      "meaning": "stage1 max total length",
+      "rendered": "7282",
+      "value": 7282
+    },
+    "r1o_size_stage1_positions": {
+      "meaning": "stage1 positions",
+      "rendered": "177180",
+      "value": 177180
+    },
+    "r1o_size_stage1_sequences": {
+      "meaning": "stage1 sequences",
+      "rendered": "64",
+      "value": 64
+    },
+    "r1o_size_stage2_datasets_gpqa": {
+      "meaning": "stage2: sequence count by datasets, gpqa",
+      "rendered": "51",
+      "value": 51
+    },
+    "r1o_size_stage2_datasets_humaneval": {
+      "meaning": "stage2: sequence count by datasets, humaneval",
+      "rendered": "17",
+      "value": 17
+    },
+    "r1o_size_stage2_datasets_math500": {
+      "meaning": "stage2: sequence count by datasets, math500",
+      "rendered": "51",
+      "value": 51
+    },
+    "r1o_size_stage2_datasets_mbpp": {
+      "meaning": "stage2: sequence count by datasets, mbpp",
+      "rendered": "17",
+      "value": 17
+    },
+    "r1o_size_stage2_generators_engine": {
+      "meaning": "stage2: sequence count by generators, engine",
+      "rendered": "68",
+      "value": 68
+    },
+    "r1o_size_stage2_generators_reference": {
+      "meaning": "stage2: sequence count by generators, reference",
+      "rendered": "68",
+      "value": 68
+    },
+    "r1o_size_stage2_max_total_length": {
+      "meaning": "stage2 max total length",
+      "rendered": "8034",
+      "value": 8034
+    },
+    "r1o_size_stage2_positions": {
+      "meaning": "stage2 positions",
+      "rendered": "351106",
+      "value": 351106
+    },
+    "r1o_size_stage2_sequences": {
+      "meaning": "stage2 sequences",
+      "rendered": "136",
+      "value": 136
+    },
+    "r1o_size_validity_datasets_gpqa": {
+      "meaning": "validity: sequence count by datasets, gpqa",
+      "rendered": "2",
+      "value": 2
+    },
+    "r1o_size_validity_datasets_humaneval": {
+      "meaning": "validity: sequence count by datasets, humaneval",
+      "rendered": "7",
+      "value": 7
+    },
+    "r1o_size_validity_datasets_math500": {
+      "meaning": "validity: sequence count by datasets, math500",
+      "rendered": "4",
+      "value": 4
+    },
+    "r1o_size_validity_datasets_mbpp": {
+      "meaning": "validity: sequence count by datasets, mbpp",
+      "rendered": "7",
+      "value": 7
+    },
+    "r1o_size_validity_generators_engine": {
+      "meaning": "validity: sequence count by generators, engine",
+      "rendered": "18",
+      "value": 18
+    },
+    "r1o_size_validity_generators_reference": {
+      "meaning": "validity: sequence count by generators, reference",
+      "rendered": "2",
+      "value": 2
+    },
+    "r1o_size_validity_max_total_length": {
+      "meaning": "validity max total length",
+      "rendered": "7282",
+      "value": 7282
+    },
+    "r1o_size_validity_positions": {
+      "meaning": "validity positions",
+      "rendered": "20670",
+      "value": 20670
+    },
+    "r1o_size_validity_sequences": {
+      "meaning": "validity sequences",
+      "rendered": "20",
+      "value": 20
+    },
+    "r1o_tail_decision_stopped_at_look": {
+      "meaning": "Permanent first-success look for decision tail",
+      "rendered": "2",
+      "value": 2
+    },
+    "r1o_tail_look1_decision_D": {
+      "meaning": "Look 1 decision tail: D",
+      "rendered": "-0.000782371",
+      "value": -0.0007823709398508075
+    },
+    "r1o_tail_look1_decision_engine_events": {
+      "meaning": "Look 1 decision tail: engine events",
+      "rendered": "1109",
+      "value": 1109
+    },
+    "r1o_tail_look1_decision_engine_mean_q90": {
+      "meaning": "Look 1 decision tail: engine mean q90",
+      "rendered": "0.00475501",
+      "value": 0.004755006171762943
+    },
+    "r1o_tail_look1_decision_reference_events": {
+      "meaning": "Look 1 decision tail: reference events",
+      "rendered": "1120",
+      "value": 1120
+    },
+    "r1o_tail_look1_decision_reference_mean_q90": {
+      "meaning": "Look 1 decision tail: reference mean q90",
+      "rendered": "0.00503398",
+      "value": 0.005033979192376137
+    },
+    "r1o_tail_look1_decision_status": {
+      "meaning": "Look 1 decision tail: status",
+      "rendered": "not shown",
+      "value": "not shown"
+    },
+    "r1o_tail_look1_decision_upper975": {
+      "meaning": "Look 1 decision tail: upper975",
+      "rendered": "6.93357e-05",
+      "value": 6.933568600975509e-05
+    },
+    "r1o_tail_look1_top1_D": {
+      "meaning": "Look 1 top1 tail: D",
+      "rendered": "-0.268045",
+      "value": -0.268044537305832
+    },
+    "r1o_tail_look1_top1_engine_events": {
+      "meaning": "Look 1 top1 tail: engine events",
+      "rendered": "3771",
+      "value": 3771
+    },
+    "r1o_tail_look1_top1_engine_mean_q90": {
+      "meaning": "Look 1 top1 tail: engine mean q90",
+      "rendered": "1.11745",
+      "value": 1.1174485683441162
+    },
+    "r1o_tail_look1_top1_reference_events": {
+      "meaning": "Look 1 top1 tail: reference events",
+      "rendered": "3783",
+      "value": 3783
+    },
+    "r1o_tail_look1_top1_reference_mean_q90": {
+      "meaning": "Look 1 top1 tail: reference mean q90",
+      "rendered": "1.25954",
+      "value": 1.2595391869544983
+    },
+    "r1o_tail_look1_top1_status": {
+      "meaning": "Look 1 top1 tail: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_tail_look1_top1_upper975": {
+      "meaning": "Look 1 top1 tail: upper975",
+      "rendered": "-0.111354",
+      "value": -0.11135371164853719
+    },
+    "r1o_tail_look2_decision_D": {
+      "meaning": "Look 2 decision tail: D",
+      "rendered": "-0.000822396",
+      "value": -0.0008223956823349005
+    },
+    "r1o_tail_look2_decision_engine_events": {
+      "meaning": "Look 2 decision tail: engine events",
+      "rendered": "3297",
+      "value": 3297
+    },
+    "r1o_tail_look2_decision_engine_mean_q90": {
+      "meaning": "Look 2 decision tail: engine mean q90",
+      "rendered": "0.0049049",
+      "value": 0.004904903471469879
+    },
+    "r1o_tail_look2_decision_reference_events": {
+      "meaning": "Look 2 decision tail: reference events",
+      "rendered": "3301",
+      "value": 3301
+    },
+    "r1o_tail_look2_decision_reference_mean_q90": {
+      "meaning": "Look 2 decision tail: reference mean q90",
+      "rendered": "0.00520664",
+      "value": 0.005206635594367981
+    },
+    "r1o_tail_look2_decision_status": {
+      "meaning": "Look 2 decision tail: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_tail_look2_decision_upper975": {
+      "meaning": "Look 2 decision tail: upper975",
+      "rendered": "-0.000222369",
+      "value": -0.0002223688840042881
+    },
+    "r1o_tail_look2_top1_D": {
+      "meaning": "Look 2 top1 tail: D",
+      "rendered": "-0.280992",
+      "value": -0.2809921493530274
+    },
+    "r1o_tail_look2_top1_engine_events": {
+      "meaning": "Look 2 top1 tail: engine events",
+      "rendered": "11290",
+      "value": 11290
+    },
+    "r1o_tail_look2_top1_engine_mean_q90": {
+      "meaning": "Look 2 top1 tail: engine mean q90",
+      "rendered": "1.18438",
+      "value": 1.1843845176696777
+    },
+    "r1o_tail_look2_top1_reference_events": {
+      "meaning": "Look 2 top1 tail: reference events",
+      "rendered": "11257",
+      "value": 11257
+    },
+    "r1o_tail_look2_top1_reference_mean_q90": {
+      "meaning": "Look 2 top1 tail: reference mean q90",
+      "rendered": "1.33216",
+      "value": 1.3321606063842772
+    },
+    "r1o_tail_look2_top1_status": {
+      "meaning": "Look 2 top1 tail: status",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_tail_look2_top1_upper975": {
+      "meaning": "Look 2 top1 tail: upper975",
+      "rendered": "-0.095465",
+      "value": -0.09546501165047955
+    },
+    "r1o_tail_top1_stopped_at_look": {
+      "meaning": "Permanent first-success look for top1 tail",
+      "rendered": "1",
+      "value": 1
+    },
+    "r1o_validity_M1_fp32_vs_fp64": {
+      "meaning": "M1 validity: fp32 vs fp64",
+      "rendered": "1.85993e-06",
+      "value": 1.8599347314491054e-06
+    },
+    "r1o_validity_M1_limit": {
+      "meaning": "M1 validity: limit",
+      "rendered": "0.00065414",
+      "value": 0.0006541396642547491
+    },
+    "r1o_validity_M1_reference_vs_fp64": {
+      "meaning": "M1 validity: reference vs fp64",
+      "rendered": "0.0130828",
+      "value": 0.013082793285094981
+    },
+    "r1o_validity_M2_fp32_vs_fp64": {
+      "meaning": "M2 validity: fp32 vs fp64",
+      "rendered": "1.00295e-06",
+      "value": 1.0029462939138038e-06
+    },
+    "r1o_validity_M2_limit": {
+      "meaning": "M2 validity: limit",
+      "rendered": "0.000190507",
+      "value": 0.00019050737441841893
+    },
+    "r1o_validity_M2_reference_vs_fp64": {
+      "meaning": "M2 validity: reference vs fp64",
+      "rendered": "0.00381015",
+      "value": 0.003810147488368378
+    },
+    "r1o_validity_M3_fp32_vs_fp64": {
+      "meaning": "M3 validity: fp32 vs fp64",
+      "rendered": "1.03087e-05",
+      "value": 1.0308683606264337e-05
+    },
+    "r1o_validity_M3_limit": {
+      "meaning": "M3 validity: limit",
+      "rendered": "0.00436902",
+      "value": 0.004369019155161429
+    },
+    "r1o_validity_M3_reference_vs_fp64": {
+      "meaning": "M3 validity: reference vs fp64",
+      "rendered": "0.0873804",
+      "value": 0.08738038310322857
+    },
+    "r1o_validity_factor": {
+      "meaning": "Maximum fp32/fp64 error as fraction of bf16-reference error",
+      "rendered": "0.05",
+      "value": 0.05
+    },
+    "r1o_validity_positions": {
+      "meaning": "Oracle-validity positions",
+      "rendered": "20670",
+      "value": 20670
+    },
+    "r1o_validity_sequences": {
+      "meaning": "Oracle-validity sequences",
+      "rendered": "20",
+      "value": 20
+    },
+    "r1o_verdict": {
+      "meaning": "Amended R1-O conclusion from validity, forced errors/bias, stopped tails and C1",
+      "rendered": "PASS",
+      "value": "PASS"
+    },
+    "r1o_withdrawn_c2_margin_pp": {
+      "meaning": "Registered withdrawn c2 margin pp",
+      "rendered": "1",
+      "value": 1
+    }
+  },
+  "tables": {
+    "r1o_c1": {
+      "headers": [
+        "Problems",
+        "Engine prefix",
+        "Ref. prefix",
+        "Difference",
+        "Lower 97.5%",
+        "Limit",
+        "Stop look",
+        "Result"
+      ],
+      "rows": [
+        [
+          "692",
+          "63.6936",
+          "64.091",
+          "-0.397399",
+          "-4.16763",
+          "-6.4091",
+          "1",
+          "PASS"
+        ]
+      ]
+    },
+    "r1o_censoring": {
+      "headers": [
+        "Implementation",
+        "Cap-censored",
+        "Identical early EOS",
+        "No observed difference (all)",
+        "Problems"
+      ],
+      "rows": [
+        [
+          "engine",
+          "0",
+          "0",
+          "0",
+          "692"
+        ],
+        [
+          "reference",
+          "0",
+          "0",
+          "0",
+          "692"
+        ]
+      ]
+    },
+    "r1o_composition": {
+      "headers": [
+        "Comparison",
+        "Tail",
+        "Candidate q90",
+        "Comparator q90",
+        "Upper D",
+        "Phi",
+        "Tail result",
+        "Max result"
+      ],
+      "rows": [
+        [
+          "engine vs engine",
+          "decision",
+          "0.00490955",
+          "0.00475501",
+          "0.000327752",
+          "0.834475",
+          "not shown",
+          "not shown"
+        ],
+        [
+          "engine vs engine",
+          "top1",
+          "1.1325",
+          "1.11745",
+          "0.0101111",
+          "0.874338",
+          "not shown",
+          "PASS"
+        ],
+        [
+          "engine vs reference",
+          "decision",
+          "0.00475501",
+          "0.00503398",
+          "6.93357e-05",
+          "0.448759",
+          "not shown",
+          "PASS"
+        ],
+        [
+          "engine vs reference",
+          "top1",
+          "1.11745",
+          "1.25954",
+          "-0.111354",
+          "0.543351",
+          "PASS",
+          "not shown"
+        ]
+      ]
+    },
+    "r1o_forced": {
+      "headers": [
+        "Metric",
+        "Engine error / bias",
+        "Ref. error / bias",
+        "Ratio / paired D",
+        "Upper 97.5%",
+        "Limit",
+        "Stop look",
+        "Result"
+      ],
+      "rows": [
+        [
+          "M1",
+          "0.00892726",
+          "0.0111792",
+          "0.79856",
+          "0.805223",
+          "1.1",
+          "1",
+          "PASS"
+        ],
+        [
+          "M2",
+          "0.00375144",
+          "0.00375041",
+          "1.00027",
+          "1.00747",
+          "1.1",
+          "1",
+          "PASS"
+        ],
+        [
+          "M3",
+          "0.0904935",
+          "0.0870572",
+          "1.03947",
+          "1.04861",
+          "1.1",
+          "1",
+          "PASS"
+        ],
+        [
+          "bias",
+          "0.000234567",
+          "0.00022498",
+          "-0.000387952",
+          "-0.000329501",
+          "0",
+          "1",
+          "PASS"
+        ]
+      ]
+    },
+    "r1o_maximum": {
+      "headers": [
+        "Margin",
+        "Look",
+        "Sequences",
+        "Engine max",
+        "Ref. max",
+        "Limit",
+        "Descriptive result"
+      ],
+      "rows": [
+        [
+          "decision",
+          "1",
+          "64",
+          "0.0203261",
+          "0.0293202",
+          "0.0322522",
+          "PASS"
+        ],
+        [
+          "top1",
+          "1",
+          "64",
+          "15.125",
+          "6.1507",
+          "6.76577",
+          "not shown"
+        ],
+        [
+          "decision",
+          "2",
+          "200",
+          "0.029774",
+          "0.0337773",
+          "0.037155",
+          "PASS"
+        ],
+        [
+          "top1",
+          "2",
+          "200",
+          "15.125",
+          "18.7815",
+          "20.6597",
+          "PASS"
+        ]
+      ]
+    },
+    "r1o_runtime": {
+      "headers": [
+        "Phase",
+        "Successful-block minutes"
+      ],
+      "rows": [
+        [
+          "c1/stage1/engine",
+          "2.48509"
+        ],
+        [
+          "c1/stage1/oracle-b4",
+          "71.52"
+        ],
+        [
+          "c1/stage1/reference",
+          "45.5267"
+        ],
+        [
+          "o1/stage1/engine-forced",
+          "17.601"
+        ],
+        [
+          "o1/stage1/engine-free",
+          "8.10997"
+        ],
+        [
+          "o1/stage1/engine-free-reordered",
+          "5.76047"
+        ],
+        [
+          "o1/stage1/oracle-fp32-c256",
+          "2.27519"
+        ],
+        [
+          "o1/stage1/oracle-fp64-c128",
+          "4.15603"
+        ],
+        [
+          "o1/stage1/ref-b1",
+          "2.78751"
+        ],
+        [
+          "o1/stage1/ref-forced",
+          "44.5576"
+        ],
+        [
+          "o1/stage1/ref-free",
+          "40.6838"
+        ],
+        [
+          "o1/stage1/validity-fp32-c256",
+          "7.09321"
+        ],
+        [
+          "o1/stage1/validity-reference",
+          "13.1953"
+        ],
+        [
+          "o1/stage2/engine-free",
+          "16.8704"
+        ],
+        [
+          "o1/stage2/oracle-fp32-c256",
+          "4.48829"
+        ],
+        [
+          "o1/stage2/ref-free",
+          "77.8623"
+        ]
+      ]
+    },
+    "r1o_self_split": {
+      "headers": [
+        "Margin",
+        "Max not shown (%)",
+        "Equality false alarm (%)",
+        "Boundary false NI (%)",
+        "NI not shown (%)"
+      ],
+      "rows": [
+        [
+          "decision",
+          "50",
+          "5.4",
+          "4.7",
+          "89.8"
+        ],
+        [
+          "top1",
+          "49.9",
+          "5.4",
+          "3.2",
+          "88.9"
+        ]
+      ]
+    },
+    "r1o_tails": {
+      "headers": [
+        "Tail",
+        "Look",
+        "Sequences",
+        "Engine q90 mean",
+        "Ref. q90 mean",
+        "Upper 97.5% of D",
+        "Events E/R",
+        "Observed result"
+      ],
+      "rows": [
+        [
+          "decision",
+          "1",
+          "64",
+          "0.00475501",
+          "0.00503398",
+          "6.93357e-05",
+          "1109/1120",
+          "not shown"
+        ],
+        [
+          "top1",
+          "1",
+          "64",
+          "1.11745",
+          "1.25954",
+          "-0.111354",
+          "3771/3783",
+          "PASS"
+        ],
+        [
+          "decision",
+          "2",
+          "200",
+          "0.0049049",
+          "0.00520664",
+          "-0.000222369",
+          "3297/3301",
+          "PASS"
+        ],
+        [
+          "top1",
+          "2",
+          "200",
+          "1.18438",
+          "1.33216",
+          "-0.095465",
+          "11290/11257",
+          "PASS (descriptive)"
+        ]
+      ]
+    },
+    "r1o_validity": {
+      "headers": [
+        "Metric",
+        "fp32 vs fp64",
+        "bf16 ref. vs fp64",
+        "Limit",
+        "Result"
+      ],
+      "rows": [
+        [
+          "M1",
+          "1.85993e-06",
+          "0.0130828",
+          "0.00065414",
+          "PASS"
+        ],
+        [
+          "M2",
+          "1.00295e-06",
+          "0.00381015",
+          "0.000190507",
+          "PASS"
+        ],
+        [
+          "M3",
+          "1.03087e-05",
+          "0.0873804",
+          "0.00436902",
+          "PASS"
+        ]
+      ]
+    }
+  }
+}

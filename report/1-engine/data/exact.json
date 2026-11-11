@@ -1,0 +1,136 @@
+{
+  "constructor": {
+    "caps": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "cases": 14,
+    "layers": [
+      2,
+      3
+    ]
+  },
+  "long": {
+    "coordinates": 397312,
+    "decision_mismatches": 0,
+    "decisions": 5376,
+    "depth_cap": 3,
+    "length": 4096,
+    "logit_max_abs": 0.0,
+    "logit_squared_sum": 0.0,
+    "pass_count_mismatches": 0,
+    "positions": 4096,
+    "records": 1,
+    "top1_mismatches": 0,
+    "visited_mismatches": 0
+  },
+  "probes": {
+    "label3": {
+      "coordinates": 1215488,
+      "decision_mismatches": 0,
+      "decisions": 14,
+      "depth_cap": 3,
+      "length": 8,
+      "logit_max_abs": 0.0,
+      "logit_squared_sum": 0.0,
+      "pass_count_mismatches": 0,
+      "positions": 8,
+      "records": 1,
+      "top1_mismatches": 0,
+      "visited_mismatches": 0
+    },
+    "mlp1": {
+      "coordinates": 1215488,
+      "decision_mismatches": 0,
+      "decisions": 8,
+      "depth_cap": 1,
+      "length": 8,
+      "logit_max_abs": 0.0,
+      "logit_squared_sum": 0.0,
+      "pass_count_mismatches": 0,
+      "positions": 8,
+      "records": 1,
+      "top1_mismatches": 0,
+      "visited_mismatches": 0
+    },
+    "mlp3": {
+      "coordinates": 1215488,
+      "decision_mismatches": 0,
+      "decisions": 8,
+      "depth_cap": 3,
+      "length": 8,
+      "logit_max_abs": 0.0,
+      "logit_squared_sum": 0.0,
+      "pass_count_mismatches": 0,
+      "positions": 8,
+      "records": 1,
+      "top1_mismatches": 0,
+      "visited_mismatches": 0
+    },
+    "real": {
+      "coordinates": 1215488,
+      "decision_mismatches": 0,
+      "decisions": 8,
+      "depth_cap": 2,
+      "length": 8,
+      "logit_max_abs": 0.0,
+      "logit_squared_sum": 0.0,
+      "pass_count_mismatches": 0,
+      "positions": 8,
+      "records": 1,
+      "top1_mismatches": 0,
+      "visited_mismatches": 0
+    }
+  },
+  "tiny": {
+    "label3": {
+      "coordinates": 225525,
+      "decision_mismatches": 0,
+      "decisions": 3060,
+      "depth_cap": 3,
+      "logit_max_abs": 0.0,
+      "logit_squared_sum": 0.0,
+      "pass_count_mismatches": 0,
+      "positions": 2325,
+      "records": 45,
+      "top1_mismatches": 0,
+      "visited_mismatches": 0
+    },
+    "mlp1": {
+      "coordinates": 225525,
+      "decision_mismatches": 0,
+      "decisions": 2325,
+      "depth_cap": 1,
+      "logit_max_abs": 0.0,
+      "logit_squared_sum": 0.0,
+      "pass_count_mismatches": 0,
+      "positions": 2325,
+      "records": 45,
+      "top1_mismatches": 0,
+      "visited_mismatches": 0
+    },
+    "mlp3": {
+      "coordinates": 225525,
+      "decision_mismatches": 0,
+      "decisions": 2710,
+      "depth_cap": 3,
+      "logit_max_abs": 0.0,
+      "logit_squared_sum": 0.0,
+      "pass_count_mismatches": 0,
+      "positions": 2325,
+      "records": 45,
+      "top1_mismatches": 0,
+      "visited_mismatches": 0
+    }
+  },
+  "tiny_layers": [
+    2
+  ],
+  "tolerance": {
+    "atol": 0,
+    "rtol": 0
+  }
+}

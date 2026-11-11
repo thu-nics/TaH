@@ -91,9 +91,11 @@ def _load_one(name: str, configs: Dict[str, Dict]) -> Tuple[List[dict], Dict[str
         item = {
             "id": f"{name}_{original_id}",
             "_original_id": original_id,
+            "_source_dataset": name,
+            "_source_answer_type": cfg["answer_type"],
             "question": question,
             "answer": str(row.get(a_field, "")).strip(),
-            "_source_dataset": name,
+            "_original_index": idx,
         }
         if entry_point_field:
             item["entry_point"] = row.get(entry_point_field)
@@ -114,27 +116,29 @@ def _load_one(name: str, configs: Dict[str, Dict]) -> Tuple[List[dict], Dict[str
 def load_combined_dataset(dataset_names: Union[str, List[str]]) -> Tuple[List[dict], Dict]:
     """Resolve one or more benchmark names → flat row list + field mapping.
 
-    Field mapping is derived from the *first* dataset's ``answer_type`` and
-    is stamped onto every row (combined runs of mixed answer types are not
-    expected; we warn but proceed).
+    Each row carries its source dataset and answer type. The top-level
+    ``answer_type`` remains the first dataset's type for callers using the
+    legacy single-dataset field mapping; mixed-dataset scoring uses the
+    per-row metadata and ``answer_types_by_dataset`` map.
     """
     names = _split_names(dataset_names)
+    if len(set(names)) != len(names):
+        raise ValueError(f"duplicate dataset names are not allowed: {names}")
     with open(_CONFIG_PATH, "r", encoding="utf-8") as f:
         configs = json.load(f)
 
     print(f"Loading {len(names)} dataset(s): {names}")
     combined: List[dict] = []
-    answer_types: List[str] = []
+    answer_types_by_dataset: Dict[str, str] = {}
     field_mapping: Dict[str, Any] = {}
     for name in names:
         rows, fm = _load_one(name, configs)
         combined.extend(rows)
-        answer_types.append(fm["answer_type"])
+        answer_types_by_dataset[name] = fm["answer_type"]
         if not field_mapping:
             field_mapping = dict(fm)
 
-    if len(set(answer_types)) > 1:
-        print(f"WARNING: multiple answer_types in combined run: {set(answer_types)} — using {answer_types[0]!r}")
     field_mapping["dataset_names"] = names
+    field_mapping["answer_types_by_dataset"] = answer_types_by_dataset
     print(f"Combined dataset: {len(combined)} rows total\n")
     return combined, field_mapping

@@ -1,0 +1,143 @@
+{
+  "analysis": "R1",
+  "comparisons": [
+    {
+      "candidate_group": "Engine",
+      "comparison": "ref. 1234 vs Engine",
+      "datasets": {
+        "gpqa": {
+          "candidate_pass_stats": {
+            "fraction_tokens_at_least_2_passes": 0.19673599594274013,
+            "mean_passes_per_token": 1.1967359959427393,
+            "pass_stat_tokens": 4441175
+          },
+          "ci90": [
+            -0.02371878020912896,
+            0.05233830882865756
+          ],
+          "ci95": [
+            -0.03106972915105137,
+            0.05968925777057997
+          ],
+          "margin": 0.03,
+          "mean_difference": 0.014309764309764302,
+          "n_problems": 198,
+          "paired_se": 0.023010991285611904,
+          "paired_z": 0.6218664868519496,
+          "passes_per_token_ratio": 0.9971320760286565,
+          "reference_pass_stats": {
+            "fraction_tokens_at_least_2_passes": 0.2001780152425323,
+            "mean_passes_per_token": 1.2001780152425328,
+            "pass_stat_tokens": 1481906
+          },
+          "tost_equivalent": false,
+          "tost_verdict": "equivalence_not_shown"
+        },
+        "math500": {
+          "candidate_pass_stats": {
+            "fraction_tokens_at_least_2_passes": 0.0714155525803483,
+            "mean_passes_per_token": 1.071415552963831,
+            "pass_stat_tokens": 3337844
+          },
+          "ci90": [
+            -0.019481205974113854,
+            0.042814539307447184
+          ],
+          "ci95": [
+            -0.025501571651545145,
+            0.048834904984878476
+          ],
+          "margin": 0.03,
+          "mean_difference": 0.011666666666666665,
+          "n_problems": 200,
+          "paired_se": 0.018848406384287437,
+          "paired_z": 0.6189736378133447,
+          "passes_per_token_ratio": 1.0002761255118027,
+          "reference_pass_stats": {
+            "fraction_tokens_at_least_2_passes": 0.07111978946376293,
+            "mean_passes_per_token": 1.0711197894637632,
+            "pass_stat_tokens": 1119337
+          },
+          "tost_equivalent": false,
+          "tost_verdict": "equivalence_not_shown"
+        }
+      },
+      "pooled": {
+        "candidate_pass_stats": {
+          "fraction_tokens_at_least_2_passes": 0.14296313718580694,
+          "mean_passes_per_token": 1.142963137350352,
+          "pass_stat_tokens": 7779019
+        },
+        "ci90": [
+          -0.01148411739070705,
+          0.037447266469434005
+        ],
+        "ci95": [
+          -0.01619200682909231,
+          0.04215515590781927
+        ],
+        "margin": 0.03,
+        "mean_difference": 0.012981574539363478,
+        "n_problems": 398,
+        "paired_se": 0.01483937594652131,
+        "paired_z": 0.8748059612578694,
+        "passes_per_token_ratio": 0.9985322718176372,
+        "reference_pass_stats": {
+          "fraction_tokens_at_least_2_passes": 0.14464316237852443,
+          "mean_passes_per_token": 1.1446431623785238,
+          "pass_stat_tokens": 2601243
+        },
+        "tost_equivalent": false,
+        "tost_verdict": "equivalence_not_shown"
+      },
+      "reference_group": "ref. 1234"
+    }
+  ],
+  "deviations": [
+    "Engine seed 2024 was run through eval.py before the protocol runner existed (harness batch size 16 instead of 8, one engine job for both datasets); the engine backend ignores the batch size, other settings match."
+  ],
+  "frozen_engine_sha256": "48cd4140592984c0ca31eb7729c12fc209938fa8145987ddb875256dfa01915f",
+  "runs": {
+    "r1/engine-seed1234": {
+      "backend": "tah_engine",
+      "generated_tokens": 2593295,
+      "restarts": 18,
+      "samples": 796,
+      "seed": 1234,
+      "wasted_tokens": 25897
+    },
+    "r1/engine-seed2024": {
+      "backend": "tah_engine",
+      "generated_tokens": 2612008,
+      "restarts": 0,
+      "samples": 796,
+      "seed": 2024,
+      "wasted_tokens": 0
+    },
+    "r1/engine-seed42": {
+      "backend": "tah_engine",
+      "generated_tokens": 2573716,
+      "restarts": 26,
+      "samples": 796,
+      "seed": 42,
+      "wasted_tokens": 36122
+    },
+    "r1/reference-seed1234": {
+      "backend": "tah",
+      "generated_tokens": null,
+      "restarts": null,
+      "samples": 796,
+      "seed": 1234,
+      "wasted_tokens": null
+    }
+  },
+  "settings": {
+    "max_new_tokens": 4096,
+    "repeat_size": 2,
+    "temperature": 0.6,
+    "threshold": 0.9,
+    "top_k": 20,
+    "top_p": 0.95
+  },
+  "tool_sha256": "f325c65c22c63483fd4091bdc5cda16c554d4e9fd603a050ad526803dbd838bd"
+}

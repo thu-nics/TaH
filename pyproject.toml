@@ -39,8 +39,16 @@ evaluation = [
     "sympy==1.13.1",
     "math_verify",
     "termcolor",
-    "evalplus",
+    "evalplus @ git+https://github.com/evalplus/evalplus@26d6d00bb1fd0fa37f39c99d5290da67891d1c5e",
     "sglang>=0.4.6",
+]
+engine = [
+    "torch==2.6.0",
+    "triton==3.2.0",
+    "flashinfer-python==0.2.5",
+    "ninja==1.11.1.3",
+    "safetensors==0.8.0",
+    "tokenizers==0.21.4",
 ]
 tah2 = [
     "torch==2.9.1",
@@ -75,6 +83,13 @@ target-version = ["py310"]
 [tool.isort]
 profile = "black"
 line_length = 100
+
+[tool.pytest.ini_options]
+markers = [
+    "gpu: requires an available CUDA GPU",
+    "slow: production fixture replay or other long validation",
+]
+addopts = "-m 'not slow'"
 
 [tool.setuptools.packages.find]
 include = ["tah", "tah.*", "tah2", "tah2.*"]

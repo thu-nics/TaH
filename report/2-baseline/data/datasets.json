@@ -1,0 +1,73 @@
+{
+  "aime25": {
+    "kind": "Hugging Face dataset",
+    "revision": "6f71d77b0b89b9dabe07ab466c51df33f514df7f",
+    "source": "yentinglin/aime_2025",
+    "split": "train",
+    "subset": null
+  },
+  "amc23": {
+    "kind": "Hugging Face dataset",
+    "revision": "80815d37005feb82cd7f8fbc6901d5d3eff43057",
+    "source": "math-ai/amc23",
+    "split": "test",
+    "subset": null
+  },
+  "gpqa": {
+    "kind": "local file",
+    "rows": 198,
+    "sha256": "51bdd0439e76e7106c746c956cb2a862c641e0c5905cc4d7d8e0aea90f15de66",
+    "source": "data/initial_data/eval/gpqa_diamond.jsonl",
+    "split": null,
+    "subset": null
+  },
+  "gsm8k": {
+    "kind": "Hugging Face dataset",
+    "revision": "4bddd01f900187ace4f8dfeac1b7ec54ccf291bf",
+    "source": "pss0204/gsm8k_test",
+    "split": "test",
+    "subset": "gsm8k_test"
+  },
+  "humaneval": {
+    "evalplus_dataset": "HumanEvalPlus v0.1.10",
+    "evalplus_dataset_hash": "fe585eb4df8c88d844eeb463ea4d0302",
+    "kind": "local file",
+    "rows": 164,
+    "sha256": "42526ec0e7d5f3ee0b06d6ced98f8c8bae3d76519151bfb3d36f79010645bd7f",
+    "source": "data/initial_data/eval/humaneval.jsonl",
+    "split": null,
+    "subset": null
+  },
+  "math500": {
+    "kind": "Hugging Face dataset",
+    "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+    "source": "HuggingFaceH4/MATH-500",
+    "split": "test",
+    "subset": null
+  },
+  "mbpp": {
+    "evalplus_dataset": "MbppPlus v0.2.0",
+    "evalplus_dataset_hash": "ee43ecabebf20deef4bb776a405ac5b1",
+    "kind": "local file",
+    "rows": 378,
+    "sha256": "b54e762755248ca411b523c917fa9f93c07b5ff2966bf60b3917b853926a3dad",
+    "source": "data/initial_data/eval/mbpp.jsonl",
+    "split": null,
+    "subset": null
+  },
+  "mmlu_stem": {
+    "kind": "local file",
+    "rows": 3153,
+    "sha256": "289fa37f4fa070d6ae9ef2befb66dfc22c7ae3c6c5ee435db7eccee7930353ec",
+    "source": "data/initial_data/eval/mmlu_stem.jsonl",
+    "split": null,
+    "subset": null
+  },
+  "olympiadbench": {
+    "kind": "Hugging Face dataset",
+    "revision": "ba3660e5eb252709639dfff5b6f16d2c482fce7b",
+    "source": "realtreetune/olympiadbench",
+    "split": "test",
+    "subset": null
+  }
+}

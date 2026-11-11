@@ -1,0 +1,22 @@
+name: paper_r2_code_tah2
+description: >-
+  R2 amendment 2026-10-14: HumanEval+ and MBPP+ with the authors' TaH2
+  reasoning code prompts. Run seeds 42, 1234 and 2024, then merge each root.
+eval_config: eval_tah.yaml
+backends: [tah_engine]
+paper_values:
+  humaneval: 0.515
+  mbpp: 0.575
+groups:
+  - name: humaneval_plus
+    datasets: [humaneval]
+    repeat_size: 1
+    max_new_tokens: 8192
+    overrides:
+      code_prompt: tah2
+  - name: mbpp_plus
+    datasets: [mbpp]
+    repeat_size: 1
+    max_new_tokens: 8192
+    overrides:
+      code_prompt: tah2

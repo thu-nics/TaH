@@ -1,0 +1,34 @@
+{
+  "commit": "da415baceac7a7e5a2c07bca318381d1053fc4c7",
+  "compute_capability": "8.9",
+  "cuda": "12.8",
+  "date": "2026-10-13",
+  "default_suite": {
+    "deselected": 17,
+    "passed": 208,
+    "seconds": 265.84,
+    "skipped": 16
+  },
+  "device": "NVIDIA L40S-24Q",
+  "driver": "535.274.02",
+  "flashinfer": "0.2.5",
+  "overlap_identity": {
+    "output_tokens": 11520,
+    "requests": 24,
+    "status": "PASS",
+    "steps": 1220
+  },
+  "peft": "0.15.2",
+  "python": "3.10",
+  "report": "Parsed from the validation summary written by the operator; raw JSON reports and logs stay on the validation machine.",
+  "status": "PASS",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.52.4",
+  "vram_gb": 24,
+  "wsmoke": {
+    "eager_graph_identical": true,
+    "generated_tokens": 16384,
+    "requests": 16,
+    "status": "PASS"
+  }
+}

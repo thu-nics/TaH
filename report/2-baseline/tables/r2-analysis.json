@@ -1,0 +1,429 @@
+{
+  "aime25": {
+    "ci": [
+      0.05705079472680427,
+      0.24572698305097349
+    ],
+    "dataset": "aime25",
+    "gap": -0.0026111111111111196,
+    "mean": 0.15138888888888888,
+    "paper": 0.154,
+    "problems": 30,
+    "prompt": null,
+    "registered_comparison": true,
+    "reproduced": true,
+    "samples_per_problem": 8,
+    "se": 0.04813256514212071,
+    "seeds": {
+      "1234": 0.15833333333333333,
+      "2024": 0.15416666666666667,
+      "42": 0.14166666666666666
+    },
+    "size": "30 \u00d7 8"
+  },
+  "amc23": {
+    "ci": [
+      0.35671440030789847,
+      0.5995355996921016
+    ],
+    "dataset": "amc23",
+    "gap": -0.005874999999999964,
+    "mean": 0.478125,
+    "paper": 0.484,
+    "problems": 40,
+    "prompt": null,
+    "registered_comparison": true,
+    "reproduced": true,
+    "samples_per_problem": 8,
+    "se": 0.06194532177620247,
+    "seeds": {
+      "1234": 0.4625,
+      "2024": 0.478125,
+      "42": 0.49375
+    },
+    "size": "40 \u00d7 8"
+  },
+  "average_harness": {
+    "ci": [
+      0.4840914000651908,
+      0.5257850986190664
+    ],
+    "gap": -0.032061750657871424,
+    "mean": 0.5049382493421286,
+    "paper": 0.537,
+    "reproduced": false,
+    "se": 0.010636343035573675,
+    "seeds": {
+      "1234": 0.498476381128397,
+      "2024": 0.5031183769596324,
+      "42": 0.5132199899383565
+    }
+  },
+  "average_tah2": {
+    "ci": [
+      0.512951492264967,
+      0.5540649958086021
+    ],
+    "gap": -0.0034917559632154926,
+    "mean": 0.5335082440367845,
+    "paper": 0.537,
+    "reproduced": true,
+    "se": 0.010488331384641043,
+    "seeds": {
+      "1234": 0.5311580174685699,
+      "2024": 0.5355060685614161,
+      "42": 0.5338606460803677
+    }
+  },
+  "code_failures": [
+    {
+      "base_failures": 211,
+      "capped": 0,
+      "dataset": "mbpp",
+      "failures": 231,
+      "logic": 123,
+      "naming": 107,
+      "no_code": 1,
+      "prompt": "harness",
+      "seed": 42,
+      "tasks": 378
+    },
+    {
+      "base_failures": 212,
+      "capped": 0,
+      "dataset": "mbpp",
+      "failures": 235,
+      "logic": 132,
+      "naming": 101,
+      "no_code": 2,
+      "prompt": "harness",
+      "seed": 1234,
+      "tasks": 378
+    },
+    {
+      "base_failures": 211,
+      "capped": 0,
+      "dataset": "mbpp",
+      "failures": 236,
+      "logic": 127,
+      "naming": 108,
+      "no_code": 1,
+      "prompt": "harness",
+      "seed": 2024,
+      "tasks": 378
+    },
+    {
+      "base_failures": 72,
+      "capped": 0,
+      "dataset": "humaneval",
+      "failures": 82,
+      "logic": 82,
+      "naming": 0,
+      "no_code": 0,
+      "prompt": "harness",
+      "seed": 42,
+      "tasks": 164
+    },
+    {
+      "base_failures": 81,
+      "capped": 0,
+      "dataset": "humaneval",
+      "failures": 93,
+      "logic": 92,
+      "naming": 0,
+      "no_code": 1,
+      "prompt": "harness",
+      "seed": 1234,
+      "tasks": 164
+    },
+    {
+      "base_failures": 75,
+      "capped": 0,
+      "dataset": "humaneval",
+      "failures": 86,
+      "logic": 86,
+      "naming": 0,
+      "no_code": 0,
+      "prompt": "harness",
+      "seed": 2024,
+      "tasks": 164
+    },
+    {
+      "base_failures": 133,
+      "capped": 79,
+      "dataset": "mbpp",
+      "failures": 170,
+      "logic": 81,
+      "naming": 8,
+      "no_code": 2,
+      "prompt": "TaH2",
+      "seed": 42,
+      "tasks": 378
+    },
+    {
+      "base_failures": 126,
+      "capped": 74,
+      "dataset": "mbpp",
+      "failures": 163,
+      "logic": 80,
+      "naming": 7,
+      "no_code": 2,
+      "prompt": "TaH2",
+      "seed": 1234,
+      "tasks": 378
+    },
+    {
+      "base_failures": 130,
+      "capped": 74,
+      "dataset": "mbpp",
+      "failures": 165,
+      "logic": 86,
+      "naming": 4,
+      "no_code": 1,
+      "prompt": "TaH2",
+      "seed": 2024,
+      "tasks": 378
+    },
+    {
+      "base_failures": 69,
+      "capped": 29,
+      "dataset": "humaneval",
+      "failures": 78,
+      "logic": 45,
+      "naming": 0,
+      "no_code": 4,
+      "prompt": "TaH2",
+      "seed": 42,
+      "tasks": 164
+    },
+    {
+      "base_failures": 66,
+      "capped": 39,
+      "dataset": "humaneval",
+      "failures": 76,
+      "logic": 31,
+      "naming": 1,
+      "no_code": 5,
+      "prompt": "TaH2",
+      "seed": 1234,
+      "tasks": 164
+    },
+    {
+      "base_failures": 61,
+      "capped": 31,
+      "dataset": "humaneval",
+      "failures": 69,
+      "logic": 35,
+      "naming": 0,
+      "no_code": 3,
+      "prompt": "TaH2",
+      "seed": 2024,
+      "tasks": 164
+    }
+  ],
+  "confidence": 0.95,
+  "gpqa": {
+    "ci": [
+      0.2932607733258757,
+      0.3902409101758078
+    ],
+    "dataset": "gpqa",
+    "gap": -0.05224915824915827,
+    "mean": 0.34175084175084175,
+    "paper": 0.394,
+    "problems": 198,
+    "prompt": null,
+    "registered_comparison": true,
+    "reproduced": false,
+    "samples_per_problem": 1,
+    "se": 0.024740285437614952,
+    "seeds": {
+      "1234": 0.35858585858585856,
+      "2024": 0.30808080808080807,
+      "42": 0.35858585858585856
+    },
+    "size": "198 \u00d7 1"
+  },
+  "gsm8k": {
+    "ci": [
+      0.8400904959784308,
+      0.8723178942161611
+    ],
+    "dataset": "gsm8k",
+    "gap": 0.011204195097295977,
+    "mean": 0.856204195097296,
+    "paper": 0.845,
+    "problems": 1319,
+    "prompt": null,
+    "registered_comparison": true,
+    "reproduced": true,
+    "samples_per_problem": 1,
+    "se": 0.008221426131279982,
+    "seeds": {
+      "1234": 0.8551933282789992,
+      "2024": 0.8536770280515542,
+      "42": 0.8597422289613343
+    },
+    "size": "1319 \u00d7 1"
+  },
+  "humaneval_harness": {
+    "ci": [
+      0.4015086710439221,
+      0.5375157191999802
+    ],
+    "dataset": "humaneval",
+    "gap": -0.04548780487804882,
+    "mean": 0.4695121951219512,
+    "paper": 0.515,
+    "problems": 164,
+    "prompt": "harness",
+    "registered_comparison": false,
+    "reproduced": true,
+    "samples_per_problem": 1,
+    "se": 0.03469631310291015,
+    "seeds": {
+      "1234": 0.4329268292682927,
+      "2024": 0.47560975609756095,
+      "42": 0.5
+    },
+    "size": "164 \u00d7 1"
+  },
+  "humaneval_tah2": {
+    "ci": [
+      0.4843593805085578,
+      0.6091365544507917
+    ],
+    "dataset": "humaneval",
+    "gap": 0.03174796747967479,
+    "mean": 0.5467479674796748,
+    "paper": 0.515,
+    "problems": 164,
+    "prompt": "TaH2",
+    "registered_comparison": true,
+    "reproduced": true,
+    "samples_per_problem": 1,
+    "se": 0.03183149663117802,
+    "seeds": {
+      "1234": 0.5365853658536586,
+      "2024": 0.5792682926829268,
+      "42": 0.524390243902439
+    },
+    "size": "164 \u00d7 1"
+  },
+  "math500": {
+    "ci": [
+      0.6998530393997175,
+      0.7654802939336158
+    ],
+    "dataset": "math500",
+    "gap": 0.00666666666666671,
+    "mean": 0.7326666666666667,
+    "paper": 0.726,
+    "problems": 500,
+    "prompt": null,
+    "registered_comparison": true,
+    "reproduced": true,
+    "samples_per_problem": 1,
+    "se": 0.016741954202107213,
+    "seeds": {
+      "1234": 0.72,
+      "2024": 0.744,
+      "42": 0.734
+    },
+    "size": "500 \u00d7 1"
+  },
+  "mbpp_harness": {
+    "ci": [
+      0.3349584559933182,
+      0.42694630591144367
+    ],
+    "dataset": "mbpp",
+    "gap": -0.19404761904761902,
+    "mean": 0.38095238095238093,
+    "paper": 0.575,
+    "problems": 378,
+    "prompt": "harness",
+    "registered_comparison": false,
+    "reproduced": false,
+    "samples_per_problem": 1,
+    "se": 0.02346671945089654,
+    "seeds": {
+      "1234": 0.3783068783068783,
+      "2024": 0.37566137566137564,
+      "42": 0.3888888888888889
+    },
+    "size": "378 \u00d7 1"
+  },
+  "mbpp_tah2": {
+    "ci": [
+      0.5175489044992251,
+      0.6041442171938965
+    ],
+    "dataset": "mbpp",
+    "gap": -0.01415343915343914,
+    "mean": 0.5608465608465608,
+    "paper": 0.575,
+    "problems": 378,
+    "prompt": "TaH2",
+    "registered_comparison": true,
+    "reproduced": true,
+    "samples_per_problem": 1,
+    "se": 0.022091046921709837,
+    "seeds": {
+      "1234": 0.5687830687830688,
+      "2024": 0.5634920634920635,
+      "42": 0.5502645502645502
+    },
+    "size": "378 \u00d7 1"
+  },
+  "mmlu_stem": {
+    "ci": [
+      0.7477359813245149,
+      0.7722978488900955
+    ],
+    "dataset": "mmlu_stem",
+    "gap": -0.005983084892694834,
+    "mean": 0.7600169151073052,
+    "paper": 0.766,
+    "problems": 3153,
+    "prompt": null,
+    "registered_comparison": true,
+    "reproduced": true,
+    "samples_per_problem": 1,
+    "se": 0.006265897679580187,
+    "seeds": {
+      "1234": 0.7589597209007295,
+      "2024": 0.7624484617824294,
+      "42": 0.7586425626387567
+    },
+    "size": "3153 \u00d7 1"
+  },
+  "olympiadbench": {
+    "ci": [
+      0.3424702241836479,
+      0.40518409680400636
+    ],
+    "dataset": "olympiadbench",
+    "gap": -0.0021728395061728634,
+    "mean": 0.37382716049382714,
+    "paper": 0.376,
+    "problems": 675,
+    "prompt": null,
+    "registered_comparison": true,
+    "reproduced": true,
+    "samples_per_problem": 1,
+    "se": 0.01599873087338275,
+    "seeds": {
+      "1234": 0.36148148148148146,
+      "2024": 0.3762962962962963,
+      "42": 0.3837037037037037
+    },
+    "size": "675 \u00d7 1"
+  },
+  "settings": {
+    "temperature": 0.6,
+    "threshold": 0.9,
+    "top_k": 20,
+    "top_p": 0.95
+  }
+}

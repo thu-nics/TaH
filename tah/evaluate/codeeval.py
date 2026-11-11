@@ -168,6 +168,7 @@ def evaluate(
     min_time_limit: float = DEFAULT_MIN_TIME_LIMIT,
     gt_time_limit_factor: float = DEFAULT_GT_TIME_LIMIT_FACTOR,
     output_file: Optional[str] = None,
+    allow_subset: bool = False,
 ) -> None:
     """Run evalplus untrusted-check on every sample and write pass@k results.
 
@@ -219,7 +220,10 @@ def evaluate(
                 if task_id not in problems:
                     warn(f"task {task_id} in samples but not in dataset")
                     continue
-                solution = sample.get("solution") or (problems[task_id]["prompt"] + sample["completion"])
+                # Key presence, as in EvalPlus and the TaH2 harness: an empty solution (no code
+                # extracted, e.g. a length-capped reasoning trace) is graded as a failure.
+                solution = (sample["solution"] if "solution" in sample
+                            else problems[task_id]["prompt"] + sample["completion"])
                 remaining.add(sample["_identifier"])
                 futures.append(executor.submit(
                     _check_correctness,
@@ -233,7 +237,11 @@ def evaluate(
                 n_samples += 1
 
             assert n_samples == len(remaining), "missing problems in unfinished"
-            assert len(completion_id) == len(problems), "missing problems in samples"
+            if allow_subset:
+                if not completion_id:
+                    raise ValueError(f"no valid {dataset} samples found in {samples}")
+            else:
+                assert len(completion_id) == len(problems), "missing problems in samples"
 
             def _watchdog():
                 while remaining:

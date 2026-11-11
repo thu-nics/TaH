@@ -1,0 +1,62 @@
+name: wacc_r1
+description: >-
+  R1 end-to-end W-acc workload. Run once per requested backend and seed.
+eval_config: eval_tah.yaml
+backends:
+  - tah
+  - tah_engine
+groups:
+  - name: math500_0_200
+    datasets: [math500]
+    data_ranges:
+      math500: "0:200"
+    repeat_size: 2
+    max_new_tokens: 4096
+    batch_size: 8
+
+  - name: gpqa_short_1_81
+    datasets: [gpqa]
+    data_ranges:
+      gpqa: "0:81"
+    repeat_size: 2
+    max_new_tokens: 4096
+    batch_size: 8
+
+  - name: gpqa_short_83_92
+    datasets: [gpqa]
+    data_ranges:
+      gpqa: "82:92"
+    repeat_size: 2
+    max_new_tokens: 4096
+    batch_size: 8
+
+  - name: gpqa_short_94_127
+    datasets: [gpqa]
+    data_ranges:
+      gpqa: "93:127"
+    repeat_size: 2
+    max_new_tokens: 4096
+    batch_size: 8
+
+  - name: gpqa_short_129_165
+    datasets: [gpqa]
+    data_ranges:
+      gpqa: "128:165"
+    repeat_size: 2
+    max_new_tokens: 4096
+    batch_size: 8
+
+  - name: gpqa_short_167_198
+    datasets: [gpqa]
+    data_ranges:
+      gpqa: "166:198"
+    repeat_size: 2
+    max_new_tokens: 4096
+    batch_size: 8
+
+  - name: gpqa_long
+    datasets: [gpqa]
+    data_ids: [gpqa_82, gpqa_93, gpqa_128, gpqa_166]
+    repeat_size: 2
+    max_new_tokens: 4096
+    batch_size: 2

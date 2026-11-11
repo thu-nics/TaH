@@ -20,3 +20,8 @@ __pycache__/
 .vscode/
 .cursor/
 .DS_Store
+/notes/
+
+# Temporary W-acc diagnostics and recovery tools; move under notes after the run.
+/script/tah/evaluation/probe_memory.py
+/script/tah/evaluation/resume_wacc.py

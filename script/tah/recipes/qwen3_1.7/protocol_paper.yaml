@@ -1,0 +1,54 @@
+name: paper_r2
+description: >-
+  R2 reproduction protocol for TaH+ 1.7B. Run once per seed with the
+  tah_engine backend, then aggregate the three canonical runs.
+eval_config: eval_tah.yaml
+backends: [tah_engine]
+paper_values:
+  aime25: 0.154
+  amc23: 0.484
+  olympiadbench: 0.376
+  math500: 0.726
+  gpqa: 0.394
+  humaneval: 0.515
+  mbpp: 0.575
+  gsm8k: 0.845
+  mmlu_stem: 0.766
+paper_average: 0.537
+groups:
+  - name: aime25
+    datasets: [aime25]
+    repeat_size: 8
+    max_new_tokens: 8192
+  - name: amc23
+    datasets: [amc23]
+    repeat_size: 8
+    max_new_tokens: 8192
+  - name: olympiadbench
+    datasets: [olympiadbench]
+    repeat_size: 1
+    max_new_tokens: 8192
+  - name: math500
+    datasets: [math500]
+    repeat_size: 1
+    max_new_tokens: 8192
+  - name: gpqa
+    datasets: [gpqa]
+    repeat_size: 1
+    max_new_tokens: 8192
+  - name: humaneval_plus
+    datasets: [humaneval]
+    repeat_size: 1
+    max_new_tokens: 8192
+  - name: mbpp_plus
+    datasets: [mbpp]
+    repeat_size: 1
+    max_new_tokens: 8192
+  - name: gsm8k
+    datasets: [gsm8k]
+    repeat_size: 1
+    max_new_tokens: 4096
+  - name: mmlu_stem
+    datasets: [mmlu_stem]
+    repeat_size: 1
+    max_new_tokens: 4096

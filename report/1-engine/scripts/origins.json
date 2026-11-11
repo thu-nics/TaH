@@ -1,0 +1,20 @@
+{
+  "cached_validation.py": {
+    "adaptation": "Reads source paths from sources.json or regenerated fixtures; writes fresh reproduction outputs; numerical logic retained.",
+    "archived_script_sha256": "d40377696194c3ed2f3ed8d5cfec20a9b41d511a5d55e181255b99ae77e61dfd",
+    "source_path": "tah/engine/tests/test_cached_gtf.py",
+    "source_sha256": "08ecced25e583da839ce85fa7792ec4b4cd77d5b8ab5f44ac4e9cb6f4d22b889"
+  },
+  "export_fixture_limits.py": {
+    "adaptation": "Reads source paths from sources.json or regenerated fixtures; writes fresh reproduction outputs; numerical logic retained.",
+    "archived_script_sha256": "10258913b21347f666b52deb6ecb462f4c08c71a396c68b3649d8431d9aaf076",
+    "source_path": "data/engine/wp2/gpu-runs/verify_and_report.py",
+    "source_sha256": "aab2ffc5ebbb119b28b649352ce4febc7394b8fe0de44e19a37b38d555e65e66"
+  },
+  "longctx.py": {
+    "adaptation": "Reads source paths from sources.json or regenerated fixtures; writes fresh reproduction outputs; numerical logic retained.",
+    "archived_script_sha256": "f3dd119c335c8dc6253673da787138a9182748e37df87acb91c8b6e4ec8265a4",
+    "source_path": "data/engine/wp9c/longctx.py",
+    "source_sha256": "9579e70af5f9199e4cd02c92260fca5c340b46f622f377dbae67317840cac80c"
+  }
+}

@@ -1,0 +1,2977 @@
+{
+  "complete": true,
+  "deviations": [
+    "Engine seed 2024 was run through eval.py before the protocol runner existed (harness batch size 16 instead of 8, one engine job for both datasets); the engine backend ignores the batch size, other settings match."
+  ],
+  "engine": [
+    {
+      "backend": "tah_engine",
+      "frozen_engine_sha256": "48cd4140592984c0ca31eb7729c12fc209938fa8145987ddb875256dfa01915f",
+      "name": "engine-seed42",
+      "seed": 42
+    },
+    {
+      "backend": "tah_engine",
+      "frozen_engine_sha256": "48cd4140592984c0ca31eb7729c12fc209938fa8145987ddb875256dfa01915f",
+      "name": "engine-seed1234",
+      "seed": 1234
+    },
+    {
+      "backend": "tah_engine",
+      "frozen_engine_sha256": "48cd4140592984c0ca31eb7729c12fc209938fa8145987ddb875256dfa01915f",
+      "name": "engine-seed2024",
+      "seed": 2024
+    }
+  ],
+  "expected_problem_ids": {
+    "gpqa": [
+      "gpqa_1",
+      "gpqa_10",
+      "gpqa_100",
+      "gpqa_101",
+      "gpqa_102",
+      "gpqa_103",
+      "gpqa_104",
+      "gpqa_105",
+      "gpqa_106",
+      "gpqa_107",
+      "gpqa_108",
+      "gpqa_109",
+      "gpqa_11",
+      "gpqa_110",
+      "gpqa_111",
+      "gpqa_112",
+      "gpqa_113",
+      "gpqa_114",
+      "gpqa_115",
+      "gpqa_116",
+      "gpqa_117",
+      "gpqa_118",
+      "gpqa_119",
+      "gpqa_12",
+      "gpqa_120",
+      "gpqa_121",
+      "gpqa_122",
+      "gpqa_123",
+      "gpqa_124",
+      "gpqa_125",
+      "gpqa_126",
+      "gpqa_127",
+      "gpqa_128",
+      "gpqa_129",
+      "gpqa_13",
+      "gpqa_130",
+      "gpqa_131",
+      "gpqa_132",
+      "gpqa_133",
+      "gpqa_134",
+      "gpqa_135",
+      "gpqa_136",
+      "gpqa_137",
+      "gpqa_138",
+      "gpqa_139",
+      "gpqa_14",
+      "gpqa_140",
+      "gpqa_141",
+      "gpqa_142",
+      "gpqa_143",
+      "gpqa_144",
+      "gpqa_145",
+      "gpqa_146",
+      "gpqa_147",
+      "gpqa_148",
+      "gpqa_149",
+      "gpqa_15",
+      "gpqa_150",
+      "gpqa_151",
+      "gpqa_152",
+      "gpqa_153",
+      "gpqa_154",
+      "gpqa_155",
+      "gpqa_156",
+      "gpqa_157",
+      "gpqa_158",
+      "gpqa_159",
+      "gpqa_16",
+      "gpqa_160",
+      "gpqa_161",
+      "gpqa_162",
+      "gpqa_163",
+      "gpqa_164",
+      "gpqa_165",
+      "gpqa_166",
+      "gpqa_167",
+      "gpqa_168",
+      "gpqa_169",
+      "gpqa_17",
+      "gpqa_170",
+      "gpqa_171",
+      "gpqa_172",
+      "gpqa_173",
+      "gpqa_174",
+      "gpqa_175",
+      "gpqa_176",
+      "gpqa_177",
+      "gpqa_178",
+      "gpqa_179",
+      "gpqa_18",
+      "gpqa_180",
+      "gpqa_181",
+      "gpqa_182",
+      "gpqa_183",
+      "gpqa_184",
+      "gpqa_185",
+      "gpqa_186",
+      "gpqa_187",
+      "gpqa_188",
+      "gpqa_189",
+      "gpqa_19",
+      "gpqa_190",
+      "gpqa_191",
+      "gpqa_192",
+      "gpqa_193",
+      "gpqa_194",
+      "gpqa_195",
+      "gpqa_196",
+      "gpqa_197",
+      "gpqa_198",
+      "gpqa_2",
+      "gpqa_20",
+      "gpqa_21",
+      "gpqa_22",
+      "gpqa_23",
+      "gpqa_24",
+      "gpqa_25",
+      "gpqa_26",
+      "gpqa_27",
+      "gpqa_28",
+      "gpqa_29",
+      "gpqa_3",
+      "gpqa_30",
+      "gpqa_31",
+      "gpqa_32",
+      "gpqa_33",
+      "gpqa_34",
+      "gpqa_35",
+      "gpqa_36",
+      "gpqa_37",
+      "gpqa_38",
+      "gpqa_39",
+      "gpqa_4",
+      "gpqa_40",
+      "gpqa_41",
+      "gpqa_42",
+      "gpqa_43",
+      "gpqa_44",
+      "gpqa_45",
+      "gpqa_46",
+      "gpqa_47",
+      "gpqa_48",
+      "gpqa_49",
+      "gpqa_5",
+      "gpqa_50",
+      "gpqa_51",
+      "gpqa_52",
+      "gpqa_53",
+      "gpqa_54",
+      "gpqa_55",
+      "gpqa_56",
+      "gpqa_57",
+      "gpqa_58",
+      "gpqa_59",
+      "gpqa_6",
+      "gpqa_60",
+      "gpqa_61",
+      "gpqa_62",
+      "gpqa_63",
+      "gpqa_64",
+      "gpqa_65",
+      "gpqa_66",
+      "gpqa_67",
+      "gpqa_68",
+      "gpqa_69",
+      "gpqa_7",
+      "gpqa_70",
+      "gpqa_71",
+      "gpqa_72",
+      "gpqa_73",
+      "gpqa_74",
+      "gpqa_75",
+      "gpqa_76",
+      "gpqa_77",
+      "gpqa_78",
+      "gpqa_79",
+      "gpqa_8",
+      "gpqa_80",
+      "gpqa_81",
+      "gpqa_82",
+      "gpqa_83",
+      "gpqa_84",
+      "gpqa_85",
+      "gpqa_86",
+      "gpqa_87",
+      "gpqa_88",
+      "gpqa_89",
+      "gpqa_9",
+      "gpqa_90",
+      "gpqa_91",
+      "gpqa_92",
+      "gpqa_93",
+      "gpqa_94",
+      "gpqa_95",
+      "gpqa_96",
+      "gpqa_97",
+      "gpqa_98",
+      "gpqa_99"
+    ],
+    "math500": [
+      "math500_0",
+      "math500_1",
+      "math500_10",
+      "math500_100",
+      "math500_101",
+      "math500_102",
+      "math500_103",
+      "math500_104",
+      "math500_105",
+      "math500_106",
+      "math500_107",
+      "math500_108",
+      "math500_109",
+      "math500_11",
+      "math500_110",
+      "math500_111",
+      "math500_112",
+      "math500_113",
+      "math500_114",
+      "math500_115",
+      "math500_116",
+      "math500_117",
+      "math500_118",
+      "math500_119",
+      "math500_12",
+      "math500_120",
+      "math500_121",
+      "math500_122",
+      "math500_123",
+      "math500_124",
+      "math500_125",
+      "math500_126",
+      "math500_127",
+      "math500_128",
+      "math500_129",
+      "math500_13",
+      "math500_130",
+      "math500_131",
+      "math500_132",
+      "math500_133",
+      "math500_134",
+      "math500_135",
+      "math500_136",
+      "math500_137",
+      "math500_138",
+      "math500_139",
+      "math500_14",
+      "math500_140",
+      "math500_141",
+      "math500_142",
+      "math500_143",
+      "math500_144",
+      "math500_145",
+      "math500_146",
+      "math500_147",
+      "math500_148",
+      "math500_149",
+      "math500_15",
+      "math500_150",
+      "math500_151",
+      "math500_152",
+      "math500_153",
+      "math500_154",
+      "math500_155",
+      "math500_156",
+      "math500_157",
+      "math500_158",
+      "math500_159",
+      "math500_16",
+      "math500_160",
+      "math500_161",
+      "math500_162",
+      "math500_163",
+      "math500_164",
+      "math500_165",
+      "math500_166",
+      "math500_167",
+      "math500_168",
+      "math500_169",
+      "math500_17",
+      "math500_170",
+      "math500_171",
+      "math500_172",
+      "math500_173",
+      "math500_174",
+      "math500_175",
+      "math500_176",
+      "math500_177",
+      "math500_178",
+      "math500_179",
+      "math500_18",
+      "math500_180",
+      "math500_181",
+      "math500_182",
+      "math500_183",
+      "math500_184",
+      "math500_185",
+      "math500_186",
+      "math500_187",
+      "math500_188",
+      "math500_189",
+      "math500_19",
+      "math500_190",
+      "math500_191",
+      "math500_192",
+      "math500_193",
+      "math500_194",
+      "math500_195",
+      "math500_196",
+      "math500_197",
+      "math500_198",
+      "math500_199",
+      "math500_2",
+      "math500_20",
+      "math500_21",
+      "math500_22",
+      "math500_23",
+      "math500_24",
+      "math500_25",
+      "math500_26",
+      "math500_27",
+      "math500_28",
+      "math500_29",
+      "math500_3",
+      "math500_30",
+      "math500_31",
+      "math500_32",
+      "math500_33",
+      "math500_34",
+      "math500_35",
+      "math500_36",
+      "math500_37",
+      "math500_38",
+      "math500_39",
+      "math500_4",
+      "math500_40",
+      "math500_41",
+      "math500_42",
+      "math500_43",
+      "math500_44",
+      "math500_45",
+      "math500_46",
+      "math500_47",
+      "math500_48",
+      "math500_49",
+      "math500_5",
+      "math500_50",
+      "math500_51",
+      "math500_52",
+      "math500_53",
+      "math500_54",
+      "math500_55",
+      "math500_56",
+      "math500_57",
+      "math500_58",
+      "math500_59",
+      "math500_6",
+      "math500_60",
+      "math500_61",
+      "math500_62",
+      "math500_63",
+      "math500_64",
+      "math500_65",
+      "math500_66",
+      "math500_67",
+      "math500_68",
+      "math500_69",
+      "math500_7",
+      "math500_70",
+      "math500_71",
+      "math500_72",
+      "math500_73",
+      "math500_74",
+      "math500_75",
+      "math500_76",
+      "math500_77",
+      "math500_78",
+      "math500_79",
+      "math500_8",
+      "math500_80",
+      "math500_81",
+      "math500_82",
+      "math500_83",
+      "math500_84",
+      "math500_85",
+      "math500_86",
+      "math500_87",
+      "math500_88",
+      "math500_89",
+      "math500_9",
+      "math500_90",
+      "math500_91",
+      "math500_92",
+      "math500_93",
+      "math500_94",
+      "math500_95",
+      "math500_96",
+      "math500_97",
+      "math500_98",
+      "math500_99"
+    ]
+  },
+  "frozen_engine_commit": "1cb256251e2da8e9749be925e28ffe6e513b3e14",
+  "frozen_engine_inventory_scope": "tah/engine/*.py at the frozen commit; digest is SHA256 of sorted-key inventory JSON",
+  "frozen_engine_sha256": "48cd4140592984c0ca31eb7729c12fc209938fa8145987ddb875256dfa01915f",
+  "reference": {
+    "backend": "tah",
+    "name": "reference-seed1234",
+    "seed": 1234
+  },
+  "repeats": 2,
+  "runs": [
+    {
+      "backend": "tah",
+      "datasets": {
+        "gpqa": {
+          "config_source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/gpqa_tah/20261013T151427+0000/effective_config.yaml",
+          "config_values": {
+            "backend": "tah",
+            "groups": [
+              "gpqa_short_1_81",
+              "gpqa_short_83_92",
+              "gpqa_short_94_127",
+              "gpqa_short_129_165",
+              "gpqa_short_167_198",
+              "gpqa_long"
+            ],
+            "protocol": "wacc_r1",
+            "seed": 1234
+          },
+          "run_status": {
+            "backend": "tah",
+            "canonical_merge_at": "2026-10-14T00:55:56+00:00",
+            "completed_samples": 396,
+            "dataset": "gpqa",
+            "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+            "expected_samples": 396,
+            "group_coverage": {
+              "gpqa_long": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 8
+                }
+              ],
+              "gpqa_short_129_165": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 74
+                }
+              ],
+              "gpqa_short_167_198": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 64
+                }
+              ],
+              "gpqa_short_1_81": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 162
+                }
+              ],
+              "gpqa_short_83_92": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 20
+                }
+              ],
+              "gpqa_short_94_127": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 68
+                }
+              ],
+              "math500_0_200": [
+                {
+                  "dataset": "math500",
+                  "samples": 400
+                }
+              ]
+            },
+            "model_path": "models/TaH-plus-1.7B",
+            "protocol": "wacc_r1",
+            "protocol_config_sha256": "cf38a6c3442f2eb734a0fd5beb7a7fa6f073a2bae34d036f7d545fabd7934caf",
+            "protocol_source": "script/tah/recipes/qwen3_1.7/protocol_wacc.yaml",
+            "random_seed": 1234,
+            "repeat_size": 2,
+            "status": "complete"
+          },
+          "source_files": [
+            {
+              "source_bytes": 32358,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/gpqa_tah/20261013T151427+0000/detailed_results.csv",
+              "source_sha256": "e478dc701c64a30b1bf01bb5f93a96eafbe85ce71bbdef389abdca6f71143488"
+            },
+            {
+              "source_bytes": 1328,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/gpqa_tah/20261013T151427+0000/run_status.json",
+              "source_sha256": "7682811698ca4a103791295e9fd91dc2253c775f9ab5e1b620dd2b5d5b6efc97"
+            },
+            {
+              "source_bytes": 261,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/gpqa_tah/20261013T151427+0000/effective_config.yaml",
+              "source_sha256": "c42783d6978cf56f990fecaaa73ae15ce7c62f5f757bad4944432c2e53cf2d3e"
+            }
+          ],
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/gpqa_tah/20261013T151427+0000"
+        },
+        "math500": {
+          "config_source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/math500_tah/20261013T151427+0000/TASK_0_200/effective_config.yaml",
+          "config_values": {
+            "backend": "tah",
+            "groups": [
+              "math500_0_200"
+            ],
+            "protocol": "wacc_r1",
+            "seed": 1234
+          },
+          "run_status": {
+            "backend": "tah",
+            "canonical_merge_at": "2026-10-14T00:55:56+00:00",
+            "completed_samples": 400,
+            "dataset": "math500",
+            "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+            "expected_samples": 400,
+            "group_coverage": {
+              "gpqa_long": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 8
+                }
+              ],
+              "gpqa_short_129_165": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 74
+                }
+              ],
+              "gpqa_short_167_198": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 64
+                }
+              ],
+              "gpqa_short_1_81": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 162
+                }
+              ],
+              "gpqa_short_83_92": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 20
+                }
+              ],
+              "gpqa_short_94_127": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 68
+                }
+              ],
+              "math500_0_200": [
+                {
+                  "dataset": "math500",
+                  "samples": 400
+                }
+              ]
+            },
+            "model_path": "models/TaH-plus-1.7B",
+            "protocol": "wacc_r1",
+            "protocol_config_sha256": "cf38a6c3442f2eb734a0fd5beb7a7fa6f073a2bae34d036f7d545fabd7934caf",
+            "protocol_source": "script/tah/recipes/qwen3_1.7/protocol_wacc.yaml",
+            "random_seed": 1234,
+            "repeat_size": 2,
+            "status": "complete"
+          },
+          "source_files": [
+            {
+              "source_bytes": 47734,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/math500_tah/20261013T151427+0000/TASK_0_200/detailed_results.csv",
+              "source_sha256": "cb1122c8bce7f7bb56a0e611535d3bae7d69bd8d8c6c2ca85a2f913b2d6216ca"
+            },
+            {
+              "source_bytes": 1331,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/math500_tah/20261013T151427+0000/TASK_0_200/run_status.json",
+              "source_sha256": "8f23859801acb18b3890dcda32fa3c2106558f9337dc176f2576546003222bf3"
+            },
+            {
+              "source_bytes": 166,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/math500_tah/20261013T151427+0000/TASK_0_200/effective_config.yaml",
+              "source_sha256": "06f9b97b1b01dc8f9df60f855974cd3eec5bb11075f0b85b5cf5bb71252c169a"
+            }
+          ],
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/math500_tah/20261013T151427+0000/TASK_0_200"
+        }
+      },
+      "engine_totals": null,
+      "groups": [
+        {
+          "dataset": "gpqa",
+          "group": "gpqa_long",
+          "runs": 1,
+          "samples": 8,
+          "selection": null,
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 2,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2009,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_long/runs/0001-initial/command.json",
+              "source_sha256": "2fd121dee9a40e2e88eb10814ab0a87bb02fdf8c07ba1d0995c93413f1f40042"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah/20261014_024312/effective_config.yaml",
+              "source_sha256": "a1238e5038adb925ec2761e25bbba344d630a4ba906b9b66f028d8bc9136a8e3"
+            },
+            {
+              "source_bytes": 335,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah/20261014_024312/run_status.json",
+              "source_sha256": "456539b24627c51f557fe044fd5160dbbd1ea980f6534358c4ff06e00a034277"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "group": "gpqa_short_129_165",
+          "runs": 1,
+          "samples": 74,
+          "selection": {
+            "gpqa": "128:165"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2053,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/command.json",
+              "source_sha256": "4612828c1e5a0673e1b2a65f67081c3368af45459905d2e01b51e95542f297be"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah/20261014_004109/TASK_128_165/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 337,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah/20261014_004109/TASK_128_165/run_status.json",
+              "source_sha256": "b5502f8a0fed34a014036faa214780ad20733ad474ffedef9b177279f12d1b83"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "group": "gpqa_short_167_198",
+          "runs": 1,
+          "samples": 64,
+          "selection": {
+            "gpqa": "166:198"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2053,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/command.json",
+              "source_sha256": "03a993e1597791cac0fd09fa11dd71d20ca3f7080b79c1e39e9bd225602ae4c3"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah/20261014_014639/TASK_166_198/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 337,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah/20261014_014639/TASK_166_198/run_status.json",
+              "source_sha256": "658f4ba02048c8bec81981b9da573bc639b273804af9365521e33de4cc77ee36"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "group": "gpqa_short_1_81",
+          "runs": 1,
+          "samples": 162,
+          "selection": {
+            "gpqa": "0:81"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2029,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/command.json",
+              "source_sha256": "0518b4551b5db66606ce2d03439c6ea4f20974a755174d6edd0aeeada64d44cb"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah/20261013_205614/TASK_0_81/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 339,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah/20261013_205614/TASK_0_81/run_status.json",
+              "source_sha256": "1cf0d363c9b8660ab3f3428110f99a8030a1e6e6f3947178fbef7327d1543751"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "group": "gpqa_short_83_92",
+          "runs": 1,
+          "samples": 20,
+          "selection": {
+            "gpqa": "82:92"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2037,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/command.json",
+              "source_sha256": "497a7d2478220a267c69a1f0251074132f6e83308e46f87d0aa32272e214ea68"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah/20261013_232041/TASK_82_92/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 337,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah/20261013_232041/TASK_82_92/run_status.json",
+              "source_sha256": "7cac99ad3cb7f906d7b4db0cacafd31df46b6f17c1c010f060dadc30a2c698bc"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "group": "gpqa_short_94_127",
+          "runs": 1,
+          "samples": 68,
+          "selection": {
+            "gpqa": "93:127"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2045,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/command.json",
+              "source_sha256": "78de1cff6ef3fe918475d5f7e24b6e476b395c8a925b5db414d3645bfa0b3abf"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah/20261013_233926/TASK_93_127/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 337,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah/20261013_233926/TASK_93_127/run_status.json",
+              "source_sha256": "b7f4522362662f883ebdcaefb46642e90b6b7b199bd568441b8f8c49f29c2556"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "math500",
+          "group": "math500_0_200",
+          "runs": 1,
+          "samples": 400,
+          "selection": {
+            "math500": "0:200"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2040,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/math500_0_200/runs/0001-initial/command.json",
+              "source_sha256": "6a53bc9060303badcb718146b01275168200e8f250205cfefe44a8d9be6e070d"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah/20261013_171429/TASK_0_200/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 342,
+              "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah/20261013_171429/TASK_0_200/run_status.json",
+              "source_sha256": "279de4e0ee6188f698c2d1618462ea0eb57d0d095b02da754a1be1a2f5fe7cc3"
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "name": "reference-seed1234",
+      "protocol_manifest_sha256": "1598026647666c90917a68d17f9d98926acf12874f298bc4bb2d8382eb1fceeb",
+      "samples": 796,
+      "seed": 1234,
+      "source_files": [
+        {
+          "source_bytes": 32358,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/gpqa_tah/20261013T151427+0000/detailed_results.csv",
+          "source_sha256": "e478dc701c64a30b1bf01bb5f93a96eafbe85ce71bbdef389abdca6f71143488"
+        },
+        {
+          "source_bytes": 261,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/gpqa_tah/20261013T151427+0000/effective_config.yaml",
+          "source_sha256": "c42783d6978cf56f990fecaaa73ae15ce7c62f5f757bad4944432c2e53cf2d3e"
+        },
+        {
+          "source_bytes": 1328,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/gpqa_tah/20261013T151427+0000/run_status.json",
+          "source_sha256": "7682811698ca4a103791295e9fd91dc2253c775f9ab5e1b620dd2b5d5b6efc97"
+        },
+        {
+          "source_bytes": 47734,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/math500_tah/20261013T151427+0000/TASK_0_200/detailed_results.csv",
+          "source_sha256": "cb1122c8bce7f7bb56a0e611535d3bae7d69bd8d8c6c2ca85a2f913b2d6216ca"
+        },
+        {
+          "source_bytes": 166,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/math500_tah/20261013T151427+0000/TASK_0_200/effective_config.yaml",
+          "source_sha256": "06f9b97b1b01dc8f9df60f855974cd3eec5bb11075f0b85b5cf5bb71252c169a"
+        },
+        {
+          "source_bytes": 1331,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/math500_tah/20261013T151427+0000/TASK_0_200/run_status.json",
+          "source_sha256": "8f23859801acb18b3890dcda32fa3c2106558f9337dc176f2576546003222bf3"
+        },
+        {
+          "source_bytes": 8213,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/canonical/protocol_manifest.json",
+          "source_sha256": "1598026647666c90917a68d17f9d98926acf12874f298bc4bb2d8382eb1fceeb"
+        },
+        {
+          "source_bytes": 2009,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_long/runs/0001-initial/command.json",
+          "source_sha256": "2fd121dee9a40e2e88eb10814ab0a87bb02fdf8c07ba1d0995c93413f1f40042"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah/20261014_024312/effective_config.yaml",
+          "source_sha256": "a1238e5038adb925ec2761e25bbba344d630a4ba906b9b66f028d8bc9136a8e3"
+        },
+        {
+          "source_bytes": 335,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah/20261014_024312/run_status.json",
+          "source_sha256": "456539b24627c51f557fe044fd5160dbbd1ea980f6534358c4ff06e00a034277"
+        },
+        {
+          "source_bytes": 2053,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/command.json",
+          "source_sha256": "4612828c1e5a0673e1b2a65f67081c3368af45459905d2e01b51e95542f297be"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah/20261014_004109/TASK_128_165/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 337,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah/20261014_004109/TASK_128_165/run_status.json",
+          "source_sha256": "b5502f8a0fed34a014036faa214780ad20733ad474ffedef9b177279f12d1b83"
+        },
+        {
+          "source_bytes": 2053,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/command.json",
+          "source_sha256": "03a993e1597791cac0fd09fa11dd71d20ca3f7080b79c1e39e9bd225602ae4c3"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah/20261014_014639/TASK_166_198/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 337,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah/20261014_014639/TASK_166_198/run_status.json",
+          "source_sha256": "658f4ba02048c8bec81981b9da573bc639b273804af9365521e33de4cc77ee36"
+        },
+        {
+          "source_bytes": 2029,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/command.json",
+          "source_sha256": "0518b4551b5db66606ce2d03439c6ea4f20974a755174d6edd0aeeada64d44cb"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah/20261013_205614/TASK_0_81/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 339,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah/20261013_205614/TASK_0_81/run_status.json",
+          "source_sha256": "1cf0d363c9b8660ab3f3428110f99a8030a1e6e6f3947178fbef7327d1543751"
+        },
+        {
+          "source_bytes": 2037,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/command.json",
+          "source_sha256": "497a7d2478220a267c69a1f0251074132f6e83308e46f87d0aa32272e214ea68"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah/20261013_232041/TASK_82_92/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 337,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah/20261013_232041/TASK_82_92/run_status.json",
+          "source_sha256": "7cac99ad3cb7f906d7b4db0cacafd31df46b6f17c1c010f060dadc30a2c698bc"
+        },
+        {
+          "source_bytes": 2045,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/command.json",
+          "source_sha256": "78de1cff6ef3fe918475d5f7e24b6e476b395c8a925b5db414d3645bfa0b3abf"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah/20261013_233926/TASK_93_127/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 337,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah/20261013_233926/TASK_93_127/run_status.json",
+          "source_sha256": "b7f4522362662f883ebdcaefb46642e90b6b7b199bd568441b8f8c49f29c2556"
+        },
+        {
+          "source_bytes": 2040,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/math500_0_200/runs/0001-initial/command.json",
+          "source_sha256": "6a53bc9060303badcb718146b01275168200e8f250205cfefe44a8d9be6e070d"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah/20261013_171429/TASK_0_200/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 342,
+          "source_path": "data/engine/wacc_reference_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah/20261013_171429/TASK_0_200/run_status.json",
+          "source_sha256": "279de4e0ee6188f698c2d1618462ea0eb57d0d095b02da754a1be1a2f5fe7cc3"
+        }
+      ],
+      "source_path": "data/engine/wacc_reference_protocol_seed1234",
+      "status": "complete"
+    },
+    {
+      "backend": "tah_engine",
+      "datasets": {
+        "gpqa": {
+          "config_source_path": "data/engine/wacc_engine_protocol_seed42/canonical/gpqa_tah_engine/20261013T135820+0000/effective_config.yaml",
+          "config_values": {
+            "backend": "tah_engine",
+            "groups": [
+              "gpqa_short_1_81",
+              "gpqa_short_83_92",
+              "gpqa_short_94_127",
+              "gpqa_short_129_165",
+              "gpqa_short_167_198",
+              "gpqa_long"
+            ],
+            "protocol": "wacc_r1",
+            "seed": 42
+          },
+          "run_status": {
+            "backend": "tah_engine",
+            "canonical_merge_at": "2026-10-13T14:36:44+00:00",
+            "completed_samples": 396,
+            "dataset": "gpqa",
+            "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+            "expected_samples": 396,
+            "group_coverage": {
+              "gpqa_long": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 8
+                }
+              ],
+              "gpqa_short_129_165": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 74
+                }
+              ],
+              "gpqa_short_167_198": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 64
+                }
+              ],
+              "gpqa_short_1_81": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 162
+                }
+              ],
+              "gpqa_short_83_92": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 20
+                }
+              ],
+              "gpqa_short_94_127": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 68
+                }
+              ],
+              "math500_0_200": [
+                {
+                  "dataset": "math500",
+                  "samples": 400
+                }
+              ]
+            },
+            "model_path": "models/TaH-plus-1.7B",
+            "protocol": "wacc_r1",
+            "protocol_config_sha256": "cf38a6c3442f2eb734a0fd5beb7a7fa6f073a2bae34d036f7d545fabd7934caf",
+            "protocol_source": "script/tah/recipes/qwen3_1.7/protocol_wacc.yaml",
+            "random_seed": 42,
+            "repeat_size": 2,
+            "status": "complete"
+          },
+          "source_files": [
+            {
+              "source_bytes": 34219,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/gpqa_tah_engine/20261013T135820+0000/detailed_results.csv",
+              "source_sha256": "de7cc65391421de98bfc04c0e60550b513e07f511f5145749ba0480986786017"
+            },
+            {
+              "source_bytes": 1333,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/gpqa_tah_engine/20261013T135820+0000/run_status.json",
+              "source_sha256": "965929a18ab4e78d30f9d0eb21b07adcd915251b99e0f1bbc564d7bf45f8477b"
+            },
+            {
+              "source_bytes": 266,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/gpqa_tah_engine/20261013T135820+0000/effective_config.yaml",
+              "source_sha256": "d8fef5e441b199a255b9f22488a8df0992958603ed46a2214846fdf2884aff27"
+            }
+          ],
+          "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/gpqa_tah_engine/20261013T135820+0000"
+        },
+        "math500": {
+          "config_source_path": "data/engine/wacc_engine_protocol_seed42/canonical/math500_tah_engine/20261013T135820+0000/TASK_0_200/effective_config.yaml",
+          "config_values": {
+            "backend": "tah_engine",
+            "groups": [
+              "math500_0_200"
+            ],
+            "protocol": "wacc_r1",
+            "seed": 42
+          },
+          "run_status": {
+            "backend": "tah_engine",
+            "canonical_merge_at": "2026-10-13T14:36:44+00:00",
+            "completed_samples": 400,
+            "dataset": "math500",
+            "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+            "expected_samples": 400,
+            "group_coverage": {
+              "gpqa_long": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 8
+                }
+              ],
+              "gpqa_short_129_165": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 74
+                }
+              ],
+              "gpqa_short_167_198": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 64
+                }
+              ],
+              "gpqa_short_1_81": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 162
+                }
+              ],
+              "gpqa_short_83_92": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 20
+                }
+              ],
+              "gpqa_short_94_127": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 68
+                }
+              ],
+              "math500_0_200": [
+                {
+                  "dataset": "math500",
+                  "samples": 400
+                }
+              ]
+            },
+            "model_path": "models/TaH-plus-1.7B",
+            "protocol": "wacc_r1",
+            "protocol_config_sha256": "cf38a6c3442f2eb734a0fd5beb7a7fa6f073a2bae34d036f7d545fabd7934caf",
+            "protocol_source": "script/tah/recipes/qwen3_1.7/protocol_wacc.yaml",
+            "random_seed": 42,
+            "repeat_size": 2,
+            "status": "complete"
+          },
+          "source_files": [
+            {
+              "source_bytes": 39099,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/math500_tah_engine/20261013T135820+0000/TASK_0_200/detailed_results.csv",
+              "source_sha256": "2e7de75ff925d523bae733c543172618d5f945f9c44339f842fd1e81b486f290"
+            },
+            {
+              "source_bytes": 1336,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/math500_tah_engine/20261013T135820+0000/TASK_0_200/run_status.json",
+              "source_sha256": "f251d156d3bb99d4faa7fc7352423020b0e91df21710702fc894a70e52b00515"
+            },
+            {
+              "source_bytes": 171,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/math500_tah_engine/20261013T135820+0000/TASK_0_200/effective_config.yaml",
+              "source_sha256": "709814b18b8f5b0d8f2fb332560a3722fac77b940e675124c2c201a96fcf214f"
+            }
+          ],
+          "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/math500_tah_engine/20261013T135820+0000/TASK_0_200"
+        }
+      },
+      "engine_totals": {
+        "generated_tokens": 2573716,
+        "host_swap_peak_bytes": 8587162864,
+        "overlap": true,
+        "restarts": 26,
+        "steps": 78616,
+        "swap_ins": 1007,
+        "swap_outs": 1033,
+        "wasted_tokens": 36122
+      },
+      "groups": [
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 32750,
+            "host_swap_peak_bytes": 0,
+            "overlap": true,
+            "restarts": 0,
+            "steps": 5167,
+            "swap_ins": 0,
+            "swap_outs": 0,
+            "wasted_tokens": 0
+          },
+          "engine_options": {
+            "max_batch_size": 8,
+            "max_new_tokens": 4096,
+            "seed": 42
+          },
+          "group": "gpqa_long",
+          "runs": 1,
+          "samples": 8,
+          "selection": null,
+          "settings": {
+            "_random_seed": 42,
+            "batch_size": 2,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 1994,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_long/runs/0001-initial/command.json",
+              "source_sha256": "46e25481bc2fed053cfbd708d0f9242b8761d53ea0c2488bf39389a5eb210a77"
+            },
+            {
+              "source_bytes": 559,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163451/effective_config.yaml",
+              "source_sha256": "181c4476fdc291fa5f88204bba075b1d5234a0a6d0a6b826cc953ddbf6d50875"
+            },
+            {
+              "source_bytes": 340,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163451/run_status.json",
+              "source_sha256": "7f64e2b23f39f83dc730c7b7b53f25ee7a5bcc54b80189316b31158e0ff65c0d"
+            },
+            {
+              "source_bytes": 3040,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163451/job_0.metrics.json",
+              "source_sha256": "87fd053b0a5ee653ff9410966aeaa801f3d6dfb806aa811ded04e3fc3f2d86c5"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 281376,
+            "host_swap_peak_bytes": 8587162864,
+            "overlap": true,
+            "restarts": 10,
+            "steps": 10334,
+            "swap_ins": 127,
+            "swap_outs": 137,
+            "wasted_tokens": 14301
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 42
+          },
+          "group": "gpqa_short_129_165",
+          "runs": 1,
+          "samples": 74,
+          "selection": {
+            "gpqa": "128:165"
+          },
+          "settings": {
+            "_random_seed": 42,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2038,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_129_165/runs/0001-initial/command.json",
+              "source_sha256": "bd64d35a6e9af6e2593c3a1112dddbd7c0971d8a9b205d99eeb31ccefd5e44e6"
+            },
+            {
+              "source_bytes": 559,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162528/TASK_128_165/effective_config.yaml",
+              "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+            },
+            {
+              "source_bytes": 342,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162528/TASK_128_165/run_status.json",
+              "source_sha256": "9c206e1a2b49d5d3c08bc1b26df3151a9479e99e9253fa66caff3dc812a738c4"
+            },
+            {
+              "source_bytes": 4488,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162528/TASK_128_165/job_0.metrics.json",
+              "source_sha256": "169ea45287ee65a482713bdfc1f7a3e898c8bcb86d62a13bac22eac4a5b96744"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 231715,
+            "host_swap_peak_bytes": 7813352832,
+            "overlap": true,
+            "restarts": 0,
+            "steps": 7565,
+            "swap_ins": 115,
+            "swap_outs": 115,
+            "wasted_tokens": 0
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 42
+          },
+          "group": "gpqa_short_167_198",
+          "runs": 1,
+          "samples": 64,
+          "selection": {
+            "gpqa": "166:198"
+          },
+          "settings": {
+            "_random_seed": 42,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2038,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_167_198/runs/0001-initial/command.json",
+              "source_sha256": "8db4039a61cd0279d1a14ad034388bfb596b316dba14fe783cd58d4d4ff9c898"
+            },
+            {
+              "source_bytes": 559,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163042/TASK_166_198/effective_config.yaml",
+              "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+            },
+            {
+              "source_bytes": 342,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163042/TASK_166_198/run_status.json",
+              "source_sha256": "f2b44553bc6d4ab256637c4f4cb3d2acf38d18876895b0b74e31faff9f16a90f"
+            },
+            {
+              "source_bytes": 4444,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163042/TASK_166_198/job_0.metrics.json",
+              "source_sha256": "90c49d561abb5fcb1104a5da43fced37a2ddc079ef35f265cf678bc20c56e644"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 611762,
+            "host_swap_peak_bytes": 8571519120,
+            "overlap": true,
+            "restarts": 8,
+            "steps": 18112,
+            "swap_ins": 323,
+            "swap_outs": 331,
+            "wasted_tokens": 10130
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 42
+          },
+          "group": "gpqa_short_1_81",
+          "runs": 1,
+          "samples": 162,
+          "selection": {
+            "gpqa": "0:81"
+          },
+          "settings": {
+            "_random_seed": 42,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2014,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_1_81/runs/0001-initial/command.json",
+              "source_sha256": "26c4fe21c0e7d0cb913a61eaef455b8a20fb2f37a8571ceb8fb30ffefdc7a158"
+            },
+            {
+              "source_bytes": 559,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_160906/TASK_0_81/effective_config.yaml",
+              "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+            },
+            {
+              "source_bytes": 344,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_160906/TASK_0_81/run_status.json",
+              "source_sha256": "ea1e573d51e854d169704fe2e9fa3b51ffccfe8e461368cfdc7bb07848b804b0"
+            },
+            {
+              "source_bytes": 4492,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_160906/TASK_0_81/job_0.metrics.json",
+              "source_sha256": "4f3d246ef7c158a4995fbb055dd1abe327c5ae17b6c7357131900557d9d2e87c"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 70144,
+            "host_swap_peak_bytes": 0,
+            "overlap": true,
+            "restarts": 0,
+            "steps": 5193,
+            "swap_ins": 0,
+            "swap_outs": 0,
+            "wasted_tokens": 0
+          },
+          "engine_options": {
+            "max_batch_size": 20,
+            "max_new_tokens": 4096,
+            "seed": 42
+          },
+          "group": "gpqa_short_83_92",
+          "runs": 1,
+          "samples": 20,
+          "selection": {
+            "gpqa": "82:92"
+          },
+          "settings": {
+            "_random_seed": 42,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2022,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_83_92/runs/0001-initial/command.json",
+              "source_sha256": "557b534b3d52aa3c4d09869b5922e0ffbcf2e9a9b090ff30f93218edbfb54227"
+            },
+            {
+              "source_bytes": 559,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_161828/TASK_82_92/effective_config.yaml",
+              "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+            },
+            {
+              "source_bytes": 342,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_161828/TASK_82_92/run_status.json",
+              "source_sha256": "c318fd557eb3dbed1658cb4d1e15fe41799caff467128c48cbc62143b092084e"
+            },
+            {
+              "source_bytes": 3336,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_161828/TASK_82_92/job_0.metrics.json",
+              "source_sha256": "2596c4c28764306e20049e40cb0ffa05ea68e8791abd1a4efb2865221a4a5c4d"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 249422,
+            "host_swap_peak_bytes": 8571563296,
+            "overlap": true,
+            "restarts": 8,
+            "steps": 10228,
+            "swap_ins": 132,
+            "swap_outs": 140,
+            "wasted_tokens": 11691
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 42
+          },
+          "group": "gpqa_short_94_127",
+          "runs": 1,
+          "samples": 68,
+          "selection": {
+            "gpqa": "93:127"
+          },
+          "settings": {
+            "_random_seed": 42,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2030,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_94_127/runs/0001-initial/command.json",
+              "source_sha256": "358bf61afea19c8f49761d890f6740d5e77f38164e6eb6f72a9855d7009fd74b"
+            },
+            {
+              "source_bytes": 559,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162026/TASK_93_127/effective_config.yaml",
+              "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+            },
+            {
+              "source_bytes": 342,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162026/TASK_93_127/run_status.json",
+              "source_sha256": "faaeb19f26f5d9dff55884e00961d810fd3d5777aca0cd723a3b8e935215012f"
+            },
+            {
+              "source_bytes": 4488,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162026/TASK_93_127/job_0.metrics.json",
+              "source_sha256": "90d38c67e1729c8461d539888b276b2ed44a23c7adaa9983e4e4f86bcc0c1ec6"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "math500",
+          "engine": {
+            "generated_tokens": 1096547,
+            "host_swap_peak_bytes": 2422849936,
+            "overlap": true,
+            "restarts": 0,
+            "steps": 22017,
+            "swap_ins": 310,
+            "swap_outs": 310,
+            "wasted_tokens": 0
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 42
+          },
+          "group": "math500_0_200",
+          "runs": 1,
+          "samples": 400,
+          "selection": {
+            "math500": "0:200"
+          },
+          "settings": {
+            "_random_seed": 42,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2025,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/math500_0_200/runs/0001-initial/command.json",
+              "source_sha256": "36df0af6ab7bcff7b4f8af3c073579aacd0e1f808e9fd670a562e23431fb166c"
+            },
+            {
+              "source_bytes": 559,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_155822/TASK_0_200/effective_config.yaml",
+              "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+            },
+            {
+              "source_bytes": 347,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_155822/TASK_0_200/run_status.json",
+              "source_sha256": "836720280d81783b10015a65ef9610f189c152a6cb44935459a224d9c187fe6f"
+            },
+            {
+              "source_bytes": 4447,
+              "source_path": "data/engine/wacc_engine_protocol_seed42/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_155822/TASK_0_200/job_0.metrics.json",
+              "source_sha256": "86a4771a004b4b9497fcf7d88b7ceefc1a38ffa7ba35722b5e15fbcfc20e5de1"
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "name": "engine-seed42",
+      "protocol_manifest_sha256": "f65a602c3f2385134912b35c7f5c107aa49269def7946e285ca52bee79af4713",
+      "samples": 796,
+      "seed": 42,
+      "source_files": [
+        {
+          "source_bytes": 34219,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/gpqa_tah_engine/20261013T135820+0000/detailed_results.csv",
+          "source_sha256": "de7cc65391421de98bfc04c0e60550b513e07f511f5145749ba0480986786017"
+        },
+        {
+          "source_bytes": 266,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/gpqa_tah_engine/20261013T135820+0000/effective_config.yaml",
+          "source_sha256": "d8fef5e441b199a255b9f22488a8df0992958603ed46a2214846fdf2884aff27"
+        },
+        {
+          "source_bytes": 1333,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/gpqa_tah_engine/20261013T135820+0000/run_status.json",
+          "source_sha256": "965929a18ab4e78d30f9d0eb21b07adcd915251b99e0f1bbc564d7bf45f8477b"
+        },
+        {
+          "source_bytes": 39099,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/math500_tah_engine/20261013T135820+0000/TASK_0_200/detailed_results.csv",
+          "source_sha256": "2e7de75ff925d523bae733c543172618d5f945f9c44339f842fd1e81b486f290"
+        },
+        {
+          "source_bytes": 171,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/math500_tah_engine/20261013T135820+0000/TASK_0_200/effective_config.yaml",
+          "source_sha256": "709814b18b8f5b0d8f2fb332560a3722fac77b940e675124c2c201a96fcf214f"
+        },
+        {
+          "source_bytes": 1336,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/math500_tah_engine/20261013T135820+0000/TASK_0_200/run_status.json",
+          "source_sha256": "f251d156d3bb99d4faa7fc7352423020b0e91df21710702fc894a70e52b00515"
+        },
+        {
+          "source_bytes": 8218,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/canonical/protocol_manifest.json",
+          "source_sha256": "f65a602c3f2385134912b35c7f5c107aa49269def7946e285ca52bee79af4713"
+        },
+        {
+          "source_bytes": 1994,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_long/runs/0001-initial/command.json",
+          "source_sha256": "46e25481bc2fed053cfbd708d0f9242b8761d53ea0c2488bf39389a5eb210a77"
+        },
+        {
+          "source_bytes": 559,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163451/effective_config.yaml",
+          "source_sha256": "181c4476fdc291fa5f88204bba075b1d5234a0a6d0a6b826cc953ddbf6d50875"
+        },
+        {
+          "source_bytes": 3040,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163451/job_0.metrics.json",
+          "source_sha256": "87fd053b0a5ee653ff9410966aeaa801f3d6dfb806aa811ded04e3fc3f2d86c5"
+        },
+        {
+          "source_bytes": 340,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163451/run_status.json",
+          "source_sha256": "7f64e2b23f39f83dc730c7b7b53f25ee7a5bcc54b80189316b31158e0ff65c0d"
+        },
+        {
+          "source_bytes": 2038,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_129_165/runs/0001-initial/command.json",
+          "source_sha256": "bd64d35a6e9af6e2593c3a1112dddbd7c0971d8a9b205d99eeb31ccefd5e44e6"
+        },
+        {
+          "source_bytes": 559,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162528/TASK_128_165/effective_config.yaml",
+          "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+        },
+        {
+          "source_bytes": 4488,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162528/TASK_128_165/job_0.metrics.json",
+          "source_sha256": "169ea45287ee65a482713bdfc1f7a3e898c8bcb86d62a13bac22eac4a5b96744"
+        },
+        {
+          "source_bytes": 342,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162528/TASK_128_165/run_status.json",
+          "source_sha256": "9c206e1a2b49d5d3c08bc1b26df3151a9479e99e9253fa66caff3dc812a738c4"
+        },
+        {
+          "source_bytes": 2038,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_167_198/runs/0001-initial/command.json",
+          "source_sha256": "8db4039a61cd0279d1a14ad034388bfb596b316dba14fe783cd58d4d4ff9c898"
+        },
+        {
+          "source_bytes": 559,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163042/TASK_166_198/effective_config.yaml",
+          "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+        },
+        {
+          "source_bytes": 4444,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163042/TASK_166_198/job_0.metrics.json",
+          "source_sha256": "90c49d561abb5fcb1104a5da43fced37a2ddc079ef35f265cf678bc20c56e644"
+        },
+        {
+          "source_bytes": 342,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_163042/TASK_166_198/run_status.json",
+          "source_sha256": "f2b44553bc6d4ab256637c4f4cb3d2acf38d18876895b0b74e31faff9f16a90f"
+        },
+        {
+          "source_bytes": 2014,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_1_81/runs/0001-initial/command.json",
+          "source_sha256": "26c4fe21c0e7d0cb913a61eaef455b8a20fb2f37a8571ceb8fb30ffefdc7a158"
+        },
+        {
+          "source_bytes": 559,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_160906/TASK_0_81/effective_config.yaml",
+          "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+        },
+        {
+          "source_bytes": 4492,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_160906/TASK_0_81/job_0.metrics.json",
+          "source_sha256": "4f3d246ef7c158a4995fbb055dd1abe327c5ae17b6c7357131900557d9d2e87c"
+        },
+        {
+          "source_bytes": 344,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_160906/TASK_0_81/run_status.json",
+          "source_sha256": "ea1e573d51e854d169704fe2e9fa3b51ffccfe8e461368cfdc7bb07848b804b0"
+        },
+        {
+          "source_bytes": 2022,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_83_92/runs/0001-initial/command.json",
+          "source_sha256": "557b534b3d52aa3c4d09869b5922e0ffbcf2e9a9b090ff30f93218edbfb54227"
+        },
+        {
+          "source_bytes": 559,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_161828/TASK_82_92/effective_config.yaml",
+          "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+        },
+        {
+          "source_bytes": 3336,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_161828/TASK_82_92/job_0.metrics.json",
+          "source_sha256": "2596c4c28764306e20049e40cb0ffa05ea68e8791abd1a4efb2865221a4a5c4d"
+        },
+        {
+          "source_bytes": 342,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_161828/TASK_82_92/run_status.json",
+          "source_sha256": "c318fd557eb3dbed1658cb4d1e15fe41799caff467128c48cbc62143b092084e"
+        },
+        {
+          "source_bytes": 2030,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_94_127/runs/0001-initial/command.json",
+          "source_sha256": "358bf61afea19c8f49761d890f6740d5e77f38164e6eb6f72a9855d7009fd74b"
+        },
+        {
+          "source_bytes": 559,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162026/TASK_93_127/effective_config.yaml",
+          "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+        },
+        {
+          "source_bytes": 4488,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162026/TASK_93_127/job_0.metrics.json",
+          "source_sha256": "90d38c67e1729c8461d539888b276b2ed44a23c7adaa9983e4e4f86bcc0c1ec6"
+        },
+        {
+          "source_bytes": 342,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_162026/TASK_93_127/run_status.json",
+          "source_sha256": "faaeb19f26f5d9dff55884e00961d810fd3d5777aca0cd723a3b8e935215012f"
+        },
+        {
+          "source_bytes": 2025,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/math500_0_200/runs/0001-initial/command.json",
+          "source_sha256": "36df0af6ab7bcff7b4f8af3c073579aacd0e1f808e9fd670a562e23431fb166c"
+        },
+        {
+          "source_bytes": 559,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_155822/TASK_0_200/effective_config.yaml",
+          "source_sha256": "42ef372e8e4c4feee1f82cf9c6e1556817124674393e9a04ca7e9f088a77c046"
+        },
+        {
+          "source_bytes": 4447,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_155822/TASK_0_200/job_0.metrics.json",
+          "source_sha256": "86a4771a004b4b9497fcf7d88b7ceefc1a38ffa7ba35722b5e15fbcfc20e5de1"
+        },
+        {
+          "source_bytes": 347,
+          "source_path": "data/engine/wacc_engine_protocol_seed42/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_155822/TASK_0_200/run_status.json",
+          "source_sha256": "836720280d81783b10015a65ef9610f189c152a6cb44935459a224d9c187fe6f"
+        }
+      ],
+      "source_path": "data/engine/wacc_engine_protocol_seed42",
+      "status": "complete"
+    },
+    {
+      "backend": "tah_engine",
+      "datasets": {
+        "gpqa": {
+          "config_source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/gpqa_tah_engine/20261013T143648+0000/effective_config.yaml",
+          "config_values": {
+            "backend": "tah_engine",
+            "groups": [
+              "gpqa_short_1_81",
+              "gpqa_short_83_92",
+              "gpqa_short_94_127",
+              "gpqa_short_129_165",
+              "gpqa_short_167_198",
+              "gpqa_long"
+            ],
+            "protocol": "wacc_r1",
+            "seed": 1234
+          },
+          "run_status": {
+            "backend": "tah_engine",
+            "canonical_merge_at": "2026-10-13T15:14:23+00:00",
+            "completed_samples": 396,
+            "dataset": "gpqa",
+            "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+            "expected_samples": 396,
+            "group_coverage": {
+              "gpqa_long": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 8
+                }
+              ],
+              "gpqa_short_129_165": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 74
+                }
+              ],
+              "gpqa_short_167_198": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 64
+                }
+              ],
+              "gpqa_short_1_81": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 162
+                }
+              ],
+              "gpqa_short_83_92": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 20
+                }
+              ],
+              "gpqa_short_94_127": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 68
+                }
+              ],
+              "math500_0_200": [
+                {
+                  "dataset": "math500",
+                  "samples": 400
+                }
+              ]
+            },
+            "model_path": "models/TaH-plus-1.7B",
+            "protocol": "wacc_r1",
+            "protocol_config_sha256": "cf38a6c3442f2eb734a0fd5beb7a7fa6f073a2bae34d036f7d545fabd7934caf",
+            "protocol_source": "script/tah/recipes/qwen3_1.7/protocol_wacc.yaml",
+            "random_seed": 1234,
+            "repeat_size": 2,
+            "status": "complete"
+          },
+          "source_files": [
+            {
+              "source_bytes": 34104,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/gpqa_tah_engine/20261013T143648+0000/detailed_results.csv",
+              "source_sha256": "c6b8335198fc5c0722aba1555a239f5dea175c3eb0a317a8d174d41ae6221676"
+            },
+            {
+              "source_bytes": 1335,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/gpqa_tah_engine/20261013T143648+0000/run_status.json",
+              "source_sha256": "f36e430d504a5304c892ff24a01bb2a7a9f8d9afaeb0fefc5bb7446cd309f828"
+            },
+            {
+              "source_bytes": 268,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/gpqa_tah_engine/20261013T143648+0000/effective_config.yaml",
+              "source_sha256": "f5d05a80caa5ebbad50002702fde836b6f1d486f7358f55da8e32cc9679edb1e"
+            }
+          ],
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/gpqa_tah_engine/20261013T143648+0000"
+        },
+        "math500": {
+          "config_source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/math500_tah_engine/20261013T143648+0000/TASK_0_200/effective_config.yaml",
+          "config_values": {
+            "backend": "tah_engine",
+            "groups": [
+              "math500_0_200"
+            ],
+            "protocol": "wacc_r1",
+            "seed": 1234
+          },
+          "run_status": {
+            "backend": "tah_engine",
+            "canonical_merge_at": "2026-10-13T15:14:23+00:00",
+            "completed_samples": 400,
+            "dataset": "math500",
+            "eval_config_sha256": "b1a0bc525a597fecc89db3230e4b03042eb9c2aad90022ef977ad35243363b24",
+            "expected_samples": 400,
+            "group_coverage": {
+              "gpqa_long": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 8
+                }
+              ],
+              "gpqa_short_129_165": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 74
+                }
+              ],
+              "gpqa_short_167_198": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 64
+                }
+              ],
+              "gpqa_short_1_81": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 162
+                }
+              ],
+              "gpqa_short_83_92": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 20
+                }
+              ],
+              "gpqa_short_94_127": [
+                {
+                  "dataset": "gpqa",
+                  "samples": 68
+                }
+              ],
+              "math500_0_200": [
+                {
+                  "dataset": "math500",
+                  "samples": 400
+                }
+              ]
+            },
+            "model_path": "models/TaH-plus-1.7B",
+            "protocol": "wacc_r1",
+            "protocol_config_sha256": "cf38a6c3442f2eb734a0fd5beb7a7fa6f073a2bae34d036f7d545fabd7934caf",
+            "protocol_source": "script/tah/recipes/qwen3_1.7/protocol_wacc.yaml",
+            "random_seed": 1234,
+            "repeat_size": 2,
+            "status": "complete"
+          },
+          "source_files": [
+            {
+              "source_bytes": 39295,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/math500_tah_engine/20261013T143648+0000/TASK_0_200/detailed_results.csv",
+              "source_sha256": "6cfad1ce6335fb840ce8978dd982ece0d57b0fe6282cbf7126c7c27ea22d5b09"
+            },
+            {
+              "source_bytes": 1338,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/math500_tah_engine/20261013T143648+0000/TASK_0_200/run_status.json",
+              "source_sha256": "c01895305406622ce13e1093d058de4aca0701f17412c73fa09be76b26c22768"
+            },
+            {
+              "source_bytes": 173,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/math500_tah_engine/20261013T143648+0000/TASK_0_200/effective_config.yaml",
+              "source_sha256": "157168d565d25bbf1063e1ed12f4c40850d2ef5ac987e55c8049afda80e3af7a"
+            }
+          ],
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/math500_tah_engine/20261013T143648+0000/TASK_0_200"
+        }
+      },
+      "engine_totals": {
+        "generated_tokens": 2593295,
+        "host_swap_peak_bytes": 8577910832,
+        "overlap": true,
+        "restarts": 18,
+        "steps": 76534,
+        "swap_ins": 780,
+        "swap_outs": 798,
+        "wasted_tokens": 25897
+      },
+      "groups": [
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 32320,
+            "host_swap_peak_bytes": 0,
+            "overlap": true,
+            "restarts": 0,
+            "steps": 5131,
+            "swap_ins": 0,
+            "swap_outs": 0,
+            "wasted_tokens": 0
+          },
+          "engine_options": {
+            "max_batch_size": 8,
+            "max_new_tokens": 4096,
+            "seed": 1234
+          },
+          "group": "gpqa_long",
+          "runs": 1,
+          "samples": 8,
+          "selection": null,
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 2,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2008,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_long/runs/0001-initial/command.json",
+              "source_sha256": "50cbe887bf079e2f28ac5a59fa8f39d29673ebb0009627ed8722eb29b170365c"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_171232/effective_config.yaml",
+              "source_sha256": "a1238e5038adb925ec2761e25bbba344d630a4ba906b9b66f028d8bc9136a8e3"
+            },
+            {
+              "source_bytes": 342,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_171232/run_status.json",
+              "source_sha256": "483cfde9d1c851ff53767d544cb090ade60d3d070cfdf114d7dbf752bf317579"
+            },
+            {
+              "source_bytes": 3044,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_171232/job_0.metrics.json",
+              "source_sha256": "4c7b237dc6d26f2f2ff0f01e1ab5db0e4a2a0253b56373ab522390b3c6733558"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 278435,
+            "host_swap_peak_bytes": 8534758064,
+            "overlap": true,
+            "restarts": 12,
+            "steps": 10098,
+            "swap_ins": 97,
+            "swap_outs": 109,
+            "wasted_tokens": 19623
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 1234
+          },
+          "group": "gpqa_short_129_165",
+          "runs": 1,
+          "samples": 74,
+          "selection": {
+            "gpqa": "128:165"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2052,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/command.json",
+              "source_sha256": "2fb33281d9f217c0b8c0348c01789b2280c69ea1277a4eca245a36ff9b96667a"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170318/TASK_128_165/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 344,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170318/TASK_128_165/run_status.json",
+              "source_sha256": "2392b87f1a267d38871459153d220b959fd3fbb6785eaeb187f23d47456b83b3"
+            },
+            {
+              "source_bytes": 4491,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170318/TASK_128_165/job_0.metrics.json",
+              "source_sha256": "e07268b2ad1bc84ca087f4f5ccbb243c36ef400044ce65b3f2a3320993abe9cc"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 235650,
+            "host_swap_peak_bytes": 8455638736,
+            "overlap": true,
+            "restarts": 0,
+            "steps": 7557,
+            "swap_ins": 90,
+            "swap_outs": 90,
+            "wasted_tokens": 0
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 1234
+          },
+          "group": "gpqa_short_167_198",
+          "runs": 1,
+          "samples": 64,
+          "selection": {
+            "gpqa": "166:198"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2052,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/command.json",
+              "source_sha256": "ce522872a15caa928ff6e9a913e7e735c9d5b9a779179bab84afdeeb0c22b97f"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170824/TASK_166_198/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 344,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170824/TASK_166_198/run_status.json",
+              "source_sha256": "af920987c93a197c88074403d30f534856f6f12bf45c2bb5b4c85764b61e346c"
+            },
+            {
+              "source_bytes": 4443,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170824/TASK_166_198/job_0.metrics.json",
+              "source_sha256": "fb975c3a32f2647c421f8cf850966ce95587b157076247cfe3ba49900cfe3633"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 600276,
+            "host_swap_peak_bytes": 8541794208,
+            "overlap": true,
+            "restarts": 0,
+            "steps": 16746,
+            "swap_ins": 331,
+            "swap_outs": 331,
+            "wasted_tokens": 0
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 1234
+          },
+          "group": "gpqa_short_1_81",
+          "runs": 1,
+          "samples": 162,
+          "selection": {
+            "gpqa": "0:81"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2028,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/command.json",
+              "source_sha256": "3f1588d674bf654d9b3de7ad474aaa3e464902949b658f8f3a7aef21cc96bb12"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_164736/TASK_0_81/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 346,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_164736/TASK_0_81/run_status.json",
+              "source_sha256": "5a3ea47137cffed1960bc24007870b3b875d9d7a427d5b886e274402ca1e91c6"
+            },
+            {
+              "source_bytes": 4452,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_164736/TASK_0_81/job_0.metrics.json",
+              "source_sha256": "6e1adf8cbd7d8de1160e25b2b17d7d8573d6af974f7231b98b24c8570c917a25"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 69521,
+            "host_swap_peak_bytes": 0,
+            "overlap": true,
+            "restarts": 0,
+            "steps": 5102,
+            "swap_ins": 0,
+            "swap_outs": 0,
+            "wasted_tokens": 0
+          },
+          "engine_options": {
+            "max_batch_size": 20,
+            "max_new_tokens": 4096,
+            "seed": 1234
+          },
+          "group": "gpqa_short_83_92",
+          "runs": 1,
+          "samples": 20,
+          "selection": {
+            "gpqa": "82:92"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2036,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/command.json",
+              "source_sha256": "e72475aebe601818d75b88d3026c68c11bd0434bce81d3da6449675176aa9310"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165627/TASK_82_92/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 344,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165627/TASK_82_92/run_status.json",
+              "source_sha256": "c1a77d63e633e51ac336010578de1771cbd1e84ba2881aea26aea31fe0319a67"
+            },
+            {
+              "source_bytes": 3337,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165627/TASK_82_92/job_0.metrics.json",
+              "source_sha256": "e6d1eb8bc64956f4d18101be2d59b78b831777e6d5c8b491d46404c0aad7e446"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine": {
+            "generated_tokens": 254980,
+            "host_swap_peak_bytes": 8577910832,
+            "overlap": true,
+            "restarts": 6,
+            "steps": 9920,
+            "swap_ins": 136,
+            "swap_outs": 142,
+            "wasted_tokens": 6274
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 1234
+          },
+          "group": "gpqa_short_94_127",
+          "runs": 1,
+          "samples": 68,
+          "selection": {
+            "gpqa": "93:127"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2044,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/command.json",
+              "source_sha256": "59478a2c129fad4cd7e292545927af216f142ac2fd27e60ba2d0ba7379b24802"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165823/TASK_93_127/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 344,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165823/TASK_93_127/run_status.json",
+              "source_sha256": "fe59f7394ce21c3173b61ac44e7517baf70f22d95da229c64b663872aab68db1"
+            },
+            {
+              "source_bytes": 4491,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165823/TASK_93_127/job_0.metrics.json",
+              "source_sha256": "108c45b580cef66f29fd0431daa2b662255a2326b6245276c29d15884e04f9fc"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "math500",
+          "engine": {
+            "generated_tokens": 1122113,
+            "host_swap_peak_bytes": 1932693344,
+            "overlap": true,
+            "restarts": 0,
+            "steps": 21980,
+            "swap_ins": 126,
+            "swap_outs": 126,
+            "wasted_tokens": 0
+          },
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "seed": 1234
+          },
+          "group": "math500_0_200",
+          "runs": 1,
+          "samples": 400,
+          "selection": {
+            "math500": "0:200"
+          },
+          "settings": {
+            "_random_seed": 1234,
+            "batch_size": 8,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 2039,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/math500_0_200/runs/0001-initial/command.json",
+              "source_sha256": "942dc3532b801b6704ba4176a988978058f625ef55974a792f68a93c09690791"
+            },
+            {
+              "source_bytes": 561,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_163650/TASK_0_200/effective_config.yaml",
+              "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+            },
+            {
+              "source_bytes": 349,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_163650/TASK_0_200/run_status.json",
+              "source_sha256": "84c40a5ad36d4465efb9e8a493e1933cf40a57bf150d9c81a8c52ef6d64fd95d"
+            },
+            {
+              "source_bytes": 4452,
+              "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_163650/TASK_0_200/job_0.metrics.json",
+              "source_sha256": "bb118f98a3b655e2fe411951e3e1fe51016cf445e4700b95e8a04073eaa67486"
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "name": "engine-seed1234",
+      "protocol_manifest_sha256": "2ba9a71d77a11d8f39f7e47c0e994acf93c8fd315b12dc6f465d1187ab7e00d9",
+      "samples": 796,
+      "seed": 1234,
+      "source_files": [
+        {
+          "source_bytes": 34104,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/gpqa_tah_engine/20261013T143648+0000/detailed_results.csv",
+          "source_sha256": "c6b8335198fc5c0722aba1555a239f5dea175c3eb0a317a8d174d41ae6221676"
+        },
+        {
+          "source_bytes": 268,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/gpqa_tah_engine/20261013T143648+0000/effective_config.yaml",
+          "source_sha256": "f5d05a80caa5ebbad50002702fde836b6f1d486f7358f55da8e32cc9679edb1e"
+        },
+        {
+          "source_bytes": 1335,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/gpqa_tah_engine/20261013T143648+0000/run_status.json",
+          "source_sha256": "f36e430d504a5304c892ff24a01bb2a7a9f8d9afaeb0fefc5bb7446cd309f828"
+        },
+        {
+          "source_bytes": 39295,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/math500_tah_engine/20261013T143648+0000/TASK_0_200/detailed_results.csv",
+          "source_sha256": "6cfad1ce6335fb840ce8978dd982ece0d57b0fe6282cbf7126c7c27ea22d5b09"
+        },
+        {
+          "source_bytes": 173,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/math500_tah_engine/20261013T143648+0000/TASK_0_200/effective_config.yaml",
+          "source_sha256": "157168d565d25bbf1063e1ed12f4c40850d2ef5ac987e55c8049afda80e3af7a"
+        },
+        {
+          "source_bytes": 1338,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/math500_tah_engine/20261013T143648+0000/TASK_0_200/run_status.json",
+          "source_sha256": "c01895305406622ce13e1093d058de4aca0701f17412c73fa09be76b26c22768"
+        },
+        {
+          "source_bytes": 8220,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/canonical/protocol_manifest.json",
+          "source_sha256": "2ba9a71d77a11d8f39f7e47c0e994acf93c8fd315b12dc6f465d1187ab7e00d9"
+        },
+        {
+          "source_bytes": 2008,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_long/runs/0001-initial/command.json",
+          "source_sha256": "50cbe887bf079e2f28ac5a59fa8f39d29673ebb0009627ed8722eb29b170365c"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_171232/effective_config.yaml",
+          "source_sha256": "a1238e5038adb925ec2761e25bbba344d630a4ba906b9b66f028d8bc9136a8e3"
+        },
+        {
+          "source_bytes": 3044,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_171232/job_0.metrics.json",
+          "source_sha256": "4c7b237dc6d26f2f2ff0f01e1ab5db0e4a2a0253b56373ab522390b3c6733558"
+        },
+        {
+          "source_bytes": 342,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_long/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_171232/run_status.json",
+          "source_sha256": "483cfde9d1c851ff53767d544cb090ade60d3d070cfdf114d7dbf752bf317579"
+        },
+        {
+          "source_bytes": 2052,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/command.json",
+          "source_sha256": "2fb33281d9f217c0b8c0348c01789b2280c69ea1277a4eca245a36ff9b96667a"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170318/TASK_128_165/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 4491,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170318/TASK_128_165/job_0.metrics.json",
+          "source_sha256": "e07268b2ad1bc84ca087f4f5ccbb243c36ef400044ce65b3f2a3320993abe9cc"
+        },
+        {
+          "source_bytes": 344,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_129_165/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170318/TASK_128_165/run_status.json",
+          "source_sha256": "2392b87f1a267d38871459153d220b959fd3fbb6785eaeb187f23d47456b83b3"
+        },
+        {
+          "source_bytes": 2052,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/command.json",
+          "source_sha256": "ce522872a15caa928ff6e9a913e7e735c9d5b9a779179bab84afdeeb0c22b97f"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170824/TASK_166_198/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 4443,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170824/TASK_166_198/job_0.metrics.json",
+          "source_sha256": "fb975c3a32f2647c421f8cf850966ce95587b157076247cfe3ba49900cfe3633"
+        },
+        {
+          "source_bytes": 344,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_167_198/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_170824/TASK_166_198/run_status.json",
+          "source_sha256": "af920987c93a197c88074403d30f534856f6f12bf45c2bb5b4c85764b61e346c"
+        },
+        {
+          "source_bytes": 2028,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/command.json",
+          "source_sha256": "3f1588d674bf654d9b3de7ad474aaa3e464902949b658f8f3a7aef21cc96bb12"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_164736/TASK_0_81/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 4452,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_164736/TASK_0_81/job_0.metrics.json",
+          "source_sha256": "6e1adf8cbd7d8de1160e25b2b17d7d8573d6af974f7231b98b24c8570c917a25"
+        },
+        {
+          "source_bytes": 346,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_1_81/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_164736/TASK_0_81/run_status.json",
+          "source_sha256": "5a3ea47137cffed1960bc24007870b3b875d9d7a427d5b886e274402ca1e91c6"
+        },
+        {
+          "source_bytes": 2036,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/command.json",
+          "source_sha256": "e72475aebe601818d75b88d3026c68c11bd0434bce81d3da6449675176aa9310"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165627/TASK_82_92/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 3337,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165627/TASK_82_92/job_0.metrics.json",
+          "source_sha256": "e6d1eb8bc64956f4d18101be2d59b78b831777e6d5c8b491d46404c0aad7e446"
+        },
+        {
+          "source_bytes": 344,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_83_92/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165627/TASK_82_92/run_status.json",
+          "source_sha256": "c1a77d63e633e51ac336010578de1771cbd1e84ba2881aea26aea31fe0319a67"
+        },
+        {
+          "source_bytes": 2044,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/command.json",
+          "source_sha256": "59478a2c129fad4cd7e292545927af216f142ac2fd27e60ba2d0ba7379b24802"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165823/TASK_93_127/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 4491,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165823/TASK_93_127/job_0.metrics.json",
+          "source_sha256": "108c45b580cef66f29fd0431daa2b662255a2326b6245276c29d15884e04f9fc"
+        },
+        {
+          "source_bytes": 344,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/gpqa_short_94_127/runs/0001-initial/eval_output/gpqa_tah_engine/20261013_165823/TASK_93_127/run_status.json",
+          "source_sha256": "fe59f7394ce21c3173b61ac44e7517baf70f22d95da229c64b663872aab68db1"
+        },
+        {
+          "source_bytes": 2039,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/math500_0_200/runs/0001-initial/command.json",
+          "source_sha256": "942dc3532b801b6704ba4176a988978058f625ef55974a792f68a93c09690791"
+        },
+        {
+          "source_bytes": 561,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_163650/TASK_0_200/effective_config.yaml",
+          "source_sha256": "8edfa02fb124d931400205cdcd7a08dcad0fa9710e54e92a889aac00fe680a68"
+        },
+        {
+          "source_bytes": 4452,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_163650/TASK_0_200/job_0.metrics.json",
+          "source_sha256": "bb118f98a3b655e2fe411951e3e1fe51016cf445e4700b95e8a04073eaa67486"
+        },
+        {
+          "source_bytes": 349,
+          "source_path": "data/engine/wacc_engine_protocol_seed1234/groups/math500_0_200/runs/0001-initial/eval_output/math500_tah_engine/20261013_163650/TASK_0_200/run_status.json",
+          "source_sha256": "84c40a5ad36d4465efb9e8a493e1933cf40a57bf150d9c81a8c52ef6d64fd95d"
+        }
+      ],
+      "source_path": "data/engine/wacc_engine_protocol_seed1234",
+      "status": "complete"
+    },
+    {
+      "backend": "tah_engine",
+      "datasets": {
+        "gpqa": {
+          "config_source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/effective_config.yaml",
+          "config_values": {
+            "_random_seed": 2024,
+            "batch_size": 16,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "run_status": {
+            "backend": "tah_engine",
+            "batch_size": 16,
+            "completed_jobs": 1,
+            "completed_samples": 396,
+            "dataset": "gpqa",
+            "expected_samples": 396,
+            "failed_jobs": 0,
+            "model_path": "models/TaH-plus-1.7B",
+            "random_seed": 2024,
+            "repeat_size": 2,
+            "status": "complete",
+            "timestamp": "20261013_133615"
+          },
+          "source_files": [
+            {
+              "source_bytes": 34210,
+              "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/detailed_results.csv",
+              "source_sha256": "c3ec3e588ca1b0b6be93e4813126ca7c0d6f7105b2a799d2707a2d28252bbe9f"
+            },
+            {
+              "source_bytes": 347,
+              "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/run_status.json",
+              "source_sha256": "f7f883b2bb7f50f98e5e66f32aac4d4091f1e0f25954d74aa3b99f36d4f5f494"
+            },
+            {
+              "source_bytes": 626,
+              "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/effective_config.yaml",
+              "source_sha256": "f55a1a09c37db3faf34b977679188db14a2676d9715cd2d69682bbc235f5d266"
+            }
+          ],
+          "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615"
+        },
+        "math500": {
+          "config_source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/effective_config.yaml",
+          "config_values": {
+            "_random_seed": 2024,
+            "batch_size": 16,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "run_status": {
+            "backend": "tah_engine",
+            "batch_size": 16,
+            "completed_jobs": 1,
+            "completed_samples": 400,
+            "dataset": "math500",
+            "expected_samples": 400,
+            "failed_jobs": 0,
+            "model_path": "models/TaH-plus-1.7B",
+            "random_seed": 2024,
+            "repeat_size": 2,
+            "status": "complete",
+            "timestamp": "20261013_133615"
+          },
+          "source_files": [
+            {
+              "source_bytes": 39133,
+              "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/detailed_results.csv",
+              "source_sha256": "6b0c7d596dfad16a972bd2257773e0b6ddaea9fece22885681b31b2e3740e561"
+            },
+            {
+              "source_bytes": 350,
+              "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/run_status.json",
+              "source_sha256": "cb7b3a811b730acaf1421bf7c8479b2790e3d3e3be8687d761ea8af91ef25e89"
+            },
+            {
+              "source_bytes": 626,
+              "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/effective_config.yaml",
+              "source_sha256": "f55a1a09c37db3faf34b977679188db14a2676d9715cd2d69682bbc235f5d266"
+            }
+          ],
+          "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200"
+        }
+      },
+      "engine_totals": {
+        "generated_tokens": 2612008,
+        "host_swap_peak_bytes": 5372926080,
+        "overlap": true,
+        "restarts": 0,
+        "steps": 58250,
+        "swap_ins": 1295,
+        "swap_outs": 1296,
+        "wasted_tokens": 0
+      },
+      "groups": [
+        {
+          "dataset": "math500",
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "overlap": true,
+            "seed": 2024
+          },
+          "group": "math500_single_job",
+          "runs": 1,
+          "samples": 400,
+          "selection": "math500=0:200",
+          "settings": {
+            "_random_seed": 2024,
+            "batch_size": 16,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 350,
+              "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/run_status.json",
+              "source_sha256": "cb7b3a811b730acaf1421bf7c8479b2790e3d3e3be8687d761ea8af91ef25e89"
+            },
+            {
+              "source_bytes": 626,
+              "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/effective_config.yaml",
+              "source_sha256": "f55a1a09c37db3faf34b977679188db14a2676d9715cd2d69682bbc235f5d266"
+            },
+            {
+              "source_bytes": 4477,
+              "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/job_0.metrics.json",
+              "source_sha256": "f63fd68b9e57070c29dd9dadc809a8c488055d4b6f7d8d6731c3e996d0b804e8"
+            }
+          ],
+          "status": "complete"
+        },
+        {
+          "dataset": "gpqa",
+          "engine_options": {
+            "max_batch_size": 64,
+            "max_new_tokens": 4096,
+            "overlap": true,
+            "seed": 2024
+          },
+          "group": "gpqa_single_job",
+          "runs": 1,
+          "samples": 396,
+          "selection": "gpqa=all",
+          "settings": {
+            "_random_seed": 2024,
+            "batch_size": 16,
+            "dtype": "bfloat16",
+            "eval_iter_decider": "iter_decider",
+            "iter_decider": "MLPIterDecider",
+            "max_iter": 2,
+            "max_new_tokens": 4096,
+            "min_p": 0.0,
+            "repeat_size": 2,
+            "temperature": 0.6,
+            "threshold": 0.9,
+            "top_k": 20,
+            "top_p": 0.95
+          },
+          "source_files": [
+            {
+              "source_bytes": 347,
+              "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/run_status.json",
+              "source_sha256": "f7f883b2bb7f50f98e5e66f32aac4d4091f1e0f25954d74aa3b99f36d4f5f494"
+            },
+            {
+              "source_bytes": 626,
+              "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/effective_config.yaml",
+              "source_sha256": "f55a1a09c37db3faf34b977679188db14a2676d9715cd2d69682bbc235f5d266"
+            },
+            {
+              "source_bytes": 4477,
+              "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/job_0.metrics.json",
+              "source_sha256": "f63fd68b9e57070c29dd9dadc809a8c488055d4b6f7d8d6731c3e996d0b804e8"
+            }
+          ],
+          "status": "complete"
+        }
+      ],
+      "name": "engine-seed2024",
+      "protocol_manifest_sha256": null,
+      "samples": 796,
+      "seed": 2024,
+      "source_files": [
+        {
+          "source_bytes": 34210,
+          "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/detailed_results.csv",
+          "source_sha256": "c3ec3e588ca1b0b6be93e4813126ca7c0d6f7105b2a799d2707a2d28252bbe9f"
+        },
+        {
+          "source_bytes": 626,
+          "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/effective_config.yaml",
+          "source_sha256": "f55a1a09c37db3faf34b977679188db14a2676d9715cd2d69682bbc235f5d266"
+        },
+        {
+          "source_bytes": 4477,
+          "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/job_0.metrics.json",
+          "source_sha256": "f63fd68b9e57070c29dd9dadc809a8c488055d4b6f7d8d6731c3e996d0b804e8"
+        },
+        {
+          "source_bytes": 347,
+          "source_path": "data/engine/wp10/wacc-seed2024/gpqa_tah_engine/20261013_133615/run_status.json",
+          "source_sha256": "f7f883b2bb7f50f98e5e66f32aac4d4091f1e0f25954d74aa3b99f36d4f5f494"
+        },
+        {
+          "source_bytes": 39133,
+          "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/detailed_results.csv",
+          "source_sha256": "6b0c7d596dfad16a972bd2257773e0b6ddaea9fece22885681b31b2e3740e561"
+        },
+        {
+          "source_bytes": 626,
+          "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/effective_config.yaml",
+          "source_sha256": "f55a1a09c37db3faf34b977679188db14a2676d9715cd2d69682bbc235f5d266"
+        },
+        {
+          "source_bytes": 4477,
+          "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/job_0.metrics.json",
+          "source_sha256": "f63fd68b9e57070c29dd9dadc809a8c488055d4b6f7d8d6731c3e996d0b804e8"
+        },
+        {
+          "source_bytes": 350,
+          "source_path": "data/engine/wp10/wacc-seed2024/math500_tah_engine/20261013_133615/TASK_0_200/run_status.json",
+          "source_sha256": "cb7b3a811b730acaf1421bf7c8479b2790e3d3e3be8687d761ea8af91ef25e89"
+        }
+      ],
+      "source_path": "data/engine/wp10/wacc-seed2024",
+      "status": "complete"
+    }
+  ],
+  "scope": "Confirmatory R1 sample and run metadata.",
+  "source_inventory": {
+    "tah/engine/__init__.py": "e80377bec1a1d80c41c9ab6963758f3f316c8ba162b425433c514496d8b3362e",
+    "tah/engine/attention.py": "e523668dfd98cc9e29bad9fdc601f943c2d19971429c045312c16b69d413a66a",
+    "tah/engine/attention_kernels.py": "aec7cdfe47e9609bc390f7cef6fa214b28f1e2d780495fdeefe17705c504924a",
+    "tah/engine/cached_model.py": "3752d4135d592f3199fc733f7027c9eaca9984387d95dedbcd818993f85e41cb",
+    "tah/engine/compiled.py": "420dafd5edc012e3556ec07191486c3958e0927040c6bf3f455f09001fc71237",
+    "tah/engine/config.py": "8969a8c08e14cae835a758131c7ffab2cebae5a74f6c368fca3586d7b8063dfe",
+    "tah/engine/decider.py": "7f8ff43de73ced9947350749056b0417507fc0b557c73aff613dfd78624e5015",
+    "tah/engine/engine.py": "d8baead126f989f0c94d57f315e4f4d2f204a0ccd6f76821f8c83ae02f4c0f24",
+    "tah/engine/fixtures.py": "fbeb40c5bac6882f340048abb40ce852e38d3b3f3d3ce096f347806e9de65cc0",
+    "tah/engine/generate_fixtures.py": "2151cebef592ca29531682678e5ab34cf0564d46ad26512c6259d31e18a6f3e3",
+    "tah/engine/graphs.py": "7165d25edbe313140efe1efcbeaf485e4b01ec0d341118c94b81d99981fd8c4b",
+    "tah/engine/kv_cache.py": "8f243576dd44614b469f47306a80c3e5579fff109f18444bd432daf24352d817",
+    "tah/engine/layers.py": "e009fd0db1b52e8170562356d3e80dc23e7c9e76a9b62c1dbdabb1944f6f46db",
+    "tah/engine/model.py": "54251a5342b6369e60f2799dcdc63a67dd5376698b432a2c9be186b2c0d944ef",
+    "tah/engine/parity.py": "5d8a9246d3dc49c7c1adb5d526f114918185caf1c4390c0bd924a28a2432e889",
+    "tah/engine/reference_capture.py": "88096ce03a0e51e2b4abbdbc626d3fcbdedf9e633786ea43d584aafa5dd841c0",
+    "tah/engine/rope.py": "3a03d19de657938c048ecbfe2044e2d3f1fa36dae891a087bc7986b7f2529aa3",
+    "tah/engine/sampling.py": "a4ca91b6bcf7b3e78b9df845ac6a650875350c682ff40d4b582f553af2a95237",
+    "tah/engine/scheduler.py": "6f21573adfc1e72f6c09e2a9c82ed00d4a616104944d89267b294d490ea766d4",
+    "tah/engine/tensors.py": "2f4ae9617d5fe13659bc988b08ef22014c1a53ff91c5c3c50ebbbffce151ab11",
+    "tah/engine/weights.py": "e62a5362244a9e7405111ca68732dcf326149466a695cf6887e57f96c59798f5"
+  }
+}

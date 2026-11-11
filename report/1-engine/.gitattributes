@@ -1,0 +1,2 @@
+# Preserve exact evidence bytes so manifest hashes survive every checkout.
+data/** -text

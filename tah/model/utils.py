@@ -205,12 +205,17 @@ def TaHForCasualLM_generate(
     top_k: int = 0,
     min_p: float = 0.0,
     verbose: bool = True,
+    return_pass_counts: bool = False,
     **kwargs,
 ):
     """Greedy / sampling generation for ``TaHForCausalLM`` with batched inputs.
 
     Returns ``(output_tokens, generated_texts)`` — the former is per-batch
-    list-of-token-ids, the latter their decoded strings.
+    list-of-token-ids, the latter their decoded strings. When
+    ``return_pass_counts=True``, append per-generated-token pass counts as a
+    third item. Each count is the pass count of the context position whose
+    logits selected that generated token. This is an observation only and
+    does not change generation decisions.
     """
     device = model_inputs["input_ids"].device
     B = model_inputs["input_ids"].shape[0]
@@ -218,6 +223,7 @@ def TaHForCasualLM_generate(
 
     cache = None
     output_tokens: list[list[int]] = [[] for _ in range(B)]
+    output_pass_counts: list[list[int]] = [[] for _ in range(B)]
     finished = torch.zeros(B, dtype=torch.bool, device=device)
     current_attn = model_inputs.get("attention_mask")
 
@@ -238,11 +244,16 @@ def TaHForCasualLM_generate(
                 last_logits, temperature=temperature, top_p=top_p,
                 top_k=top_k, min_p=min_p, do_sample=do_sample,
             )
+            # Materialise the sampled IDs/counts together; generation already
+            # needs these values on the host to update its Python-side lists.
+            next_ids_host = next_ids.tolist()
+            next_pass_counts_host = outputs.iter_count[:, -1].tolist()
             if tokenizer.eos_token_id is not None:
                 finished = finished | (next_ids == tokenizer.eos_token_id)
             for i in range(B):
                 if not finished[i]:
-                    output_tokens[i].append(int(next_ids[i].item()))
+                    output_tokens[i].append(int(next_ids_host[i]))
+                    output_pass_counts[i].append(int(next_pass_counts_host[i]))
             if finished.all():
                 break
 
@@ -261,4 +272,7 @@ def TaHForCasualLM_generate(
 
     if verbose:
         print("\033[0m")
-    return output_tokens, [tokenizer.decode(toks) if toks else "" for toks in output_tokens]
+    result = (output_tokens, [tokenizer.decode(toks) if toks else "" for toks in output_tokens])
+    if return_pass_counts:
+        return (*result, output_pass_counts)
+    return result

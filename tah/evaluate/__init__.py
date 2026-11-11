@@ -4,7 +4,7 @@ Most callers want :func:`allocate_gpus_and_run_jobs` (the top-level entry
 the CLI uses); the module split is otherwise mainly internal:
 
 * ``datasets``  — load + standardise benchmark datasets.
-* ``backends``  — per-backend (sglang / hf / tah) model + inference fn.
+* ``backends``  — per-backend (tah_engine / tah / hf / sglang) inference fn.
 * ``jobs``      — per-job runner, process orchestration, result aggregation.
 * ``matheval``  — math benchmark graders (rule-based via ``math_verify``).
 * ``codeeval``  — humaneval/mbpp grading via ``evalplus``.
@@ -16,10 +16,12 @@ from tah.evaluate.jobs import (
     parse_data_range,
     run_single_job,
 )
+from tah.evaluate.results import collect_results
 
 __all__ = [
     "allocate_gpus_and_run_jobs",
     "combine_job_results",
+    "collect_results",
     "load_combined_dataset",
     "parse_data_range",
     "run_single_job",
